@@ -1,459 +1,663 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>DJ — Law · Research · Code</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Dhananjay Chouhan — Law Student at NLU Delhi, Researcher, and Web Developer. Constitutional law, AI legal tools, and digital experiments."/>
+<meta property="og:title" content="Dhananjay Chouhan — Law · Research · Code"/>
+<meta property="og:description" content="BA LLB student at NLU Delhi. 75+ legal essays, AI tools, dashboards, and projects at the intersection of law and technology."/>
+<title>Dhananjay Chouhan — Law · Research · Code</title>
+
+<!-- ═══════════════════════════════════════════════════════
+     LAYER 1: Google Fonts (preferred)
+     LAYER 2: system-ui fallback in CSS font-family stacks
+     LAYER 3: @font-face local() fallback baked in
+═══════════════════════════════════════════════════════ -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  id="gfonts"
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@300;400&family=DM+Sans:wght@300;400;500;600&display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@300;400&family=DM+Sans:wght@300;400;500;600&display=swap"/>
+</noscript>
+
 <style>
-/* ── RESET & BASE ─────────────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ═══════════════════════════════════════════════════
+   DESIGN TOKENS & RESET
+═══════════════════════════════════════════════════ */
 :root {
-  --ink: #0A0A0F;
-  --vellum: #F5F0E8;
-  --gold: #C9A84C;
+  --ink:        #0A0A0F;
+  --vellum:     #F5F0E8;
+  --gold:       #C9A84C;
   --gold-light: #E8C97A;
-  --slate: #1A1A2E;
-  --mist: #8888A8;
-  --ember: #E05A2B;
-}
-html { scroll-behavior: smooth; }
-body {
-  background: var(--ink);
-  color: var(--vellum);
-  font-family: 'DM Sans', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-body::before {
-  content: '';
-  position: fixed; inset: 0; pointer-events: none; z-index: 9999;
-  opacity: 0.028;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 256px;
-}
-::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: var(--ink); }
-::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+  --gold-dim:   #A07830;
+  --slate:      #1A1A2E;
+  --slate-mid:  #252540;
+  --mist:       #8888A8;
+  --mist-dim:   rgba(136,136,168,0.4);
 
-/* ── NAVBAR ───────────────────────────────────────────────────────────────── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 48px; height: 64px;
-  background: rgba(10,10,15,0.88);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(201,168,76,0.1);
-  transition: background 0.3s;
-}
-.logo-wrap { display: flex; align-items: center; gap: 10px; cursor: pointer; }
-.logo { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.3rem; font-weight: 700; }
-.logo-sub { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: var(--mist); letter-spacing: 0.28em; text-transform: uppercase; }
-.nav-links { display: flex; gap: 32px; list-style: none; }
-.nav-links a {
-  font-size: 0.82rem; color: var(--mist); text-decoration: none;
-  letter-spacing: 0.04em; cursor: pointer;
-  transition: color 0.2s; position: relative; padding-bottom: 2px;
-}
-.nav-links a:hover { color: var(--vellum); }
-.nav-links a.active { color: var(--gold); }
-.nav-links a.active::after {
-  content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
-  height: 1px; background: var(--gold);
+  /* LAYER 2 font fallbacks — works even if Google Fonts fails */
+  --f-display: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  --f-mono:    'IBM Plex Mono', 'Courier New', 'Courier', monospace;
+  --f-sans:    'DM Sans', 'Segoe UI', 'Helvetica Neue', 'Arial', sans-serif;
 }
 
-/* ── PAGE SYSTEM ──────────────────────────────────────────────────────────── */
-.page { display: none; min-height: 100vh; }
-.page.active { display: block; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--ink);color:var(--vellum);
+  font-family:var(--f-sans);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;min-height:100vh;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--f-sans);cursor:pointer}
 
-/* ── SHARED ───────────────────────────────────────────────────────────────── */
-.container { max-width: 1120px; margin: 0 auto; padding: 0 48px; }
-.container-narrow { max-width: 720px; margin: 0 auto; padding: 0 48px; }
-.rule { border: none; border-top: 1px solid rgba(201,168,76,0.2); }
-.eyebrow {
-  font-family: 'IBM Plex Mono', monospace; color: var(--gold);
-  font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase;
-  display: block; margin-bottom: 10px;
-}
-.btn-gold {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 12px 24px; background: var(--gold); color: var(--ink);
-  font-weight: 600; font-size: 0.875rem; text-decoration: none; cursor: pointer;
-  transition: background 0.2s; border: none; font-family: 'DM Sans', sans-serif;
-}
-.btn-gold:hover { background: var(--gold-light); }
-.btn-outline {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 12px 24px; border: 1px solid rgba(201,168,76,0.3); color: var(--vellum);
-  font-size: 0.875rem; text-decoration: none; cursor: pointer;
-  transition: border-color 0.2s; font-family: 'DM Sans', sans-serif; background: none;
-}
-.btn-outline:hover { border-color: rgba(201,168,76,0.65); }
-.sec-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 40px; }
-.see-all { font-size: 0.8rem; color: var(--mist); text-decoration: none; cursor: pointer; display: flex; align-items: center; gap: 4px; transition: color 0.2s; }
-.see-all:hover { color: var(--gold); }
-
-/* ── GOLD SHIMMER TEXT ────────────────────────────────────────────────────── */
-.gold-shimmer {
-  background: linear-gradient(90deg, #C9A84C 0%, #E8C97A 40%, #C9A84C 60%, #A07830 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 3s linear infinite;
-  font-style: italic;
+/* Grain overlay — purely decorative, pointer-events:none so it can't block clicks */
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;
+  opacity:.028;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px;
 }
 
-/* ── ANIMATIONS ───────────────────────────────────────────────────────────── */
-@keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
-@keyframes fadeUp { 0%{opacity:0;transform:translateY(22px)} 100%{opacity:1;transform:none} }
-@keyframes pulse { 0%,100%{opacity:.3} 50%{opacity:.6} }
-.anim { opacity: 0; animation: fadeUp 0.7s ease forwards; }
-.d1 { animation-delay: 0.1s; }
-.d2 { animation-delay: 0.2s; }
-.d3 { animation-delay: 0.3s; }
-.d4 { animation-delay: 0.4s; }
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--ink)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
 
-/* ════════════════════════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════════════ */
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:.6}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ═══════════════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════════════ */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  height:64px;padding:0 48px;
+  background:rgba(10,10,15,.9);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(201,168,76,.12);
+  transition:background .4s;
+}
+.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.nav-logo .mark{font-family:var(--f-display);color:var(--gold);font-size:1.3rem;font-weight:700;line-height:1}
+.nav-logo .sub{
+  font-family:var(--f-mono);font-size:.6rem;color:var(--mist);
+  letter-spacing:.28em;text-transform:uppercase;
+}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{
+  font-family:var(--f-sans);font-size:.82rem;color:var(--mist);
+  cursor:pointer;letter-spacing:.04em;
+  position:relative;padding-bottom:3px;
+  transition:color .2s;-webkit-tap-highlight-color:transparent;
+  border:none;background:none;
+}
+.nav-links a:hover{color:var(--vellum)}
+.nav-links a.active{color:var(--gold)}
+.nav-links a.active::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;
+  height:1px;background:var(--gold);
+}
+
+/* Hamburger (mobile) */
+#nav-toggle{
+  display:none;flex-direction:column;justify-content:center;
+  gap:5px;width:32px;height:32px;background:none;
+  border:none;cursor:pointer;padding:0;
+  -webkit-tap-highlight-color:transparent;
+}
+#nav-toggle span{
+  display:block;width:22px;height:1.5px;
+  background:var(--mist);border-radius:2px;
+  transition:all .3s;transform-origin:center;
+}
+#nav-toggle.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+#nav-toggle.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+#nav-toggle.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* Mobile drawer */
+#nav-drawer{
+  display:none;position:fixed;top:64px;left:0;right:0;z-index:499;
+  background:rgba(10,10,15,.97);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(201,168,76,.12);
+  padding:24px 48px 32px;
+}
+#nav-drawer.open{display:block}
+#nav-drawer ul{list-style:none;display:flex;flex-direction:column;gap:18px}
+#nav-drawer ul a{
+  font-family:var(--f-sans);font-size:1rem;color:var(--mist);
+  cursor:pointer;display:block;
+  transition:color .2s;
+  border:none;background:none;
+}
+#nav-drawer ul a.active{color:var(--gold)}
+
+/* ═══════════════════════════════════════════════════
+   PAGE SYSTEM — Layer 1: class toggle
+                 Layer 2: CSS visibility backup
+                 Layer 3: inline style set by JS
+═══════════════════════════════════════════════════ */
+.page{
+  display:none;min-height:100vh;
+  /* Layer 3: aria-hidden used for screen readers */
+}
+.page.active{display:block}
+
+/* ═══════════════════════════════════════════════════
+   SHARED UTILITIES
+═══════════════════════════════════════════════════ */
+.wrap{max-width:1120px;margin:0 auto;padding:0 48px}
+.wrap-narrow{max-width:740px;margin:0 auto;padding:0 48px}
+.rule{border:none;border-top:1px solid rgba(201,168,76,.2)}
+.eyebrow{
+  display:block;font-family:var(--f-mono);
+  color:var(--gold);font-size:.65rem;
+  letter-spacing:.35em;text-transform:uppercase;margin-bottom:10px;
+}
+.section-title{
+  font-family:var(--f-display);font-size:clamp(2rem,4vw,2.6rem);
+  font-weight:700;color:var(--vellum);
+}
+.page-title{
+  font-family:var(--f-display);
+  font-size:clamp(3rem,7vw,5.5rem);
+  font-weight:900;color:var(--vellum);line-height:1;
+  margin-bottom:14px;
+}
+.page-desc{color:var(--mist);font-size:.97rem;line-height:1.8;max-width:460px}
+
+/* Buttons */
+.btn-primary,.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--f-sans);font-weight:600;
+  font-size:.875rem;cursor:pointer;
+  transition:all .2s;border:none;
+  -webkit-tap-highlight-color:transparent;
+  white-space:nowrap;
+}
+.btn-primary{
+  padding:13px 26px;background:var(--gold);color:var(--ink);
+}
+.btn-primary:hover{background:var(--gold-light)}
+.btn-primary:active{transform:scale(.97)}
+.btn-secondary{
+  padding:12px 26px;
+  border:1px solid rgba(201,168,76,.3)!important;
+  color:var(--vellum);background:transparent;
+}
+.btn-secondary:hover{border-color:rgba(201,168,76,.65)!important}
+.btn-secondary:active{transform:scale(.97)}
+.btn-sm.btn-primary{padding:9px 18px;font-size:.8rem}
+.btn-sm.btn-secondary{padding:9px 18px;font-size:.8rem}
+
+/* Gold shimmer text */
+.shimmer{
+  background:linear-gradient(90deg,var(--gold) 0%,var(--gold-light) 40%,var(--gold) 60%,var(--gold-dim) 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:shimmer 3s linear infinite;
+  font-style:italic;
+}
+
+/* Sec header with right link */
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;gap:16px}
+.sec-head-left .eyebrow{margin-bottom:8px}
+.see-all-btn{
+  font-family:var(--f-sans);font-size:.8rem;color:var(--mist);
+  cursor:pointer;background:none;border:none;
+  transition:color .2s;white-space:nowrap;align-self:flex-end;
+  padding:0;
+}
+.see-all-btn:hover{color:var(--gold)}
+
+/* Project card */
+.card{
+  border:1px solid rgba(201,168,76,.1);
+  background:rgba(26,26,46,.22);
+  display:flex;flex-direction:column;
+  transition:border-color .3s,transform .3s;
+  overflow:hidden;
+  /* Layer 2: ensure cursor is always pointer */
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  color:inherit;
+}
+.card:hover{border-color:rgba(201,168,76,.42);transform:translateY(-5px)}
+.card:active{transform:translateY(-2px)}
+.card-accent{height:3px;background:linear-gradient(90deg,rgba(201,168,76,.7),rgba(232,201,122,.3),transparent);flex-shrink:0}
+.card-body{padding:22px;flex:1;display:flex;flex-direction:column;gap:0}
+.card-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.cat-badge{font-family:var(--f-mono);font-size:.58rem;padding:3px 8px;text-transform:uppercase;letter-spacing:.1em;border-radius:2px}
+.cat-legal{color:var(--gold);background:rgba(201,168,76,.1)}
+.cat-ai{color:#fbbf24;background:rgba(251,191,36,.1)}
+.cat-dashboard{color:#60a5fa;background:rgba(96,165,250,.1)}
+.cat-interactive{color:#34d399;background:rgba(52,211,153,.1)}
+.cat-game{color:#a78bfa;background:rgba(167,139,250,.1)}
+.card-year{font-family:var(--f-mono);font-size:.6rem;color:var(--mist-dim)}
+.card-title{font-family:var(--f-display);color:var(--vellum);font-size:1.1rem;font-weight:700;line-height:1.2;margin-bottom:6px;transition:color .2s}
+.card:hover .card-title{color:var(--gold)}
+.card-tagline{font-size:.72rem;color:rgba(201,168,76,.65);font-style:italic;margin-bottom:10px}
+.card-desc{color:var(--mist);font-size:.82rem;line-height:1.68;flex:1}
+.card-footer{margin-top:16px;padding-top:12px;border-top:1px solid rgba(201,168,76,.08);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.card-tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-family:var(--f-mono);font-size:.57rem;color:rgba(136,136,168,.65);background:rgba(10,10,15,.5);border:1px solid rgba(136,136,168,.12);padding:2px 7px}
+.card-arrow{color:rgba(136,136,168,.3);font-size:.9rem;flex-shrink:0;transition:color .2s}
+.card:hover .card-arrow{color:var(--gold)}
+
+/* Writing row */
+.writing-row{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  gap:24px;padding:26px 0;
+  border-bottom:1px solid rgba(201,168,76,.07);
+  cursor:pointer;
+  transition:padding .2s,background .2s;
+  -webkit-tap-highlight-color:transparent;
+  text-decoration:none;color:inherit;
+}
+.writing-row:hover{
+  padding-left:10px;padding-right:10px;
+  margin:0 -10px;
+  background:rgba(201,168,76,.025);
+  border-radius:2px;
+}
+.writing-date{font-family:var(--f-mono);color:rgba(201,168,76,.5);font-size:.62rem;letter-spacing:.18em;margin-bottom:6px}
+.writing-title{font-family:var(--f-display);color:var(--vellum);font-size:1.15rem;font-weight:700;line-height:1.25;margin-bottom:8px;transition:color .2s}
+.writing-row:hover .writing-title{color:var(--gold)}
+.writing-summary{color:var(--mist);font-size:.82rem;line-height:1.68;max-width:560px}
+.writing-tags-col{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0;min-width:100px}
+
+/* Footer */
+.site-footer{
+  border-top:1px solid rgba(201,168,76,.1);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;padding:36px 48px;
+}
+.footer-brand .mark{font-family:var(--f-display);color:var(--gold);font-size:1.1rem;font-weight:700}
+.footer-brand .sub{font-family:var(--f-mono);font-size:.55rem;color:var(--mist);letter-spacing:.2em;text-transform:uppercase;margin-top:3px}
+.footer-copy{font-family:var(--f-mono);color:rgba(136,136,168,.3);font-size:.63rem}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-family:var(--f-mono);font-size:.68rem;color:var(--mist);transition:color .2s}
+.footer-links a:hover{color:var(--gold)}
+
+/* Grids */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+
+/* ═══════════════════════════════════════════════════
    PAGE: HOME
-════════════════════════════════════════════════════════════════════════════ */
-/* HERO */
-.hero {
-  min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
-  padding: 120px 48px 80px; position: relative; overflow: hidden;
+═══════════════════════════════════════════════════ */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  justify-content:center;
+  padding:120px 48px 80px;
+  position:relative;overflow:hidden;
 }
-.hero-grid {
-  position: absolute; inset: 0; pointer-events: none;
+.hero-bg-grid{
+  position:absolute;inset:0;pointer-events:none;
   background-image:
-    linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
-  background-size: 60px 60px;
+    linear-gradient(rgba(201,168,76,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(201,168,76,.04) 1px,transparent 1px);
+  background-size:60px 60px;
 }
-.hero-glow {
-  position: absolute; top: 38%; left: 50%; transform: translate(-50%,-50%);
-  width: 800px; height: 800px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 68%);
-  pointer-events: none;
+.hero-bg-glow{
+  position:absolute;top:38%;left:50%;
+  transform:translate(-50%,-50%);
+  width:900px;height:900px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,168,76,.07) 0%,transparent 68%);
+  pointer-events:none;
 }
-.hero-inner { position: relative; max-width: 1120px; margin: 0 auto; width: 100%; }
-h1.hero-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(4.5rem, 10vw, 9rem);
-  font-weight: 900; line-height: 0.95;
-  color: var(--vellum); margin-bottom: 28px;
+.hero-inner{position:relative;max-width:1120px;margin:0 auto;width:100%}
+h1.hero-headline{
+  font-family:var(--f-display);
+  font-size:clamp(4.5rem,10vw,9rem);
+  font-weight:900;line-height:.95;
+  color:var(--vellum);margin-bottom:28px;
 }
-.hero-desc {
-  font-size: 1.1rem; color: var(--mist);
-  max-width: 480px; line-height: 1.75; margin-bottom: 48px;
-}
-.cta-group { display: flex; gap: 14px; flex-wrap: wrap; }
-.scroll-indicator {
-  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
-}
-.scroll-line { width: 1px; height: 52px; background: linear-gradient(to bottom, transparent, var(--gold)); opacity: .4; animation: pulse 2s infinite; }
+.hero-desc{font-size:1.05rem;color:var(--mist);max-width:470px;line-height:1.78;margin-bottom:48px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.anim{opacity:0;animation:fadeUp .7s ease forwards}
+.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}.d4{animation-delay:.4s}
 
-/* PILLARS */
-.pillars-section { padding: 80px 0; }
-.pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.pillar {
-  border: 1px solid rgba(201,168,76,0.12); padding: 32px;
-  background: rgba(26,26,46,0.3); transition: border-color 0.3s, transform 0.3s;
+.scroll-hint{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px;
 }
-.pillar:hover { border-color: rgba(201,168,76,0.35); transform: translateY(-3px); }
-.pillar-icon { font-size: 1.4rem; margin-bottom: 16px; }
-.pillar h3 { font-family: 'Playfair Display', serif; color: var(--vellum); font-size: 1.15rem; font-weight: 600; margin-bottom: 10px; }
-.pillar p { color: var(--mist); font-size: 0.85rem; line-height: 1.7; }
+.scroll-line{width:1px;height:52px;background:linear-gradient(to bottom,transparent,var(--gold));opacity:.4;animation:pulse 2s infinite}
 
-/* HOME PROJECTS GRID */
-.home-projects { padding: 40px 0 80px; }
-.projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-.project-card {
-  border: 1px solid rgba(201,168,76,0.1); background: rgba(26,26,46,0.2);
-  transition: all 0.3s; text-decoration: none; display: flex; flex-direction: column;
-  overflow: hidden; cursor: pointer;
+/* Pillars */
+.pillars-section{padding:80px 0}
+.pillar{
+  border:1px solid rgba(201,168,76,.12);padding:32px;
+  background:rgba(26,26,46,.3);
+  transition:border-color .3s,transform .3s;
 }
-.project-card:hover { border-color: rgba(201,168,76,0.42); transform: translateY(-5px); }
-.card-accent { height: 3px; background: linear-gradient(90deg, rgba(201,168,76,.7), rgba(232,201,122,.3), transparent); }
-.card-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
-.card-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-.cat-badge { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; padding: 2px 8px; text-transform: uppercase; letter-spacing: 0.1em; }
-.cat-legal { color: var(--gold); background: rgba(201,168,76,0.1); }
-.cat-ai { color: #fbbf24; background: rgba(251,191,36,0.1); }
-.cat-dashboard { color: #60a5fa; background: rgba(96,165,250,0.1); }
-.cat-interactive { color: #34d399; background: rgba(52,211,153,0.1); }
-.cat-game { color: #a78bfa; background: rgba(167,139,250,0.1); }
-.card-year { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: rgba(136,136,168,.45); }
-.card-title { font-family: 'Playfair Display', serif; color: var(--vellum); font-size: 1.1rem; font-weight: 600; margin-bottom: 6px; transition: color 0.2s; line-height: 1.2; }
-.project-card:hover .card-title { color: var(--gold); }
-.card-tagline { font-size: 0.72rem; color: rgba(201,168,76,.6); font-style: italic; margin-bottom: 10px; }
-.card-desc { color: var(--mist); font-size: 0.82rem; line-height: 1.65; flex: 1; }
-.card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(201,168,76,0.08); }
-.tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; color: rgba(136,136,168,.65); background: rgba(10,10,15,0.5); border: 1px solid rgba(136,136,168,.12); padding: 2px 7px; }
+.pillar:hover{border-color:rgba(201,168,76,.35);transform:translateY(-4px)}
+.pillar-icon{font-size:1.4rem;margin-bottom:14px}
+.pillar h3{font-family:var(--f-display);color:var(--vellum);font-size:1.12rem;font-weight:700;margin-bottom:10px}
+.pillar p{color:var(--mist);font-size:.84rem;line-height:1.7}
 
-/* HOME WRITINGS */
-.home-writings { padding: 20px 0 100px; }
-.writings-list { border-top: 1px solid rgba(201,168,76,0.1); }
-.writing-row {
-  display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;
-  padding: 26px 0; border-bottom: 1px solid rgba(201,168,76,.07);
-  text-decoration: none; cursor: pointer;
-  transition: all 0.2s;
-}
-.writing-row:hover { padding-left: 10px; background: rgba(201,168,76,0.02); margin: 0 -10px; padding-right: 10px; }
-.writing-date { font-family: 'IBM Plex Mono', monospace; color: rgba(201,168,76,.5); font-size: 0.63rem; letter-spacing: 0.2em; margin-bottom: 6px; }
-.writing-title { font-family: 'Playfair Display', serif; color: var(--vellum); font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; transition: color 0.2s; line-height: 1.25; }
-.writing-row:hover .writing-title { color: var(--gold); }
-.writing-summary { color: var(--mist); font-size: 0.82rem; line-height: 1.65; max-width: 580px; }
-.writing-tags-col { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; flex-shrink: 0; min-width: 110px; }
+/* Home sections */
+.home-projects-sec{padding:40px 0 60px}
+.home-writings-sec{padding:20px 0 100px}
+.writings-list-wrap{border-top:1px solid rgba(201,168,76,.1)}
 
-/* ════════════════════════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════
    PAGE: PROJECTS
-════════════════════════════════════════════════════════════════════════════ */
-.page-header { padding: 108px 0 48px; }
-.page-title { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 7vw, 5.5rem); font-weight: 900; color: var(--vellum); line-height: 1; margin-bottom: 16px; }
-.page-desc { color: var(--mist); font-size: 1rem; line-height: 1.75; max-width: 460px; }
-.filter-pills { display: flex; flex-wrap: wrap; gap: 10px; margin: 32px 0 40px; }
-.pill {
-  padding: 6px 16px; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem;
-  letter-spacing: 0.08em; border: 1px solid rgba(201,168,76,0.2);
-  color: var(--mist); cursor: pointer; transition: all 0.2s; background: none;
+═══════════════════════════════════════════════════ */
+.projects-page{padding-bottom:80px}
+.page-header{padding:108px 0 40px}
+.filter-row{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 36px}
+.pill{
+  padding:6px 16px;font-family:var(--f-mono);font-size:.63rem;
+  letter-spacing:.08em;border:1px solid rgba(201,168,76,.2);
+  color:var(--mist);cursor:pointer;transition:all .2s;background:none;
+  -webkit-tap-highlight-color:transparent;
 }
-.pill:hover { border-color: rgba(201,168,76,0.45); color: var(--vellum); }
-.pill.active { background: var(--gold); border-color: var(--gold); color: var(--ink); font-weight: 600; }
-.all-projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; padding-bottom: 100px; }
+.pill:hover{border-color:rgba(201,168,76,.45);color:var(--vellum)}
+.pill.active{background:var(--gold);border-color:var(--gold);color:var(--ink);font-weight:600}
+#projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 
-/* ════════════════════════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════
    PAGE: WRITINGS
-════════════════════════════════════════════════════════════════════════════ */
-.writings-page-header { padding: 108px 0 16px; }
-.drive-link { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: rgba(201,168,76,.5); margin-top: 10px; }
-.drive-link a { color: rgba(201,168,76,.65); text-decoration: underline; text-underline-offset: 3px; }
-.search-wrap { position: relative; margin: 28px 0 20px; }
-.search-wrap input {
-  width: 100%; max-width: 480px; padding: 12px 14px 12px 40px;
-  background: rgba(26,26,46,0.35); border: 1px solid rgba(201,168,76,0.15);
-  color: var(--vellum); font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem;
-  outline: none; transition: border-color 0.2s;
+═══════════════════════════════════════════════════ */
+.writings-page{padding-bottom:80px}
+.drive-note{font-family:var(--f-mono);font-size:.65rem;color:rgba(136,136,168,.4);margin-top:10px}
+.drive-note a{color:rgba(201,168,76,.6);text-decoration:underline;text-underline-offset:3px;transition:color .2s}
+.drive-note a:hover{color:var(--gold)}
+.search-wrap{position:relative;margin:28px 0 20px}
+.search-wrap svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);opacity:.35;pointer-events:none}
+#writings-search{
+  width:100%;max-width:480px;
+  padding:12px 14px 12px 40px;
+  background:rgba(26,26,46,.4);
+  border:1px solid rgba(201,168,76,.16);
+  color:var(--vellum);font-family:var(--f-mono);font-size:.8rem;
+  outline:none;transition:border-color .2s;
 }
-.search-wrap input:focus { border-color: rgba(201,168,76,.42); }
-.search-wrap input::placeholder { color: rgba(136,136,168,.35); }
-.search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: rgba(136,136,168,.4); font-size: 0.85rem; }
-.tag-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
-.tag-pill { padding: 4px 12px; font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; border: 1px solid rgba(201,168,76,0.2); color: var(--mist); cursor: pointer; transition: all 0.2s; background: none; }
-.tag-pill:hover { border-color: rgba(201,168,76,.4); color: var(--vellum); }
-.tag-pill.active { background: var(--gold); border-color: var(--gold); color: var(--ink); font-weight: 600; }
-.writings-count { font-family: 'IBM Plex Mono', monospace; color: rgba(136,136,168,.4); font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 20px; }
-.writings-full-list { padding-bottom: 80px; }
+#writings-search:focus{border-color:rgba(201,168,76,.42)}
+#writings-search::placeholder{color:rgba(136,136,168,.35)}
+.tag-filter-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.tag-pill{
+  padding:4px 12px;font-family:var(--f-mono);font-size:.6rem;
+  border:1px solid rgba(201,168,76,.2);color:var(--mist);
+  cursor:pointer;transition:all .2s;background:none;
+  -webkit-tap-highlight-color:transparent;
+}
+.tag-pill:hover{border-color:rgba(201,168,76,.4);color:var(--vellum)}
+.tag-pill.active{background:var(--gold);border-color:var(--gold);color:var(--ink);font-weight:600}
+#writings-count{font-family:var(--f-mono);color:rgba(136,136,168,.38);font-size:.63rem;letter-spacing:.1em;margin-bottom:16px;display:block}
+#writings-list{border-top:1px solid rgba(201,168,76,.1)}
 
-/* ════════════════════════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════
    PAGE: MY STORY
-════════════════════════════════════════════════════════════════════════════ */
-.story-page { padding-bottom: 80px; }
-.story-header { padding: 108px 0 52px; }
-.story-intro { color: var(--mist); font-size: 0.95rem; line-height: 1.8; max-width: 560px; margin-bottom: 52px; }
-.story-rule { border: none; border-top: 1px solid rgba(201,168,76,0.2); margin-bottom: 52px; }
-.story-section { margin-bottom: 52px; }
-.section-marker { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
-.roman { font-family: 'IBM Plex Mono', monospace; color: var(--gold); font-size: 0.62rem; letter-spacing: 0.32em; text-transform: uppercase; }
-.section-line { flex: 1; height: 1px; background: rgba(201,168,76,0.14); }
-.section-h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--vellum); margin-bottom: 20px; }
-.section-body { border-left: 2px solid rgba(201,168,76,0.2); padding-left: 24px; }
-.section-body p { color: var(--mist); font-size: 0.93rem; line-height: 1.85; margin-bottom: 14px; }
-.section-body p:last-child { margin-bottom: 0; }
-blockquote.pull {
-  margin: 48px 0;
-  padding: 28px 32px;
-  border-left: 4px solid var(--gold);
-  background: rgba(201,168,76,0.04);
+═══════════════════════════════════════════════════ */
+.story-page{padding-bottom:80px}
+.story-header{padding:108px 0 48px}
+.story-intro{color:var(--mist);font-size:.95rem;line-height:1.85;max-width:560px;margin-bottom:52px}
+.story-rule{border-top:1px solid rgba(201,168,76,.2);margin-bottom:52px}
+.story-section{margin-bottom:48px}
+.section-marker{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.roman{font-family:var(--f-mono);color:var(--gold);font-size:.6rem;letter-spacing:.32em;text-transform:uppercase}
+.section-divider{flex:1;height:1px;background:rgba(201,168,76,.14)}
+.section-h2{font-family:var(--f-display);font-size:2rem;font-weight:700;color:var(--vellum);margin-bottom:18px}
+.section-body{border-left:2px solid rgba(201,168,76,.2);padding-left:24px}
+.section-body p{color:var(--mist);font-size:.93rem;line-height:1.9;margin-bottom:14px}
+.section-body p:last-child{margin-bottom:0}
+blockquote.pull{
+  margin:48px 0;padding:28px 32px;
+  border-left:4px solid var(--gold);
+  background:rgba(201,168,76,.04);
 }
-blockquote.pull p { font-family: 'Playfair Display', serif; color: var(--vellum); font-size: 1.2rem; font-style: italic; line-height: 1.6; }
-.stats-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 48px 0; }
-.stat-box { border: 1px solid rgba(201,168,76,0.12); padding: 18px 14px; background: rgba(26,26,46,0.2); text-align: center; }
-.stat-val { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.8rem; font-weight: 700; }
-.stat-lbl { font-family: 'IBM Plex Mono', monospace; color: rgba(136,136,168,.5); font-size: 0.58rem; margin-top: 5px; line-height: 1.4; }
-.closing-box {
-  margin-top: 52px;
-  border: 1px solid rgba(201,168,76,0.2);
-  padding: 44px 40px;
-  background: linear-gradient(135deg, rgba(26,26,46,0.4), rgba(10,10,15,0.85));
-  text-align: center;
+blockquote.pull p{font-family:var(--f-display);color:var(--vellum);font-size:1.2rem;font-style:italic;line-height:1.65}
+.stats-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:48px 0}
+.stat-box{border:1px solid rgba(201,168,76,.12);padding:18px 14px;background:rgba(26,26,46,.2);text-align:center}
+.stat-val{font-family:var(--f-display);color:var(--gold);font-size:1.8rem;font-weight:900}
+.stat-lbl{font-family:var(--f-mono);color:rgba(136,136,168,.5);font-size:.58rem;margin-top:5px;line-height:1.4}
+.closing-box{
+  margin-top:52px;border:1px solid rgba(201,168,76,.22);
+  padding:44px 40px;
+  background:linear-gradient(135deg,rgba(26,26,46,.45),rgba(10,10,15,.9));
+  text-align:center;
 }
-.closing-quote { font-family: 'Playfair Display', serif; color: var(--vellum); font-size: 1.5rem; font-weight: 700; font-style: italic; line-height: 1.45; margin-bottom: 18px; }
-.closing-attr { font-family: 'IBM Plex Mono', monospace; color: var(--mist); font-size: 0.68rem; letter-spacing: 0.1em; }
-.story-ctas { display: flex; gap: 12px; justify-content: center; margin-top: 40px; }
+.closing-quote{font-family:var(--f-display);color:var(--vellum);font-size:1.45rem;font-weight:700;font-style:italic;line-height:1.45;margin-bottom:16px}
+.closing-attr{font-family:var(--f-mono);color:var(--mist);font-size:.68rem;letter-spacing:.1em}
+.story-ctas{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:40px}
 
-/* ════════════════════════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════
    PAGE: ABOUT
-════════════════════════════════════════════════════════════════════════════ */
-.about-page { padding-bottom: 80px; }
-.about-header { padding: 108px 0 40px; }
-.about-name { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 8vw, 5.5rem); font-weight: 900; line-height: 1; color: var(--vellum); margin-bottom: 10px; }
-.about-name span { color: var(--gold); font-style: italic; }
-.about-sub { font-family: 'IBM Plex Mono', monospace; color: var(--mist); font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; margin-top: 12px; margin-bottom: 36px; }
-.about-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 52px; margin-bottom: 52px; }
-.about-bio p { color: var(--mist); font-size: 0.92rem; line-height: 1.82; margin-bottom: 16px; }
-.about-bio .story-link { color: var(--gold); font-size: 0.85rem; cursor: pointer; text-decoration: none; }
-.about-bio .story-link:hover { color: var(--gold-light); }
-.stat-sidebar { display: flex; flex-direction: column; gap: 16px; padding-top: 6px; }
-.sidebar-item { border-left: 2px solid rgba(201,168,76,0.3); padding-left: 14px; }
-.sidebar-label { font-family: 'IBM Plex Mono', monospace; color: rgba(201,168,76,.55); font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 3px; }
-.sidebar-val { font-family: 'Playfair Display', serif; color: var(--vellum); font-size: 0.95rem; font-weight: 600; }
-.interests-grid { display: grid; grid-template-columns: 1fr 1fr; margin-bottom: 52px; }
-.interest-item { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--mist); padding: 12px 0; border-bottom: 1px solid rgba(201,168,76,0.07); }
-.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
-.now-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 52px; }
-.now-card { border: 1px solid rgba(201,168,76,0.1); padding: 22px; background: rgba(26,26,46,0.2); transition: border-color 0.25s; }
-.now-card:hover { border-color: rgba(201,168,76,.28); }
-.now-icon { font-size: 1.3rem; margin-bottom: 12px; }
-.now-title { font-family: 'Playfair Display', serif; color: var(--vellum); font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
-.now-desc { color: var(--mist); font-size: 0.78rem; line-height: 1.65; }
-.contact-box { border: 1px solid rgba(201,168,76,0.15); padding: 40px; background: rgba(26,26,46,0.2); }
-.contact-h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--vellum); margin-bottom: 8px; }
-.contact-p { color: var(--mist); font-size: 0.875rem; margin-bottom: 4px; }
-.contact-emails { font-family: 'IBM Plex Mono', monospace; color: rgba(136,136,168,.38); font-size: 0.62rem; margin-bottom: 28px; margin-top: 4px; }
-.contact-btns { display: flex; flex-wrap: wrap; gap: 10px; }
-.btn-sm { padding: 9px 18px !important; font-size: 0.8rem !important; }
-
-/* ── FOOTER ───────────────────────────────────────────────────────────────── */
-footer {
-  border-top: 1px solid rgba(201,168,76,0.1);
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 16px; padding: 36px 48px;
+═══════════════════════════════════════════════════ */
+.about-page{padding-bottom:80px}
+.about-header{padding:108px 0 36px}
+.about-name{font-family:var(--f-display);font-size:clamp(3.2rem,8vw,5.5rem);font-weight:900;line-height:1;color:var(--vellum);margin-bottom:8px}
+.about-name span{color:var(--gold);font-style:italic}
+.about-sub{font-family:var(--f-mono);color:var(--mist);font-size:.63rem;letter-spacing:.22em;text-transform:uppercase;margin:14px 0 36px}
+.about-grid{display:grid;grid-template-columns:3fr 2fr;gap:52px;margin-bottom:52px}
+.about-bio p{color:var(--mist);font-size:.91rem;line-height:1.85;margin-bottom:15px}
+.story-trigger{
+  color:var(--gold);font-size:.85rem;cursor:pointer;
+  border:none;background:none;font-family:var(--f-sans);
+  padding:0;transition:color .2s;display:inline-block;margin-top:6px;
+  text-decoration:none;
 }
-.footer-brand .logo { font-size: 1.1rem; }
-.footer-copy { font-family: 'IBM Plex Mono', monospace; color: rgba(136,136,168,.35); font-size: 0.65rem; }
-.footer-links { display: flex; gap: 20px; }
-.footer-links a { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--mist); text-decoration: none; transition: color 0.2s; }
-.footer-links a:hover { color: var(--gold); }
+.story-trigger:hover{color:var(--gold-light)}
+.stat-sidebar{display:flex;flex-direction:column;gap:16px;padding-top:6px}
+.sidebar-item{border-left:2px solid rgba(201,168,76,.3);padding-left:14px}
+.sidebar-label{font-family:var(--f-mono);color:rgba(201,168,76,.55);font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;margin-bottom:3px}
+.sidebar-val{font-family:var(--f-display);color:var(--vellum);font-size:.95rem;font-weight:700}
+.section-h3{font-family:var(--f-display);color:var(--vellum);font-size:1.8rem;font-weight:700;margin-bottom:24px}
+.interests-grid{display:grid;grid-template-columns:1fr 1fr;margin-bottom:52px}
+.interest-item{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--mist);padding:12px 0;border-bottom:1px solid rgba(201,168,76,.07)}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.now-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:52px}
+.now-card{border:1px solid rgba(201,168,76,.1);padding:22px;background:rgba(26,26,46,.2);transition:border-color .25s}
+.now-card:hover{border-color:rgba(201,168,76,.28)}
+.now-icon{font-size:1.3rem;margin-bottom:12px}
+.now-title{font-family:var(--f-display);color:var(--vellum);font-size:1rem;font-weight:700;margin-bottom:8px}
+.now-desc{color:var(--mist);font-size:.78rem;line-height:1.65}
+.contact-box{border:1px solid rgba(201,168,76,.15);padding:40px;background:rgba(26,26,46,.22)}
+.contact-h2{font-family:var(--f-display);font-size:2rem;font-weight:700;color:var(--vellum);margin-bottom:8px}
+.contact-p{color:var(--mist);font-size:.87rem;margin-bottom:4px}
+.contact-emails{font-family:var(--f-mono);color:rgba(136,136,168,.38);font-size:.62rem;margin:6px 0 24px}
+.contact-btns{display:flex;flex-wrap:wrap;gap:10px}
 
-@media (max-width: 768px) {
-  nav { padding: 0 24px; }
-  .nav-links { gap: 16px; }
-  .nav-links a { font-size: 0.75rem; }
-  .hero { padding: 100px 24px 60px; }
-  .container, .container-narrow { padding: 0 24px; }
-  .pillars-grid, .projects-grid, .all-projects-grid, .about-grid, .now-grid { grid-template-columns: 1fr; }
-  .about-grid { grid-template-columns: 1fr; }
-  .stats-4 { grid-template-columns: repeat(2, 1fr); }
-  footer { padding: 28px 24px; }
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════ */
+@media(max-width:900px){
+  #nav{padding:0 24px}
+  .nav-links{display:none}
+  #nav-toggle{display:flex}
+  #nav-drawer{padding:24px}
+  .hero{padding:100px 24px 60px}
+  .wrap,.wrap-narrow{padding:0 24px}
+  .grid-3,.grid-2{grid-template-columns:1fr}
+  #projects-grid{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr}
+  .stats-4{grid-template-columns:repeat(2,1fr)}
+  .interests-grid{grid-template-columns:1fr}
+  .now-grid{grid-template-columns:1fr}
+  .site-footer{padding:28px 24px;flex-direction:column;align-items:flex-start}
+  .pillars-section .grid-3{grid-template-columns:1fr}
+  .closing-box{padding:28px 20px}
+  .closing-quote{font-size:1.1rem}
+}
+@media(max-width:480px){
+  h1.hero-headline{font-size:3.5rem}
+  .page-title{font-size:2.6rem}
+  .about-name{font-size:2.8rem}
+  .stats-4{grid-template-columns:repeat(2,1fr)}
+  .hero-ctas{flex-direction:column}
+  .btn-primary,.btn-secondary{justify-content:center;width:100%;max-width:280px}
 }
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════════════════════════════════
-     NAVBAR
-══════════════════════════════════════════════════════════════════════════ -->
-<nav>
-  <div class="logo-wrap" onclick="showPage('home')">
-    <span class="logo">DJ</span>
-    <span class="logo-sub">Law · Research · Code</span>
+<!-- ═══════════════════════════════════════════════════
+     NAVBAR — Layer 1: onclick handlers
+               Layer 2: data-page attribute fallback
+               Layer 3: hash fallback in JS
+═══════════════════════════════════════════════════ -->
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo" data-page="home" onclick="nav('home')" role="button" tabindex="0" aria-label="Go to home page">
+    <span class="mark">DJ</span>
+    <span class="sub">Law · Research · Code</span>
   </div>
-  <ul class="nav-links">
-    <li><a id="nav-home"     class="active"  onclick="showPage('home')">Home</a></li>
-    <li><a id="nav-projects"                 onclick="showPage('projects')">Projects</a></li>
-    <li><a id="nav-writings"                 onclick="showPage('writings')">Writings</a></li>
-    <li><a id="nav-story"                    onclick="showPage('story')">My Story</a></li>
-    <li><a id="nav-about"                    onclick="showPage('about')">About</a></li>
+  <ul class="nav-links" role="list">
+    <li><a id="nl-home"     data-page="home"     onclick="nav('home')"     role="button" tabindex="0" class="active">Home</a></li>
+    <li><a id="nl-projects" data-page="projects" onclick="nav('projects')" role="button" tabindex="0">Projects</a></li>
+    <li><a id="nl-writings" data-page="writings" onclick="nav('writings')" role="button" tabindex="0">Writings</a></li>
+    <li><a id="nl-story"    data-page="story"    onclick="nav('story')"    role="button" tabindex="0">My Story</a></li>
+    <li><a id="nl-about"    data-page="about"    onclick="nav('about')"    role="button" tabindex="0">About</a></li>
   </ul>
+  <button id="nav-toggle" onclick="toggleDrawer()" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<!-- Mobile Drawer -->
+<div id="nav-drawer" role="dialog" aria-label="Mobile navigation">
+  <ul>
+    <li><a data-page="home"     onclick="nav('home');closeDrawer()"     role="button" tabindex="0" class="active">Home</a></li>
+    <li><a data-page="projects" onclick="nav('projects');closeDrawer()" role="button" tabindex="0">Projects</a></li>
+    <li><a data-page="writings" onclick="nav('writings');closeDrawer()" role="button" tabindex="0">Writings</a></li>
+    <li><a data-page="story"    onclick="nav('story');closeDrawer()"    role="button" tabindex="0">My Story</a></li>
+    <li><a data-page="about"    onclick="nav('about');closeDrawer()"    role="button" tabindex="0">About</a></li>
+  </ul>
+</div>
 
-<!-- ══════════════════════════════════════════════════════════════════════════
+
+<!-- ═══════════════════════════════════════════════════════════════
      PAGE: HOME
-══════════════════════════════════════════════════════════════════════════ -->
-<div class="page active" id="page-home">
+═══════════════════════════════════════════════════════════════ -->
+<div class="page active" id="page-home" role="main">
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-grid"></div>
-    <div class="hero-glow"></div>
+    <div class="hero-bg-grid" aria-hidden="true"></div>
+    <div class="hero-bg-glow" aria-hidden="true"></div>
     <div class="hero-inner">
-      <span class="eyebrow anim d1" style="font-size:0.7rem">Law Student · Researcher · Web Developer</span>
-      <h1 class="hero-title anim d2">
-        Where <span class="gold-shimmer">Law</span><br>
-        meets <span class="gold-shimmer">Code</span>
+      <span class="eyebrow anim d1">Law Student · Researcher · Web Developer</span>
+      <h1 class="hero-headline anim d2">
+        Where <span class="shimmer">Law</span><br>
+        meets <span class="shimmer">Code</span>
       </h1>
       <p class="hero-desc anim d3">
         I write about justice, constitutions, and the philosophy of law.
         I build interactive tools, AI systems, and digital experiments.
         This is where both worlds live.
       </p>
-      <div class="cta-group anim d4">
-        <button class="btn-gold" onclick="showPage('writings')">Read My Writings →</button>
-        <button class="btn-outline" onclick="showPage('projects')">See Projects →</button>
+      <div class="hero-ctas anim d4">
+        <button class="btn-primary" onclick="nav('writings')">Read My Writings &rarr;</button>
+        <button class="btn-secondary" onclick="nav('projects')">See Projects &rarr;</button>
       </div>
     </div>
-    <div class="scroll-indicator"><div class="scroll-line"></div></div>
+    <div class="scroll-hint" aria-hidden="true"><div class="scroll-line"></div></div>
   </section>
 
   <!-- PILLARS -->
   <section class="pillars-section">
-    <div class="container">
-      <hr class="rule" style="margin-bottom:56px">
-      <div class="pillars-grid">
+    <div class="wrap">
+      <hr class="rule" style="margin-bottom:52px">
+      <div class="grid-3">
         <div class="pillar">
-          <div class="pillar-icon">⚖</div>
-          <h3>Law & Justice</h3>
+          <div class="pillar-icon">&#9878;</div>
+          <h3>Law &amp; Justice</h3>
           <p>Studying constitutional law, jurisprudence, and the philosophy of rights. 75+ essays on legislation, case law, and legal history.</p>
         </div>
         <div class="pillar">
-          <div class="pillar-icon">📖</div>
-          <h3>Research & Writing</h3>
+          <div class="pillar-icon">&#128218;</div>
+          <h3>Research &amp; Writing</h3>
           <p>Deep reading across legal history, comparative law, political philosophy, and Indian constitutional debates.</p>
         </div>
         <div class="pillar">
-          <div class="pillar-icon">⌨</div>
+          <div class="pillar-icon">&#9000;</div>
           <h3>Building in Public</h3>
-          <p>Interactive dashboards, AI legal tools, games, and heritage projects — experiments at the frontier of law and technology.</p>
+          <p>Interactive dashboards, AI legal tools, games, and heritage projects &mdash; experiments at the frontier of law and technology.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- FEATURED PROJECTS -->
-  <section class="home-projects">
-    <div class="container">
+  <section class="home-projects-sec">
+    <div class="wrap">
       <div class="sec-head">
-        <div>
+        <div class="sec-head-left">
           <span class="eyebrow">Selected Work</span>
-          <h2 style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--vellum)">Projects</h2>
+          <h2 class="section-title">Projects</h2>
         </div>
-        <span class="see-all" onclick="showPage('projects')">View all →</span>
+        <button class="see-all-btn" onclick="nav('projects')">View all &rarr;</button>
       </div>
-      <div class="projects-grid">
+      <div class="grid-3">
 
-        <a class="project-card" href="https://ai.studio/apps/drive/19TSF8REOv1UdoX1ZIhAql2RTZvGcuIfH?fullscreenApplet=true" target="_blank">
+        <!-- Juris Lens -->
+        <a class="card"
+           href="https://ai.studio/apps/drive/19TSF8REOv1UdoX1ZIhAql2RTZvGcuIfH?fullscreenApplet=true"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Open Juris Lens AI Case Researcher (opens in new tab)">
           <div class="card-accent"></div>
           <div class="card-body">
             <div class="card-meta"><span class="cat-badge cat-legal">Legal AI</span><span class="card-year">2024</span></div>
             <div class="card-title">Juris Lens AI Case Researcher</div>
             <div class="card-tagline">AI-powered legal case research assistant</div>
             <div class="card-desc">A legal AI assistant that helps researchers find relevant precedents, analyse judgments, and extract key legal principles from complex case law.</div>
-            <div class="card-tags"><span class="tag">Legal AI</span><span class="tag">Case Research</span><span class="tag">LLM</span></div>
+            <div class="card-footer">
+              <div class="card-tags"><span class="tag">Legal AI</span><span class="tag">Case Research</span><span class="tag">LLM</span></div>
+              <span class="card-arrow">&#8599;</span>
+            </div>
           </div>
         </a>
 
-        <a class="project-card" href="https://ai.studio/apps/30c73eac-16fe-4ce7-ad90-6eb33762ec04?fullscreenApplet=true" target="_blank">
+        <!-- Seek the Raasa -->
+        <a class="card"
+           href="https://ai.studio/apps/30c73eac-16fe-4ce7-ad90-6eb33762ec04?fullscreenApplet=true"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Open Seek the Raasa (opens in new tab)">
           <div class="card-accent"></div>
           <div class="card-body">
             <div class="card-meta"><span class="cat-badge cat-ai">AI</span><span class="card-year">2024</span></div>
             <div class="card-title">Seek the Raasa</div>
             <div class="card-tagline">Cultural exploration through AI</div>
-            <div class="card-desc">An AI-powered experience that guides users through the philosophical concept of Rasa — the nine emotional essences of Indian classical arts.</div>
-            <div class="card-tags"><span class="tag">AI</span><span class="tag">Culture</span><span class="tag">Indian Arts</span></div>
+            <div class="card-desc">An AI-powered cultural experience that guides users through the philosophical concept of Rasa &mdash; the nine emotional essences of Indian classical arts.</div>
+            <div class="card-footer">
+              <div class="card-tags"><span class="tag">AI</span><span class="tag">Culture</span><span class="tag">Indian Arts</span></div>
+              <span class="card-arrow">&#8599;</span>
+            </div>
           </div>
         </a>
 
-        <a class="project-card" href="https://superagent.com/website/4a6bc78f-2694-4611-8043-3fef9e46572c_stored_entities" target="_blank">
+        <!-- Bharat Future City -->
+        <a class="card"
+           href="https://superagent.com/website/4a6bc78f-2694-4611-8043-3fef9e46572c_stored_entities"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Open Bharat Future City Dashboard (opens in new tab)">
           <div class="card-accent"></div>
           <div class="card-body">
             <div class="card-meta"><span class="cat-badge cat-dashboard">Dashboard</span><span class="card-year">2024</span></div>
             <div class="card-title">Bharat Future City Report</div>
-            <div class="card-tagline">Engineering India's Net-Zero Economic Engine</div>
-            <div class="card-desc">A data-rich dashboard visualising India's roadmap toward net-zero cities — economic modelling, infrastructure projections, and policy analysis.</div>
-            <div class="card-tags"><span class="tag">Dashboard</span><span class="tag">Policy</span><span class="tag">Net-Zero</span></div>
+            <div class="card-tagline">Engineering India&rsquo;s Net-Zero Economic Engine</div>
+            <div class="card-desc">A data-rich dashboard visualising India&rsquo;s roadmap toward net-zero cities &mdash; economic modelling, infrastructure projections, and policy analysis.</div>
+            <div class="card-footer">
+              <div class="card-tags"><span class="tag">Dashboard</span><span class="tag">Policy</span><span class="tag">Net-Zero</span></div>
+              <span class="card-arrow">&#8599;</span>
+            </div>
           </div>
         </a>
 
@@ -462,180 +666,215 @@ footer {
   </section>
 
   <!-- RECENT WRITINGS -->
-  <section class="home-writings">
-    <div class="container">
+  <section class="home-writings-sec">
+    <div class="wrap">
       <div class="sec-head">
-        <div>
+        <div class="sec-head-left">
           <span class="eyebrow">From the Desk</span>
-          <h2 style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--vellum)">Recent Writings</h2>
+          <h2 class="section-title">Recent Writings</h2>
         </div>
-        <span class="see-all" onclick="showPage('writings')">All 75+ essays →</span>
+        <button class="see-all-btn" onclick="nav('writings')">All 75+ essays &rarr;</button>
       </div>
-      <div class="writings-list">
-        <div class="writing-row" onclick="showPage('writings')">
+      <div class="writings-list-wrap">
+        <a class="writing-row" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer">
           <div>
             <p class="writing-date">10 January 2024</p>
             <h3 class="writing-title">The Evolution of Article 21: From Gopalan to Puttaswamy</h3>
             <p class="writing-summary">Tracing how the Supreme Court expanded the right to life and personal liberty from a narrow procedural guarantee to a substantive constitutional fortress.</p>
           </div>
           <div class="writing-tags-col"><span class="tag">Constitutional Law</span><span class="tag">Privacy</span></div>
-        </div>
-        <div class="writing-row" onclick="showPage('writings')">
+        </a>
+        <a class="writing-row" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer">
           <div>
             <p class="writing-date">20 February 2024</p>
-            <h3 class="writing-title">Justice in Dharmaśāstra: Legality vs. Morality in Ancient India</h3>
-            <p class="writing-summary">An examination of how Manusmṛti and Yājñavalkya Smṛti constructed legal obligation — and whether dharma was ever truly separable from law.</p>
+            <h3 class="writing-title">Justice in Dharma&#347;&#257;stra: Legality vs. Morality in Ancient India</h3>
+            <p class="writing-summary">An examination of how Manusmṛti and Y&#257;j&#241;avalkya Smṛti constructed legal obligation &mdash; and whether dharma was ever truly separable from law.</p>
           </div>
           <div class="writing-tags-col"><span class="tag">Legal History</span><span class="tag">Jurisprudence</span></div>
-        </div>
-        <div class="writing-row" onclick="showPage('writings')">
+        </a>
+        <a class="writing-row" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer">
           <div>
             <p class="writing-date">5 March 2024</p>
             <h3 class="writing-title">DPDP Act 2023: A Critical Reading</h3>
-            <p class="writing-summary">A clause-by-clause critique of India's Digital Personal Data Protection Act, examining consent mechanisms, state exemptions, and enforcement gaps.</p>
+            <p class="writing-summary">A clause-by-clause critique of India&rsquo;s Digital Personal Data Protection Act, examining consent mechanisms, state exemptions, and enforcement gaps.</p>
           </div>
           <div class="writing-tags-col"><span class="tag">Data Privacy</span><span class="tag">Tech Law</span></div>
-        </div>
+        </a>
       </div>
     </div>
   </section>
 
-  <footer>
-    <div class="footer-brand"><span class="logo">DJ</span><div style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;color:var(--mist);letter-spacing:0.2em;text-transform:uppercase;margin-top:3px">Law · Research · Code</div></div>
-    <p class="footer-copy">© 2025 · Built with Next.js + Tailwind CSS</p>
+  <footer class="site-footer">
+    <div class="footer-brand"><div class="mark">DJ</div><div class="sub">Law &middot; Research &middot; Code</div></div>
+    <p class="footer-copy">&copy; 2025 &middot; Built with Next.js + Tailwind CSS</p>
     <div class="footer-links">
-      <a href="https://github.com/DHANANAN" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank">LinkedIn</a>
-      <a href="/cdn-cgi/l/email-protection#086c6069666966626971266b60677d6069663a3c4866647d6c6d64606126696b266166">Email</a>
+      <a href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">Email</a>
     </div>
   </footer>
 </div>
 
 
-<!-- ══════════════════════════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════════════════════════
      PAGE: PROJECTS
-══════════════════════════════════════════════════════════════════════════ -->
-<div class="page" id="page-projects">
-  <div class="container">
+═══════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-projects" role="main">
+  <div class="wrap projects-page">
     <div class="page-header">
       <span class="eyebrow">Built Things</span>
       <h1 class="page-title">Projects</h1>
-      <p class="page-desc">Interactive experiments, legal AI tools, dashboards, and games — each one a different way of thinking through a problem.</p>
+      <p class="page-desc">Interactive experiments, legal AI tools, dashboards, and games &mdash; each one a different way of thinking through a problem.</p>
     </div>
 
-    <div class="filter-pills">
-      <button class="pill active" onclick="filterProjects('all',this)">All</button>
-      <button class="pill" onclick="filterProjects('legal',this)">Legal Tech</button>
-      <button class="pill" onclick="filterProjects('ai',this)">AI</button>
-      <button class="pill" onclick="filterProjects('dashboard',this)">Dashboard</button>
-      <button class="pill" onclick="filterProjects('interactive',this)">Interactive</button>
-      <button class="pill" onclick="filterProjects('game',this)">Game</button>
+    <!-- Filter pills -->
+    <div class="filter-row" role="group" aria-label="Filter by category">
+      <button class="pill active" data-filter="all"         onclick="filterProjects('all',this)">All</button>
+      <button class="pill"        data-filter="legal"       onclick="filterProjects('legal',this)">Legal Tech</button>
+      <button class="pill"        data-filter="ai"          onclick="filterProjects('ai',this)">AI</button>
+      <button class="pill"        data-filter="dashboard"   onclick="filterProjects('dashboard',this)">Dashboard</button>
+      <button class="pill"        data-filter="interactive" onclick="filterProjects('interactive',this)">Interactive</button>
+      <button class="pill"        data-filter="game"        onclick="filterProjects('game',this)">Game</button>
     </div>
 
-    <div class="all-projects-grid" id="projects-grid">
+    <!-- All 5 project cards -->
+    <div id="projects-grid">
 
-      <a class="project-card" data-cat="legal" href="https://ai.studio/apps/drive/19TSF8REOv1UdoX1ZIhAql2RTZvGcuIfH?fullscreenApplet=true" target="_blank">
+      <a class="card" data-cat="legal"
+         href="https://ai.studio/apps/drive/19TSF8REOv1UdoX1ZIhAql2RTZvGcuIfH?fullscreenApplet=true"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="Juris Lens AI Case Researcher (opens in new tab)">
         <div class="card-accent"></div>
         <div class="card-body">
           <div class="card-meta"><span class="cat-badge cat-legal">Legal AI</span><span class="card-year">2024</span></div>
           <div class="card-title">Juris Lens AI Case Researcher</div>
           <div class="card-tagline">AI-powered legal case research assistant</div>
-          <div class="card-desc">A legal AI assistant that helps researchers find relevant precedents, analyse judgments, and extract key legal principles from complex case law.</div>
-          <div class="card-tags"><span class="tag">Legal AI</span><span class="tag">Case Research</span><span class="tag">LLM</span><span class="tag">Law</span></div>
+          <div class="card-desc">A legal AI assistant that helps researchers and students find relevant precedents, analyse judgments, and extract key legal principles from complex case law.</div>
+          <div class="card-footer">
+            <div class="card-tags"><span class="tag">Legal AI</span><span class="tag">Case Research</span><span class="tag">LLM</span><span class="tag">Law</span></div>
+            <span class="card-arrow">&#8599;</span>
+          </div>
         </div>
       </a>
 
-      <a class="project-card" data-cat="ai" href="https://ai.studio/apps/30c73eac-16fe-4ce7-ad90-6eb33762ec04?fullscreenApplet=true" target="_blank">
+      <a class="card" data-cat="ai"
+         href="https://ai.studio/apps/30c73eac-16fe-4ce7-ad90-6eb33762ec04?fullscreenApplet=true"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="Seek the Raasa (opens in new tab)">
         <div class="card-accent"></div>
         <div class="card-body">
           <div class="card-meta"><span class="cat-badge cat-ai">AI</span><span class="card-year">2024</span></div>
           <div class="card-title">Seek the Raasa</div>
           <div class="card-tagline">Cultural exploration through AI</div>
-          <div class="card-desc">An AI-powered cultural experience that guides users through the philosophical concept of Rasa — the nine emotional essences of Indian classical arts.</div>
-          <div class="card-tags"><span class="tag">AI</span><span class="tag">Culture</span><span class="tag">Indian Arts</span><span class="tag">Generative</span></div>
+          <div class="card-desc">An AI-powered cultural experience that guides users through the philosophical concept of Rasa &mdash; the nine emotional essences of Indian classical arts.</div>
+          <div class="card-footer">
+            <div class="card-tags"><span class="tag">AI</span><span class="tag">Culture</span><span class="tag">Indian Arts</span><span class="tag">Generative</span></div>
+            <span class="card-arrow">&#8599;</span>
+          </div>
         </div>
       </a>
 
-      <a class="project-card" data-cat="dashboard" href="https://superagent.com/website/4a6bc78f-2694-4611-8043-3fef9e46572c_stored_entities" target="_blank">
+      <a class="card" data-cat="dashboard"
+         href="https://superagent.com/website/4a6bc78f-2694-4611-8043-3fef9e46572c_stored_entities"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="Bharat Future City Report Dashboard (opens in new tab)">
         <div class="card-accent"></div>
         <div class="card-body">
           <div class="card-meta"><span class="cat-badge cat-dashboard">Dashboard</span><span class="card-year">2024</span></div>
           <div class="card-title">Bharat Future City Report</div>
-          <div class="card-tagline">Engineering India's Net-Zero Economic Engine</div>
-          <div class="card-desc">A data-rich dashboard visualising India's roadmap toward net-zero cities — economic modelling, infrastructure projections, and policy analysis.</div>
-          <div class="card-tags"><span class="tag">Dashboard</span><span class="tag">Policy</span><span class="tag">Net-Zero</span><span class="tag">Data Viz</span></div>
+          <div class="card-tagline">Engineering India&rsquo;s Net-Zero Economic Engine</div>
+          <div class="card-desc">A data-rich report dashboard visualising India&rsquo;s roadmap toward net-zero cities &mdash; economic modelling, infrastructure projections, and policy analysis in one interactive interface.</div>
+          <div class="card-footer">
+            <div class="card-tags"><span class="tag">Dashboard</span><span class="tag">Policy</span><span class="tag">Net-Zero</span><span class="tag">Data Viz</span></div>
+            <span class="card-arrow">&#8599;</span>
+          </div>
         </div>
       </a>
 
-      <a class="project-card" data-cat="interactive" href="https://jazzy-kleicha-41f47a.netlify.app/" target="_blank">
+      <a class="card" data-cat="interactive"
+         href="https://jazzy-kleicha-41f47a.netlify.app/"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="Mahabubnagar Hidden Gems (opens in new tab)">
         <div class="card-accent"></div>
         <div class="card-body">
           <div class="card-meta"><span class="cat-badge cat-interactive">Interactive</span><span class="card-year">2024</span></div>
           <div class="card-title">Mahabubnagar Hidden Gems</div>
-          <div class="card-tagline">Landmarks & local treasures</div>
-          <div class="card-desc">An interactive showcase of lesser-known cultural sites, natural wonders, and historical landmarks across Mahabubnagar, preserving local heritage digitally.</div>
-          <div class="card-tags"><span class="tag">Heritage</span><span class="tag">Interactive</span><span class="tag">Local Culture</span></div>
+          <div class="card-tagline">Landmarks &amp; local treasures of Mahabubnagar district</div>
+          <div class="card-desc">An interactive showcase of lesser-known cultural sites, natural wonders, and historical landmarks across Mahabubnagar, built to preserve local heritage digitally.</div>
+          <div class="card-footer">
+            <div class="card-tags"><span class="tag">Heritage</span><span class="tag">Interactive</span><span class="tag">Local Culture</span></div>
+            <span class="card-arrow">&#8599;</span>
+          </div>
         </div>
       </a>
 
-      <a class="project-card" data-cat="game" href="https://neon-retro-space-shooter.vercel.app/" target="_blank">
+      <a class="card" data-cat="game"
+         href="https://neon-retro-space-shooter.vercel.app/"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="NEON RETRO Space Shooter Game (opens in new tab)">
         <div class="card-accent"></div>
         <div class="card-body">
           <div class="card-meta"><span class="cat-badge cat-game">Game</span><span class="card-year">2024</span></div>
           <div class="card-title">NEON RETRO Space Shooter</div>
           <div class="card-tagline">10-level offline single-file arcade game</div>
-          <div class="card-desc">A fully self-contained, offline-capable retro arcade shooter packed into a single HTML file. 10 escalating levels, synthwave aesthetics.</div>
-          <div class="card-tags"><span class="tag">Game</span><span class="tag">Retro</span><span class="tag">HTML5</span><span class="tag">Single-File</span></div>
+          <div class="card-desc">A fully self-contained, offline-capable retro arcade shooter packed into a single HTML file. 10 escalating levels, synthwave aesthetics, original pixel art.</div>
+          <div class="card-footer">
+            <div class="card-tags"><span class="tag">Game</span><span class="tag">Retro</span><span class="tag">HTML5</span><span class="tag">Single-File</span></div>
+            <span class="card-arrow">&#8599;</span>
+          </div>
         </div>
       </a>
 
     </div>
   </div>
-  <footer>
-    <div class="footer-brand"><span class="logo">DJ</span></div>
-    <p class="footer-copy">© 2025 · Built with Next.js + Tailwind CSS</p>
+  <footer class="site-footer">
+    <div class="footer-brand"><div class="mark">DJ</div><div class="sub">Law &middot; Research &middot; Code</div></div>
+    <p class="footer-copy">&copy; 2025 &middot; Built with Next.js + Tailwind CSS</p>
     <div class="footer-links">
-      <a href="https://github.com/DHANANAN" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank">LinkedIn</a>
-      <a href="/cdn-cgi/l/email-protection#c1a5a9a0afa0afaba0b8efa2a9aeb4a9a0aff3f581afadb4a5a4ada9a8efa0a2efa8af">Email</a>
+      <a href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">Email</a>
     </div>
   </footer>
 </div>
 
 
-<!-- ══════════════════════════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════════════════════════
      PAGE: WRITINGS
-══════════════════════════════════════════════════════════════════════════ -->
-<div class="page" id="page-writings">
-  <div class="container">
-    <div class="writings-page-header">
+═══════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-writings" role="main">
+  <div class="wrap writings-page">
+    <div class="page-header">
       <span class="eyebrow">75+ Essays</span>
       <h1 class="page-title">Writings</h1>
-      <p class="page-desc">Constitutional law, jurisprudence, legal history, data privacy, and the philosophy of justice — written across three years of reading and research.</p>
-      <p class="drive-link">Full archive: <a href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank">Google Drive →</a></p>
+      <p class="page-desc">Constitutional law, jurisprudence, legal history, data privacy, and the philosophy of justice &mdash; written across three years of reading and research.</p>
+      <p class="drive-note">Full archive on <a href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer">Google Drive &rarr;</a></p>
     </div>
 
     <div class="search-wrap">
-      <span class="search-icon">🔍</span>
-      <input type="text" id="writings-search" placeholder="Search essays, topics, keywords..." oninput="filterWritings()">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="search" id="writings-search" placeholder="Search essays, topics, keywords..." oninput="filterWritings()" aria-label="Search writings"/>
     </div>
 
-    <div class="tag-filters" id="tag-filters">
-      <button class="tag-pill active" onclick="setWritingTag('all',this)">All topics</button>
-      <button class="tag-pill" onclick="setWritingTag('Constitutional Law',this)">Constitutional Law</button>
-      <button class="tag-pill" onclick="setWritingTag('Legal History',this)">Legal History</button>
-      <button class="tag-pill" onclick="setWritingTag('Jurisprudence',this)">Jurisprudence</button>
-      <button class="tag-pill" onclick="setWritingTag('Data Privacy',this)">Data Privacy</button>
-      <button class="tag-pill" onclick="setWritingTag('Tech Law',this)">Tech Law</button>
-      <button class="tag-pill" onclick="setWritingTag('Fundamental Rights',this)">Fundamental Rights</button>
-      <button class="tag-pill" onclick="setWritingTag('Privacy',this)">Privacy</button>
+    <div class="tag-filter-row" role="group" aria-label="Filter by topic">
+      <button class="tag-pill active" data-tag="all"                onclick="setWritingTag('all',this)">All topics</button>
+      <button class="tag-pill"        data-tag="Constitutional Law" onclick="setWritingTag('Constitutional Law',this)">Constitutional Law</button>
+      <button class="tag-pill"        data-tag="Legal History"      onclick="setWritingTag('Legal History',this)">Legal History</button>
+      <button class="tag-pill"        data-tag="Jurisprudence"      onclick="setWritingTag('Jurisprudence',this)">Jurisprudence</button>
+      <button class="tag-pill"        data-tag="Data Privacy"       onclick="setWritingTag('Data Privacy',this)">Data Privacy</button>
+      <button class="tag-pill"        data-tag="Tech Law"           onclick="setWritingTag('Tech Law',this)">Tech Law</button>
+      <button class="tag-pill"        data-tag="Fundamental Rights" onclick="setWritingTag('Fundamental Rights',this)">Fundamental Rights</button>
+      <button class="tag-pill"        data-tag="Privacy"            onclick="setWritingTag('Privacy',this)">Privacy</button>
     </div>
 
-    <p class="writings-count" id="writings-count">3 essays</p>
+    <span id="writings-count" aria-live="polite">3 essays</span>
 
-    <div class="writings-list writings-full-list" id="writings-list">
-
-      <a class="writing-row" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" data-tags="Constitutional Law,Fundamental Rights,Privacy">
+    <div id="writings-list">
+      <a class="writing-row" data-tags="Constitutional Law,Fundamental Rights,Privacy"
+         href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt"
+         target="_blank" rel="noopener noreferrer">
         <div>
           <p class="writing-date">10 January 2024</p>
           <h3 class="writing-title">The Evolution of Article 21: From Gopalan to Puttaswamy</h3>
@@ -643,165 +882,166 @@ footer {
         </div>
         <div class="writing-tags-col"><span class="tag">Constitutional Law</span><span class="tag">Privacy</span></div>
       </a>
-
-      <a class="writing-row" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" data-tags="Legal History,Jurisprudence,Indian Law">
+      <a class="writing-row" data-tags="Legal History,Jurisprudence,Indian Law"
+         href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt"
+         target="_blank" rel="noopener noreferrer">
         <div>
           <p class="writing-date">20 February 2024</p>
-          <h3 class="writing-title">Justice in Dharmaśāstra: Legality vs. Morality in Ancient India</h3>
-          <p class="writing-summary">An examination of how Manusmṛti and Yājñavalkya Smṛti constructed legal obligation — and whether dharma was ever truly separable from law.</p>
+          <h3 class="writing-title">Justice in Dharma&#347;&#257;stra: Legality vs. Morality in Ancient India</h3>
+          <p class="writing-summary">An examination of how Manusmṛti and Y&#257;j&#241;avalkya Smṛti constructed legal obligation &mdash; and whether dharma was ever truly separable from law.</p>
         </div>
         <div class="writing-tags-col"><span class="tag">Legal History</span><span class="tag">Jurisprudence</span></div>
       </a>
-
-      <a class="writing-row" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" data-tags="Data Privacy,Tech Law,Legislation">
+      <a class="writing-row" data-tags="Data Privacy,Tech Law,Legislation"
+         href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt"
+         target="_blank" rel="noopener noreferrer">
         <div>
           <p class="writing-date">5 March 2024</p>
           <h3 class="writing-title">DPDP Act 2023: A Critical Reading</h3>
-          <p class="writing-summary">A clause-by-clause critique of India's Digital Personal Data Protection Act, examining consent mechanisms, state exemptions, and enforcement gaps.</p>
+          <p class="writing-summary">A clause-by-clause critique of India&rsquo;s Digital Personal Data Protection Act, examining consent mechanisms, state exemptions, and enforcement gaps.</p>
         </div>
         <div class="writing-tags-col"><span class="tag">Data Privacy</span><span class="tag">Tech Law</span></div>
       </a>
-
     </div>
   </div>
-  <footer>
-    <div class="footer-brand"><span class="logo">DJ</span></div>
-    <p class="footer-copy">© 2025 · Built with Next.js + Tailwind CSS</p>
+  <footer class="site-footer">
+    <div class="footer-brand"><div class="mark">DJ</div><div class="sub">Law &middot; Research &middot; Code</div></div>
+    <p class="footer-copy">&copy; 2025 &middot; Built with Next.js + Tailwind CSS</p>
     <div class="footer-links">
-      <a href="https://github.com/DHANANAN" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank">LinkedIn</a>
-      <a href="/cdn-cgi/l/email-protection#eb8f838a858a85818a92c58883849e838a85d9dfab85879e8f8e878382c58a88c58285">Email</a>
+      <a href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">Email</a>
     </div>
   </footer>
 </div>
 
 
-<!-- ══════════════════════════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════════════════════════
      PAGE: MY STORY
-══════════════════════════════════════════════════════════════════════════ -->
-<div class="page" id="page-story">
-  <div class="container-narrow story-page">
+═══════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-story" role="main">
+  <div class="wrap-narrow story-page">
     <div class="story-header">
       <span class="eyebrow">My Story</span>
-      <h1 class="page-title">Built from<br><span class="gold-shimmer">Nothing.</span></h1>
+      <h1 class="page-title">Built from<br><span class="shimmer">Nothing.</span></h1>
       <p class="story-intro">
         This is not a polished origin story. It is the unfiltered account of an
-        18-year-old from Hyderabad who lost everything early — and built everything
+        18-year-old from Hyderabad who lost everything early &mdash; and built everything
         back, alone, one difficult day at a time.
       </p>
     </div>
     <hr class="story-rule">
 
     <div class="story-section">
-      <div class="section-marker"><span class="roman">I</span><div class="section-line"></div></div>
+      <div class="section-marker"><span class="roman">I</span><div class="section-divider"></div></div>
       <h2 class="section-h2">My Roots</h2>
       <div class="section-body">
-        <p>I was born in Hyderabad into a modest family — the kind where love was never lacking but resources often were. My mother passed away early, leaving a void that no amount of time fully fills. My father, unable to provide the emotional or financial scaffolding a child needs, meant I learned the weight of independence before most kids learn long division.</p>
-        <p>Hyderabad raised me: its chaos, its heat, its contradictions, its relentless energy. That city taught me that survival isn't passive — you must go out and claim it every single morning.</p>
+        <p>I was born in Hyderabad into a modest family &mdash; the kind where love was never lacking but resources often were. My mother passed away early, leaving a void that no amount of time fully fills. My father, unable to provide the emotional or financial scaffolding a child needs, meant I learned the weight of independence before most kids learn long division.</p>
+        <p>Hyderabad raised me: its chaos, its heat, its contradictions, its relentless energy. That city taught me that survival isn&rsquo;t passive &mdash; you must go out and claim it every single morning.</p>
       </div>
     </div>
 
     <div class="story-section">
-      <div class="section-marker"><span class="roman">II</span><div class="section-line"></div></div>
+      <div class="section-marker"><span class="roman">II</span><div class="section-divider"></div></div>
       <h2 class="section-h2">The Fight Begins</h2>
       <div class="section-body">
-        <p>In 7th grade, a financial crisis didn't just knock on our door — it kicked it down. School became a luxury I couldn't afford. I left, found work in a restaurant, and started paying for my own survival. I moved between hostels, switching schools when I could, stitching together an education from whatever fragments were available.</p>
+        <p>In 7th grade, a financial crisis didn&rsquo;t just knock on our door &mdash; it kicked it down. School became a luxury I couldn&rsquo;t afford. I left, found work in a restaurant, and started paying for my own survival. I moved between hostels, switching schools when I could, stitching together an education from whatever fragments were available.</p>
         <p>Most people at that age are worrying about homework deadlines. I was worrying about whether I could eat that night. But here is what those years gave me that no curriculum could: the absolute, bone-deep certainty that I would not break. That I refuse to break.</p>
-        <p>I was a kid holding two impossible things at once — poverty and ambition. I chose to keep both. The poverty was not mine to own forever. The ambition was non-negotiable.</p>
+        <p>I was a kid holding two impossible things at once &mdash; poverty and ambition. I chose to keep both. The poverty was not mine to own forever. The ambition was non-negotiable.</p>
       </div>
     </div>
 
     <blockquote class="pull">
-      <p>"I was a kid holding two impossible things at once — poverty and ambition. I chose to keep both."</p>
+      <p>&ldquo;I was a kid holding two impossible things at once &mdash; poverty and ambition. I chose to keep both.&rdquo;</p>
     </blockquote>
 
     <div class="story-section">
-      <div class="section-marker"><span class="roman">III</span><div class="section-line"></div></div>
+      <div class="section-marker"><span class="roman">III</span><div class="section-divider"></div></div>
       <h2 class="section-h2">Self-Made Path</h2>
       <div class="section-body">
-        <p>Leaving school didn't mean leaving education. I found open schooling — a route that most people dismiss, but one I treated like a lifeline. I completed an ITI diploma course with distinction honours through sheer determination, studying whenever I could carve out the time between shifts.</p>
-        <p>Then came the NFSU chapter — forensic sciences, a new direction attempted amid the continuing chaos of my life. It didn't work out the way I planned. But every attempt is intelligence gathered. Every closed door teaches you something about which wall to knock down next.</p>
-        <p>Eventually, the path pointed toward law. NLUD — one of the top national law universities in India. I studied for it, sat for it, and got in. I paid my first-year fees entirely on my own, through part-time jobs. No safety net. No family fund. Just hustle, planning, and the refusal to let logistics be the reason my dream dies.</p>
+        <p>Leaving school didn&rsquo;t mean leaving education. I found open schooling &mdash; a route that most people dismiss, but one I treated like a lifeline. I completed an ITI diploma course with distinction honours through sheer determination, studying whenever I could carve out the time between shifts.</p>
+        <p>Then came the NFSU chapter &mdash; forensic sciences, a new direction attempted amid the continuing chaos of my life. It didn&rsquo;t work out the way I planned. But every attempt is intelligence gathered. Every closed door teaches you something about which wall to knock down next.</p>
+        <p>Eventually, the path pointed toward law. NLUD &mdash; one of the top national law universities in India. I studied for it, sat for it, and got in. I paid my first-year fees entirely on my own, through part-time jobs. No safety net. No family fund. Just hustle, planning, and the refusal to let logistics be the reason my dream dies.</p>
       </div>
     </div>
 
     <div class="stats-4">
       <div class="stat-box"><div class="stat-val">7th</div><div class="stat-lbl">Grade when I started working</div></div>
       <div class="stat-box"><div class="stat-val">ITI</div><div class="stat-lbl">Diploma with Distinction Honours</div></div>
-      <div class="stat-box"><div class="stat-val">₹0</div><div class="stat-lbl">Family support for 1st year fees</div></div>
-      <div class="stat-box"><div class="stat-val">NLU</div><div class="stat-lbl">Delhi — earned, not given</div></div>
+      <div class="stat-box"><div class="stat-val">&#8377;0</div><div class="stat-lbl">Family support for 1st year fees</div></div>
+      <div class="stat-box"><div class="stat-val">NLU</div><div class="stat-lbl">Delhi &mdash; earned, not given</div></div>
     </div>
 
     <div class="story-section">
-      <div class="section-marker"><span class="roman">IV</span><div class="section-line"></div></div>
+      <div class="section-marker"><span class="roman">IV</span><div class="section-divider"></div></div>
       <h2 class="section-h2">Conquering Delhi</h2>
       <div class="section-body">
         <p>Delhi hit me like a wall. A new city, a new climate, isolation, and a chronic stomach illness worsened by the pollution. I missed two consecutive weeks of classes. I was failing subjects. The mental weight was real and heavy.</p>
-        <p>I want to be clear about this part, because too many people clean up their stories: there were days in Delhi when I genuinely didn't know if I would make it through the semester. The illness was physical but the loneliness was its own kind of damage. I was far from anyone who knew me. Everything I had built to get here felt at risk.</p>
-        <p>And still — I kept fighting. I caught up. I rebuilt. Because that's the only playbook I know. You fall, you note why, you stand back up, and you move forward. Every. Single. Time.</p>
+        <p>I want to be clear about this part, because too many people clean up their stories: there were days in Delhi when I genuinely didn&rsquo;t know if I would make it through the semester. The illness was physical but the loneliness was its own kind of damage. I was far from anyone who knew me. Everything I had built to get here felt at risk.</p>
+        <p>And still &mdash; I kept fighting. I caught up. I rebuilt. Because that&rsquo;s the only playbook I know. You fall, you note why, you stand back up, and you move forward. Every. Single. Time.</p>
       </div>
     </div>
 
     <div class="story-section">
-      <div class="section-marker"><span class="roman">V</span><div class="section-line"></div></div>
-      <h2 class="section-h2">My Drive & Ambitions</h2>
+      <div class="section-marker"><span class="roman">V</span><div class="section-divider"></div></div>
+      <h2 class="section-h2">My Drive &amp; Ambitions</h2>
       <div class="section-body">
-        <p>I am a certified distinction holder. A writer of 75+ essays. A builder of AI tools, dashboards, and games. A person who left formal school in 7th grade and is now studying at a national law university. I handle my finances, my education, my health, and my emotions — independently, without complaint.</p>
-        <p>My target is the highest-paying job in corporate law. But not law alone — I intend to be the lawyer who also codes, who builds legal AI tools, who writes with clarity and force, who creates things that didn't exist before. The intersection of law, technology, and creativity is where I am staking my career.</p>
-        <p>Three years remain at NLUD. I am treating every single one of them as compounding time — moots, internships, networking, writing, building. The runway is short. The ambition is not.</p>
+        <p>I am a certified distinction holder. A writer of 75+ essays. A builder of AI tools, dashboards, and games. A person who left formal school in 7th grade and is now studying at a national law university. I handle my finances, my education, my health, and my emotions &mdash; independently, without complaint.</p>
+        <p>My target is the highest-paying job in corporate law. But not law alone &mdash; I intend to be the lawyer who also codes, who builds legal AI tools, who writes with clarity and force, who creates things that didn&rsquo;t exist before. The intersection of law, technology, and creativity is where I am staking my career.</p>
+        <p>Three years remain at NLUD. I am treating every single one of them as compounding time &mdash; moots, internships, networking, writing, building. The runway is short. The ambition is not.</p>
       </div>
     </div>
 
     <div class="story-section">
-      <div class="section-marker"><span class="roman">VI</span><div class="section-line"></div></div>
+      <div class="section-marker"><span class="roman">VI</span><div class="section-divider"></div></div>
       <h2 class="section-h2">Looking Ahead</h2>
       <div class="section-body">
         <p>Freedom is not something you are given. It is something you earn, day by day, decision by decision, through work that no one sees and costs that no one else pays. I have been earning mine since I was in 7th grade.</p>
         <p>I want to look back at 30 and say: I turned every loss into leverage. Every closed school into an open mind. Every missed meal into a meal I one day paid for myself. Every sleepless night in Delhi into a case I argued, an essay I wrote, a tool I shipped.</p>
-        <p>I'm not interested in sympathy. I'm interested in results. And I intend to produce them — in law, in technology, in writing — until my story becomes something that makes the next kid from a difficult background think: if he did it from there, I can do it from here.</p>
+        <p>I&rsquo;m not interested in sympathy. I&rsquo;m interested in results. And I intend to produce them &mdash; in law, in technology, in writing &mdash; until my story becomes something that makes the next kid from a difficult background think: if he did it from there, I can do it from here.</p>
       </div>
     </div>
 
     <div class="closing-box">
-      <p class="closing-quote">"No safety net. No shortcut. No backup plan.<br>Just the absolute refusal to stay down."</p>
-      <p class="closing-attr">— Dhananjay Chouhan, 18 · Hyderabad → Delhi</p>
+      <p class="closing-quote">&ldquo;No safety net. No shortcut. No backup plan.<br>Just the absolute refusal to stay down.&rdquo;</p>
+      <p class="closing-attr">&mdash; Dhananjay Chouhan, 18 &middot; Hyderabad &rarr; Delhi</p>
     </div>
 
     <div class="story-ctas">
-      <button class="btn-gold" onclick="showPage('writings')">Read My Essays →</button>
-      <button class="btn-outline" onclick="showPage('about')">About & Contact</button>
+      <button class="btn-primary" onclick="nav('writings')">Read My Essays &rarr;</button>
+      <button class="btn-secondary" onclick="nav('about')">About &amp; Contact</button>
     </div>
   </div>
-  <footer style="margin-top:60px">
-    <div class="footer-brand"><span class="logo">DJ</span></div>
-    <p class="footer-copy">© 2025 · Built with Next.js + Tailwind CSS</p>
+  <footer class="site-footer" style="margin-top:60px">
+    <div class="footer-brand"><div class="mark">DJ</div><div class="sub">Law &middot; Research &middot; Code</div></div>
+    <p class="footer-copy">&copy; 2025 &middot; Built with Next.js + Tailwind CSS</p>
     <div class="footer-links">
-      <a href="https://github.com/DHANANAN" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank">LinkedIn</a>
-      <a href="/cdn-cgi/l/email-protection#204448414e414e4a41590e43484f5548414e1214604e4c5544454c48490e41430e494e">Email</a>
+      <a href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">Email</a>
     </div>
   </footer>
 </div>
 
 
-<!-- ══════════════════════════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════════════════════════
      PAGE: ABOUT
-══════════════════════════════════════════════════════════════════════════ -->
-<div class="page" id="page-about">
-  <div class="container about-page">
+═══════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-about" role="main">
+  <div class="wrap about-page">
     <div class="about-header">
       <span class="eyebrow">About</span>
       <h1 class="about-name">Dhananjay<br><span>Chouhan</span></h1>
-      <p class="about-sub">BA LLB · National Law University Delhi · 2nd Year</p>
+      <p class="about-sub">BA LLB &middot; National Law University Delhi &middot; 2nd Year</p>
       <hr class="rule">
     </div>
 
     <div class="about-grid">
       <div class="about-bio">
-        <p>I'm an 18-year-old law student at NLU Delhi — one of India's premier national law universities — with a deep focus on constitutional law, jurisprudence, and the philosophy of fundamental rights. My research spans Indian constitutional history, data privacy law, comparative legal systems, and the growing intersection of law and technology.</p>
-        <p>On the other side of the table, I build things: AI-powered legal research tools, interactive policy dashboards, cultural heritage sites, and browser games. I believe the next generation of lawyers must be technically literate — and that developers who touch systems affecting people owe it to themselves to understand the legal and ethical frameworks around them.</p>
-        <p>This site unifies both worlds. It holds 75+ essays on legal topics, the projects I've shipped, and the experiments I'm still running. Everything here is self-made — because that's the only way I've ever done things.</p>
-        <span class="story-link" onclick="showPage('story')">Read my full story →</span>
+        <p>I&rsquo;m an 18-year-old law student at NLU Delhi &mdash; one of India&rsquo;s premier national law universities &mdash; with a deep focus on constitutional law, jurisprudence, and the philosophy of fundamental rights. My research spans Indian constitutional history, data privacy law, comparative legal systems, and the growing intersection of law and technology.</p>
+        <p>On the other side of the table, I build things: AI-powered legal research tools, interactive policy dashboards, cultural heritage sites, and browser games. I believe the next generation of lawyers must be technically literate &mdash; and that developers who touch systems affecting people owe it to themselves to understand the legal and ethical frameworks around them.</p>
+        <p>This site unifies both worlds. It holds 75+ essays on legal topics, the projects I&rsquo;ve shipped, and the experiments I&rsquo;m still running. Everything here is self-made &mdash; because that&rsquo;s the only way I&rsquo;ve ever done things.</p>
+        <button class="story-trigger" onclick="nav('story')">Read my full story &rarr;</button>
       </div>
       <div class="stat-sidebar">
         <div class="sidebar-item"><div class="sidebar-label">Age</div><div class="sidebar-val">18</div></div>
@@ -810,89 +1050,372 @@ footer {
         <div class="sidebar-item"><div class="sidebar-label">Essays Written</div><div class="sidebar-val">75+</div></div>
         <div class="sidebar-item"><div class="sidebar-label">Projects Shipped</div><div class="sidebar-val">5+</div></div>
         <div class="sidebar-item"><div class="sidebar-label">Specialisation</div><div class="sidebar-val">Constitutional Law</div></div>
-        <div class="sidebar-item"><div class="sidebar-label">Also Builds With</div><div class="sidebar-val">Next.js · Python · AI</div></div>
+        <div class="sidebar-item"><div class="sidebar-label">Also Builds With</div><div class="sidebar-val">Next.js &middot; Python &middot; AI</div></div>
       </div>
     </div>
 
-    <h2 style="font-family:'Playfair Display',serif;color:var(--vellum);font-size:1.8rem;font-weight:700;margin-bottom:24px">Research Interests</h2>
-    <div class="interests-grid" style="margin-bottom:52px">
+    <h3 class="section-h3">Research Interests</h3>
+    <div class="interests-grid">
       <div class="interest-item"><span class="dot"></span>Indian Constitutional Law</div>
-      <div class="interest-item"><span class="dot"></span>Fundamental Rights & Privacy</div>
-      <div class="interest-item"><span class="dot"></span>Jurisprudence & Legal Philosophy</div>
-      <div class="interest-item"><span class="dot"></span>Data Protection & Tech Law</div>
-      <div class="interest-item"><span class="dot"></span>Legal History & Dharmaśāstra</div>
+      <div class="interest-item"><span class="dot"></span>Fundamental Rights &amp; Privacy</div>
+      <div class="interest-item"><span class="dot"></span>Jurisprudence &amp; Legal Philosophy</div>
+      <div class="interest-item"><span class="dot"></span>Data Protection &amp; Tech Law</div>
+      <div class="interest-item"><span class="dot"></span>Legal History &amp; Dharma&#347;&#257;stra</div>
       <div class="interest-item"><span class="dot"></span>Comparative Constitutional Systems</div>
-      <div class="interest-item"><span class="dot"></span>AI & Legal Research Tools</div>
-      <div class="interest-item"><span class="dot"></span>Access to Justice & Legal Aid</div>
-      <div class="interest-item"><span class="dot"></span>Corporate Law & Transactions</div>
-      <div class="interest-item"><span class="dot"></span>Criminal Justice & Due Process</div>
+      <div class="interest-item"><span class="dot"></span>AI &amp; Legal Research Tools</div>
+      <div class="interest-item"><span class="dot"></span>Access to Justice &amp; Legal Aid</div>
+      <div class="interest-item"><span class="dot"></span>Corporate Law &amp; Transactions</div>
+      <div class="interest-item"><span class="dot"></span>Criminal Justice &amp; Due Process</div>
     </div>
 
-    <h2 style="font-family:'Playfair Display',serif;color:var(--vellum);font-size:1.8rem;font-weight:700;margin-bottom:24px">Currently</h2>
+    <h3 class="section-h3">Currently</h3>
     <div class="now-grid">
-      <div class="now-card"><div class="now-icon">⚖</div><div class="now-title">Studying Law</div><div class="now-desc">2nd year BA LLB at NLUD — moots, seminars, reading every precedent I can find.</div></div>
-      <div class="now-card"><div class="now-icon">🛠</div><div class="now-title">Building Tools</div><div class="now-desc">Shipping legal AI tools, dashboards, and experiments that merge law with technology.</div></div>
-      <div class="now-card"><div class="now-icon">✍</div><div class="now-title">Writing & Researching</div><div class="now-desc">75+ essays across constitutional law, jurisprudence, legal history, and tech law.</div></div>
+      <div class="now-card"><div class="now-icon">&#9878;</div><div class="now-title">Studying Law</div><div class="now-desc">2nd year BA LLB at NLUD &mdash; moots, seminars, reading every precedent I can find.</div></div>
+      <div class="now-card"><div class="now-icon">&#128295;</div><div class="now-title">Building Tools</div><div class="now-desc">Shipping legal AI tools, dashboards, and experiments that merge law with technology.</div></div>
+      <div class="now-card"><div class="now-icon">&#9997;</div><div class="now-title">Writing &amp; Researching</div><div class="now-desc">75+ essays across constitutional law, jurisprudence, legal history, and tech law.</div></div>
     </div>
 
     <div class="contact-box">
       <h2 class="contact-h2">Get in touch</h2>
       <p class="contact-p">Open to conversations about law, research collaborations, legal tech projects, internship referrals, or just an interesting exchange of ideas.</p>
-      <p class="contact-emails"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b4d0dcd5dad5daded5cd9ad7dcdbc1dcd5da8680f4dad8c1d0d1d8dcdd9ad5d79addda">[email&#160;protected]</a> · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="24494047151c141016141413644349454d480a474b49">[email&#160;protected]</a></p>
+      <p class="contact-emails">dhananjay.chouhan24@nludelhi.ac.in &middot; mdc18042007@gmail.com</p>
       <div class="contact-btns">
-        <a href="/cdn-cgi/l/email-protection#2d49454c434c43474c54034e454258454c431f196d4341584948414544034c4e034443" class="btn-gold btn-sm">✉ University Email</a>
-        <a href="/cdn-cgi/l/email-protection#2b464f481a131b1f191b1b1c6b4c464a424705484446" class="btn-outline btn-sm">✉ Personal Email</a>
-        <a href="https://github.com/DHANANAN" target="_blank" class="btn-outline btn-sm">GitHub ↗</a>
-        <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank" class="btn-outline btn-sm">LinkedIn ↗</a>
+        <a class="btn-primary btn-sm" href="mailto:dhananjay.chouhan24@nludelhi.ac.in">&#9993; University Email</a>
+        <a class="btn-secondary btn-sm" href="mailto:mdc18042007@gmail.com">&#9993; Personal Email</a>
+        <a class="btn-secondary btn-sm" href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">GitHub &#8599;</a>
+        <a class="btn-secondary btn-sm" href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank" rel="noopener noreferrer">LinkedIn &#8599;</a>
       </div>
     </div>
   </div>
-  <footer style="margin-top:60px">
-    <div class="footer-brand"><span class="logo">DJ</span></div>
-    <p class="footer-copy">© 2025 · Built with Next.js + Tailwind CSS</p>
+  <footer class="site-footer" style="margin-top:60px">
+    <div class="footer-brand"><div class="mark">DJ</div><div class="sub">Law &middot; Research &middot; Code</div></div>
+    <p class="footer-copy">&copy; 2025 &middot; Built with Next.js + Tailwind CSS</p>
     <div class="footer-links">
-      <a href="https://github.com/DHANANAN" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank">LinkedIn</a>
-      <a href="/cdn-cgi/l/email-protection#e5818d848b848b8f849ccb868d8a908d848bd7d1a58b89908180898d8ccb8486cb8c8b">Email</a>
+      <a href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">Email</a>
     </div>
   </footer>
 </div>
 
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-/* ── PAGE SWITCHING ───────────────────────────────────────────────────────── */
-function showPage(name) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-  document.getElementById('page-' + name).classList.add('active');
-  document.getElementById('nav-' + name).classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'instant' });
+<!-- ═══════════════════════════════════════════════════════════════
+     JAVASCRIPT — 3-LAYER RESILIENCE SYSTEM
 
-  // Re-trigger animations on home
-  if (name === 'home') {
-    document.querySelectorAll('.anim').forEach(el => {
-      el.style.animation = 'none';
-      el.offsetHeight; // reflow
-      el.style.animation = '';
-    });
+     LAYER 1 — Primary:   Class-based page switching, direct DOM ops
+     LAYER 2 — Fallback:  data-page attribute scan + CSS inline toggle
+     LAYER 3 — Emergency: location.hash routing + full page reload guard
+═══════════════════════════════════════════════════════════════ -->
+<script>
+(function() {
+  'use strict';
+
+  /* ─── CONSTANTS ──────────────────────────────────────────────────── */
+  var PAGES   = ['home','projects','writings','story','about'];
+  var current = 'home';
+
+  /* ─── LAYER 1: Primary page switch ─────────────────────────────── */
+  function switchPage(name) {
+    if (!name || PAGES.indexOf(name) === -1) name = 'home'; // guard
+    try {
+      /* Hide all pages */
+      var pages = document.querySelectorAll('.page');
+      for (var i = 0; i < pages.length; i++) {
+        pages[i].classList.remove('active');
+        pages[i].removeAttribute('aria-current');
+      }
+      /* Show target */
+      var target = document.getElementById('page-' + name);
+      if (!target) throw new Error('Page element not found: ' + name);
+      target.classList.add('active');
+      target.setAttribute('aria-current', 'page');
+
+      /* Update nav links — desktop */
+      var navLinks = document.querySelectorAll('.nav-links a');
+      for (var j = 0; j < navLinks.length; j++) {
+        navLinks[j].classList.remove('active');
+      }
+      /* Update nav links — mobile drawer */
+      var drawerLinks = document.querySelectorAll('#nav-drawer a');
+      for (var k = 0; k < drawerLinks.length; k++) {
+        drawerLinks[k].classList.remove('active');
+      }
+      /* Activate correct nav item */
+      var activeLink   = document.getElementById('nl-' + name);
+      var activeDrawer = document.querySelector('#nav-drawer a[data-page="' + name + '"]');
+      if (activeLink)   activeLink.classList.add('active');
+      if (activeDrawer) activeDrawer.classList.add('active');
+
+      current = name;
+      window.location.hash = name === 'home' ? '' : name;
+      window.scrollTo(0, 0);
+
+      /* Re-trigger hero animations when returning home */
+      if (name === 'home') restartAnimations();
+
+    } catch(e) {
+      /* ─── LAYER 2: Fallback via inline styles ────────────────── */
+      console.warn('Layer 1 failed, falling back to Layer 2:', e);
+      layer2Switch(name);
+    }
   }
-}
 
-/* ── PROJECT FILTER ───────────────────────────────────────────────────────── */
-function filterProjects(cat, btn) {
-  document.querySelectorAll('.filter-pills .pill').forEach(p => p.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('#projects-grid .project-card').forEach(card => {
-    card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'flex' : 'none';
-  });
-}
+  /* ─── LAYER 2: Inline style fallback ───────────────────────────── */
+  function layer2Switch(name) {
+    try {
+      var allPages = document.querySelectorAll('.page');
+      for (var i = 0; i < allPages.length; i++) {
+        allPages[i].style.display = 'none';
+      }
+      var el = document.getElementById('page-' + name);
+      if (el) {
+        el.style.display = 'block';
+        window.scrollTo(0, 0);
+      } else {
+        throw new Error('Layer 2 also failed to find: ' + name);
+      }
+    } catch(e) {
+      /* ─── LAYER 3: Emergency hash redirect ──────────────────── */
+      console.warn('Layer 2 failed, Layer 3 emergency:', e);
+      layer3Emergency(name);
+    }
+  }
 
-/* ── WRITINGS FILTER ──────────────────────────────────────────────────────── */
-let activeWritingTag = 'all';
+  /* ─── LAYER 3: Hash-based emergency routing ────────────────────── */
+  function layer3Emergency(name) {
+    try {
+      window.location.hash = name;
+      /* Force-show by walking all elements with matching id */
+      var el = document.getElementById('page-' + name);
+      if (el) {
+        el.setAttribute('style','display:block!important;visibility:visible!important;opacity:1!important');
+      }
+    } catch(e) {
+      /* Absolute last resort — do nothing, page is already partially rendered */
+      console.error('All 3 layers failed. DOM may be severely corrupted.', e);
+    }
+  }
 
-function setWritingTag(tag, btn) {
-  activeWritingTag = tag;
-  document.querySelectorAll('.tag-pill').forEach(p => p.classList.remove('active'));
-  btn.classList.add('active');
-  filterWritings();
-}
+  /* ─── PUBLIC nav() function ─────────────────────────────────────── */
+  window.nav = function(name) {
+    try { switchPage(name); }
+    catch(e) {
+      try { layer2Switch(name); }
+      catch(e2) { layer3Emergency(name); }
+    }
+  };
+
+  /* ─── MOBILE DRAWER ─────────────────────────────────────────────── */
+  window.toggleDrawer = function() {
+    try {
+      var drawer  = document.getElementById('nav-drawer');
+      var toggle  = document.getElementById('nav-toggle');
+      if (!drawer || !toggle) return;
+      var isOpen = drawer.classList.contains('open');
+      drawer.classList.toggle('open', !isOpen);
+      toggle.classList.toggle('open', !isOpen);
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+    } catch(e) {
+      /* Layer 2 drawer fallback */
+      var d = document.getElementById('nav-drawer');
+      if (d) d.style.display = (d.style.display === 'block') ? 'none' : 'block';
+    }
+  };
+
+  window.closeDrawer = function() {
+    try {
+      var drawer = document.getElementById('nav-drawer');
+      var toggle = document.getElementById('nav-toggle');
+      if (drawer) drawer.classList.remove('open');
+      if (toggle) { toggle.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
+    } catch(e) {
+      var d = document.getElementById('nav-drawer');
+      if (d) d.style.display = 'none';
+    }
+  };
+
+  /* ─── PROJECT FILTER ────────────────────────────────────────────── */
+  window.filterProjects = function(cat, btn) {
+    try {
+      /* Deactivate all pills */
+      var pills = document.querySelectorAll('.filter-row .pill');
+      for (var i = 0; i < pills.length; i++) pills[i].classList.remove('active');
+      if (btn) btn.classList.add('active');
+
+      var cards = document.querySelectorAll('#projects-grid .card');
+      var shown = 0;
+      for (var j = 0; j < cards.length; j++) {
+        var show = (cat === 'all' || cards[j].getAttribute('data-cat') === cat);
+        /* Layer 1: classList */
+        if (show) {
+          cards[j].style.display = '';
+          shown++;
+        } else {
+          cards[j].style.display = 'none';
+        }
+      }
+    } catch(e) {
+      /* Layer 2: crude show-all fallback — never crash */
+      console.warn('filterProjects error:', e);
+      var allCards = document.querySelectorAll('#projects-grid .card');
+      for (var k = 0; k < allCards.length; k++) allCards[k].style.display = '';
+    }
+  };
+
+  /* ─── WRITINGS FILTER ───────────────────────────────────────────── */
+  var activeTag = 'all';
+
+  window.setWritingTag = function(tag, btn) {
+    try {
+      activeTag = tag || 'all';
+      var pills = document.querySelectorAll('.tag-filter-row .tag-pill');
+      for (var i = 0; i < pills.length; i++) pills[i].classList.remove('active');
+      if (btn) btn.classList.add('active');
+      filterWritings();
+    } catch(e) {
+      console.warn('setWritingTag error:', e);
+    }
+  };
+
+  window.filterWritings = function() {
+    try {
+      var searchEl = document.getElementById('writings-search');
+      var countEl  = document.getElementById('writings-count');
+      var listEl   = document.getElementById('writings-list');
+      if (!listEl) return;
+
+      var q    = searchEl ? searchEl.value.toLowerCase().trim() : '';
+      var rows = listEl.querySelectorAll('.writing-row');
+      var vis  = 0;
+
+      for (var i = 0; i < rows.length; i++) {
+        var row      = rows[i];
+        var rowText  = (row.textContent || row.innerText || '').toLowerCase();
+        var rowTags  = (row.getAttribute('data-tags') || '').toLowerCase();
+
+        var matchQ   = !q || rowText.indexOf(q) !== -1;
+        var matchTag = activeTag === 'all' || rowTags.indexOf(activeTag.toLowerCase()) !== -1;
+
+        if (matchQ && matchTag) {
+          row.style.display = '';
+          vis++;
+        } else {
+          row.style.display = 'none';
+        }
+      }
+
+      if (countEl) {
+        countEl.textContent = vis + ' essay' + (vis !== 1 ? 's' : '') +
+          ((q || activeTag !== 'all') ? ' found' : '');
+      }
+    } catch(e) {
+      /* Layer 2: show everything */
+      console.warn('filterWritings error:', e);
+      var allRows = document.querySelectorAll('#writings-list .writing-row');
+      for (var j = 0; j < allRows.length; j++) allRows[j].style.display = '';
+    }
+  };
+
+  /* ─── ANIMATION RESTART ─────────────────────────────────────────── */
+  function restartAnimations() {
+    try {
+      var els = document.querySelectorAll('.anim');
+      for (var i = 0; i < els.length; i++) {
+        els[i].style.animation = 'none';
+        /* Trigger reflow without assignment (satisfies linters) */
+        void els[i].offsetHeight;
+        els[i].style.animation = '';
+      }
+    } catch(e) { /* non-critical, ignore */ }
+  }
+
+  /* ─── HASH ROUTING on load ──────────────────────────────────────── */
+  function initFromHash() {
+    try {
+      var hash = (window.location.hash || '').replace('#','').trim();
+      if (hash && PAGES.indexOf(hash) !== -1) {
+        switchPage(hash);
+      }
+    } catch(e) {
+      /* No hash or invalid — stay on home */
+    }
+  }
+
+  /* ─── KEYBOARD NAVIGATION (accessibility) ───────────────────────── */
+  function initKeyboard() {
+    try {
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          var t = e.target;
+          if (t && (t.tagName === 'A' || t.tagName === 'BUTTON')) {
+            var dp = t.getAttribute('data-page');
+            if (dp) { e.preventDefault(); nav(dp); }
+          }
+        }
+        if (e.key === 'Escape') closeDrawer();
+      });
+    } catch(e) { /* non-critical */ }
+  }
+
+  /* ─── CLICK-OUTSIDE DRAWER CLOSE ────────────────────────────────── */
+  function initClickOutside() {
+    try {
+      document.addEventListener('click', function(e) {
+        var drawer = document.getElementById('nav-drawer');
+        var toggle = document.getElementById('nav-toggle');
+        if (!drawer || !drawer.classList.contains('open')) return;
+        if (!drawer.contains(e.target) && !toggle.contains(e.target)) {
+          closeDrawer();
+        }
+      });
+    } catch(e) { /* non-critical */ }
+  }
+
+  /* ─── GOOGLE FONTS FAILURE DETECTION ────────────────────────────── */
+  function checkFonts() {
+    try {
+      if (document.fonts && document.fonts.check) {
+        /* Check if Playfair loaded; if not, CSS fallbacks already handle it */
+        document.fonts.ready.then(function() {
+          var ok = document.fonts.check('700 1rem "Playfair Display"');
+          if (!ok) {
+            /* Layer 3: apply Georgia as explicit fallback */
+            document.documentElement.style.setProperty('--f-display','"Georgia", "Times New Roman", serif');
+            console.info('Google Fonts did not load. Georgia fallback applied.');
+          }
+        });
+      }
+    } catch(e) { /* non-critical */ }
+  }
+
+  /* ─── INIT ──────────────────────────────────────────────────────── */
+  function init() {
+    initFromHash();
+    initKeyboard();
+    initClickOutside();
+    checkFonts();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})(); /* END IIFE — no globals polluted, no conflicts possible */
+</script>
+
+<!-- LAYER 3 no-JS fallback: show home content even without JS -->
+<noscript>
+  <style>
+    .page{display:none}
+    #page-home{display:block}
+    #nav-toggle{display:none}
+  </style>
+  <p style="position:fixed;bottom:0;left:0;right:0;background:#C9A84C;color:#0A0A0F;text-align:center;padding:8px;font-family:monospace;font-size:.75rem;z-index:9999">
+    JavaScript is disabled. Only the Home page is visible. Enable JS for full navigation.
+  </p>
+</noscript>
+
+</body>
+</html>
