@@ -1304,7 +1304,7 @@ blockquote.pull p{
       tabindex="0"
       aria-label="Trigger zero-gravity earthquake easter egg"
       onclick="triggerCosmicQuake()"
-      onkeydown="if(event.key==='Enter'||event.key===' '||event.key==='Space'||event.key==='Spacebar'){event.preventDefault();triggerCosmicQuake();}"
+      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();triggerCosmicQuake();}"
     >
       <!-- Fulcrum post -->
       <line x1="24" y1="28" x2="24" y2="10" class="scale-beam"/>
@@ -1955,6 +1955,13 @@ var DJ_QUAKE_MAX_PARTICLES = 60;
 var DJ_QUAKE_DURATION_MS = 7800;
 var DJ_QUAKE_TURBULENCE_RATIO = 0.16;
 var DJ_QUAKE_CURSOR_REPULSION_RADIUS = 260;
+var DJ_QUAKE_INITIAL_VELOCITY = 2.2;
+var DJ_QUAKE_SPIN_SPEED = 1.2;
+var DJ_QUAKE_TURBULENCE_FORCE = 2.3;
+var DJ_QUAKE_REPULSION_STRENGTH = 0.8;
+var DJ_QUAKE_DAMPING_FACTOR = 0.992;
+var DJ_QUAKE_OSCILLATION_FREQUENCY = 0.004;
+var DJ_QUAKE_OSCILLATION_AMPLITUDE = 0.08;
 
 /* ═══════════════════════════════════════════════════════════════════
    nav(name)
@@ -2083,10 +2090,10 @@ function triggerCosmicQuake() {
       el:n,
       x:0,
       y:0,
-      vx:(Math.random()-0.5)*2.2,
-      vy:(Math.random()-0.5)*2.2,
+      vx:(Math.random()-0.5)*DJ_QUAKE_INITIAL_VELOCITY,
+      vy:(Math.random()-0.5)*DJ_QUAKE_INITIAL_VELOCITY,
       rot:0,
-      spin:(Math.random()-0.5)*1.2,
+      spin:(Math.random()-0.5)*DJ_QUAKE_SPIN_SPEED,
       transform:n.style.transform || '',
       transition:n.style.transition || '',
       willChange:n.style.willChange || ''
@@ -2128,8 +2135,8 @@ function triggerCosmicQuake() {
       var py = rect.top + rect.height * 0.5;
 
       if (turbulence > 0) {
-        part.vx += (Math.random()-0.5) * 2.3 * turbulence;
-        part.vy += (Math.random()-0.5) * 2.3 * turbulence;
+        part.vx += (Math.random()-0.5) * DJ_QUAKE_TURBULENCE_FORCE * turbulence;
+        part.vy += (Math.random()-0.5) * DJ_QUAKE_TURBULENCE_FORCE * turbulence;
       }
 
       var dx = px - DJ_CURSOR_X;
@@ -2137,13 +2144,13 @@ function triggerCosmicQuake() {
       var dist = Math.sqrt(dx*dx + dy*dy) || 1;
       if (dist < DJ_QUAKE_CURSOR_REPULSION_RADIUS) {
         var push = (DJ_QUAKE_CURSOR_REPULSION_RADIUS - dist) / DJ_QUAKE_CURSOR_REPULSION_RADIUS;
-        part.vx += (dx / dist) * 0.8 * push;
-        part.vy += (dy / dist) * 0.8 * push;
+        part.vx += (dx / dist) * DJ_QUAKE_REPULSION_STRENGTH * push;
+        part.vy += (dy / dist) * DJ_QUAKE_REPULSION_STRENGTH * push;
       }
 
-      part.vx *= 0.992;
-      part.vy *= 0.992;
-      part.y += Math.sin((now * 0.004) + p) * 0.08;
+      part.vx *= DJ_QUAKE_DAMPING_FACTOR;
+      part.vy *= DJ_QUAKE_DAMPING_FACTOR;
+      part.y += Math.sin((now * DJ_QUAKE_OSCILLATION_FREQUENCY) + p) * DJ_QUAKE_OSCILLATION_AMPLITUDE;
       part.x += part.vx;
       part.y += part.vy;
       part.rot += part.spin;
