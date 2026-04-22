@@ -1304,7 +1304,7 @@ blockquote.pull p{
       tabindex="0"
       aria-label="Trigger zero-gravity earthquake easter egg"
       onclick="triggerCosmicQuake()"
-      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();triggerCosmicQuake();}"
+      onkeydown="handleQuakeTriggerKey(event)"
     >
       <!-- Fulcrum post -->
       <line x1="24" y1="28" x2="24" y2="10" class="scale-beam"/>
@@ -2083,7 +2083,7 @@ function triggerCosmicQuake() {
   var parts = [];
   for (var i=0;i<nodes.length;i++) {
     var n = nodes[i];
-    if (!n || parts.length > DJ_QUAKE_MAX_PARTICLES) break;
+    if (!n || parts.length >= DJ_QUAKE_MAX_PARTICLES) break;
     var r = n.getBoundingClientRect();
     if (r.width < 30 || r.height < 20) continue;
     parts.push({
@@ -2141,7 +2141,7 @@ function triggerCosmicQuake() {
 
       var dx = px - DJ_CURSOR_X;
       var dy = py - DJ_CURSOR_Y;
-      var dist = Math.sqrt(dx*dx + dy*dy) || 1;
+      var dist = Math.max(Math.sqrt(dx*dx + dy*dy), 1);
       if (dist < DJ_QUAKE_CURSOR_REPULSION_RADIUS) {
         var push = (DJ_QUAKE_CURSOR_REPULSION_RADIUS - dist) / DJ_QUAKE_CURSOR_REPULSION_RADIUS;
         part.vx += (dx / dist) * DJ_QUAKE_REPULSION_STRENGTH * push;
@@ -2150,15 +2150,23 @@ function triggerCosmicQuake() {
 
       part.vx *= DJ_QUAKE_DAMPING_FACTOR;
       part.vy *= DJ_QUAKE_DAMPING_FACTOR;
-      part.y += Math.sin((now * DJ_QUAKE_OSCILLATION_FREQUENCY) + p) * DJ_QUAKE_OSCILLATION_AMPLITUDE;
       part.x += part.vx;
       part.y += part.vy;
       part.rot += part.spin;
-      part.el.style.transform = 'translate3d(' + part.x.toFixed(2) + 'px,' + part.y.toFixed(2) + 'px,0) rotate(' + part.rot.toFixed(2) + 'deg)';
+      var oscillation = Math.sin((now * DJ_QUAKE_OSCILLATION_FREQUENCY) + p) * DJ_QUAKE_OSCILLATION_AMPLITUDE;
+      part.el.style.transform = 'translate3d(' + part.x.toFixed(2) + 'px,' + (part.y + oscillation).toFixed(2) + 'px,0) rotate(' + part.rot.toFixed(2) + 'deg)';
     }
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
+}
+
+function handleQuakeTriggerKey(event) {
+  if (!event) return;
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    triggerCosmicQuake();
+  }
 }
 
 /* ─── MOBILE DRAWER ─────────────────────────────────────────────── */
