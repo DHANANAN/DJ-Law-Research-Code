@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -352,6 +352,14 @@ body:hover #cursor-dot,body:hover #cursor-ring{opacity:1}
   from{opacity:0;transform:scale(.98)}
   to  {opacity:1;transform:scale(1)}
 }
+@keyframes quake-rumble{
+  0%{transform:translate(0,0)}
+  20%{transform:translate(-2px,1px)}
+  40%{transform:translate(2px,-1px)}
+  60%{transform:translate(-1px,-2px)}
+  80%{transform:translate(1px,2px)}
+  100%{transform:translate(0,0)}
+}
 
 /* ═══════════════════════════════════════════════════════
    NAVBAR
@@ -458,6 +466,17 @@ body:hover #cursor-dot,body:hover #cursor-ring{opacity:1}
 #theme-toggle:hover{border-color:var(--border-hi);color:var(--gold)}
 .theme-icon{font-size:.85rem;line-height:1;transition:transform .4s}
 #theme-toggle:hover .theme-icon{transform:rotate(20deg)}
+body.dj-quake #cursor-dot{box-shadow:0 0 18px var(--cursor-glow)}
+body.dj-quake #cursor-ring{
+  width:58px;height:58px;
+  border-color:var(--gold-hi);
+  opacity:.9;
+}
+body.dj-quake #nav,
+body.dj-quake .page.active,
+body.dj-quake .site-footer{
+  animation:quake-rumble .08s linear 12;
+}
 
 /* Hamburger */
 #nav-toggle{
@@ -1276,7 +1295,17 @@ blockquote.pull p{
   <!-- Balancing Scale Nav Widget + Theme Toggle -->
   <div id="scale-nav" aria-label="Navigation controls">
     <!-- SVG Balancing Scale -->
-    <svg class="scale-svg" viewBox="0 0 48 32" fill="none" aria-hidden="true">
+    <svg
+      id="quake-trigger"
+      class="scale-svg"
+      viewBox="0 0 48 32"
+      fill="none"
+      role="button"
+      tabindex="0"
+      aria-label="Trigger zero-gravity earthquake easter egg"
+      onclick="triggerCosmicQuake()"
+      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();triggerCosmicQuake();}"
+    >
       <!-- Fulcrum post -->
       <line x1="24" y1="28" x2="24" y2="10" class="scale-beam"/>
       <!-- Base -->
@@ -1299,8 +1328,8 @@ blockquote.pull p{
 
     <!-- Theme toggle -->
     <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light/dark mode">
-      <span class="theme-icon" id="theme-icon">☽</span>
-      <span id="theme-label">Dark</span>
+      <span class="theme-icon" id="theme-icon">☀</span>
+      <span id="theme-label">Light</span>
     </button>
   </div>
 
@@ -1319,7 +1348,7 @@ blockquote.pull p{
     <li><a data-page="about"    onclick="nav('about');closeDrawer()"    tabindex="0">About</a></li>
     <li style="margin-top:16px">
       <button id="theme-toggle-m" onclick="toggleTheme()" style="color:var(--gold);font-family:var(--f-mono);font-size:.72rem;background:none;border:1px solid var(--border);padding:7px 16px;cursor:none">
-        <span id="theme-icon-m">☽</span> Toggle Theme
+        <span id="theme-icon-m">☀</span> Toggle Theme
       </button>
     </li>
   </ul>
@@ -1917,8 +1946,11 @@ blockquote.pull p{
 var DJ_PAGES   = ['home','projects','writings','story','about'];
 var DJ_CURRENT = 'home';
 var DJ_TAG     = 'all';
-var DJ_THEME   = 'dark';
+var DJ_THEME   = 'light';
 var DJ_VEIL_BUSY = false;
+var DJ_CURSOR_X = window.innerWidth * 0.5;
+var DJ_CURSOR_Y = window.innerHeight * 0.5;
+var DJ_QUAKE_BUSY = false;
 
 /* ═══════════════════════════════════════════════════════════════════
    nav(name)
@@ -2029,6 +2061,95 @@ function toggleTheme() {
   try { localStorage.setItem('dj-theme', DJ_THEME); } catch(e){}
 }
 
+function triggerCosmicQuake() {
+  if (DJ_QUAKE_BUSY) return;
+  DJ_QUAKE_BUSY = true;
+  document.body.classList.add('dj-quake');
+
+  var nodes = document.querySelectorAll(
+    '#nav, .page.active section, .page.active .card, .page.active .pillar, .page.active .writing-row, .page.active .stat-box, .page.active .now-card, .page.active .contact-box, .page.active blockquote, .page.active .hero-inner > *, .site-footer'
+  );
+  var parts = [];
+  for (var i=0;i<nodes.length;i++) {
+    var n = nodes[i];
+    if (!n || parts.length > 60) break;
+    var r = n.getBoundingClientRect();
+    if (r.width < 30 || r.height < 20) continue;
+    parts.push({
+      el:n,
+      x:0,
+      y:0,
+      vx:(Math.random()-0.5)*2.2,
+      vy:(Math.random()-0.5)*2.2,
+      rot:0,
+      spin:(Math.random()-0.5)*1.2,
+      transform:n.style.transform || '',
+      transition:n.style.transition || '',
+      willChange:n.style.willChange || ''
+    });
+  }
+
+  if (!parts.length) {
+    DJ_QUAKE_BUSY = false;
+    document.body.classList.remove('dj-quake');
+    return;
+  }
+
+  for (var j=0;j<parts.length;j++) {
+    parts[j].el.style.transition = 'none';
+    parts[j].el.style.willChange = 'transform';
+  }
+
+  var start = performance.now();
+  var duration = 7800;
+
+  function frame(now) {
+    var t = (now - start) / duration;
+    if (t >= 1) {
+      for (var k=0;k<parts.length;k++) {
+        parts[k].el.style.transform = parts[k].transform;
+        parts[k].el.style.transition = parts[k].transition;
+        parts[k].el.style.willChange = parts[k].willChange;
+      }
+      DJ_QUAKE_BUSY = false;
+      document.body.classList.remove('dj-quake');
+      return;
+    }
+
+    var turbulence = t < 0.16 ? (1 - (t / 0.16)) : 0;
+    for (var p=0;p<parts.length;p++) {
+      var part = parts[p];
+      var rect = part.el.getBoundingClientRect();
+      var px = rect.left + rect.width * 0.5;
+      var py = rect.top + rect.height * 0.5;
+
+      if (turbulence > 0) {
+        part.vx += (Math.random()-0.5) * 2.3 * turbulence;
+        part.vy += (Math.random()-0.5) * 2.3 * turbulence;
+      }
+
+      var dx = px - DJ_CURSOR_X;
+      var dy = py - DJ_CURSOR_Y;
+      var dist = Math.sqrt(dx*dx + dy*dy) || 1;
+      if (dist < 260) {
+        var push = (260 - dist) / 260;
+        part.vx += (dx / dist) * 0.8 * push;
+        part.vy += (dy / dist) * 0.8 * push;
+      }
+
+      part.vx *= 0.992;
+      part.vy *= 0.992;
+      part.y += Math.sin((now * 0.004) + p) * 0.08;
+      part.x += part.vx;
+      part.y += part.vy;
+      part.rot += part.spin;
+      part.el.style.transform = 'translate3d(' + part.x.toFixed(2) + 'px,' + part.y.toFixed(2) + 'px,0) rotate(' + part.rot.toFixed(2) + 'deg)';
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
 /* ─── MOBILE DRAWER ─────────────────────────────────────────────── */
 function toggleDrawer() {
   try {
@@ -2132,6 +2253,7 @@ function _initCursor() {
     var rx=0,ry=0,cx=0,cy=0;
     document.addEventListener('mousemove', function(e) {
       cx = e.clientX; cy = e.clientY;
+      DJ_CURSOR_X = cx; DJ_CURSOR_Y = cy;
       dot.style.left = cx+'px'; dot.style.top = cy+'px';
     });
 
@@ -2309,7 +2431,7 @@ function _initHash() {
 function _initTheme() {
   try {
     var saved = localStorage.getItem('dj-theme');
-    if (saved === 'light') toggleTheme();
+    if (saved === 'dark') toggleTheme();
   } catch(e){}
 }
 
