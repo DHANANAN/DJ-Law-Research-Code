@@ -994,6 +994,58 @@ h1.hero-headline{
   font-size:.63rem;letter-spacing:.1em;margin-bottom:18px;display:block;
 }
 #writings-list{border-top:1px solid var(--border)}
+body.viewer-open{overflow:hidden}
+#doc-viewer-modal{
+  position:fixed;inset:0;z-index:1600;
+  background:rgba(7,7,10,.84);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .28s ease,visibility .28s ease;
+  padding:28px;
+  display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(4px);
+}
+#doc-viewer-modal.open{opacity:1;visibility:visible;pointer-events:auto}
+.doc-viewer-shell{
+  width:min(1180px,100%);height:min(92vh,100%);
+  background:var(--bg);border:1px solid var(--border-hi);
+  box-shadow:0 20px 60px rgba(0,0,0,.35);
+  display:flex;flex-direction:column;
+  transform:translateY(16px) scale(.985);
+  transition:transform .3s cubic-bezier(.2,.9,.2,1);
+}
+#doc-viewer-modal.open .doc-viewer-shell{transform:translateY(0) scale(1)}
+.doc-viewer-head{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  border-bottom:1px solid var(--border);
+  padding:12px 14px;
+  background:var(--surface);
+}
+#doc-viewer-title{
+  margin:0;
+  font-family:var(--f-display);font-size:1.05rem;
+  color:var(--text);line-height:1.3;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.doc-viewer-actions{display:flex;align-items:center;gap:10px}
+.doc-viewer-source{
+  font-family:var(--f-mono);font-size:.65rem;
+  color:var(--text-2);text-decoration:none;
+  border:1px solid var(--border);padding:7px 10px;
+  transition:border-color .2s,color .2s;
+}
+.doc-viewer-source:hover{border-color:var(--gold);color:var(--gold)}
+.doc-viewer-close{
+  border:1px solid var(--border-hi);
+  background:var(--gold);color:#060608;
+  min-width:36px;height:36px;padding:0 10px;
+  font-size:1.1rem;line-height:1;cursor:none;
+  transition:transform .2s ease,background .2s ease;
+}
+.doc-viewer-close:hover{background:var(--gold-hi);transform:scale(1.03)}
+#doc-viewer-frame{
+  width:100%;height:100%;border:0;
+  background:var(--bg2);
+}
 
 /* ═══════════════════════════════════════════════════════
    PAGE: MY STORY
@@ -1226,6 +1278,8 @@ blockquote.pull p{
   .hero-watermark{display:none}
   .scroll-cue{display:none}
   #nav-drawer{padding:28px 24px}
+  #doc-viewer-modal{padding:18px}
+  .doc-viewer-shell{height:min(96vh,100%)}
 }
 @media(max-width:520px){
   h1.hero-headline{font-size:3.2rem}
@@ -1236,6 +1290,12 @@ blockquote.pull p{
   .hero-stats{gap:20px}
   .closing-quote{font-size:1.1rem}
   .closing-box{padding:28px 20px}
+  #doc-viewer-modal{padding:0}
+  .doc-viewer-shell{height:100vh;border:none}
+  .doc-viewer-head{padding:10px}
+  #doc-viewer-title{font-size:.9rem}
+  .doc-viewer-source{padding:6px 8px;font-size:.55rem}
+  .doc-viewer-close{min-width:32px;height:32px}
 }
 </style>
 </head>
@@ -1490,7 +1550,7 @@ blockquote.pull p{
         <button class="see-all-btn" onclick="nav('writings')">All 90+ essays</button>
       </div>
       <div style="border-top:1px solid var(--border)">
-        <a class="writing-row" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer">
+        <a class="writing-row" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'The Evolution of Article 21: From Gopalan to Puttaswamy')">
           <div>
             <p class="writing-date">10 January 2026</p>
             <h3 class="writing-title">The Evolution of Article 21: From Gopalan to Puttaswamy</h3>
@@ -1498,7 +1558,7 @@ blockquote.pull p{
           </div>
           <div class="writing-tags-col"><span class="tag">Constitutional Law</span><span class="tag">Privacy</span></div>
         </a>
-        <a class="writing-row" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer">
+        <a class="writing-row" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Justice in Dharmaśāstra: Legality vs. Morality in Ancient India')">
           <div>
             <p class="writing-date">20 February 2026</p>
             <h3 class="writing-title">Justice in Dharma&#347;&#257;stra: Legality vs. Morality in Ancient India</h3>
@@ -1506,7 +1566,7 @@ blockquote.pull p{
           </div>
           <div class="writing-tags-col"><span class="tag">Legal History</span><span class="tag">Jurisprudence</span></div>
         </a>
-        <a class="writing-row" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer">
+        <a class="writing-row" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'DPDP Act 2023: A Critical Reading')">
           <div>
             <p class="writing-date">5 March 2026</p>
             <h3 class="writing-title">DPDP Act 2023: A Critical Reading</h3>
@@ -1707,15 +1767,15 @@ blockquote.pull p{
     <span id="writings-count" aria-live="polite">3 essays</span>
 
     <div id="writings-list">
-      <a class="writing-row" data-tags="Constitutional Law,Fundamental Rights,Privacy" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer">
+      <a class="writing-row" data-tags="Constitutional Law,Fundamental Rights,Privacy" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'The Evolution of Article 21: From Gopalan to Puttaswamy')">
         <div><p class="writing-date">10 January 2026</p><h3 class="writing-title">The Evolution of Article 21: From Gopalan to Puttaswamy</h3><p class="writing-summary">Tracing how the Supreme Court expanded the right to life and personal liberty from a narrow procedural guarantee to a substantive constitutional fortress.</p></div>
         <div class="writing-tags-col"><span class="tag">Constitutional Law</span><span class="tag">Privacy</span></div>
       </a>
-      <a class="writing-row" data-tags="Legal History,Jurisprudence,Indian Law" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer">
+      <a class="writing-row" data-tags="Legal History,Jurisprudence,Indian Law" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Justice in Dharmaśāstra: Legality vs. Morality in Ancient India')">
         <div><p class="writing-date">20 February 2026</p><h3 class="writing-title">Justice in Dharma&#347;&#257;stra: Legality vs. Morality in Ancient India</h3><p class="writing-summary">An examination of how Manusmṛti constructed legal obligation &mdash; and whether dharma was ever truly separable from law.</p></div>
         <div class="writing-tags-col"><span class="tag">Legal History</span><span class="tag">Jurisprudence</span></div>
       </a>
-      <a class="writing-row" data-tags="Data Privacy,Tech Law,Legislation" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer">
+      <a class="writing-row" data-tags="Data Privacy,Tech Law,Legislation" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'DPDP Act 2023: A Critical Reading')">
         <div><p class="writing-date">5 March 2026</p><h3 class="writing-title">DPDP Act 2023: A Critical Reading</h3><p class="writing-summary">A clause-by-clause critique of India&rsquo;s Digital Personal Data Protection Act, examining consent mechanisms, state exemptions, and enforcement gaps.</p></div>
         <div class="writing-tags-col"><span class="tag">Data Privacy</span><span class="tag">Tech Law</span></div>
       </a>
@@ -1905,6 +1965,20 @@ blockquote.pull p{
       <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">Email</a>
     </div>
   </footer>
+</div>
+
+
+<div id="doc-viewer-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="doc-viewer-title">
+  <div class="doc-viewer-shell">
+    <div class="doc-viewer-head">
+      <h2 id="doc-viewer-title">Document Viewer</h2>
+      <div class="doc-viewer-actions">
+        <a id="doc-viewer-source" class="doc-viewer-source" href="#" target="_blank" rel="noopener noreferrer">Open source ↗</a>
+        <button type="button" class="doc-viewer-close" aria-label="Close document viewer" onclick="closeDocumentViewer()">✕</button>
+      </div>
+    </div>
+    <iframe id="doc-viewer-frame" title="Embedded document viewer" loading="lazy"></iframe>
+  </div>
 </div>
 
 
@@ -2110,6 +2184,61 @@ function filterWritings() {
   }
 }
 
+function _normalizeDocumentURL(url) {
+  if (!url) return '';
+  var clean = String(url).trim();
+  var driveFileMatch = clean.match(/drive\.google\.com\/file\/d\/([^/?#]+)/i);
+  if (driveFileMatch && driveFileMatch[1]) {
+    return 'https://drive.google.com/uc?export=download&id=' + driveFileMatch[1];
+  }
+  var docsFileMatch = clean.match(/docs\.google\.com\/document\/d\/([^/?#]+)/i);
+  if (docsFileMatch && docsFileMatch[1]) {
+    return 'https://docs.google.com/document/d/' + docsFileMatch[1] + '/export?format=docx';
+  }
+  return clean;
+}
+
+function openDocumentViewer(docUrl, title) {
+  try {
+    if (!docUrl) return false;
+    var modal = document.getElementById('doc-viewer-modal');
+    var frame = document.getElementById('doc-viewer-frame');
+    var heading = document.getElementById('doc-viewer-title');
+    var source = document.getElementById('doc-viewer-source');
+    if (!modal || !frame) return false;
+
+    var normalized = _normalizeDocumentURL(docUrl);
+    frame.src = 'https://view.officeapps.live.com/op/embed.aspx?src=' + encodeURIComponent(normalized);
+    if (heading) heading.textContent = title || 'Document Viewer';
+    if (source) source.href = docUrl;
+
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('viewer-open');
+    return false;
+  } catch(e) {
+    console.warn('[openDocumentViewer]', e);
+    return true;
+  }
+}
+
+function closeDocumentViewer() {
+  try {
+    var modal = document.getElementById('doc-viewer-modal');
+    var frame = document.getElementById('doc-viewer-frame');
+    if (modal) {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+    document.body.classList.remove('viewer-open');
+    if (frame) {
+      setTimeout(function(){ frame.src = 'about:blank'; }, 220);
+    }
+  } catch(e) {
+    console.warn('[closeDocumentViewer]', e);
+  }
+}
+
 /* ─── ANIMATION RESTART ─────────────────────────────────────────── */
 function _restartAnims() {
   try {
@@ -2207,7 +2336,11 @@ function _initReveal() {
 function _initKeyboard() {
   try {
     document.addEventListener('keydown', function(e) {
-      if (e.key==='Escape') closeDrawer();
+      if (e.key==='Escape') {
+        var modal = document.getElementById('doc-viewer-modal');
+        if (modal && modal.classList.contains('open')) closeDocumentViewer();
+        else closeDrawer();
+      }
       if ((e.key==='Enter'||e.key===' ') && e.target) {
         var dp = e.target.getAttribute('data-page');
         if (dp && (e.target.tagName==='A'||e.target.tagName==='BUTTON')) {
@@ -2227,6 +2360,12 @@ function _initClickOutside() {
       if (!d||!d.classList.contains('open')) return;
       if (t&&!t.contains(e.target)&&!d.contains(e.target)) closeDrawer();
     });
+    var modal = document.getElementById('doc-viewer-modal');
+    if (modal) {
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeDocumentViewer();
+      });
+    }
   } catch(e){}
 }
 
