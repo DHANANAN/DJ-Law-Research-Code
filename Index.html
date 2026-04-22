@@ -994,6 +994,58 @@ h1.hero-headline{
   font-size:.63rem;letter-spacing:.1em;margin-bottom:18px;display:block;
 }
 #writings-list{border-top:1px solid var(--border)}
+body.viewer-open{overflow:hidden}
+#doc-viewer-modal{
+  position:fixed;inset:0;z-index:1600;
+  background:rgba(7,7,10,.84);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .28s ease,visibility .28s ease;
+  padding:28px;
+  display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(4px);
+}
+#doc-viewer-modal.open{opacity:1;visibility:visible;pointer-events:auto}
+.doc-viewer-shell{
+  width:min(1180px,100%);height:min(92vh,100%);
+  background:var(--bg);border:1px solid var(--border-hi);
+  box-shadow:0 20px 60px rgba(0,0,0,.35);
+  display:flex;flex-direction:column;
+  transform:translateY(16px) scale(.985);
+  transition:transform .3s cubic-bezier(.2,.9,.2,1);
+}
+#doc-viewer-modal.open .doc-viewer-shell{transform:translateY(0) scale(1)}
+.doc-viewer-head{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  border-bottom:1px solid var(--border);
+  padding:12px 14px;
+  background:var(--surface);
+}
+#doc-viewer-title{
+  margin:0;
+  font-family:var(--f-display);font-size:1.05rem;
+  color:var(--text);line-height:1.3;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.doc-viewer-actions{display:flex;align-items:center;gap:10px}
+.doc-viewer-source{
+  font-family:var(--f-mono);font-size:.65rem;
+  color:var(--text-2);text-decoration:none;
+  border:1px solid var(--border);padding:7px 10px;
+  transition:border-color .2s,color .2s;
+}
+.doc-viewer-source:hover{border-color:var(--gold);color:var(--gold)}
+.doc-viewer-close{
+  border:1px solid var(--border-hi);
+  background:var(--gold);color:#060608;
+  min-width:36px;height:36px;padding:0 10px;
+  font-size:1.1rem;line-height:1;cursor:none;
+  transition:transform .2s ease,background .2s ease;
+}
+.doc-viewer-close:hover{background:var(--gold-hi);transform:scale(1.03)}
+#doc-viewer-frame{
+  width:100%;height:100%;border:0;
+  background:var(--bg2);
+}
 
 /* ═══════════════════════════════════════════════════════
    PAGE: MY STORY
@@ -1226,6 +1278,8 @@ blockquote.pull p{
   .hero-watermark{display:none}
   .scroll-cue{display:none}
   #nav-drawer{padding:28px 24px}
+  #doc-viewer-modal{padding:18px}
+  .doc-viewer-shell{height:min(96vh,100%)}
 }
 @media(max-width:520px){
   h1.hero-headline{font-size:3.2rem}
@@ -1236,6 +1290,12 @@ blockquote.pull p{
   .hero-stats{gap:20px}
   .closing-quote{font-size:1.1rem}
   .closing-box{padding:28px 20px}
+  #doc-viewer-modal{padding:0}
+  .doc-viewer-shell{height:100vh;border:none}
+  .doc-viewer-head{padding:10px}
+  #doc-viewer-title{font-size:.9rem}
+  .doc-viewer-source{padding:6px 8px;font-size:.55rem}
+  .doc-viewer-close{min-width:32px;height:32px}
 }
 </style>
 </head>
@@ -1490,29 +1550,29 @@ blockquote.pull p{
         <button class="see-all-btn" onclick="nav('writings')">All 90+ essays</button>
       </div>
       <div style="border-top:1px solid var(--border)">
-        <a class="writing-row" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer">
+        <a class="writing-row" href="https://drive.google.com/file/d/1RZMj-EmYQrHERlGk4pZa222LKhu9jmuJ/view" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Economics Project 034')">
           <div>
-            <p class="writing-date">10 January 2026</p>
-            <h3 class="writing-title">The Evolution of Article 21: From Gopalan to Puttaswamy</h3>
-            <p class="writing-summary">Tracing how the Supreme Court expanded the right to life and personal liberty from a narrow procedural guarantee to a substantive constitutional fortress.</p>
+            <p class="writing-date">15 January 2026</p>
+            <h3 class="writing-title">Economics Project 034</h3>
+            <p class="writing-summary">Analysing market regulation, taxation policy, and economic governance frameworks in contemporary India.</p>
           </div>
-          <div class="writing-tags-col"><span class="tag">Constitutional Law</span><span class="tag">Privacy</span></div>
+          <div class="writing-tags-col"><span class="tag">Jurisprudence</span></div>
         </a>
-        <a class="writing-row" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer">
+        <a class="writing-row" href="https://drive.google.com/file/d/1RZMj-EmYQrHERlGk4pZa222LKhu9jmuJ/view" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Land Law Project 034')">
           <div>
-            <p class="writing-date">20 February 2026</p>
-            <h3 class="writing-title">Justice in Dharma&#347;&#257;stra: Legality vs. Morality in Ancient India</h3>
-            <p class="writing-summary">An examination of how Manusmṛti constructed legal obligation &mdash; and whether dharma was ever truly separable from law.</p>
+            <p class="writing-date">1 December 2025</p>
+            <h3 class="writing-title">Land Law Project 034</h3>
+            <p class="writing-summary">Detailed study of land acquisition procedures, tenancy rights, and dispute resolution mechanisms under Indian law.</p>
           </div>
-          <div class="writing-tags-col"><span class="tag">Legal History</span><span class="tag">Jurisprudence</span></div>
+          <div class="writing-tags-col"><span class="tag">Property Law</span></div>
         </a>
-        <a class="writing-row" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer">
+        <a class="writing-row" href="https://drive.google.com/file/d/1ncAaSwBfyjz9VBDvNdh57avAYzS_4Awm/view" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'The Algorithmic Tollbooth: Competition Law Draft')">
           <div>
-            <p class="writing-date">5 March 2026</p>
-            <h3 class="writing-title">DPDP Act 2023: A Critical Reading</h3>
-            <p class="writing-summary">A clause-by-clause critique of India&rsquo;s Digital Personal Data Protection Act, examining consent mechanisms, state exemptions, and enforcement gaps.</p>
+            <p class="writing-date">5 April 2025</p>
+            <h3 class="writing-title">The Algorithmic Tollbooth: Competition Law Draft</h3>
+            <p class="writing-summary">A draft competition law framework for regulating algorithmic pricing and market gatekeeping by digital platform intermediaries.</p>
           </div>
-          <div class="writing-tags-col"><span class="tag">Data Privacy</span><span class="tag">Tech Law</span></div>
+          <div class="writing-tags-col"><span class="tag">Tech Law</span><span class="tag">Competition Law</span></div>
         </a>
       </div>
     </div>
@@ -1700,24 +1760,82 @@ blockquote.pull p{
       <button class="tag-pill"        data-tag="Jurisprudence"      onclick="setWritingTag('Jurisprudence',this)">Jurisprudence</button>
       <button class="tag-pill"        data-tag="Data Privacy"       onclick="setWritingTag('Data Privacy',this)">Data Privacy</button>
       <button class="tag-pill"        data-tag="Tech Law"           onclick="setWritingTag('Tech Law',this)">Tech Law</button>
+      <button class="tag-pill"        data-tag="Competition Law"    onclick="setWritingTag('Competition Law',this)">Competition Law</button>
+      <button class="tag-pill"        data-tag="Property Law"       onclick="setWritingTag('Property Law',this)">Property Law</button>
       <button class="tag-pill"        data-tag="Fundamental Rights" onclick="setWritingTag('Fundamental Rights',this)">Fundamental Rights</button>
       <button class="tag-pill"        data-tag="Privacy"            onclick="setWritingTag('Privacy',this)">Privacy</button>
     </div>
 
-    <span id="writings-count" aria-live="polite">3 essays</span>
+    <span id="writings-count" aria-live="polite">17 essays</span>
 
     <div id="writings-list">
-      <a class="writing-row" data-tags="Constitutional Law,Fundamental Rights,Privacy" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer">
-        <div><p class="writing-date">10 January 2026</p><h3 class="writing-title">The Evolution of Article 21: From Gopalan to Puttaswamy</h3><p class="writing-summary">Tracing how the Supreme Court expanded the right to life and personal liberty from a narrow procedural guarantee to a substantive constitutional fortress.</p></div>
-        <div class="writing-tags-col"><span class="tag">Constitutional Law</span><span class="tag">Privacy</span></div>
+      <a class="writing-row" data-tags="Jurisprudence" href="https://drive.google.com/file/d/1PgxtYorQpc_43BjiO1G_dqBzU2HsNvZG/view" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Beyond the 75% Mandate: Reimagining Attendance')">
+        <div><p class="writing-date">15 January 2025</p><h3 class="writing-title">Beyond the 75% Mandate: Reimagining Attendance</h3><p class="writing-summary">An analysis of mandatory attendance policies in Indian universities, examining their legal basis, pedagogical justification, and constitutional implications.</p></div>
+        <div class="writing-tags-col"><span class="tag">Jurisprudence</span></div>
       </a>
-      <a class="writing-row" data-tags="Legal History,Jurisprudence,Indian Law" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer">
-        <div><p class="writing-date">20 February 2026</p><h3 class="writing-title">Justice in Dharma&#347;&#257;stra: Legality vs. Morality in Ancient India</h3><p class="writing-summary">An examination of how Manusmṛti constructed legal obligation &mdash; and whether dharma was ever truly separable from law.</p></div>
-        <div class="writing-tags-col"><span class="tag">Legal History</span><span class="tag">Jurisprudence</span></div>
+      <a class="writing-row" data-tags="Property Law" href="https://drive.google.com/file/d/1TAQB8eN8KFN_D-9XN4UXo3-WH6Q8xqmI/view" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Bharat Future City: Synopsis')">
+        <div><p class="writing-date">1 February 2025</p><h3 class="writing-title">Bharat Future City: Synopsis</h3><p class="writing-summary">Synopsis examining the proposed Bharat Future City megaproject through the lens of urban planning, land policy, and property law.</p></div>
+        <div class="writing-tags-col"><span class="tag">Property Law</span></div>
       </a>
-      <a class="writing-row" data-tags="Data Privacy,Tech Law,Legislation" href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank" rel="noopener noreferrer">
-        <div><p class="writing-date">5 March 2026</p><h3 class="writing-title">DPDP Act 2023: A Critical Reading</h3><p class="writing-summary">A clause-by-clause critique of India&rsquo;s Digital Personal Data Protection Act, examining consent mechanisms, state exemptions, and enforcement gaps.</p></div>
-        <div class="writing-tags-col"><span class="tag">Data Privacy</span><span class="tag">Tech Law</span></div>
+      <a class="writing-row" data-tags="Constitutional Law,Legal History" href="https://drive.google.com/file/d/1HKP6I-L8cwQEtEqa8q5g8rFgDKey3kiv/view" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Endangered Languages in Indian Court Cases')">
+        <div><p class="writing-date">10 March 2025</p><h3 class="writing-title">Endangered Languages in Indian Court Cases</h3><p class="writing-summary">A survey of how Indian courts have engaged with cases involving endangered and minority languages, and the constitutional protections available under Part III.</p></div>
+        <div class="writing-tags-col"><span class="tag">Constitutional Law</span><span class="tag">Legal History</span></div>
+      </a>
+      <a class="writing-row" data-tags="Tech Law,Competition Law" href="https://drive.google.com/file/d/1ncAaSwBfyjz9VBDvNdh57avAYzS_4Awm/view" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'The Algorithmic Tollbooth: Competition Law Draft')">
+        <div><p class="writing-date">5 April 2025</p><h3 class="writing-title">The Algorithmic Tollbooth: Competition Law Draft</h3><p class="writing-summary">A draft competition law framework for regulating algorithmic pricing and market gatekeeping by digital platform intermediaries.</p></div>
+        <div class="writing-tags-col"><span class="tag">Tech Law</span><span class="tag">Competition Law</span></div>
+      </a>
+      <a class="writing-row" data-tags="Tech Law,Data Privacy" href="https://drive.google.com/file/d/1SfmzW1ZlmaKuf9CSJeGaEGodXmB5BoXt/view" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'The Compute Monopoly')">
+        <div><p class="writing-date">20 April 2025</p><h3 class="writing-title">The Compute Monopoly</h3><p class="writing-summary">Examining monopolistic tendencies in AI compute infrastructure and their implications for data privacy, market competition, and technological sovereignty.</p></div>
+        <div class="writing-tags-col"><span class="tag">Tech Law</span><span class="tag">Data Privacy</span></div>
+      </a>
+      <a class="writing-row" data-tags="Jurisprudence" href="https://drive.google.com/file/d/1zhPJgzhUKfMFv1XdpQO9bWhTPxjq_ONe/view" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Political Science 1 Redo')">
+        <div><p class="writing-date">1 May 2025</p><h3 class="writing-title">Political Science 1 Redo</h3><p class="writing-summary">A revisited political science analysis exploring governance structures, constitutional design, and the relationship between state and citizen in democratic theory.</p></div>
+        <div class="writing-tags-col"><span class="tag">Jurisprudence</span></div>
+      </a>
+      <a class="writing-row" data-tags="Jurisprudence" href="https://drive.google.com/file/d/1vqtcK4wJ185ypWjm_s7Yah_7pIBgyIux/view" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Hi')">
+        <div><p class="writing-date">15 May 2025</p><h3 class="writing-title">Hi</h3><p class="writing-summary">An introductory note on legal research methodology, academic writing practice, and the foundations of jurisprudential inquiry.</p></div>
+        <div class="writing-tags-col"><span class="tag">Jurisprudence</span></div>
+      </a>
+      <a class="writing-row" data-tags="Property Law" href="https://drive.google.com/file/d/1eC2GzhTtnfbbDYEkOeDknp0D3eaGKV4K/view" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Land Law Synopsis 034')">
+        <div><p class="writing-date">10 June 2025</p><h3 class="writing-title">Land Law Synopsis 034</h3><p class="writing-summary">Synopsis of core land law principles, acquisition norms, and landmark Supreme Court judgments shaping property rights in India.</p></div>
+        <div class="writing-tags-col"><span class="tag">Property Law</span></div>
+      </a>
+      <a class="writing-row" data-tags="Property Law,Constitutional Law" href="https://drive.google.com/file/d/1gEDBfaPhBwwYJrfSwkwXBuA6FoLYJDAp/view" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Bharat Future City and the Limits of Land Acquisition')">
+        <div><p class="writing-date">1 August 2025</p><h3 class="writing-title">Bharat Future City and the Limits of Land Acquisition</h3><p class="writing-summary">An analysis of constitutional and statutory limits on state land acquisition under the LARR Act 2013, applied to large-scale urban megaprojects.</p></div>
+        <div class="writing-tags-col"><span class="tag">Property Law</span><span class="tag">Constitutional Law</span></div>
+      </a>
+      <a class="writing-row" data-tags="Property Law,Constitutional Law" href="https://drive.google.com/file/d/1UfKe5ImLIbSH45MY6CYFBIx-rQ_59zbI/view" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Bharat Future City and Constraints of Land Acquisition')">
+        <div><p class="writing-date">15 August 2025</p><h3 class="writing-title">Bharat Future City and Constraints of Land Acquisition</h3><p class="writing-summary">Examining procedural and rights-based constraints on compulsory land acquisition for urban development, with focus on community consent and rehabilitation.</p></div>
+        <div class="writing-tags-col"><span class="tag">Property Law</span><span class="tag">Constitutional Law</span></div>
+      </a>
+      <a class="writing-row" data-tags="Property Law" href="https://drive.google.com/file/d/1-yBf45zRkTC98NBo3EvHg_6bMIzKzKn5/view" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'The Economics of Urban Real Estate Development')">
+        <div><p class="writing-date">10 September 2025</p><h3 class="writing-title">The Economics of Urban Real Estate Development</h3><p class="writing-summary">A study of market dynamics, regulatory frameworks, and financing mechanisms in Indian urban real estate development and infrastructure.</p></div>
+        <div class="writing-tags-col"><span class="tag">Property Law</span></div>
+      </a>
+      <a class="writing-row" data-tags="Property Law" href="https://drive.google.com/file/d/1Mt4hOcUH-R6BeNRShqWY0HbZg_tQ55U-/view" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Property Law Project 034')">
+        <div><p class="writing-date">1 October 2025</p><h3 class="writing-title">Property Law Project 034</h3><p class="writing-summary">A comprehensive project covering ownership rights, transfer of property, and dispute resolution in Indian property law.</p></div>
+        <div class="writing-tags-col"><span class="tag">Property Law</span></div>
+      </a>
+      <a class="writing-row" data-tags="Property Law,Legal History" href="https://drive.google.com/file/d/1wBOckn4C6GaWzfcsKwh20LzUEQ2VceRi/view" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Mahabubnagar Gems Project Report')">
+        <div><p class="writing-date">15 October 2025</p><h3 class="writing-title">Mahabubnagar Gems Project Report</h3><p class="writing-summary">Research report on mining rights, tribal land ownership, and gemstone extraction policy in the Mahabubnagar district of Telangana.</p></div>
+        <div class="writing-tags-col"><span class="tag">Property Law</span><span class="tag">Legal History</span></div>
+      </a>
+      <a class="writing-row" data-tags="Constitutional Law,Jurisprudence" href="https://drive.google.com/file/d/151OPeHwCm8Rx4WpDhjSn-W-QQtzRSL5d/view" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Admin Law Project')">
+        <div><p class="writing-date">1 November 2025</p><h3 class="writing-title">Admin Law Project</h3><p class="writing-summary">A project examining judicial review, delegated legislation, and principles of administrative fairness under Indian administrative law.</p></div>
+        <div class="writing-tags-col"><span class="tag">Constitutional Law</span><span class="tag">Jurisprudence</span></div>
+      </a>
+      <a class="writing-row" data-tags="Constitutional Law,Jurisprudence" href="https://drive.google.com/file/d/1RZMj-EmYQrHERlGk4pZa222LKhu9jmuJ/view" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Admin Law')">
+        <div><p class="writing-date">15 November 2025</p><h3 class="writing-title">Admin Law</h3><p class="writing-summary">Core principles of administrative law including natural justice, the rule of law, and the supervisory jurisdiction of courts over public authorities.</p></div>
+        <div class="writing-tags-col"><span class="tag">Constitutional Law</span><span class="tag">Jurisprudence</span></div>
+      </a>
+      <a class="writing-row" data-tags="Property Law" href="https://drive.google.com/file/d/1RZMj-EmYQrHERlGk4pZa222LKhu9jmuJ/view" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Land Law Project 034')">
+        <div><p class="writing-date">1 December 2025</p><h3 class="writing-title">Land Law Project 034</h3><p class="writing-summary">Detailed study of land acquisition procedures, tenancy rights, and dispute resolution mechanisms under Indian land law.</p></div>
+        <div class="writing-tags-col"><span class="tag">Property Law</span></div>
+      </a>
+      <a class="writing-row" data-tags="Jurisprudence" href="https://drive.google.com/file/d/1RZMj-EmYQrHERlGk4pZa222LKhu9jmuJ/view" target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Economics Project 034')">
+        <div><p class="writing-date">15 January 2026</p><h3 class="writing-title">Economics Project 034</h3><p class="writing-summary">Analysing market regulation, taxation policy, and economic governance frameworks in contemporary India.</p></div>
+        <div class="writing-tags-col"><span class="tag">Jurisprudence</span></div>
       </a>
     </div>
   </div>
@@ -1905,6 +2023,20 @@ blockquote.pull p{
       <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">Email</a>
     </div>
   </footer>
+</div>
+
+
+<div id="doc-viewer-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="doc-viewer-title">
+  <div class="doc-viewer-shell">
+    <div class="doc-viewer-head">
+      <h2 id="doc-viewer-title">Document Viewer</h2>
+      <div class="doc-viewer-actions">
+        <a id="doc-viewer-source" class="doc-viewer-source" href="#" target="_blank" rel="noopener noreferrer">Open source ↗</a>
+        <button type="button" class="doc-viewer-close" aria-label="Close document viewer" onclick="closeDocumentViewer()">✕</button>
+      </div>
+    </div>
+    <iframe id="doc-viewer-frame" title="Embedded document viewer" loading="lazy"></iframe>
+  </div>
 </div>
 
 
@@ -2110,6 +2242,61 @@ function filterWritings() {
   }
 }
 
+function _normalizeDocumentURL(url) {
+  if (!url) return '';
+  var clean = String(url).trim();
+  var driveFileMatch = clean.match(/drive\.google\.com\/file\/d\/([^/?#]+)/i);
+  if (driveFileMatch && driveFileMatch[1]) {
+    return 'https://drive.google.com/file/d/' + driveFileMatch[1] + '/preview';
+  }
+  var docsFileMatch = clean.match(/docs\.google\.com\/document\/d\/([^/?#]+)/i);
+  if (docsFileMatch && docsFileMatch[1]) {
+    return 'https://docs.google.com/document/d/' + docsFileMatch[1] + '/preview';
+  }
+  return clean;
+}
+
+function openDocumentViewer(docUrl, title) {
+  try {
+    if (!docUrl) return false;
+    var modal = document.getElementById('doc-viewer-modal');
+    var frame = document.getElementById('doc-viewer-frame');
+    var heading = document.getElementById('doc-viewer-title');
+    var source = document.getElementById('doc-viewer-source');
+    if (!modal || !frame) return false;
+
+    var normalized = _normalizeDocumentURL(docUrl);
+    frame.src = normalized;
+    if (heading) heading.textContent = title || 'Document Viewer';
+    if (source) source.href = docUrl;
+
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('viewer-open');
+    return false;
+  } catch(e) {
+    console.warn('[openDocumentViewer]', e);
+    return true;
+  }
+}
+
+function closeDocumentViewer() {
+  try {
+    var modal = document.getElementById('doc-viewer-modal');
+    var frame = document.getElementById('doc-viewer-frame');
+    if (modal) {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+    document.body.classList.remove('viewer-open');
+    if (frame) {
+      setTimeout(function(){ frame.src = 'about:blank'; }, 220);
+    }
+  } catch(e) {
+    console.warn('[closeDocumentViewer]', e);
+  }
+}
+
 /* ─── ANIMATION RESTART ─────────────────────────────────────────── */
 function _restartAnims() {
   try {
@@ -2207,7 +2394,11 @@ function _initReveal() {
 function _initKeyboard() {
   try {
     document.addEventListener('keydown', function(e) {
-      if (e.key==='Escape') closeDrawer();
+      if (e.key==='Escape') {
+        var modal = document.getElementById('doc-viewer-modal');
+        if (modal && modal.classList.contains('open')) closeDocumentViewer();
+        else closeDrawer();
+      }
       if ((e.key==='Enter'||e.key===' ') && e.target) {
         var dp = e.target.getAttribute('data-page');
         if (dp && (e.target.tagName==='A'||e.target.tagName==='BUTTON')) {
@@ -2227,6 +2418,12 @@ function _initClickOutside() {
       if (!d||!d.classList.contains('open')) return;
       if (t&&!t.contains(e.target)&&!d.contains(e.target)) closeDrawer();
     });
+    var modal = document.getElementById('doc-viewer-modal');
+    if (modal) {
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeDocumentViewer();
+      });
+    }
   } catch(e){}
 }
 
