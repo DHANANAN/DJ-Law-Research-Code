@@ -1304,7 +1304,7 @@ blockquote.pull p{
       tabindex="0"
       aria-label="Trigger zero-gravity earthquake easter egg"
       onclick="triggerCosmicQuake()"
-      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();triggerCosmicQuake();}"
+      onkeydown="if(event.key==='Enter'||event.key===' '||event.key==='Space'||event.key==='Spacebar'){event.preventDefault();triggerCosmicQuake();}"
     >
       <!-- Fulcrum post -->
       <line x1="24" y1="28" x2="24" y2="10" class="scale-beam"/>
@@ -1951,6 +1951,10 @@ var DJ_VEIL_BUSY = false;
 var DJ_CURSOR_X = window.innerWidth * 0.5;
 var DJ_CURSOR_Y = window.innerHeight * 0.5;
 var DJ_QUAKE_BUSY = false;
+var DJ_QUAKE_MAX_PARTICLES = 60;
+var DJ_QUAKE_DURATION_MS = 7800;
+var DJ_QUAKE_TURBULENCE_RATIO = 0.16;
+var DJ_QUAKE_CURSOR_REPULSION_RADIUS = 260;
 
 /* ═══════════════════════════════════════════════════════════════════
    nav(name)
@@ -2072,7 +2076,7 @@ function triggerCosmicQuake() {
   var parts = [];
   for (var i=0;i<nodes.length;i++) {
     var n = nodes[i];
-    if (!n || parts.length > 60) break;
+    if (!n || parts.length > DJ_QUAKE_MAX_PARTICLES) break;
     var r = n.getBoundingClientRect();
     if (r.width < 30 || r.height < 20) continue;
     parts.push({
@@ -2101,7 +2105,7 @@ function triggerCosmicQuake() {
   }
 
   var start = performance.now();
-  var duration = 7800;
+  var duration = DJ_QUAKE_DURATION_MS;
 
   function frame(now) {
     var t = (now - start) / duration;
@@ -2116,7 +2120,7 @@ function triggerCosmicQuake() {
       return;
     }
 
-    var turbulence = t < 0.16 ? (1 - (t / 0.16)) : 0;
+    var turbulence = t < DJ_QUAKE_TURBULENCE_RATIO ? (1 - (t / DJ_QUAKE_TURBULENCE_RATIO)) : 0;
     for (var p=0;p<parts.length;p++) {
       var part = parts[p];
       var rect = part.el.getBoundingClientRect();
@@ -2131,8 +2135,8 @@ function triggerCosmicQuake() {
       var dx = px - DJ_CURSOR_X;
       var dy = py - DJ_CURSOR_Y;
       var dist = Math.sqrt(dx*dx + dy*dy) || 1;
-      if (dist < 260) {
-        var push = (260 - dist) / 260;
+      if (dist < DJ_QUAKE_CURSOR_REPULSION_RADIUS) {
+        var push = (DJ_QUAKE_CURSOR_REPULSION_RADIUS - dist) / DJ_QUAKE_CURSOR_REPULSION_RADIUS;
         part.vx += (dx / dist) * 0.8 * push;
         part.vy += (dy / dist) * 0.8 * push;
       }
