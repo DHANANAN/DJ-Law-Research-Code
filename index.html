@@ -3002,11 +3002,35 @@
       <li><a data-page="writings" onclick="nav('writings');closeDrawer()" tabindex="0">Writings</a></li>
       <li><a data-page="story" onclick="nav('story');closeDrawer()" tabindex="0">My Story</a></li>
       <li><a data-page="about" onclick="nav('about');closeDrawer()" tabindex="0">About</a></li>
-      <li style="margin-top:16px">
+      <li style="margin-top:16px; display:flex; align-items:center; gap:16px;">
         <button id="theme-toggle-m" onclick="toggleTheme()"
-          style="color:var(--gold);font-family:var(--f-mono);font-size:.72rem;background:none;border:1px solid var(--border);padding:7px 16px;cursor:none">
+          style="color:var(--gold);font-family:var(--f-mono);font-size:.72rem;background:none;border:1px solid var(--border);padding:7px 16px;cursor:none;flex-shrink:0;">
           <span id="theme-icon-m">☽</span> Toggle Theme
         </button>
+        <!-- Mobile Cosmic Quake Trigger -->
+        <svg id="quake-trigger-m" class="scale-svg" viewBox="0 0 48 32" fill="none" role="button" tabindex="0"
+          aria-label="Trigger zero-gravity earthquake easter egg" onclick="triggerCosmicQuake()"
+          onkeydown="if(event.key==='Enter'||event.key===' ') triggerCosmicQuake()"
+          style="cursor:none; width:44px; height:28px;">
+          <!-- Fulcrum post -->
+          <line x1="24" y1="28" x2="24" y2="10" class="scale-beam" />
+          <!-- Base -->
+          <line x1="18" y1="28" x2="30" y2="28" class="scale-beam" />
+          <!-- Beam -->
+          <line x1="6" y1="12" x2="42" y2="12" class="scale-beam" />
+          <!-- Pivot circle -->
+          <circle cx="24" cy="10" r="1.5" fill="#C9A84C" opacity=".7" />
+          <!-- Left pan chains -->
+          <line x1="6" y1="12" x2="4" y2="20" class="scale-chain" />
+          <line x1="6" y1="12" x2="8" y2="20" class="scale-chain" />
+          <!-- Right pan chains -->
+          <line x1="42" y1="12" x2="40" y2="20" class="scale-chain" />
+          <line x1="42" y1="12" x2="44" y2="20" class="scale-chain" />
+          <!-- Left pan -->
+          <path d="M2 20 Q6 22 10 20" class="scale-beam" stroke-width="1.2" />
+          <!-- Right pan -->
+          <path d="M38 20 Q42 22 46 20" class="scale-beam" stroke-width="1.2" />
+        </svg>
       </li>
     </ul>
   </div>
