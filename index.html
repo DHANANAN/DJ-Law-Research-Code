@@ -4,9 +4,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Dhananjay Chouhan — Law Student at NLU Delhi, Researcher &amp; Web Developer." />
+  <meta name="description" content="Dhananjay Chouhan — Law student at NLU Delhi. 90+ legal essays, AI tools, and research at the intersection of law and technology." />
+  <meta name="author" content="Dhananjay Chouhan" />
+  <meta name="keywords" content="law student, legal research, constitutional law, jurisprudence, NLU Delhi, legal essays, legal tech, Indian law, BA LLB, Dhananjay Chouhan" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#C9A84C" />
+  <link rel="canonical" href="https://dhananan.github.io/DJ-Law-Research-Code/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dhananan.github.io/DJ-Law-Research-Code/" />
   <meta property="og:title" content="Dhananjay Chouhan — Law · Research · Code" />
+  <meta property="og:description" content="Law student at NLU Delhi. 90+ legal essays, AI tools, and research projects at the intersection of law and technology." />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Dhananjay Chouhan — Law · Research · Code" />
+  <meta name="twitter:description" content="Law student at NLU Delhi. 90+ legal essays, AI tools, and research at the intersection of law and technology." />
   <title>Dhananjay Chouhan — Law · Research · Code</title>
+
+  <!-- ═══ GA4 ANALYTICS ═══════════════════════════════════════════════════
+       STEP 1: Create a GA4 property at analytics.google.com
+       STEP 2: Copy your Measurement ID (format: G-XXXXXXXXXX)
+       STEP 3: Replace G-XXXXXXXXXX in BOTH places below
+  ══════════════════════════════════════════════════════════════════════ -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX', { send_page_view: false });
+  </script>
+
+  <!-- JSON-LD Person Schema -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Person","name":"Dhananjay Chouhan","description":"Law student at NLU Delhi, legal researcher, and web developer","email":"dhananjay.chouhan24@nludelhi.ac.in","alumniOf":"National Law University Delhi","url":"https://dhananan.github.io/DJ-Law-Research-Code/","sameAs":["https://github.com/DHANANAN","https://www.linkedin.com/in/dhananjay-chouhan-30a51b334"]}
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2917,6 +2946,438 @@
         height: 32px
       }
     }
+
+    /* ═══════════════════════════════════════════════════════
+   READING PROGRESS BAR
+═══════════════════════════════════════════════════════ */
+    #reading-progress {
+      position: fixed;
+      top: 66px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-hi), var(--gold));
+      z-index: 501;
+      transition: width .12s linear;
+      box-shadow: 0 0 10px rgba(201, 168, 76, .45);
+      pointer-events: none
+    }
+
+    /* ═══════════════════════════════════════════════════════
+   SCROLL TO TOP BUTTON
+═══════════════════════════════════════════════════════ */
+    #scroll-top {
+      position: fixed;
+      bottom: 36px;
+      right: 36px;
+      width: 46px;
+      height: 46px;
+      background: var(--gold);
+      border: none;
+      border-radius: 50%;
+      color: #060608;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: none;
+      z-index: 490;
+      opacity: 0;
+      transform: translateY(16px) scale(.85);
+      transition: opacity .3s, transform .35s cubic-bezier(.34, 1.56, .64, 1), background .2s, box-shadow .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(201, 168, 76, .25);
+      pointer-events: none
+    }
+
+    #scroll-top.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto
+    }
+
+    #scroll-top:hover {
+      background: var(--gold-hi);
+      transform: translateY(-3px) scale(1.1);
+      box-shadow: 0 8px 28px rgba(201, 168, 76, .4)
+    }
+
+    /* ═══════════════════════════════════════════════════════
+   ARTICLE GRADE BADGE SYSTEM
+═══════════════════════════════════════════════════════ */
+    .grade-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: var(--f-mono);
+      font-size: .51rem;
+      letter-spacing: .05em;
+      padding: 3px 8px;
+      border-radius: 2px;
+      white-space: nowrap;
+      margin-bottom: 5px;
+      transition: transform .2s, box-shadow .2s
+    }
+
+    .grade-10 {
+      color: var(--gold);
+      background: rgba(201, 168, 76, .1);
+      border: 1px solid rgba(201, 168, 76, .28)
+    }
+
+    .grade-9 {
+      color: #E8C97A;
+      background: rgba(232, 201, 122, .08);
+      border: 1px solid rgba(232, 201, 122, .2)
+    }
+
+    .grade-8 {
+      color: var(--text-2);
+      background: rgba(160, 156, 176, .06);
+      border: 1px solid rgba(160, 156, 176, .16)
+    }
+
+    .grade-7 {
+      color: var(--text-3);
+      background: rgba(104, 100, 128, .05);
+      border: 1px solid rgba(104, 100, 128, .13)
+    }
+
+    .grade-dev {
+      color: var(--text-3);
+      background: transparent;
+      border: 1px solid rgba(104, 100, 128, .1);
+      opacity: .6
+    }
+
+    .writing-row:hover .grade-badge {
+      transform: translateX(-2px)
+    }
+
+    /* ═══════════════════════════════════════════════════════
+   READING TIME INDICATOR
+═══════════════════════════════════════════════════════ */
+    .read-time {
+      font-family: var(--f-mono);
+      font-size: .52rem;
+      color: var(--text-3);
+      letter-spacing: .06em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      opacity: .6;
+      margin-bottom: 6px
+    }
+
+    .read-time::before {
+      content: '\25F7';
+      font-size: .56rem
+    }
+
+    /* ═══════════════════════════════════════════════════════
+   WRITING PHILOSOPHY BLOCK
+═══════════════════════════════════════════════════════ */
+    .philosophy-block {
+      margin: 52px 0 60px;
+      padding: 52px 56px;
+      background: linear-gradient(135deg, var(--surface) 0%, var(--bg2) 100%);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      position: relative;
+      overflow: hidden
+    }
+
+    .philosophy-block::before {
+      content: '\201C';
+      position: absolute;
+      top: -30px;
+      left: 16px;
+      font-family: var(--f-display);
+      font-size: 10rem;
+      color: var(--gold);
+      opacity: .055;
+      line-height: 1;
+      pointer-events: none
+    }
+
+    .philosophy-block::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 15% 50%, rgba(201, 168, 76, .04), transparent 65%);
+      pointer-events: none
+    }
+
+    .philosophy-eyebrow {
+      font-family: var(--f-mono);
+      font-size: .57rem;
+      color: var(--gold);
+      letter-spacing: .36em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: .8
+    }
+
+    .philosophy-eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0
+    }
+
+    .philosophy-quote {
+      font-family: var(--f-display);
+      font-size: clamp(1.1rem, 2.4vw, 1.48rem);
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.78;
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 1
+    }
+
+    .philosophy-attr {
+      font-family: var(--f-mono);
+      font-size: .6rem;
+      color: var(--gold);
+      letter-spacing: .16em;
+      opacity: .7;
+      position: relative;
+      z-index: 1
+    }
+
+    [data-theme="light"] .philosophy-block {
+      background: linear-gradient(135deg, #EBE4CE 0%, #E4DBc5 100%)
+    }
+
+    /* ═══════════════════════════════════════════════════════
+   FEATURED WRITING ROW
+═══════════════════════════════════════════════════════ */
+    .writing-row.featured {
+      background: linear-gradient(135deg, rgba(201, 168, 76, .04), transparent 80%);
+      padding-top: 38px;
+      padding-bottom: 38px
+    }
+
+    .writing-row.featured .writing-title {
+      font-size: 1.3rem
+    }
+
+    .featured-badge {
+      font-family: var(--f-mono);
+      font-size: .5rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(201, 168, 76, .1);
+      border: 1px solid rgba(201, 168, 76, .25);
+      padding: 3px 10px;
+      margin-bottom: 10px;
+      display: inline-block
+    }
+
+    /* ═══════════════════════════════════════════════════════
+   ENHANCED SPACING & BREATHING ROOM
+═══════════════════════════════════════════════════════ */
+    .home-section {
+      padding: 90px 0 110px
+    }
+
+    .pillars-section {
+      padding: 110px 0 90px
+    }
+
+    .hero {
+      padding: 140px 52px 95px
+    }
+
+    .grid-3 {
+      gap: 24px
+    }
+
+    .card-body {
+      padding: 28px
+    }
+
+    .writing-row {
+      padding: 34px 0
+    }
+
+    .sec-head {
+      margin-bottom: 52px
+    }
+
+    /* ═══════════════════════════════════════════════════════
+   ENHANCED FOOTER — PREMIUM LAYOUT
+═══════════════════════════════════════════════════════ */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      margin-top: 80px;
+      background: var(--bg2);
+      transition: background .5s;
+      padding: 0;
+      display: block
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 52px;
+      padding: 60px 52px 48px;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .footer-brand-block .footer-brand .mark {
+      font-family: var(--f-display);
+      color: var(--gold);
+      font-size: 1.4rem;
+      font-weight: 900
+    }
+
+    .footer-brand-block .footer-brand .sub {
+      font-family: var(--f-mono);
+      font-size: .55rem;
+      color: var(--text-3);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-top: 3px
+    }
+
+    .footer-tagline {
+      font-family: var(--f-serif2);
+      color: var(--text-3);
+      font-size: .82rem;
+      line-height: 1.7;
+      margin-top: 14px;
+      font-style: italic
+    }
+
+    .footer-nav-col h4,
+    .footer-connect-col h4 {
+      font-family: var(--f-mono);
+      font-size: .53rem;
+      color: var(--gold);
+      letter-spacing: .36em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      opacity: .75
+    }
+
+    .footer-nav-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px
+    }
+
+    .footer-nav-col ul a {
+      font-family: var(--f-sans);
+      font-size: .8rem;
+      color: var(--text-3);
+      transition: color .2s, padding-left .2s;
+      display: block;
+      cursor: none
+    }
+
+    .footer-nav-col ul a:hover {
+      color: var(--gold);
+      padding-left: 6px
+    }
+
+    .footer-social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 9px
+    }
+
+    .footer-social-links a {
+      font-family: var(--f-sans);
+      font-size: .8rem;
+      color: var(--text-3);
+      transition: color .2s;
+      display: block;
+      cursor: none
+    }
+
+    .footer-social-links a:hover {
+      color: var(--gold)
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 52px;
+      flex-wrap: wrap;
+      gap: 12px
+    }
+
+    .footer-philosophy {
+      font-family: var(--f-serif2);
+      color: var(--text-3);
+      font-size: .75rem;
+      font-style: italic;
+      opacity: .55
+    }
+
+    .footer-copy {
+      font-family: var(--f-mono);
+      color: var(--text-3);
+      font-size: .57rem;
+      letter-spacing: .06em
+    }
+
+    [data-theme="light"] .site-footer {
+      background: #DDD5BB
+    }
+
+    [data-theme="light"] .footer-top {
+      border-bottom-color: rgba(100, 70, 20, .15)
+    }
+
+    @media(max-width:960px) {
+      .footer-top {
+        grid-template-columns: 1fr;
+        padding: 40px 24px 32px;
+        gap: 32px
+      }
+
+      .footer-bottom {
+        padding: 16px 24px
+      }
+
+      .philosophy-block {
+        padding: 36px 28px
+      }
+
+      #scroll-top {
+        bottom: 24px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        font-size: .9rem
+      }
+
+      .hero {
+        padding: 100px 24px 60px
+      }
+    }
+
+    @media(max-width:520px) {
+      .philosophy-quote {
+        font-size: 1.05rem
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start
+      }
+    }
   </style>
 </head>
 
@@ -2937,6 +3398,12 @@
 
   <!-- Page transition veil -->
   <div id="page-veil" aria-hidden="true"></div>
+
+  <!-- Reading progress bar -->
+  <div id="reading-progress" aria-hidden="true"></div>
+
+  <!-- Scroll to top -->
+  <button id="scroll-top" aria-label="Scroll to top" title="Back to top">↑</button>
 
   <!-- ═══════════════════════════════════════════════
      NAVBAR
@@ -3485,16 +3952,37 @@
       </div>
     </div>
     <footer class="site-footer">
-      <div class="footer-brand">
-        <div class="mark">DJ</div>
-        <div class="sub">Law &middot; Research &middot; Code</div>
+      <div class="footer-top">
+        <div class="footer-brand-block">
+          <div class="footer-brand">
+            <div class="mark">DJ</div>
+            <div class="sub">Law &middot; Research &middot; Code</div>
+          </div>
+          <p class="footer-tagline">Where law meets code.<br>Built from nothing, still building.</p>
+        </div>
+        <div class="footer-nav-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a onclick="nav('home')" tabindex="0">Home</a></li>
+            <li><a onclick="nav('projects')" tabindex="0">Projects</a></li>
+            <li><a onclick="nav('writings')" tabindex="0">Writings</a></li>
+            <li><a onclick="nav('story')" tabindex="0">My Story</a></li>
+            <li><a onclick="nav('about')" tabindex="0">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-connect-col">
+          <h4>Connect</h4>
+          <div class="footer-social-links">
+            <a href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">↗ GitHub</a>
+            <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank" rel="noopener noreferrer">↗ LinkedIn</a>
+            <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">✉ University Email</a>
+            <a href="mailto:mdc18042007@gmail.com">✉ Personal Email</a>
+          </div>
+        </div>
       </div>
-      <p class="footer-copy">&copy; 2026 Dhananjay Chouhan</p>
-      <div class="footer-links">
-        <a href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank"
-          rel="noopener noreferrer">LinkedIn</a>
-        <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">Email</a>
+      <div class="footer-bottom">
+        <p class="footer-philosophy">“Imperfectly perfect — my mistakes made me who I am.”</p>
+        <p class="footer-copy">&copy; 2026 Dhananjay Chouhan &middot; NLU Delhi</p>
       </div>
     </footer>
   </div>
@@ -3513,6 +4001,12 @@
         <p class="drive-note">Full archive: <a
             href="https://drive.google.com/drive/folders/1ZDHrxoFjPAamD2m3SYZ8dCsfAGin6fWt" target="_blank"
             rel="noopener noreferrer">Google Drive &#8599;</a></p>
+      </div>
+
+      <div class="philosophy-block anim d1">
+        <div class="philosophy-eyebrow">Writing Philosophy</div>
+        <p class="philosophy-quote">“Nobody is perfect and I am imperfectly perfect. I embrace my mistakes and I do not hide them, because those mistakes are the ones that made me who I am today.”</p>
+        <p class="philosophy-attr">— Dhananjay</p>
       </div>
 
       <div class="search-wrap">
@@ -3750,16 +4244,37 @@
       </div>
     </div>
     <footer class="site-footer">
-      <div class="footer-brand">
-        <div class="mark">DJ</div>
-        <div class="sub">Law &middot; Research &middot; Code</div>
+      <div class="footer-top">
+        <div class="footer-brand-block">
+          <div class="footer-brand">
+            <div class="mark">DJ</div>
+            <div class="sub">Law &middot; Research &middot; Code</div>
+          </div>
+          <p class="footer-tagline">Where law meets code.<br>Built from nothing, still building.</p>
+        </div>
+        <div class="footer-nav-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a onclick="nav('home')" tabindex="0">Home</a></li>
+            <li><a onclick="nav('projects')" tabindex="0">Projects</a></li>
+            <li><a onclick="nav('writings')" tabindex="0">Writings</a></li>
+            <li><a onclick="nav('story')" tabindex="0">My Story</a></li>
+            <li><a onclick="nav('about')" tabindex="0">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-connect-col">
+          <h4>Connect</h4>
+          <div class="footer-social-links">
+            <a href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">↗ GitHub</a>
+            <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank" rel="noopener noreferrer">↗ LinkedIn</a>
+            <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">✉ University Email</a>
+            <a href="mailto:mdc18042007@gmail.com">✉ Personal Email</a>
+          </div>
+        </div>
       </div>
-      <p class="footer-copy">&copy; 2026 Dhananjay Chouhan</p>
-      <div class="footer-links">
-        <a href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank"
-          rel="noopener noreferrer">LinkedIn</a>
-        <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">Email</a>
+      <div class="footer-bottom">
+        <p class="footer-philosophy">“Imperfectly perfect — my mistakes made me who I am.”</p>
+        <p class="footer-copy">&copy; 2026 Dhananjay Chouhan &middot; NLU Delhi</p>
       </div>
     </footer>
   </div>
@@ -3904,16 +4419,37 @@
       </div>
     </div>
     <footer class="site-footer">
-      <div class="footer-brand">
-        <div class="mark">DJ</div>
-        <div class="sub">Law &middot; Research &middot; Code</div>
+      <div class="footer-top">
+        <div class="footer-brand-block">
+          <div class="footer-brand">
+            <div class="mark">DJ</div>
+            <div class="sub">Law &middot; Research &middot; Code</div>
+          </div>
+          <p class="footer-tagline">Where law meets code.<br>Built from nothing, still building.</p>
+        </div>
+        <div class="footer-nav-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a onclick="nav('home')" tabindex="0">Home</a></li>
+            <li><a onclick="nav('projects')" tabindex="0">Projects</a></li>
+            <li><a onclick="nav('writings')" tabindex="0">Writings</a></li>
+            <li><a onclick="nav('story')" tabindex="0">My Story</a></li>
+            <li><a onclick="nav('about')" tabindex="0">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-connect-col">
+          <h4>Connect</h4>
+          <div class="footer-social-links">
+            <a href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">↗ GitHub</a>
+            <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank" rel="noopener noreferrer">↗ LinkedIn</a>
+            <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">✉ University Email</a>
+            <a href="mailto:mdc18042007@gmail.com">✉ Personal Email</a>
+          </div>
+        </div>
       </div>
-      <p class="footer-copy">&copy; 2026 Dhananjay Chouhan</p>
-      <div class="footer-links">
-        <a href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank"
-          rel="noopener noreferrer">LinkedIn</a>
-        <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">Email</a>
+      <div class="footer-bottom">
+        <p class="footer-philosophy">“Imperfectly perfect — my mistakes made me who I am.”</p>
+        <p class="footer-copy">&copy; 2026 Dhananjay Chouhan &middot; NLU Delhi</p>
       </div>
     </footer>
   </div>
@@ -4026,16 +4562,37 @@
       </div>
     </div>
     <footer class="site-footer">
-      <div class="footer-brand">
-        <div class="mark">DJ</div>
-        <div class="sub">Law &middot; Research &middot; Code</div>
+      <div class="footer-top">
+        <div class="footer-brand-block">
+          <div class="footer-brand">
+            <div class="mark">DJ</div>
+            <div class="sub">Law &middot; Research &middot; Code</div>
+          </div>
+          <p class="footer-tagline">Where law meets code.<br>Built from nothing, still building.</p>
+        </div>
+        <div class="footer-nav-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a onclick="nav('home')" tabindex="0">Home</a></li>
+            <li><a onclick="nav('projects')" tabindex="0">Projects</a></li>
+            <li><a onclick="nav('writings')" tabindex="0">Writings</a></li>
+            <li><a onclick="nav('story')" tabindex="0">My Story</a></li>
+            <li><a onclick="nav('about')" tabindex="0">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-connect-col">
+          <h4>Connect</h4>
+          <div class="footer-social-links">
+            <a href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">↗ GitHub</a>
+            <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank" rel="noopener noreferrer">↗ LinkedIn</a>
+            <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">✉ University Email</a>
+            <a href="mailto:mdc18042007@gmail.com">✉ Personal Email</a>
+          </div>
+        </div>
       </div>
-      <p class="footer-copy">&copy; 2026 Dhananjay Chouhan</p>
-      <div class="footer-links">
-        <a href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank"
-          rel="noopener noreferrer">LinkedIn</a>
-        <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">Email</a>
+      <div class="footer-bottom">
+        <p class="footer-philosophy">“Imperfectly perfect — my mistakes made me who I am.”</p>
+        <p class="footer-copy">&copy; 2026 Dhananjay Chouhan &middot; NLU Delhi</p>
       </div>
     </footer>
   </div>
@@ -4928,6 +5485,320 @@
       _initDelegation();
       _initAntigravity();
       _checkFonts();
+      /* ── Phase 2 & 3 additions ── */
+      _initProgressBar();
+      _initScrollTop();
+      _initCardTilt();
+      _initParallax();
+      _initCounters();
+      _initGradeBadges();
+      _initGA4Tracking();
+      _initScrollDepth();
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       NEW FUNCTIONS — PHASE 2 & 3
+    ═══════════════════════════════════════════════════════════════════ */
+
+    /* ─── READING PROGRESS BAR ──────────────────────────────────────── */
+    function _initProgressBar() {
+      try {
+        var bar = document.getElementById('reading-progress');
+        if (!bar) return;
+        var tick = false;
+        window.addEventListener('scroll', function () {
+          if (tick) return;
+          tick = true;
+          requestAnimationFrame(function () {
+            var scrollTop = window.scrollY;
+            var docH = document.documentElement.scrollHeight - window.innerHeight;
+            var pct = docH > 0 ? (scrollTop / docH * 100) : 0;
+            bar.style.width = Math.min(pct, 100) + '%';
+            tick = false;
+          });
+        }, { passive: true });
+      } catch (e) { }
+    }
+
+    /* ─── SCROLL TO TOP ─────────────────────────────────────────────── */
+    function _initScrollTop() {
+      try {
+        var btn = document.getElementById('scroll-top');
+        if (!btn) return;
+        window.addEventListener('scroll', function () {
+          btn.classList.toggle('visible', window.scrollY > 300);
+        }, { passive: true });
+        btn.addEventListener('click', function () {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      } catch (e) { }
+    }
+
+    /* ─── 3D CARD TILT ──────────────────────────────────────────────── */
+    function _initCardTilt() {
+      try {
+        var cards = document.querySelectorAll('.card');
+        cards.forEach(function (card) {
+          card.addEventListener('mousemove', function (e) {
+            var r = card.getBoundingClientRect();
+            var x = (e.clientX - r.left) / r.width - 0.5;
+            var y = (e.clientY - r.top) / r.height - 0.5;
+            card.style.transform = 'translateY(-6px) scale(1.005) rotateX(' + (-y * 6).toFixed(2) + 'deg) rotateY(' + (x * 6).toFixed(2) + 'deg)';
+          });
+          card.addEventListener('mouseleave', function () {
+            card.style.transform = '';
+          });
+        });
+      } catch (e) { }
+    }
+
+    /* ─── HERO PARALLAX ─────────────────────────────────────────────── */
+    function _initParallax() {
+      try {
+        var headline = document.querySelector('.hero-headline');
+        var watermark = document.querySelector('.hero-watermark');
+        var grid = document.querySelector('.hero-grid');
+        if (!headline && !watermark) return;
+        var tick = false;
+        window.addEventListener('scroll', function () {
+          if (tick || DJ_CURRENT !== 'home') return;
+          tick = true;
+          requestAnimationFrame(function () {
+            var sy = window.scrollY;
+            if (headline) headline.style.transform = 'translateY(' + (sy * 0.13) + 'px)';
+            if (watermark) watermark.style.transform = 'translateY(calc(-50% + ' + (sy * -0.07) + 'px))';
+            if (grid) grid.style.transform = 'translateY(' + (sy * 0.04) + 'px)';
+            tick = false;
+          });
+        }, { passive: true });
+      } catch (e) { }
+    }
+
+    /* ─── STAT COUNTER ANIMATION ────────────────────────────────────── */
+    function _animateCounter(el, numVal, suffix) {
+      try {
+        var duration = 1400;
+        var startTime = null;
+        function step(ts) {
+          if (!startTime) startTime = ts;
+          var progress = Math.min((ts - startTime) / duration, 1);
+          var ease = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(ease * numVal) + (suffix || '');
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      } catch (e) { }
+    }
+
+    function _initCounters() {
+      try {
+        if (!window.IntersectionObserver) return;
+        var counterEls = document.querySelectorAll('.stat-val, .stat-val-lg');
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var el = entry.target;
+            var raw = el.textContent.trim();
+            var match = raw.match(/^(\d+)(\D*)$/);
+            if (match && parseInt(match[1]) > 0) {
+              _animateCounter(el, parseInt(match[1]), match[2]);
+            }
+            io.unobserve(el);
+          });
+        }, { threshold: 0.6 });
+        counterEls.forEach(function (el) { io.observe(el); });
+      } catch (e) { }
+    }
+
+    /* ─── ARTICLE GRADE BADGE INJECTION ─────────────────────────────── */
+    var DJ_ARTICLE_GRADES = {
+      'The Algorithmic Tollbooth': { grade: 10, readtime: '12 min', featured: true },
+      'Endangered Languages in Indian Court Cases': { grade: 9, readtime: '10 min' },
+      'Bharat Future City and the Limits of Land Acquisition': { grade: 9, readtime: '11 min' },
+      'Bharat Future City and Limits of Land Acquisition': { grade: 9, readtime: '11 min' },
+      'The Compute Monopoly': { grade: 9, readtime: '11 min' },
+      'Bharat Future City and Constraints of Land Acquisition': { grade: 8, readtime: '10 min' },
+      'Admin Law Project': { grade: 8, readtime: '10 min' },
+      'Mahabubnagar Gems Project Report': { grade: 8, readtime: '9 min' },
+      'Beyond the 75% Mandate': { grade: 8, readtime: '8 min' },
+      'The Economics of Urban Real Estate Development': { grade: 8, readtime: '9 min' },
+      'Admin Law': { grade: 7, readtime: '8 min' },
+      'Property Law Project 034': { grade: 7, readtime: '8 min' },
+      'Land Law Project 034': { grade: 7, readtime: '8 min' },
+      'Land Law Synopsis 034': { grade: 7, readtime: '7 min' },
+      'Bharat Future City: Synopsis': { grade: 7, readtime: '6 min' },
+      'Economics Project 034': { grade: 7, readtime: '7 min' },
+      'Political Science 1 Redo': { grade: 6, readtime: '5 min' },
+      'Hi': { grade: 5, readtime: '3 min' }
+    };
+
+    function _initGradeBadges() {
+      try {
+        var GRADE_LABELS = {
+          10: { cls: 'grade-10', text: '\u2B50 10/10 \u00B7 Exceptional' },
+          9:  { cls: 'grade-9',  text: '\u2605 9/10 \u00B7 Excellent'   },
+          8:  { cls: 'grade-8',  text: '\u25C8 8/10 \u00B7 Very Good'   },
+          7:  { cls: 'grade-7',  text: '\u25C7 7/10 \u00B7 Good'        },
+          6:  { cls: 'grade-dev',text: '\u00B7 6/10 \u00B7 Developing'  },
+          5:  { cls: 'grade-dev',text: '\u00B7 5/10 \u00B7 Developing'  }
+        };
+        var rows = document.querySelectorAll('.writing-row');
+        rows.forEach(function (row) {
+          var titleEl = row.querySelector('.writing-title');
+          if (!titleEl) return;
+          var title = titleEl.textContent.trim();
+          var entry = null;
+          var keys = Object.keys(DJ_ARTICLE_GRADES);
+          for (var k = 0; k < keys.length; k++) {
+            if (title.indexOf(keys[k]) === 0 || title === keys[k]) {
+              entry = DJ_ARTICLE_GRADES[keys[k]];
+              break;
+            }
+          }
+          if (!entry) return;
+          var tagsCol = row.querySelector('.writing-tags-col');
+          if (!tagsCol) return;
+          if (entry.featured) {
+            row.classList.add('featured');
+            var dateEl = row.querySelector('.writing-date');
+            if (dateEl) {
+              var fb = document.createElement('span');
+              fb.className = 'featured-badge';
+              fb.textContent = '\u2726 Editor\u2019s Pick';
+              dateEl.parentNode.insertBefore(fb, dateEl);
+            }
+          }
+          var info = GRADE_LABELS[entry.grade] || GRADE_LABELS[7];
+          var badge = document.createElement('span');
+          badge.className = 'grade-badge ' + info.cls;
+          badge.textContent = info.text;
+          var rt = document.createElement('span');
+          rt.className = 'read-time';
+          rt.textContent = entry.readtime + ' read';
+          tagsCol.insertBefore(badge, tagsCol.firstChild);
+          tagsCol.insertBefore(rt, tagsCol.firstChild);
+        });
+      } catch (e) { console.warn('[gradeBadges]', e); }
+    }
+
+    /* ─── GA4 TRACKING HELPER ───────────────────────────────────────── */
+    function _trackEvent(eventName, params) {
+      try {
+        if (typeof gtag === 'function') {
+          gtag('event', eventName, params || {});
+        }
+      } catch (e) { }
+    }
+
+    /* ─── GA4 FULL TRACKING SETUP ───────────────────────────────────── */
+    function _initGA4Tracking() {
+      try {
+        /* Outbound link tracking */
+        document.addEventListener('click', function (e) {
+          var el = e.target;
+          for (var i = 0; i < 5; i++) {
+            if (!el) break;
+            if (el.tagName === 'A' && el.getAttribute('target') === '_blank') {
+              _trackEvent('outbound_click', {
+                link_url: el.href,
+                link_text: (el.textContent || '').trim().substring(0, 60)
+              });
+              break;
+            }
+            el = el.parentElement;
+          }
+        });
+
+        /* CTA button clicks */
+        document.querySelectorAll('.btn-primary, .btn-secondary').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            _trackEvent('cta_click', { button_text: (btn.textContent || '').trim().substring(0, 40) });
+          });
+        });
+
+        /* Writings search tracking */
+        var searchInput = document.getElementById('writings-search');
+        if (searchInput) {
+          var searchTimer;
+          searchInput.addEventListener('input', function () {
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(function () {
+              if (searchInput.value.trim()) {
+                _trackEvent('search_query', { search_term: searchInput.value.trim() });
+              }
+            }, 1500);
+          });
+        }
+
+        /* Patch _switchDOM for SPA page view tracking */
+        var _origSwitch = _switchDOM;
+        _switchDOM = function (name) {
+          _trackEvent('page_view', {
+            page_title: name,
+            page_location: window.location.href.split('#')[0] + '#' + name
+          });
+          _origSwitch(name);
+        };
+
+        /* Patch openDocumentViewer for article tracking */
+        var _origOpenDoc = openDocumentViewer;
+        openDocumentViewer = function (docUrl, title) {
+          _trackEvent('article_open', { article_title: title || 'Unknown', article_url: docUrl || '' });
+          return _origOpenDoc(docUrl, title);
+        };
+
+        /* Patch triggerCosmicQuake for easter egg tracking */
+        var _origQuake = triggerCosmicQuake;
+        triggerCosmicQuake = function () {
+          _trackEvent('quake_trigger', { page: DJ_CURRENT });
+          _origQuake();
+        };
+
+        /* Patch toggleTheme for theme tracking */
+        var _origTheme = toggleTheme;
+        toggleTheme = function () {
+          _origTheme();
+          _trackEvent('theme_toggle', { theme: DJ_THEME });
+        };
+
+        /* Patch setWritingTag for filter tracking */
+        var _origTag = setWritingTag;
+        setWritingTag = function (tag, btn) {
+          _trackEvent('filter_applied', { filter_type: 'writing_tag', filter_value: tag || 'all' });
+          _origTag(tag, btn);
+        };
+
+        /* Patch filterProjects for filter tracking */
+        var _origFP = filterProjects;
+        filterProjects = function (cat, btn) {
+          _trackEvent('filter_applied', { filter_type: 'project_cat', filter_value: cat || 'all' });
+          _origFP(cat, btn);
+        };
+
+      } catch (e) { console.warn('[GA4 init]', e); }
+    }
+
+    /* ─── SCROLL DEPTH TRACKING ─────────────────────────────────────── */
+    function _initScrollDepth() {
+      try {
+        var milestones = { 25: false, 50: false, 75: false, 90: false };
+        var lastPage = DJ_CURRENT;
+        window.addEventListener('scroll', function () {
+          if (DJ_CURRENT !== lastPage) {
+            milestones = { 25: false, 50: false, 75: false, 90: false };
+            lastPage = DJ_CURRENT;
+          }
+          var docH = document.documentElement.scrollHeight - window.innerHeight;
+          if (docH <= 0) return;
+          var scrollPct = (window.scrollY / docH) * 100;
+          Object.keys(milestones).forEach(function (pct) {
+            if (!milestones[pct] && scrollPct >= parseInt(pct)) {
+              milestones[pct] = true;
+              _trackEvent('scroll_depth', { depth: pct + '%', page: DJ_CURRENT });
+            }
+          });
+        }, { passive: true });
+      } catch (e) { }
     }
 
     /* Double-fire: DOMContentLoaded + window.load */
