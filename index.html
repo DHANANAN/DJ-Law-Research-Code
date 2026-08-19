@@ -2578,6 +2578,335 @@
     }
 
     /* ═══════════════════════════════════════════════════════
+       MEDIA CREATION, YOUTUBE & SOCIALS SHOWCASE
+    ═══════════════════════════════════════════════════════ */
+    .media-section {
+      margin-top: 80px;
+      padding-top: 64px;
+      border-top: 1px solid var(--border-hi);
+      position: relative;
+    }
+
+    .media-channels-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 900px) {
+      .media-channels-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .channel-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .channel-card:hover {
+      border-color: var(--border-hi);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 20px rgba(201, 168, 76, 0.15);
+      background: var(--surface2);
+    }
+
+    .channel-card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--f-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .channel-card-badge.yt {
+      color: #FF0000;
+    }
+
+    .channel-card-badge.ig {
+      color: #E1306C;
+    }
+
+    .channel-name {
+      font-family: var(--f-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .channel-handle {
+      font-family: var(--f-mono);
+      font-size: 0.72rem;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .channel-desc {
+      font-family: var(--f-sans);
+      font-size: 0.84rem;
+      line-height: 1.65;
+      color: var(--text-2);
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .channel-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--f-sans);
+      font-weight: 600;
+      font-size: 0.78rem;
+      padding: 9px 16px;
+      border-radius: 4px;
+      border: 1px solid var(--border-hi);
+      background: rgba(201, 168, 76, 0.08);
+      color: var(--gold) !important;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .channel-btn:hover {
+      background: var(--gold);
+      color: #060608 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(201, 168, 76, 0.4);
+    }
+
+    .video-showcase-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1.15fr 0.85fr;
+      gap: 24px;
+      margin-bottom: 56px;
+    }
+
+    @media (max-width: 960px) {
+      .video-showcase-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    .video-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.35s ease;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+    }
+
+    .video-card:hover {
+      border-color: var(--border-hi);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55), 0 0 25px rgba(201, 168, 76, 0.15);
+    }
+
+    .video-player-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      background: #000;
+      overflow: hidden;
+    }
+
+    .video-player-wrap.shorts-ratio {
+      padding-top: 120%; /* Vertical Shorts Ratio */
+    }
+
+    .video-player-wrap iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-meta-body {
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+
+    .video-tag {
+      font-family: var(--f-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .video-title {
+      font-family: var(--f-display);
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .video-desc {
+      font-family: var(--f-sans);
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: var(--text-2);
+      margin-bottom: 16px;
+    }
+
+    .video-action-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .video-channel-info {
+      font-family: var(--f-mono);
+      font-size: 0.68rem;
+      color: var(--text-3);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .video-watch-link {
+      font-family: var(--f-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.2s;
+    }
+
+    .video-watch-link:hover {
+      color: #fff;
+    }
+
+    /* Instagram Ecosystem Grid */
+    .instagram-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    @media (max-width: 860px) {
+      .instagram-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .insta-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 22px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: all 0.35s ease;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .insta-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(180deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      opacity: 0.8;
+    }
+
+    .insta-card:hover {
+      border-color: var(--border-hi);
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.4), 0 0 20px rgba(225, 48, 108, 0.2);
+      background: var(--surface2);
+    }
+
+    .insta-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.15rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(225, 48, 108, 0.4);
+    }
+
+    .insta-details {
+      flex-grow: 1;
+    }
+
+    .insta-handle {
+      font-family: var(--f-mono);
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .insta-badge-check {
+      color: #38bdf8;
+      font-size: 0.8rem;
+    }
+
+    .insta-tagline {
+      font-family: var(--f-sans);
+      font-size: 0.74rem;
+      color: var(--text-2);
+      margin-top: 4px;
+      line-height: 1.45;
+    }
+
+    .insta-arrow {
+      color: var(--gold);
+      font-size: 1.1rem;
+      transition: transform 0.2s;
+    }
+
+    .insta-card:hover .insta-arrow {
+      transform: translateX(4px) translateY(-2px);
+    }
+
+    /* ═══════════════════════════════════════════════════════
        5-SECOND IDLE CARD SHUFFLE ENGINE (3X STRENGTH & 3S COUNTDOWN)
     ═══════════════════════════════════════════════════════ */
     
@@ -4101,6 +4430,7 @@
       <li><a id="nl-home" data-page="home" onclick="nav('home')" tabindex="0" class="active">Home</a></li>
       <li><a id="nl-projects" data-page="projects" onclick="nav('projects')" tabindex="0">Projects</a></li>
       <li><a id="nl-writings" data-page="writings" onclick="nav('writings')" tabindex="0">Writings</a></li>
+      <li><a id="nl-content" data-page="content" onclick="nav('content')" tabindex="0">Content Creation</a></li>
       <li><a id="nl-story" data-page="story" onclick="nav('story')" tabindex="0">My Story</a></li>
       <li><a id="nl-about" data-page="about" onclick="nav('about')" tabindex="0">About</a></li>
     </ul>
@@ -4149,6 +4479,7 @@
       <li><a data-page="home" onclick="nav('home');closeDrawer()" tabindex="0" class="active">Home</a></li>
       <li><a data-page="projects" onclick="nav('projects');closeDrawer()" tabindex="0">Projects</a></li>
       <li><a data-page="writings" onclick="nav('writings');closeDrawer()" tabindex="0">Writings</a></li>
+      <li><a data-page="content" onclick="nav('content');closeDrawer()" tabindex="0">Content Creation</a></li>
       <li><a data-page="story" onclick="nav('story');closeDrawer()" tabindex="0">My Story</a></li>
       <li><a data-page="about" onclick="nav('about');closeDrawer()" tabindex="0">About</a></li>
       <li style="margin-top:16px; display:flex; align-items:center; gap:16px;">
@@ -4441,6 +4772,157 @@
       </div>
     </section>
 
+    <!-- ═══════════════════════════════════════════════════════════
+         HOME PAGE: CONTENT CREATION & MEDIA HUB
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="home-section media-section">
+      <div class="wrap">
+        <div class="sec-head">
+          <div>
+            <span class="eyebrow">Studio &amp; Media Creation</span>
+            <h2 class="sec-title">YouTube &amp; Content Ecosystem</h2>
+          </div>
+          <button class="see-all-btn" onclick="nav('content')">Explore Media Studio &#8594;</button>
+        </div>
+
+        <!-- 3 YouTube Channel Cards -->
+        <div class="media-channels-grid">
+          <!-- Delawded -->
+          <div class="channel-card">
+            <div>
+              <div class="channel-card-badge yt">&#9658; YouTube &middot; Education &amp; Law</div>
+              <h3 class="channel-name">Delawded</h3>
+              <div class="channel-handle">@delawded</div>
+              <p class="channel-desc">Educational deep dives, constitutional law insights, case analyses, and intellectual breakdowns making complex legal philosophy accessible.</p>
+            </div>
+            <a class="channel-btn" href="https://youtube.com/@delawded?si=_ZVMAE67Jh4EuVhj" target="_blank" rel="noopener noreferrer">
+              <span>Visit Delawded</span> &#8599;
+            </a>
+          </div>
+
+          <!-- Ziuux -->
+          <div class="channel-card">
+            <div>
+              <div class="channel-card-badge yt" style="color:#a855f7">&#9658; YouTube &middot; Unfiltered &amp; Horror</div>
+              <h3 class="channel-name">Ziuux</h3>
+              <div class="channel-handle">@ziuuzx</div>
+              <p class="channel-desc">An unfiltered sanctuary featuring analog horror commentary of written pieces, creative hobbies, <em>Beyond the Dark Web</em> series, and 3 original tracks upcoming in the pipeline.</p>
+            </div>
+            <a class="channel-btn" href="https://youtube.com/@ziuuzx?si=-UT9wSlUVvSgttKw" target="_blank" rel="noopener noreferrer">
+              <span>Visit Ziuux</span> &#8599;
+            </a>
+          </div>
+
+          <!-- Legalstaan Official -->
+          <div class="channel-card">
+            <div>
+              <div class="channel-card-badge yt" style="color:#38bdf8">&#9658; YouTube &middot; Law Coaching</div>
+              <h3 class="channel-name">Legalstaan Official</h3>
+              <div class="channel-handle">@legalstaanofficial</div>
+              <p class="channel-desc">Official media wing of founded law entrance coaching &mdash; CLAT &amp; AILET mentorship, strategy sessions, legal reasoning workshops, and student community empowerment.</p>
+            </div>
+            <a class="channel-btn" href="https://youtube.com/@legalstaanofficial?si=jexCJ6CxAauwz5a_" target="_blank" rel="noopener noreferrer">
+              <span>Visit Legalstaan</span> &#8599;
+            </a>
+          </div>
+        </div>
+
+        <!-- Featured Embedded Videos Grid -->
+        <div class="video-showcase-grid">
+          <!-- Delawded Video 1: Latest -->
+          <div class="video-card">
+            <div class="video-player-wrap">
+              <iframe src="https://www.youtube.com/embed/7Ewnzcn370k" title="Delawded - Latest Release" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-meta-body">
+              <div>
+                <span class="video-tag">Delawded &middot; Latest Broadcast</span>
+                <h4 class="video-title">Latest Analysis &middot; Deep Dive</h4>
+                <p class="video-desc">Recent deep-dive analysis on legal concepts and constitutional debates from the Delawded library.</p>
+              </div>
+              <div class="video-action-row">
+                <span class="video-channel-info">&#9658; @delawded</span>
+                <a class="video-watch-link" href="https://youtu.be/7Ewnzcn370k?si=eIKw9nLvUuzAQS_-" target="_blank" rel="noopener noreferrer">Watch Video &#8599;</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Delawded Video 2: Recommended -->
+          <div class="video-card">
+            <div class="video-player-wrap">
+              <iframe src="https://www.youtube.com/embed/4Qc6uzX4cR8" title="Delawded - Editor's Recommendation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-meta-body">
+              <div>
+                <span class="video-tag">Delawded &middot; Editor&rsquo;s Pick</span>
+                <h4 class="video-title">Recommended Legal Deep Dive</h4>
+                <p class="video-desc">Curated landmark breakdown exploring statutory interpretation and systemic institutional frameworks.</p>
+              </div>
+              <div class="video-action-row">
+                <span class="video-channel-info">&#9658; @delawded</span>
+                <a class="video-watch-link" href="https://youtu.be/4Qc6uzX4cR8?si=WVnnFQx-FxXuyxjd" target="_blank" rel="noopener noreferrer">Watch Video &#8599;</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ziuux Short: Analog Horror / Commentary -->
+          <div class="video-card">
+            <div class="video-player-wrap shorts-ratio">
+              <iframe src="https://www.youtube.com/embed/Rn2V5FSUoG8" title="Ziuux - Short & Commentary" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-meta-body">
+              <div>
+                <span class="video-tag" style="color:#c084fc">Ziuux &middot; Analog Horror &amp; Shorts</span>
+                <h4 class="video-title">Ziuux Series &middot; Unfiltered</h4>
+                <p class="video-desc">Atmospheric visual commentary and reflections shifted to the Ziuux creative channel.</p>
+              </div>
+              <div class="video-action-row">
+                <span class="video-channel-info" style="color:#c084fc">&#9658; @ziuuzx</span>
+                <a class="video-watch-link" href="https://youtube.com/shorts/Rn2V5FSUoG8?si=Vwi3-0plxNSIMMv-" target="_blank" rel="noopener noreferrer">Watch Short &#8599;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Instagram Managed Ecosystem -->
+        <div style="margin-bottom:20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+          <h3 class="sec-title" style="font-size:1.3rem">Instagram Profiles &amp; Organizations</h3>
+          <span style="font-family:var(--f-mono);font-size:0.68rem;color:var(--text-3);letter-spacing:0.1em;text-transform:uppercase;">Managed by Dhananjay</span>
+        </div>
+        <div class="instagram-grid">
+          <!-- Subtle Dhanu -->
+          <a class="insta-card" href="https://www.instagram.com/subtle_dhanu?igsi=MTFncmNhMnZrbWVkeg==" target="_blank" rel="noopener noreferrer">
+            <div class="insta-avatar">D</div>
+            <div class="insta-details">
+              <div class="insta-handle">@subtle_dhanu <span class="insta-badge-check">&#10003;</span></div>
+              <div class="insta-tagline">Personal &middot; Law student, research reflections &amp; life moments</div>
+            </div>
+            <div class="insta-arrow">&#8599;</div>
+          </a>
+
+          <!-- NCC NLU Delhi -->
+          <a class="insta-card" href="https://www.instagram.com/ncc_nlud?igsh=MW9raTU2cG5sOW1wMQ==&igsi=MW9raTU2cG5sOW1wMQ==" target="_blank" rel="noopener noreferrer">
+            <div class="insta-avatar" style="background:linear-gradient(45deg,#0284c7,#0369a1,#1e3a8a)">NCC</div>
+            <div class="insta-details">
+              <div class="insta-handle">@ncc_nlud <span class="insta-badge-check">&#10003;</span></div>
+              <div class="insta-tagline">National Cadet Corps &middot; NLU Delhi official cell</div>
+            </div>
+            <div class="insta-arrow">&#8599;</div>
+          </a>
+
+          <!-- Legalstaan -->
+          <a class="insta-card" href="https://www.instagram.com/legalstaan?igsh=cHpsMmc3Z2lxbzR5&igsi=cHpsMmc3Z2lxbzR5" target="_blank" rel="noopener noreferrer">
+            <div class="insta-avatar" style="background:linear-gradient(45deg,#d97706,#b45309,#78350f)">LS</div>
+            <div class="insta-details">
+              <div class="insta-handle">@legalstaan <span class="insta-badge-check">&#10003;</span></div>
+              <div class="insta-tagline">Legalstaan &middot; Law entrance coaching &amp; student mentorship</div>
+            </div>
+            <div class="insta-arrow">&#8599;</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <footer class="site-footer">
       <div class="footer-top">
         <div class="footer-brand-block">
@@ -4456,13 +4938,23 @@
             <li><a onclick="nav('home')" tabindex="0">Home</a></li>
             <li><a onclick="nav('projects')" tabindex="0">Projects</a></li>
             <li><a onclick="nav('writings')" tabindex="0">Writings</a></li>
+            <li><a onclick="nav('content')" tabindex="0">Content Creation</a></li>
             <li><a onclick="nav('story')" tabindex="0">My Story</a></li>
             <li><a onclick="nav('about')" tabindex="0">About</a></li>
           </ul>
         </div>
         <div class="footer-connect-col">
-          <h4>Connect</h4>
+          <h4>YouTube Channels</h4>
+          <div class="footer-social-links" style="margin-bottom:14px">
+            <a href="https://youtube.com/@delawded?si=_ZVMAE67Jh4EuVhj" target="_blank" rel="noopener noreferrer">&#9658; @delawded (Education)</a>
+            <a href="https://youtube.com/@ziuuzx?si=-UT9wSlUVvSgttKw" target="_blank" rel="noopener noreferrer">&#9658; @ziuuzx (Creative &amp; Horror)</a>
+            <a href="https://youtube.com/@legalstaanofficial?si=jexCJ6CxAauwz5a_" target="_blank" rel="noopener noreferrer">&#9658; @legalstaanofficial (Coaching)</a>
+          </div>
+          <h4>Instagram &amp; Connect</h4>
           <div class="footer-social-links">
+            <a href="https://www.instagram.com/subtle_dhanu?igsi=MTFncmNhMnZrbWVkeg==" target="_blank" rel="noopener noreferrer">&#9733; @subtle_dhanu</a>
+            <a href="https://www.instagram.com/ncc_nlud?igsh=MW9raTU2cG5sOW1wMQ==&igsi=MW9raTU2cG5sOW1wMQ==" target="_blank" rel="noopener noreferrer">&#9733; @ncc_nlud</a>
+            <a href="https://www.instagram.com/legalstaan?igsh=cHpsMmc3Z2lxbzR5&igsi=cHpsMmc3Z2lxbzR5" target="_blank" rel="noopener noreferrer">&#9733; @legalstaan</a>
             <a href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">↗ GitHub</a>
             <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank" rel="noopener noreferrer">↗ LinkedIn</a>
             <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">✉ University Email</a>
@@ -4796,13 +5288,23 @@
             <li><a onclick="nav('home')" tabindex="0">Home</a></li>
             <li><a onclick="nav('projects')" tabindex="0">Projects</a></li>
             <li><a onclick="nav('writings')" tabindex="0">Writings</a></li>
+            <li><a onclick="nav('content')" tabindex="0">Content Creation</a></li>
             <li><a onclick="nav('story')" tabindex="0">My Story</a></li>
             <li><a onclick="nav('about')" tabindex="0">About</a></li>
           </ul>
         </div>
         <div class="footer-connect-col">
-          <h4>Connect</h4>
+          <h4>YouTube Channels</h4>
+          <div class="footer-social-links" style="margin-bottom:14px">
+            <a href="https://youtube.com/@delawded?si=_ZVMAE67Jh4EuVhj" target="_blank" rel="noopener noreferrer">&#9658; @delawded (Education)</a>
+            <a href="https://youtube.com/@ziuuzx?si=-UT9wSlUVvSgttKw" target="_blank" rel="noopener noreferrer">&#9658; @ziuuzx (Creative &amp; Horror)</a>
+            <a href="https://youtube.com/@legalstaanofficial?si=jexCJ6CxAauwz5a_" target="_blank" rel="noopener noreferrer">&#9658; @legalstaanofficial (Coaching)</a>
+          </div>
+          <h4>Instagram &amp; Connect</h4>
           <div class="footer-social-links">
+            <a href="https://www.instagram.com/subtle_dhanu?igsi=MTFncmNhMnZrbWVkeg==" target="_blank" rel="noopener noreferrer">&#9733; @subtle_dhanu</a>
+            <a href="https://www.instagram.com/ncc_nlud?igsh=MW9raTU2cG5sOW1wMQ==&igsi=MW9raTU2cG5sOW1wMQ==" target="_blank" rel="noopener noreferrer">&#9733; @ncc_nlud</a>
+            <a href="https://www.instagram.com/legalstaan?igsh=cHpsMmc3Z2lxbzR5&igsi=cHpsMmc3Z2lxbzR5" target="_blank" rel="noopener noreferrer">&#9733; @legalstaan</a>
             <a href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">↗ GitHub</a>
             <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank" rel="noopener noreferrer">↗ LinkedIn</a>
             <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">✉ University Email</a>
@@ -5144,13 +5646,263 @@ Perhaps my solitary end was written there too.”
             <li><a onclick="nav('home')" tabindex="0">Home</a></li>
             <li><a onclick="nav('projects')" tabindex="0">Projects</a></li>
             <li><a onclick="nav('writings')" tabindex="0">Writings</a></li>
+            <li><a onclick="nav('content')" tabindex="0">Content Creation</a></li>
             <li><a onclick="nav('story')" tabindex="0">My Story</a></li>
             <li><a onclick="nav('about')" tabindex="0">About</a></li>
           </ul>
         </div>
         <div class="footer-connect-col">
-          <h4>Connect</h4>
+          <h4>YouTube Channels</h4>
+          <div class="footer-social-links" style="margin-bottom:14px">
+            <a href="https://youtube.com/@delawded?si=_ZVMAE67Jh4EuVhj" target="_blank" rel="noopener noreferrer">&#9658; @delawded (Education)</a>
+            <a href="https://youtube.com/@ziuuzx?si=-UT9wSlUVvSgttKw" target="_blank" rel="noopener noreferrer">&#9658; @ziuuzx (Creative &amp; Horror)</a>
+            <a href="https://youtube.com/@legalstaanofficial?si=jexCJ6CxAauwz5a_" target="_blank" rel="noopener noreferrer">&#9658; @legalstaanofficial (Coaching)</a>
+          </div>
+          <h4>Instagram &amp; Connect</h4>
           <div class="footer-social-links">
+            <a href="https://www.instagram.com/subtle_dhanu?igsi=MTFncmNhMnZrbWVkeg==" target="_blank" rel="noopener noreferrer">&#9733; @subtle_dhanu</a>
+            <a href="https://www.instagram.com/ncc_nlud?igsh=MW9raTU2cG5sOW1wMQ==&igsi=MW9raTU2cG5sOW1wMQ==" target="_blank" rel="noopener noreferrer">&#9733; @ncc_nlud</a>
+            <a href="https://www.instagram.com/legalstaan?igsh=cHpsMmc3Z2lxbzR5&igsi=cHpsMmc3Z2lxbzR5" target="_blank" rel="noopener noreferrer">&#9733; @legalstaan</a>
+            <a href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">↗ GitHub</a>
+            <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank" rel="noopener noreferrer">↗ LinkedIn</a>
+            <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">✉ University Email</a>
+            <a href="mailto:mdc18042007@gmail.com">✉ Personal Email</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-philosophy">“Imperfectly perfect — my mistakes made me who I am.”</p>
+        <p class="footer-copy">&copy; 2026 Dhananjay Chouhan &middot; NLU Delhi</p>
+      </div>
+    </footer>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+     PAGE: CONTENT CREATION
+═══════════════════════════════════════════════════════════ -->
+  <div class="page" id="page-content" role="main">
+    <div class="wrap">
+      <div class="page-header">
+        <span class="eyebrow">Studio &middot; Media &middot; Broadcasting</span>
+        <h1 class="page-title">Content <span class="shimmer">Creation</span></h1>
+        <p class="page-desc">
+          Three distinct digital channels spanning educational constitutional law, professional entrance coaching, and unfiltered analog horror commentary &mdash; plus ongoing creative productions and music in the pipeline.
+        </p>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION 1: THE 3 YOUTUBE CHANNELS
+      ═══════════════════════════════════════════════════════ -->
+      <div style="margin-bottom:32px;">
+        <span class="eyebrow" style="margin-bottom:8px;">Broadcast Channels</span>
+        <h2 class="sec-title" style="font-size:1.8rem; margin-bottom:28px;">YouTube Ecosystem</h2>
+      </div>
+
+      <div class="media-channels-grid">
+        <!-- 1. DELAWDED -->
+        <div class="channel-card">
+          <div>
+            <div class="channel-card-badge yt">&#9658; YouTube &middot; Education &amp; Law</div>
+            <h3 class="channel-name">Delawded</h3>
+            <div class="channel-handle">@delawded</div>
+            <p class="channel-desc">
+              My flagship channel for educational deep dives, constitutional law analysis, case law breakdowns, jurisprudence debates, and deconstructing legal mechanisms for students and researchers.
+            </p>
+          </div>
+          <a class="channel-btn" href="https://youtube.com/@delawded?si=_ZVMAE67Jh4EuVhj" target="_blank" rel="noopener noreferrer">
+            <span>Visit @delawded Channel</span> &#8599;
+          </a>
+        </div>
+
+        <!-- 2. ZIUUX -->
+        <div class="channel-card" style="border-color:rgba(168,85,247,0.35);">
+          <div>
+            <div class="channel-card-badge yt" style="color:#c084fc">&#9658; YouTube &middot; Creative &amp; Analog Horror</div>
+            <h3 class="channel-name">Ziuux</h3>
+            <div class="channel-handle">@ziuuzx</div>
+            <p class="channel-desc">
+              An unfiltered creative universe featuring analog horror presentations of written reflections and essays, creative hobbies, the <em>Beyond the Dark Web</em> investigative series, and <strong>3 original tracks</strong> currently in the pipeline.
+            </p>
+          </div>
+          <a class="channel-btn" href="https://youtube.com/@ziuuzx?si=-UT9wSlUVvSgttKw" target="_blank" rel="noopener noreferrer" style="background:rgba(168,85,247,0.1); border-color:rgba(168,85,247,0.4); color:#c084fc !important;">
+            <span>Visit @ziuuzx Channel</span> &#8599;
+          </a>
+        </div>
+
+        <!-- 3. LEGALSTAAN OFFICIAL -->
+        <div class="channel-card" style="border-color:rgba(56,189,248,0.35);">
+          <div>
+            <div class="channel-card-badge yt" style="color:#38bdf8">&#9658; YouTube &middot; Founded Coaching Wing</div>
+            <h3 class="channel-name">Legalstaan Official</h3>
+            <div class="channel-handle">@legalstaanofficial</div>
+            <p class="channel-desc">
+              The official broadcast wing of my founded law coaching institute &mdash; delivering CLAT &amp; AILET mentorship, strategy sessions, legal reasoning workshops, paper analysis, and community guidance.
+            </p>
+          </div>
+          <a class="channel-btn" href="https://youtube.com/@legalstaanofficial?si=jexCJ6CxAauwz5a_" target="_blank" rel="noopener noreferrer" style="background:rgba(56,189,248,0.08); border-color:rgba(56,189,248,0.4); color:#38bdf8 !important;">
+            <span>Visit @legalstaanofficial</span> &#8599;
+          </a>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION 2: FEATURED VIDEO EMBEDS
+      ═══════════════════════════════════════════════════════ -->
+      <div style="margin-top:60px; margin-bottom:32px;">
+        <span class="eyebrow" style="margin-bottom:8px;">Live Broadcast Players</span>
+        <h2 class="sec-title" style="font-size:1.8rem; margin-bottom:28px;">Featured Video Releases</h2>
+      </div>
+
+      <div class="video-showcase-grid">
+        <!-- Video 1: Delawded Latest -->
+        <div class="video-card">
+          <div class="video-player-wrap">
+            <iframe src="https://www.youtube.com/embed/7Ewnzcn370k" title="Delawded - Latest Release" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-meta-body">
+            <div>
+              <span class="video-tag">Delawded &middot; Latest Upload</span>
+              <h4 class="video-title">Latest Analysis &middot; Deep Dive</h4>
+              <p class="video-desc">Recent analytical breakdown exploring fundamental legal structures and constitutional jurisprudence.</p>
+            </div>
+            <div class="video-action-row">
+              <span class="video-channel-info">&#9658; @delawded</span>
+              <a class="video-watch-link" href="https://youtu.be/7Ewnzcn370k?si=eIKw9nLvUuzAQS_-" target="_blank" rel="noopener noreferrer">Watch on YouTube &#8599;</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video 2: Delawded Recommended -->
+        <div class="video-card">
+          <div class="video-player-wrap">
+            <iframe src="https://www.youtube.com/embed/4Qc6uzX4cR8" title="Delawded - Recommended Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-meta-body">
+            <div>
+              <span class="video-tag">Delawded &middot; Editor's Recommendation</span>
+              <h4 class="video-title">Recommended Legal Deep Dive</h4>
+              <p class="video-desc">Curated landmark breakdown exploring statutory interpretation and systemic institutional frameworks.</p>
+            </div>
+            <div class="video-action-row">
+              <span class="video-channel-info">&#9658; @delawded</span>
+              <a class="video-watch-link" href="https://youtu.be/4Qc6uzX4cR8?si=WVnnFQx-FxXuyxjd" target="_blank" rel="noopener noreferrer">Watch on YouTube &#8599;</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video 3: Ziuux Shorts / Analog Horror -->
+        <div class="video-card" style="border-color:rgba(168,85,247,0.3);">
+          <div class="video-player-wrap shorts-ratio">
+            <iframe src="https://www.youtube.com/embed/Rn2V5FSUoG8" title="Ziuux - Short & Commentary" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-meta-body">
+            <div>
+              <span class="video-tag" style="color:#c084fc">Ziuux &middot; Analog Horror &amp; Shorts</span>
+              <h4 class="video-title">Ziuux Series &middot; Unfiltered Commentary</h4>
+              <p class="video-desc">Atmospheric visual storytelling and reflective commentary transitioned into the Ziuux creative channel.</p>
+            </div>
+            <div class="video-action-row">
+              <span class="video-channel-info" style="color:#c084fc">&#9658; @ziuuzx</span>
+              <a class="video-watch-link" href="https://youtube.com/shorts/Rn2V5FSUoG8?si=Vwi3-0plxNSIMMv-" target="_blank" rel="noopener noreferrer">Watch Short &#8599;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION 3: PIPELINE & UPCOMING RELEASES
+      ═══════════════════════════════════════════════════════ -->
+      <div class="philosophy-bottom-card" style="margin-top:40px; margin-bottom:60px; text-align:left; background:rgba(20,16,28,0.7); border-color:rgba(168,85,247,0.35);">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; flex-wrap:wrap; gap:10px;">
+          <span class="verse-card-badge" style="color:#c084fc; border-color:rgba(168,85,247,0.4);">&#10022; Upcoming Pipeline &middot; In Production</span>
+          <span style="font-family:var(--f-mono);font-size:0.72rem;color:var(--text-3);">3 Original Songs &middot; Beyond the Dark Web</span>
+        </div>
+        <h3 style="font-family:var(--f-display);font-size:1.45rem;color:#FFFFFF;margin-bottom:10px;">Beyond the Dark Web &amp; Sonic Experiments</h3>
+        <p style="font-family:var(--f-sans);font-size:0.88rem;line-height:1.75;color:var(--text-2);margin-bottom:16px;">
+          We are expanding the Ziuux channel into an atmospheric storytelling frontier. Currently in production: <strong>3 original tracks</strong> blending spoken word, electronic ambiance, and dark academia themes, alongside continuing episodes of the <em>Beyond the Dark Web</em> investigative series. Stay tuned!
+        </p>
+        <a class="channel-btn" href="https://youtube.com/@ziuuzx?si=-UT9wSlUVvSgttKw" target="_blank" rel="noopener noreferrer" style="background:rgba(168,85,247,0.15); border-color:rgba(168,85,247,0.5); color:#c084fc !important;">
+          <span>Subscribe to Ziuux for Release Notifications</span> &#8599;
+        </a>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION 4: INSTAGRAM ECOSYSTEM (3 PROFILES)
+      ═══════════════════════════════════════════════════════ -->
+      <div style="margin-bottom:32px;">
+        <span class="eyebrow" style="margin-bottom:8px;">Social Network</span>
+        <h2 class="sec-title" style="font-size:1.8rem; margin-bottom:12px;">Instagram Channels &amp; Profiles</h2>
+        <p style="font-family:var(--f-sans);font-size:0.86rem;color:var(--text-2);max-width:680px;line-height:1.6;margin-bottom:28px;">
+          Three official Instagram accounts managed by Dhananjay &mdash; reflecting personal life at NLU Delhi, university cell leadership, and law entrance coaching.
+        </p>
+      </div>
+
+      <div class="instagram-grid" style="margin-bottom:80px;">
+        <!-- 1. Subtle Dhanu (Personal) -->
+        <a class="insta-card" href="https://www.instagram.com/subtle_dhanu?igsi=MTFncmNhMnZrbWVkeg==" target="_blank" rel="noopener noreferrer">
+          <div class="insta-avatar">D</div>
+          <div class="insta-details">
+            <div class="insta-handle">@subtle_dhanu <span class="insta-badge-check">&#10003;</span></div>
+            <div class="insta-tagline">Personal &middot; Law student, research reflections, creative aesthetic &amp; life moments</div>
+          </div>
+          <div class="insta-arrow">&#8599;</div>
+        </a>
+
+        <!-- 2. NCC NLU Delhi -->
+        <a class="insta-card" href="https://www.instagram.com/ncc_nlud?igsh=MW9raTU2cG5sOW1wMQ==&igsi=MW9raTU2cG5sOW1wMQ==" target="_blank" rel="noopener noreferrer">
+          <div class="insta-avatar" style="background:linear-gradient(45deg,#0284c7,#0369a1,#1e3a8a)">NCC</div>
+          <div class="insta-details">
+            <div class="insta-handle">@ncc_nlud <span class="insta-badge-check">&#10003;</span></div>
+            <div class="insta-tagline">National Cadet Corps &middot; Official cell of National Law University Delhi</div>
+          </div>
+          <div class="insta-arrow">&#8599;</div>
+        </a>
+
+        <!-- 3. Legalstaan -->
+        <a class="insta-card" href="https://www.instagram.com/legalstaan?igsh=cHpsMmc3Z2lxbzR5&igsi=cHpsMmc3Z2lxbzR5" target="_blank" rel="noopener noreferrer">
+          <div class="insta-avatar" style="background:linear-gradient(45deg,#d97706,#b45309,#78350f)">LS</div>
+          <div class="insta-details">
+            <div class="insta-handle">@legalstaan <span class="insta-badge-check">&#10003;</span></div>
+            <div class="insta-tagline">Legalstaan &middot; Premier law entrance coaching, student mentorship &amp; community</div>
+          </div>
+          <div class="insta-arrow">&#8599;</div>
+        </a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-brand-block">
+          <div class="footer-brand">
+            <div class="mark">DJ</div>
+            <div class="sub">Law &middot; Research &middot; Code</div>
+          </div>
+          <p class="footer-tagline">Where law meets code.<br>Built from nothing, still building.</p>
+        </div>
+        <div class="footer-nav-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a onclick="nav('home')" tabindex="0">Home</a></li>
+            <li><a onclick="nav('projects')" tabindex="0">Projects</a></li>
+            <li><a onclick="nav('writings')" tabindex="0">Writings</a></li>
+            <li><a onclick="nav('content')" tabindex="0">Content Creation</a></li>
+            <li><a onclick="nav('story')" tabindex="0">My Story</a></li>
+            <li><a onclick="nav('about')" tabindex="0">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-connect-col">
+          <h4>YouTube Channels</h4>
+          <div class="footer-social-links" style="margin-bottom:14px">
+            <a href="https://youtube.com/@delawded?si=_ZVMAE67Jh4EuVhj" target="_blank" rel="noopener noreferrer">&#9658; @delawded (Education)</a>
+            <a href="https://youtube.com/@ziuuzx?si=-UT9wSlUVvSgttKw" target="_blank" rel="noopener noreferrer">&#9658; @ziuuzx (Creative &amp; Horror)</a>
+            <a href="https://youtube.com/@legalstaanofficial?si=jexCJ6CxAauwz5a_" target="_blank" rel="noopener noreferrer">&#9658; @legalstaanofficial (Coaching)</a>
+          </div>
+          <h4>Instagram &amp; Connect</h4>
+          <div class="footer-social-links">
+            <a href="https://www.instagram.com/subtle_dhanu?igsi=MTFncmNhMnZrbWVkeg==" target="_blank" rel="noopener noreferrer">&#9733; @subtle_dhanu</a>
+            <a href="https://www.instagram.com/ncc_nlud?igsh=MW9raTU2cG5sOW1wMQ==&igsi=MW9raTU2cG5sOW1wMQ==" target="_blank" rel="noopener noreferrer">&#9733; @ncc_nlud</a>
+            <a href="https://www.instagram.com/legalstaan?igsh=cHpsMmc3Z2lxbzR5&igsi=cHpsMmc3Z2lxbzR5" target="_blank" rel="noopener noreferrer">&#9733; @legalstaan</a>
             <a href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">↗ GitHub</a>
             <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank" rel="noopener noreferrer">↗ LinkedIn</a>
             <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">✉ University Email</a>
@@ -5319,13 +6071,23 @@ Perhaps my solitary end was written there too.”
             <li><a onclick="nav('home')" tabindex="0">Home</a></li>
             <li><a onclick="nav('projects')" tabindex="0">Projects</a></li>
             <li><a onclick="nav('writings')" tabindex="0">Writings</a></li>
+            <li><a onclick="nav('content')" tabindex="0">Content Creation</a></li>
             <li><a onclick="nav('story')" tabindex="0">My Story</a></li>
             <li><a onclick="nav('about')" tabindex="0">About</a></li>
           </ul>
         </div>
         <div class="footer-connect-col">
-          <h4>Connect</h4>
+          <h4>YouTube Channels</h4>
+          <div class="footer-social-links" style="margin-bottom:14px">
+            <a href="https://youtube.com/@delawded?si=_ZVMAE67Jh4EuVhj" target="_blank" rel="noopener noreferrer">&#9658; @delawded (Education)</a>
+            <a href="https://youtube.com/@ziuuzx?si=-UT9wSlUVvSgttKw" target="_blank" rel="noopener noreferrer">&#9658; @ziuuzx (Creative &amp; Horror)</a>
+            <a href="https://youtube.com/@legalstaanofficial?si=jexCJ6CxAauwz5a_" target="_blank" rel="noopener noreferrer">&#9658; @legalstaanofficial (Coaching)</a>
+          </div>
+          <h4>Instagram &amp; Connect</h4>
           <div class="footer-social-links">
+            <a href="https://www.instagram.com/subtle_dhanu?igsi=MTFncmNhMnZrbWVkeg==" target="_blank" rel="noopener noreferrer">&#9733; @subtle_dhanu</a>
+            <a href="https://www.instagram.com/ncc_nlud?igsh=MW9raTU2cG5sOW1wMQ==&igsi=MW9raTU2cG5sOW1wMQ==" target="_blank" rel="noopener noreferrer">&#9733; @ncc_nlud</a>
+            <a href="https://www.instagram.com/legalstaan?igsh=cHpsMmc3Z2lxbzR5&igsi=cHpsMmc3Z2lxbzR5" target="_blank" rel="noopener noreferrer">&#9733; @legalstaan</a>
             <a href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">↗ GitHub</a>
             <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank" rel="noopener noreferrer">↗ LinkedIn</a>
             <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">✉ University Email</a>
@@ -5384,7 +6146,7 @@ Perhaps my solitary end was written there too.”
           </div>
           <div class="sidebar-item">
             <div class="sidebar-label">Projects Shipped</div>
-            <div class="sidebar-val">9</div>
+            <div class="sidebar-val">15</div>
           </div>
           <div class="sidebar-item">
             <div class="sidebar-label">Specialisation</div>
@@ -5462,13 +6224,23 @@ Perhaps my solitary end was written there too.”
             <li><a onclick="nav('home')" tabindex="0">Home</a></li>
             <li><a onclick="nav('projects')" tabindex="0">Projects</a></li>
             <li><a onclick="nav('writings')" tabindex="0">Writings</a></li>
+            <li><a onclick="nav('content')" tabindex="0">Content Creation</a></li>
             <li><a onclick="nav('story')" tabindex="0">My Story</a></li>
             <li><a onclick="nav('about')" tabindex="0">About</a></li>
           </ul>
         </div>
         <div class="footer-connect-col">
-          <h4>Connect</h4>
+          <h4>YouTube Channels</h4>
+          <div class="footer-social-links" style="margin-bottom:14px">
+            <a href="https://youtube.com/@delawded?si=_ZVMAE67Jh4EuVhj" target="_blank" rel="noopener noreferrer">&#9658; @delawded (Education)</a>
+            <a href="https://youtube.com/@ziuuzx?si=-UT9wSlUVvSgttKw" target="_blank" rel="noopener noreferrer">&#9658; @ziuuzx (Creative &amp; Horror)</a>
+            <a href="https://youtube.com/@legalstaanofficial?si=jexCJ6CxAauwz5a_" target="_blank" rel="noopener noreferrer">&#9658; @legalstaanofficial (Coaching)</a>
+          </div>
+          <h4>Instagram &amp; Connect</h4>
           <div class="footer-social-links">
+            <a href="https://www.instagram.com/subtle_dhanu?igsi=MTFncmNhMnZrbWVkeg==" target="_blank" rel="noopener noreferrer">&#9733; @subtle_dhanu</a>
+            <a href="https://www.instagram.com/ncc_nlud?igsh=MW9raTU2cG5sOW1wMQ==&igsi=MW9raTU2cG5sOW1wMQ==" target="_blank" rel="noopener noreferrer">&#9733; @ncc_nlud</a>
+            <a href="https://www.instagram.com/legalstaan?igsh=cHpsMmc3Z2lxbzR5&igsi=cHpsMmc3Z2lxbzR5" target="_blank" rel="noopener noreferrer">&#9733; @legalstaan</a>
             <a href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">↗ GitHub</a>
             <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank" rel="noopener noreferrer">↗ LinkedIn</a>
             <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">✉ University Email</a>
@@ -5516,7 +6288,7 @@ Perhaps my solitary end was written there too.”
 ═══════════════════════════════════════════════════════════ -->
   <script>
     /* ─── CONSTANTS ─────────────────────────────────────────────────── */
-    var DJ_PAGES = ['home', 'projects', 'writings', 'story', 'about'];
+    var DJ_PAGES = ['home', 'projects', 'writings', 'content', 'story', 'about'];
     var DJ_CURRENT = 'home';
     var DJ_TAG = 'all';
     var DJ_THEME = 'dark';
