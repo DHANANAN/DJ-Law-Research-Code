@@ -2637,41 +2637,40 @@
     }
 
     /* ═══════════════════════════════════════════════════════
-       BOTTOM-LEFT JURISTHUB APP LAUNCH TOAST (COMPACT POPUP)
+       BOTTOM-LEFT JURISTHUB APP LAUNCH TOAST
     ═══════════════════════════════════════════════════════ */
     #app-launch-toast {
       position: fixed;
-      bottom: 20px;
-      left: 20px;
+      bottom: 24px;
+      left: 24px;
       z-index: 1500;
-      width: 320px;
-      max-width: calc(100vw - 40px);
-      background: rgba(251, 249, 244, 0.97);
+      max-width: 410px;
+      width: calc(100vw - 48px);
+      background: rgba(14, 14, 22, 0.94);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(140, 83, 27, 0.35);
-      border-radius: 8px;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16), 0 0 20px rgba(140, 83, 27, 0.12);
-      padding: 12px 14px;
-      transform: translateY(140%) scale(0.92);
+      border: 1px solid var(--border-hi);
+      border-radius: 6px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 24px rgba(201, 168, 76, 0.18);
+      padding: 20px 22px;
+      transform: translateY(120%) scale(0.95);
       opacity: 0;
       visibility: hidden;
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.3s ease;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, visibility 0.4s ease;
       will-change: transform, opacity;
+    }
+
+    [data-theme="journal"] #app-launch-toast {
+      background: rgba(251, 249, 244, 0.96);
+      box-shadow: 0 16px 48px rgba(60, 40, 10, 0.18), 0 0 24px rgba(140, 83, 27, 0.15);
+      border-color: rgba(140, 83, 27, 0.35);
       color: #1E1B18;
     }
 
-    [data-theme="dark"] #app-launch-toast {
-      background: rgba(14, 16, 23, 0.96);
-      border-color: rgba(201, 168, 76, 0.35);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 20px rgba(201, 168, 76, 0.18);
-      color: #E8E6E0;
-    }
-
     [data-theme="light"] #app-launch-toast {
-      background: rgba(255, 255, 255, 0.97);
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 16px 48px rgba(15, 23, 42, 0.15), 0 0 24px rgba(37, 99, 235, 0.15);
       border-color: rgba(37, 99, 235, 0.25);
-      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12), 0 0 20px rgba(37, 99, 235, 0.12);
       color: #0F172A;
     }
 
@@ -2683,9 +2682,9 @@
 
     .app-toast-close {
       position: absolute;
-      top: 8px;
-      right: 8px;
-      font-size: 1rem;
+      top: 10px;
+      right: 12px;
+      font-size: 1.25rem;
       line-height: 1;
       color: var(--text-3);
       cursor: pointer;
@@ -2702,36 +2701,40 @@
     .app-toast-badge {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       font-family: var(--f-mono);
-      font-size: 0.54rem;
+      font-size: 0.58rem;
       color: var(--gold);
-      letter-spacing: 0.12em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      margin-bottom: 6px;
-      font-weight: 600;
+      margin-bottom: 10px;
     }
 
     .app-toast-dot {
-      width: 5px;
-      height: 5px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: #10B981;
-      box-shadow: 0 0 6px #10B981;
+      box-shadow: 0 0 8px #10B981;
       animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
     }
 
     .app-toast-content {
       display: flex;
-      gap: 10px;
+      gap: 14px;
       align-items: flex-start;
     }
 
     .app-toast-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 6px;
-      background: linear-gradient(135deg, rgba(140, 83, 27, 0.15), rgba(140, 83, 27, 0.05));
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(201, 168, 76, 0.2), rgba(201, 168, 76, 0.05));
       border: 1px solid var(--border-hi);
       display: flex;
       align-items: center;
@@ -2740,8 +2743,9 @@
       flex-shrink: 0;
     }
 
-    [data-theme="dark"] .app-toast-icon {
-      background: linear-gradient(135deg, rgba(201, 168, 76, 0.2), rgba(201, 168, 76, 0.05));
+    [data-theme="journal"] .app-toast-icon {
+      background: linear-gradient(135deg, rgba(140, 83, 27, 0.15), rgba(140, 83, 27, 0.05));
+      color: var(--gold);
     }
 
     [data-theme="light"] .app-toast-icon {
@@ -2751,55 +2755,62 @@
 
     .app-toast-title {
       font-family: var(--f-display);
-      font-size: 0.88rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: var(--text);
-      line-height: 1.2;
-      margin-bottom: 3px;
+      line-height: 1.25;
+      margin-bottom: 6px;
     }
 
     .app-toast-desc {
       font-family: var(--f-sans);
-      font-size: 0.72rem;
+      font-size: 0.78rem;
       color: var(--text-2);
-      line-height: 1.4;
-      margin-bottom: 8px;
+      line-height: 1.55;
+      margin-bottom: 12px;
     }
 
     .app-toast-actions {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .app-toast-btn {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      background: var(--gold);
-      color: #FFFFFF !important;
-      font-family: var(--f-sans);
-      font-weight: 600;
-      font-size: 0.68rem;
-      padding: 5px 10px;
-      border-radius: 3px;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    }
-
-    [data-theme="dark"] .app-toast-btn {
+      gap: 6px;
       background: linear-gradient(135deg, var(--gold), var(--gold-dim));
       color: #060608 !important;
+      font-family: var(--f-sans);
+      font-weight: 600;
+      font-size: 0.75rem;
+      padding: 7px 14px;
+      border-radius: 4px;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 10px rgba(201, 168, 76, 0.3);
+    }
+
+    [data-theme="journal"] .app-toast-btn {
+      background: linear-gradient(135deg, #8C531B, #5A3510);
+      color: #FAF6EE !important;
+      box-shadow: 0 2px 10px rgba(140, 83, 27, 0.25);
+    }
+
+    [data-theme="light"] .app-toast-btn {
+      background: linear-gradient(135deg, #2563EB, #1D4ED8);
+      color: #FFFFFF !important;
+      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.25);
     }
 
     .app-toast-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      box-shadow: 0 4px 16px rgba(201, 168, 76, 0.5);
     }
 
     .app-toast-dismiss {
       font-family: var(--f-mono);
-      font-size: 0.62rem;
+      font-size: 0.68rem;
       color: var(--text-3);
       background: none;
       border: none;
@@ -4755,159 +4766,73 @@
       100% { transform: scale(1) skew(0deg); opacity: 1; }
     }
 
-    /* ─── COMPACT IDLE ANOMALY HUD & CORNER NOTICES ─── */
-    #idle-countdown-hud {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 9998;
-      background: rgba(251, 249, 244, 0.96);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(140, 83, 27, 0.35);
-      border-radius: 30px;
-      padding: 7px 14px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 0 16px rgba(140, 83, 27, 0.1);
-      transform: translateY(140%) scale(0.92);
-      opacity: 0;
-      visibility: hidden;
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.3s ease;
-      pointer-events: none;
-      max-width: 290px;
-      color: #1E1B18;
-    }
-
-    [data-theme="dark"] #idle-countdown-hud {
-      background: rgba(14, 16, 23, 0.95);
-      border-color: rgba(201, 168, 76, 0.35);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 16px rgba(201, 168, 76, 0.15);
-      color: #E8E6E0;
-    }
-
-    [data-theme="light"] #idle-countdown-hud {
-      background: rgba(255, 255, 255, 0.96);
-      border-color: rgba(37, 99, 235, 0.25);
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1), 0 0 16px rgba(37, 99, 235, 0.1);
-      color: #0F172A;
-    }
-
-    #idle-countdown-hud.active {
-      transform: translateY(0) scale(1);
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .hud-main {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .hud-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #EAB308;
-      box-shadow: 0 0 8px #EAB308;
-      animation: pulse-dot 1.5s infinite;
-      flex-shrink: 0;
-    }
-
-    .hud-num {
-      font-family: var(--f-mono);
-      font-size: 0.8rem;
-      font-weight: 800;
-      color: var(--gold);
-      line-height: 1;
-      flex-shrink: 0;
-    }
-
-    .hud-text {
-      font-family: var(--f-sans);
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--text);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
+    /* ─── SUBTLE TOP IDLE CHOREOGRAPHY TOAST NOTICE ─── */
     #idle-shuffle-notice {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
+      top: 76px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-24px);
       z-index: 9998;
-      background: rgba(251, 249, 244, 0.96);
+      background: rgba(14, 16, 23, 0.94);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(140, 83, 27, 0.35);
+      border: 1px solid var(--border-hi);
       border-radius: 30px;
-      padding: 7px 14px;
+      padding: 7px 18px;
       display: flex;
       align-items: center;
-      gap: 7px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.12), 0 0 16px rgba(140, 83, 27, 0.1);
+      gap: 9px;
+      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(201, 168, 76, 0.2);
       opacity: 0;
       visibility: hidden;
-      transform: translateY(140%) scale(0.92);
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.3s ease;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease, visibility 0.3s ease;
       pointer-events: none;
-      max-width: 290px;
-      color: #1E1B18;
+      white-space: nowrap;
     }
 
-    [data-theme="dark"] #idle-shuffle-notice {
-      background: rgba(14, 16, 23, 0.95);
-      border-color: rgba(201, 168, 76, 0.35);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 16px rgba(201, 168, 76, 0.15);
-      color: #E8E6E0;
+    [data-theme="journal"] #idle-shuffle-notice {
+      background: rgba(251, 249, 244, 0.96);
+      border-color: rgba(140, 83, 27, 0.35);
+      box-shadow: 0 10px 32px rgba(60, 40, 10, 0.15), 0 0 20px rgba(140, 83, 27, 0.15);
+      color: #1E1B18;
     }
 
     [data-theme="light"] #idle-shuffle-notice {
       background: rgba(255, 255, 255, 0.96);
       border-color: rgba(37, 99, 235, 0.25);
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1), 0 0 16px rgba(37, 99, 235, 0.1);
+      box-shadow: 0 10px 32px rgba(15, 23, 42, 0.12), 0 0 20px rgba(37, 99, 235, 0.15);
       color: #0F172A;
     }
 
     #idle-shuffle-notice.visible {
-      transform: translateY(0) scale(1);
+      transform: translateX(-50%) translateY(0);
       opacity: 1;
       visibility: visible;
     }
 
     #idle-shuffle-notice .notice-icon {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
+      color: var(--gold);
       flex-shrink: 0;
     }
 
     #idle-shuffle-notice .notice-text {
-      font-family: var(--f-sans);
-      font-size: 0.72rem;
+      font-family: var(--f-mono);
+      font-size: 0.7rem;
       color: var(--gold);
-      letter-spacing: 0.04em;
+      letter-spacing: 0.08em;
       font-weight: 600;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      text-transform: uppercase;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Compact Idle Shuffle Anomaly HUD & Corner Notice -->
-  <div id="idle-countdown-hud" aria-hidden="true">
-    <div class="hud-main">
-      <span class="hud-dot"></span>
-      <span id="countdown-hud-val" class="hud-num">3s</span>
-      <span id="countdown-hud-action" class="hud-text">3-Pair Jutsu Swap</span>
-    </div>
-  </div>
-
-  <div id="idle-shuffle-notice" aria-hidden="true">
-    <span class="notice-icon">🌀</span>
-    <span class="notice-text">3-Pair Swap Active</span>
+  <!-- Subtle Top Idle Shuffle Notice -->
+  <div id="idle-shuffle-notice" aria-live="polite">
+    <span class="notice-icon">&#10022;</span>
+    <span class="notice-text">Shadow Jutsu · 3-Pair Clone Swap</span>
   </div>
 
   <!-- Custom cursor -->
@@ -7832,8 +7757,6 @@ Perhaps my solitary end was written there too.”
     var _idleChoreographyIndex = 0;
     var _isProjectShuffling = false;
     var _isCountdownActive = false;
-    var _countdownTimer = null;
-
     var _CHOREOGRAPHY_NAMES = [
       'Shadow Jutsu · 3-Pair Clone Burst',
       '3D Depth Corridor · 3-Pair Synchronized Glide',
@@ -7853,50 +7776,6 @@ Perhaps my solitary end was written there too.”
           n.classList.remove('visible');
         }, 3600);
       } catch (e) { }
-    }
-
-    function _abortCountdown() {
-      if (!_isCountdownActive) return;
-      _isCountdownActive = false;
-      if (_countdownTimer) {
-        clearInterval(_countdownTimer);
-        _countdownTimer = null;
-      }
-      var hud = document.getElementById('idle-countdown-hud');
-      if (hud) hud.classList.remove('active');
-    }
-
-    function _start3SecondCountdown(mode, onComplete) {
-      _isCountdownActive = true;
-      var hud = document.getElementById('idle-countdown-hud');
-      var valEl = document.getElementById('countdown-hud-val');
-      var actionEl = document.getElementById('countdown-hud-action');
-      var modeName = _CHOREOGRAPHY_NAMES[mode] || '3-Pair Swap Anomaly';
-
-      if (hud && valEl && actionEl) {
-        valEl.textContent = '3s';
-        actionEl.textContent = modeName;
-        hud.classList.add('active');
-      }
-
-      var count = 3;
-      _countdownTimer = setInterval(function () {
-        count--;
-        if (count > 0) {
-          if (valEl) valEl.textContent = count + 's';
-          if (actionEl) actionEl.textContent = modeName;
-        } else {
-          clearInterval(_countdownTimer);
-          _countdownTimer = null;
-          if (valEl) valEl.textContent = '⚡';
-          if (actionEl) actionEl.textContent = 'Swapping 3 Pairs...';
-          setTimeout(function () {
-            if (hud) hud.classList.remove('active');
-            _isCountdownActive = false;
-            onComplete();
-          }, 350);
-        }
-      }, 1000);
     }
 
     function _swapDOMNodes(nodeA, nodeB) {
@@ -7942,8 +7821,8 @@ Perhaps my solitary end was written there too.”
       return null;
     }
 
-    function _triggerIdleCountdown() {
-      if (_isProjectShuffling || _isCountdownActive) return;
+    function _triggerIdleShuffle() {
+      if (_isProjectShuffling) return;
       var grid = _getActiveProjectGrid();
       if (!grid) return;
 
@@ -7957,7 +7836,8 @@ Perhaps my solitary end was written there too.”
       var mode = _idleChoreographyIndex % 5;
       _idleChoreographyIndex++;
 
-      _start3SecondCountdown(mode, function () {
+      _performIdleShuffle(grid, visibleCards, mode);
+    }
         _performIdleShuffle(grid, visibleCards, mode);
       });
     }
@@ -8180,7 +8060,6 @@ Perhaps my solitary end was written there too.”
       try {
         function resetTimer() {
           _idleSeconds = 0;
-          _abortCountdown();
         }
 
         ['mousemove', 'mousedown', 'keydown', 'touchstart', 'scroll', 'wheel'].forEach(function (evt) {
@@ -8188,29 +8067,19 @@ Perhaps my solitary end was written there too.”
         });
 
         setInterval(function () {
-          if (document.hidden) {
-            _abortCountdown();
-            return;
-          }
-          if (_isProjectShuffling || _isCountdownActive) return;
+          if (document.hidden) return;
+          if (_isProjectShuffling) return;
 
           /* Do not trigger if modal is open or drawer is open */
           var modal = document.getElementById('doc-viewer-modal');
-          if (modal && modal.classList.contains('open')) {
-            _abortCountdown();
-            return;
-          }
+          if (modal && modal.classList.contains('open')) return;
           var drawer = document.getElementById('nav-drawer');
-          if (drawer && drawer.classList.contains('open')) {
-            _abortCountdown();
-            return;
-          }
+          if (drawer && drawer.classList.contains('open')) return;
 
           /* Do not trigger if hovering over interactive elements */
           var hovered = document.querySelector('.card:hover, .writing-row:hover, input:focus, button:hover, a:hover');
           if (hovered) {
             _idleSeconds = 0;
-            _abortCountdown();
             return;
           }
 
@@ -8218,7 +8087,7 @@ Perhaps my solitary end was written there too.”
 
           if (_idleSeconds >= 5) {
             _idleSeconds = 0;
-            _triggerIdleCountdown();
+            _triggerIdleShuffle();
           }
         }, 1000);
       } catch (e) {
@@ -8570,17 +8439,17 @@ Perhaps my solitary end was written there too.”
     <button class="app-toast-close" onclick="closeAppToast()" aria-label="Close notification">&times;</button>
     <div class="app-toast-badge">
       <span class="app-toast-dot"></span>
-      <span>Android APK · JuristHub</span>
+      <span>Native Android APK · Google Play Internal Test</span>
     </div>
     <div class="app-toast-content">
       <div class="app-toast-icon">
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
         </svg>
       </div>
       <div>
-        <h4 class="app-toast-title">DJ LexFolio on Android</h4>
-        <p class="app-toast-desc">JuristHub native APK is live on Google Play Internal Test. High-speed, secure &amp; offline-ready.</p>
+        <h4 class="app-toast-title">DJ LexFolio on Android (JuristHub)</h4>
+        <p class="app-toast-desc">Try the core native APK version of DJ LexFolio, now available as JuristHub on Google Play. 100% safe, fast &amp; rigorously tested across devices!</p>
         <div class="app-toast-actions">
           <a class="app-toast-btn" href="https://play.google.com/apps/internaltest/4700310928148131542" target="_blank" rel="noopener noreferrer">
             Get On Google Play &#8599;
@@ -8589,30 +8458,6 @@ Perhaps my solitary end was written there too.”
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════════════════════
-       TOP-CENTER 3-SECOND IDLE COUNTDOWN HUD
-  ═══════════════════════════════════════════════════════════ -->
-  <div id="idle-countdown-hud" role="status" aria-live="assertive">
-    <div class="countdown-ring-wrap">
-      <span class="countdown-number" id="countdown-hud-val">3</span>
-    </div>
-    <div class="countdown-info">
-      <span class="countdown-overline">
-        <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#38bdf8;box-shadow:0 0 8px #38bdf8"></span>
-        Idle Anomaly Detected
-      </span>
-      <span class="countdown-action" id="countdown-hud-action">Shadow Jutsu · Initiating in 3s</span>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════════════════════
-       BOTTOM-RIGHT IDLE CHOREOGRAPHY TOAST NOTICE
-  ═══════════════════════════════════════════════════════════ -->
-  <div id="idle-shuffle-notice" aria-live="polite">
-    <span class="notice-icon">&#10022;</span>
-    <span class="notice-text">Shadow Jutsu · Clone Swap</span>
   </div>
 
   <noscript>
