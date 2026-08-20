@@ -45,113 +45,86 @@
    THEME TOKENS
 ═══════════════════════════════════════════════════════ */
     :root,
-    [data-theme="executive"] {
-      /* ── 1. EXECUTIVE PRO (Default Initial) — Ultra-clean modern midnight slate with maximum text readability ── */
-      --bg: #0A0E17;
-      --bg2: #101623;
-      --bg3: #162032;
-      --surface: #141D2E;
-      --surface2: #1E2B42;
-      --border: rgba(56, 189, 248, .16);
-      --border-hi: rgba(56, 189, 248, .48);
-      --text: #F8FAFC;
-      --text-2: #94A3B8;
-      --text-3: #64748B;
-      --gold: #38BDF8;
-      --gold-hi: #7DD3FC;
-      --gold-dim: #0284C7;
-      --ember: #F97316;
-      --teal: #14B8A6;
+    [data-theme="journal"] {
+      /* ── 1. JOURNAL EDITION (Default Initial) — Minimal, soft-toned academic law review / prestigious journal paper ── */
+      --bg: #FBF9F4;
+      --bg2: #F3EDE2;
+      --bg3: #E9E1D2;
+      --surface: #FFFFFF;
+      --surface2: #F7F3EB;
+      --border: rgba(140, 83, 27, .13);
+      --border-hi: rgba(140, 83, 27, .42);
+      --text: #1E1B18;
+      --text-2: #5C5449;
+      --text-3: #877B6D;
+      --gold: #8C531B;
+      --gold-hi: #AF6E28;
+      --gold-dim: #D1A775;
+      --ember: #9E3324;
+      --teal: #2C5E57;
       --f-display: 'Playfair Display', 'Georgia', serif;
       --f-serif2: 'Cormorant Garamond', 'Georgia', serif;
       --f-mono: 'IBM Plex Mono', 'Courier New', monospace;
       --f-sans: 'DM Sans', 'Segoe UI', sans-serif;
-      --grain-opacity: .028;
-      --glow-color: rgba(56, 189, 248, .15);
-      --hero-overlay: linear-gradient(135deg, rgba(10, 14, 23, .94) 0%, rgba(16, 22, 35, .75) 100%);
-      --scale-color: #38BDF8;
-      --scroll-track: #0A0E17;
-      --scroll-thumb: #38BDF8;
-      --cursor-glow: rgba(56, 189, 248, .4);
+      --grain-opacity: .022;
+      --glow-color: rgba(140, 83, 27, .09);
+      --hero-overlay: linear-gradient(135deg, rgba(251, 249, 244, .95) 0%, rgba(243, 237, 226, .82) 100%);
+      --scale-color: #8C531B;
+      --scroll-track: #FBF9F4;
+      --scroll-thumb: #8C531B;
+      --cursor-glow: rgba(140, 83, 27, .25);
     }
 
-    [data-theme="obsidian"] {
-      /* ── 2. OBSIDIAN VOID (1st Click) — Pitch black dark academia with purple-gold nebula luminescence ── */
-      --bg: #050507;
-      --bg2: #0B0B10;
-      --bg3: #12121A;
-      --surface: #151522;
-      --surface2: #1E1E30;
-      --border: rgba(168, 85, 247, .18);
-      --border-hi: rgba(168, 85, 247, .5);
-      --text: #F3EEFA;
-      --text-2: #A9A4C2;
-      --text-3: #716A94;
-      --gold: #C084FC;
-      --gold-hi: #E9D5FF;
-      --gold-dim: #7E22CE;
-      --ember: #EC4899;
-      --teal: #818CF8;
-      --grain-opacity: .035;
-      --glow-color: rgba(168, 85, 247, .16);
-      --hero-overlay: linear-gradient(135deg, rgba(5, 5, 7, .95) 0%, rgba(11, 11, 16, .78) 100%);
-      --scale-color: #C084FC;
-      --scroll-track: #050507;
-      --scroll-thumb: #C084FC;
-      --cursor-glow: rgba(192, 132, 252, .45);
-    }
-
-    [data-theme="gold"],
     [data-theme="dark"] {
-      /* ── 3. IMPERIAL GOLD (2nd Click) — Dark velvet walnut gold with gilded burnished reflections ── */
-      --bg: #0E0B06;
-      --bg2: #171209;
-      --bg3: #221B0D;
-      --surface: #261E0E;
-      --surface2: #342914;
-      --border: rgba(212, 175, 55, .22);
-      --border-hi: rgba(212, 175, 55, .6);
-      --text: #FFF9ED;
-      --text-2: #D4C3A3;
-      --text-3: #998765;
-      --gold: #D4AF37;
-      --gold-hi: #F5E5AB;
-      --gold-dim: #8C6D1F;
-      --ember: #E05A2B;
-      --teal: #E8C86A;
-      --grain-opacity: .032;
-      --glow-color: rgba(212, 175, 55, .2);
-      --hero-overlay: linear-gradient(135deg, rgba(14, 11, 6, .94) 0%, rgba(23, 18, 9, .76) 100%);
-      --scale-color: #D4AF37;
-      --scroll-track: #0E0B06;
-      --scroll-thumb: #D4AF37;
-      --cursor-glow: rgba(212, 175, 55, .45);
+      /* ── 2. ORIGINAL SIGNATURE DARK — Deep obsidian/nocturnal navy with warm royal gold accents ── */
+      --bg: #08090D;
+      --bg2: #0E1017;
+      --bg3: #141722;
+      --surface: #121520;
+      --surface2: #1D2133;
+      --border: rgba(201, 168, 76, .14);
+      --border-hi: rgba(201, 168, 76, .45);
+      --text: #E8E6E0;
+      --text-2: #9DA3AE;
+      --text-3: #5F6573;
+      --gold: #C9A84C;
+      --gold-hi: #E8CA75;
+      --gold-dim: #8B6F2B;
+      --ember: #C85A3A;
+      --teal: #3E8E8E;
+      --grain-opacity: .035;
+      --glow-color: rgba(201, 168, 76, .12);
+      --hero-overlay: linear-gradient(135deg, rgba(8, 9, 13, .92) 0%, rgba(14, 16, 23, .72) 100%);
+      --scale-color: #C9A84C;
+      --scroll-track: #08090D;
+      --scroll-thumb: #C9A84C;
+      --cursor-glow: rgba(201, 168, 76, .35);
     }
 
     [data-theme="light"] {
-      /* ── 4. AGED PARCHMENT (Fallback Light) — Fine manuscript parchment with rich sepia text ── */
-      --bg: #F5EFEB;
-      --bg2: #EBE3DD;
-      --bg3: #DDD3CA;
-      --surface: #E3D9D0;
-      --surface2: #D6CABA;
-      --border: rgba(100, 70, 20, .22);
-      --border-hi: rgba(100, 70, 20, .6);
-      --text: #18110A;
-      --text-2: #54412B;
-      --text-3: #7D6448;
-      --gold: #996515;
-      --gold-hi: #C08828;
-      --gold-dim: #C0A878;
-      --ember: #B83A18;
-      --teal: #1A6A6A;
-      --grain-opacity: .05;
-      --glow-color: rgba(153, 101, 21, .12);
-      --hero-overlay: linear-gradient(135deg, rgba(245, 239, 235, .9) 0%, rgba(235, 227, 221, .7) 100%);
-      --scale-color: #996515;
-      --scroll-track: #EBE3DD;
-      --scroll-thumb: #996515;
-      --cursor-glow: rgba(153, 101, 21, .3);
+      /* ── 3. ORIGINAL CLEAN LIGHT — Minimal modern ivory & silver light theme ── */
+      --bg: #F8F9FA;
+      --bg2: #EEF0F4;
+      --bg3: #E2E5EB;
+      --surface: #FFFFFF;
+      --surface2: #F0F2F6;
+      --border: rgba(0, 0, 0, .09);
+      --border-hi: rgba(139, 107, 26, .38);
+      --text: #18191F;
+      --text-2: #5A5D6B;
+      --text-3: #8C909F;
+      --gold: #8B6B1A;
+      --gold-hi: #B88E28;
+      --gold-dim: #5C4610;
+      --ember: #B84A28;
+      --teal: #287070;
+      --grain-opacity: .025;
+      --glow-color: rgba(139, 107, 26, .08);
+      --hero-overlay: linear-gradient(135deg, rgba(248, 249, 250, .94) 0%, rgba(238, 240, 244, .78) 100%);
+      --scale-color: #8B6B1A;
+      --scroll-track: #F8F9FA;
+      --scroll-thumb: #8B6B1A;
+      --cursor-glow: rgba(139, 107, 26, .25);
     }
 
     /* ═══════════════════════════════════════════════════════
@@ -4650,10 +4623,10 @@
         <path d="M38 20 Q42 22 46 20" class="scale-beam" stroke-width="1.2" />
       </svg>
 
-      <!-- Theme toggle (Cycles: Executive Pro ➔ Obsidian Void ➔ Imperial Gold) -->
-      <button id="theme-toggle" onclick="toggleTheme()" aria-label="Cycle theme palette (Executive, Obsidian, Imperial Gold)">
-        <span class="theme-icon" id="theme-icon">⚡</span>
-        <span id="theme-label">Executive Pro</span>
+      <!-- Theme toggle (Cycles: Journal Edition ➔ Dark Gold ➔ Clean Light) -->
+      <button id="theme-toggle" onclick="toggleTheme()" aria-label="Cycle theme palette (Journal Edition, Dark Gold, Clean Light)">
+        <span class="theme-icon" id="theme-icon">📖</span>
+        <span id="theme-label">Journal Edition</span>
       </button>
     </div>
 
@@ -4673,7 +4646,7 @@
       <li style="margin-top:16px; display:flex; align-items:center; gap:16px;">
         <button id="theme-toggle-m" onclick="toggleTheme()"
           style="color:var(--gold);font-family:var(--f-mono);font-size:.72rem;background:none;border:1px solid var(--border);padding:7px 16px;cursor:none;flex-shrink:0;">
-          <span id="theme-icon-m">⚡</span> Cycle Palette
+          <span id="theme-icon-m">📖</span> Cycle Palette
         </button>
         <!-- Mobile Cosmic Quake Trigger -->
         <svg id="quake-trigger-m" class="scale-svg" viewBox="0 0 48 32" fill="none" role="button" tabindex="0"
@@ -6581,10 +6554,10 @@ Perhaps my solitary end was written there too.”
     var DJ_PAGES = ['home', 'projects', 'writings', 'content', 'about', 'story'];
     var DJ_CURRENT = 'home';
     var DJ_TAG = 'all';
-    var THEME_SEQUENCE = ['executive', 'obsidian', 'gold'];
-    var THEME_ICONS = { 'executive': '⚡', 'obsidian': '✦', 'gold': '👑' };
-    var THEME_LABELS = { 'executive': 'Executive Pro', 'obsidian': 'Obsidian Void', 'gold': 'Imperial Gold' };
-    var DJ_THEME = 'executive';
+    var THEME_SEQUENCE = ['journal', 'dark', 'light'];
+    var THEME_ICONS = { 'journal': '📖', 'dark': '☽', 'light': '☀' };
+    var THEME_LABELS = { 'journal': 'Journal Edition', 'dark': 'Dark Gold', 'light': 'Clean Light' };
+    var DJ_THEME = 'journal';
     var DJ_VEIL_BUSY = false;
     var DJ_CURSOR_X = window.innerWidth * 0.5;
     var DJ_CURSOR_Y = window.innerHeight * 0.5;
@@ -6710,9 +6683,9 @@ Perhaps my solitary end was written there too.”
       var label = document.getElementById('theme-label');
       var iconM = document.getElementById('theme-icon-m');
 
-      if (icon) icon.textContent = THEME_ICONS[theme] || '⚡';
-      if (label) label.textContent = THEME_LABELS[theme] || 'Executive Pro';
-      if (iconM) iconM.textContent = THEME_ICONS[theme] || '⚡';
+      if (icon) icon.textContent = THEME_ICONS[theme] || '📖';
+      if (label) label.textContent = THEME_LABELS[theme] || 'Journal Edition';
+      if (iconM) iconM.textContent = THEME_ICONS[theme] || '📖';
     }
 
     function toggleTheme() {
@@ -7465,7 +7438,7 @@ Perhaps my solitary end was written there too.”
         if (saved && THEME_SEQUENCE.indexOf(saved) > -1) {
           DJ_THEME = saved;
         } else {
-          DJ_THEME = 'executive';
+          DJ_THEME = 'journal';
         }
         document.documentElement.setAttribute('data-theme', DJ_THEME);
         _updateThemeUI(DJ_THEME);
