@@ -940,21 +940,32 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 52px;
-      background: rgba(7, 7, 9, 0);
+      background: transparent;
       backdrop-filter: blur(0px);
       border-bottom: 1px solid transparent;
       transition: background .4s, backdrop-filter .4s, border-color .4s;
     }
 
     #nav.scrolled {
-      background: rgba(7, 7, 9, .88);
+      background: rgba(251, 249, 244, .95);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      border-bottom-color: var(--border);
+      border-bottom: 1px solid rgba(140, 83, 27, 0.18);
+    }
+
+    [data-theme="journal"] #nav.scrolled {
+      background: rgba(251, 249, 244, .95);
+      border-bottom: 1px solid rgba(140, 83, 27, 0.18);
+    }
+
+    [data-theme="dark"] #nav.scrolled {
+      background: rgba(8, 9, 13, .92);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.2);
     }
 
     [data-theme="light"] #nav.scrolled {
-      background: rgba(242, 236, 216, .88);
+      background: rgba(241, 245, 249, .95);
+      border-bottom: 1px solid rgba(37, 99, 235, 0.2);
     }
 
     /* Logo */
@@ -1183,17 +1194,29 @@
       left: 0;
       right: 0;
       z-index: 499;
-      background: rgba(7, 7, 9, .97);
+      background: rgba(251, 249, 244, .98);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(140, 83, 27, 0.2);
       padding: 28px 52px 36px;
       transform: translateY(-10px);
       opacity: 0;
       transition: transform .3s, opacity .3s;
     }
 
+    [data-theme="journal"] #nav-drawer {
+      background: rgba(251, 249, 244, .98);
+      border-bottom: 1px solid rgba(140, 83, 27, 0.2);
+    }
+
+    [data-theme="dark"] #nav-drawer {
+      background: rgba(8, 9, 13, .98);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+    }
+
     [data-theme="light"] #nav-drawer {
-      background: rgba(242, 236, 216, .97)
+      background: rgba(241, 245, 249, .98);
+      border-bottom: 1px solid rgba(37, 99, 235, 0.2);
     }
 
     #nav-drawer.open {
@@ -2399,13 +2422,13 @@
 
     /* Vintage Broken / Aged Parchment Paper Card */
     .verse-card {
-      background: #111015;
+      background: #FAF5EA;
       background-image: 
-        radial-gradient(circle at top left, rgba(201, 168, 76, 0.12) 0%, transparent 60%),
-        radial-gradient(circle at bottom right, rgba(139, 94, 26, 0.15) 0%, transparent 70%),
-        linear-gradient(145deg, rgba(24, 22, 32, 0.95) 0%, rgba(14, 13, 20, 0.98) 100%);
-      border: 1px solid rgba(201, 168, 76, 0.3);
-      border-radius: 4px;
+        radial-gradient(circle at top left, rgba(210, 180, 120, 0.25) 0%, transparent 65%),
+        linear-gradient(145deg, #FAF4E8 0%, #EDE1CA 60%, #E2D0B0 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='.035'/%3E%3C/svg%3E");
+      border: 1px solid rgba(140, 83, 27, 0.35);
+      border-radius: 6px;
       padding: 40px 34px;
       position: relative;
       transition: all .35s ease;
@@ -2413,10 +2436,10 @@
       flex-direction: column;
       justify-content: space-between;
       overflow: hidden;
+      color: #1E1B18;
       box-shadow: 
-        inset 0 0 45px rgba(0, 0, 0, 0.6),
-        inset 0 0 90px rgba(139, 94, 26, 0.08),
-        0 14px 36px rgba(0, 0, 0, 0.4);
+        inset 0 0 35px rgba(100, 70, 20, 0.12),
+        0 10px 28px rgba(80, 50, 15, 0.08);
     }
 
     .verse-card::before {
@@ -2429,48 +2452,61 @@
       background: linear-gradient(90deg, 
         transparent 0%, 
         var(--gold) 20%, 
-        rgba(201, 168, 76, 0.4) 40%, 
+        rgba(140, 83, 27, 0.4) 40%, 
         var(--gold) 70%, 
         transparent 100%);
       opacity: 0.8;
     }
 
-    .verse-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='.035'/%3E%3C/svg%3E");
-      pointer-events: none;
-      opacity: 0.85;
-    }
-
-    [data-theme="light"] .verse-card {
-      background: #F4ECE0;
-      background-image: 
-        radial-gradient(circle at top left, rgba(210, 180, 120, 0.3) 0%, transparent 65%),
-        radial-gradient(circle at bottom right, rgba(160, 120, 60, 0.25) 0%, transparent 60%),
-        linear-gradient(145deg, #FAF4E8 0%, #EDE1CA 60%, #E2D0B0 100%);
-      border: 1px solid rgba(139, 94, 26, 0.45);
-      color: #1c140c;
-      box-shadow: 
-        inset 0 0 35px rgba(100, 70, 20, 0.2),
-        inset 0 0 80px rgba(139, 94, 26, 0.1),
-        0 14px 36px rgba(80, 50, 15, 0.18);
-    }
-
     .verse-card:hover {
-      border-color: var(--border-hi);
+      border-color: var(--gold);
       transform: translateY(-4px);
+      box-shadow: 
+        inset 0 0 40px rgba(100, 70, 20, 0.16),
+        0 18px 45px rgba(80, 50, 15, 0.15);
+    }
+
+    /* Dark Mode Verse Card */
+    [data-theme="dark"] .verse-card {
+      background: #111015;
+      background-image: 
+        radial-gradient(circle at top left, rgba(201, 168, 76, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at bottom right, rgba(139, 94, 26, 0.15) 0%, transparent 70%),
+        linear-gradient(145deg, rgba(24, 22, 32, 0.95) 0%, rgba(14, 13, 20, 0.98) 100%);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      color: #E8E6E0;
+      box-shadow: 
+        inset 0 0 45px rgba(0, 0, 0, 0.6),
+        inset 0 0 90px rgba(139, 94, 26, 0.08),
+        0 14px 36px rgba(0, 0, 0, 0.4);
+    }
+    [data-theme="dark"] .verse-card::before {
+      background: linear-gradient(90deg, transparent 0%, var(--gold) 20%, rgba(201, 168, 76, 0.4) 40%, var(--gold) 70%, transparent 100%);
+    }
+    [data-theme="dark"] .verse-card:hover {
+      border-color: var(--border-hi);
       box-shadow: 
         inset 0 0 50px rgba(0, 0, 0, 0.7),
         0 20px 48px rgba(0, 0, 0, 0.5), 
         0 0 20px rgba(201, 168, 76, 0.2);
     }
 
+    /* Arctic Cobalt Light Mode Verse Card */
+    [data-theme="light"] .verse-card {
+      background: #FFFFFF;
+      background-image: 
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.05) 0%, transparent 65%),
+        linear-gradient(145deg, #FFFFFF 0%, #F8FAFC 60%, #F1F5F9 100%);
+      border: 1px solid rgba(37, 99, 235, 0.22);
+      color: #0F172A;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+    }
+    [data-theme="light"] .verse-card::before {
+      background: linear-gradient(90deg, transparent 0%, #2563EB 20%, rgba(37, 99, 235, 0.4) 40%, #2563EB 70%, transparent 100%);
+    }
     [data-theme="light"] .verse-card:hover {
-      box-shadow: 
-        inset 0 0 40px rgba(100, 70, 20, 0.25),
-        0 20px 48px rgba(80, 50, 15, 0.24);
+      border-color: #2563EB;
+      box-shadow: 0 18px 45px rgba(37, 99, 235, 0.15);
     }
 
     .verse-card-badge {
@@ -2531,7 +2567,7 @@
       font-style: italic;
       margin-top: 14px;
       padding-left: 20px;
-      border-left: 2.5px solid rgba(201, 168, 76, .35);
+      border-left: 2.5px solid var(--border-hi);
       z-index: 1;
       position: relative;
     }
@@ -2553,30 +2589,41 @@
 
     .philosophy-bottom-card {
       grid-column: 1 / -1;
+      background: #FAF3E6;
+      background-image: 
+        radial-gradient(circle at center, rgba(190, 150, 80, 0.2) 0%, transparent 70%),
+        linear-gradient(135deg, #FAF3E6 0%, #ECE0C6 100%);
+      border: 1px solid rgba(140, 83, 27, 0.38);
+      border-radius: 6px;
+      padding: 42px 38px;
+      text-align: center;
+      position: relative;
+      color: #1E1B18;
+      box-shadow: 
+        inset 0 0 30px rgba(100, 70, 20, 0.1),
+        0 12px 32px rgba(60, 40, 10, 0.08);
+    }
+
+    [data-theme="dark"] .philosophy-bottom-card {
       background: #121118;
       background-image: 
         radial-gradient(circle at center, rgba(201, 168, 76, 0.15) 0%, transparent 70%),
         linear-gradient(135deg, rgba(26, 24, 36, 0.95) 0%, rgba(12, 11, 18, 0.98) 100%);
       border: 1px solid var(--border-hi);
-      border-radius: 4px;
-      padding: 42px 38px;
-      text-align: center;
-      position: relative;
+      color: #E8E6E0;
       box-shadow: 
         inset 0 0 50px rgba(0, 0, 0, 0.6),
         0 16px 40px rgba(0, 0, 0, 0.45);
     }
 
     [data-theme="light"] .philosophy-bottom-card {
-      background: #F3EBDD;
+      background: #FFFFFF;
       background-image: 
-        radial-gradient(circle at center, rgba(190, 150, 80, 0.25) 0%, transparent 70%),
-        linear-gradient(135deg, #FAF3E6 0%, #ECE0C6 100%);
-      border: 1px solid rgba(139, 94, 26, 0.5);
-      color: #1A120B;
-      box-shadow: 
-        inset 0 0 40px rgba(100, 70, 20, 0.2),
-        0 16px 40px rgba(60, 40, 10, 0.15);
+        radial-gradient(circle at center, rgba(37, 99, 235, 0.06) 0%, transparent 70%),
+        linear-gradient(135deg, #FFFFFF 0%, #F1F5F9 100%);
+      border: 1px solid rgba(37, 99, 235, 0.25);
+      color: #0F172A;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.07);
     }
 
     .philosophy-bottom-quote {
@@ -2590,32 +2637,42 @@
     }
 
     /* ═══════════════════════════════════════════════════════
-       BOTTOM-LEFT JURISTHUB APP LAUNCH TOAST
+       BOTTOM-LEFT JURISTHUB APP LAUNCH TOAST (COMPACT POPUP)
     ═══════════════════════════════════════════════════════ */
     #app-launch-toast {
       position: fixed;
-      bottom: 24px;
-      left: 24px;
+      bottom: 20px;
+      left: 20px;
       z-index: 1500;
-      max-width: 410px;
-      width: calc(100vw - 48px);
-      background: rgba(14, 14, 22, 0.94);
+      width: 320px;
+      max-width: calc(100vw - 40px);
+      background: rgba(251, 249, 244, 0.97);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--border-hi);
-      border-radius: 6px;
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 24px rgba(201, 168, 76, 0.18);
-      padding: 20px 22px;
-      transform: translateY(120%) scale(0.95);
+      border: 1px solid rgba(140, 83, 27, 0.35);
+      border-radius: 8px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16), 0 0 20px rgba(140, 83, 27, 0.12);
+      padding: 12px 14px;
+      transform: translateY(140%) scale(0.92);
       opacity: 0;
       visibility: hidden;
-      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, visibility 0.4s ease;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.3s ease;
       will-change: transform, opacity;
+      color: #1E1B18;
+    }
+
+    [data-theme="dark"] #app-launch-toast {
+      background: rgba(14, 16, 23, 0.96);
+      border-color: rgba(201, 168, 76, 0.35);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 20px rgba(201, 168, 76, 0.18);
+      color: #E8E6E0;
     }
 
     [data-theme="light"] #app-launch-toast {
-      background: rgba(244, 235, 208, 0.96);
-      box-shadow: 0 16px 48px rgba(60, 40, 10, 0.25), 0 0 24px rgba(139, 94, 26, 0.2);
+      background: rgba(255, 255, 255, 0.97);
+      border-color: rgba(37, 99, 235, 0.25);
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12), 0 0 20px rgba(37, 99, 235, 0.12);
+      color: #0F172A;
     }
 
     #app-launch-toast.show {
@@ -2626,9 +2683,9 @@
 
     .app-toast-close {
       position: absolute;
-      top: 10px;
-      right: 12px;
-      font-size: 1.25rem;
+      top: 8px;
+      right: 8px;
+      font-size: 1rem;
       line-height: 1;
       color: var(--text-3);
       cursor: pointer;
@@ -2645,40 +2702,36 @@
     .app-toast-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       font-family: var(--f-mono);
-      font-size: 0.58rem;
+      font-size: 0.54rem;
       color: var(--gold);
-      letter-spacing: 0.18em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
+      font-weight: 600;
     }
 
     .app-toast-dot {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
       background: #10B981;
-      box-shadow: 0 0 8px #10B981;
+      box-shadow: 0 0 6px #10B981;
       animation: pulse-dot 2s infinite;
-    }
-
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
     }
 
     .app-toast-content {
       display: flex;
-      gap: 14px;
+      gap: 10px;
       align-items: flex-start;
     }
 
     .app-toast-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, rgba(201, 168, 76, 0.2), rgba(201, 168, 76, 0.05));
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, rgba(140, 83, 27, 0.15), rgba(140, 83, 27, 0.05));
       border: 1px solid var(--border-hi);
       display: flex;
       align-items: center;
@@ -2687,57 +2740,75 @@
       flex-shrink: 0;
     }
 
+    [data-theme="dark"] .app-toast-icon {
+      background: linear-gradient(135deg, rgba(201, 168, 76, 0.2), rgba(201, 168, 76, 0.05));
+    }
+
+    [data-theme="light"] .app-toast-icon {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(37, 99, 235, 0.04));
+      color: #2563EB;
+    }
+
     .app-toast-title {
       font-family: var(--f-display);
-      font-size: 1.05rem;
+      font-size: 0.88rem;
       font-weight: 700;
       color: var(--text);
-      line-height: 1.25;
-      margin-bottom: 6px;
+      line-height: 1.2;
+      margin-bottom: 3px;
     }
 
     .app-toast-desc {
       font-family: var(--f-sans);
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       color: var(--text-2);
-      line-height: 1.55;
-      margin-bottom: 12px;
+      line-height: 1.4;
+      margin-bottom: 8px;
     }
 
     .app-toast-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .app-toast-btn {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-dim));
-      color: #060608 !important;
+      gap: 4px;
+      background: var(--gold);
+      color: #FFFFFF !important;
       font-family: var(--f-sans);
       font-weight: 600;
-      font-size: 0.75rem;
-      padding: 7px 14px;
-      border-radius: 4px;
-      transition: all 0.25s ease;
-      box-shadow: 0 2px 10px rgba(201, 168, 76, 0.3);
+      font-size: 0.68rem;
+      padding: 5px 10px;
+      border-radius: 3px;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    [data-theme="dark"] .app-toast-btn {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+      color: #060608 !important;
     }
 
     .app-toast-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(201, 168, 76, 0.5);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
     }
 
     .app-toast-dismiss {
       font-family: var(--f-mono);
-      font-size: 0.68rem;
+      font-size: 0.62rem;
       color: var(--text-3);
       background: none;
       border: none;
       cursor: pointer;
       transition: color 0.2s;
+    }
+
+    .app-toast-dismiss:hover {
+      color: var(--gold);
     }
 
     /* ═══════════════════════════════════════════════════════
@@ -3917,67 +3988,104 @@
     }
 
     /* ═══════════════════════════════════════════════════════
-   LIGHT MODE EXTRAS — paper texture enhancements
-═══════════════════════════════════════════════════════ */
+       THEME SPECIFIC OVERRIDES (JOURNAL vs ARCTIC COBALT)
+    ═══════════════════════════════════════════════════════ */
+    /* ── JOURNAL EDITION OVERRIDES ── */
+    [data-theme="journal"] .card {
+      background: #FAF6EE;
+      border-color: rgba(140, 83, 27, .22);
+    }
+    [data-theme="journal"] .card:hover {
+      background: #FAF3E6;
+      border-color: rgba(140, 83, 27, .45);
+    }
+    [data-theme="journal"] .pillar {
+      background: #FAF6EE;
+      border-color: rgba(140, 83, 27, .22);
+    }
+    [data-theme="journal"] blockquote.pull {
+      background: #FAF3E6;
+    }
+    [data-theme="journal"] .stat-box {
+      background: #FAF6EE;
+      border-color: rgba(140, 83, 27, .22);
+    }
+    [data-theme="journal"] .contact-box {
+      background: #FAF6EE;
+      border-color: rgba(140, 83, 27, .25);
+    }
+    [data-theme="journal"] .now-card {
+      background: #FAF6EE;
+    }
+    [data-theme="journal"] #writings-search {
+      background: #FFFFFF;
+      border-color: rgba(140, 83, 27, .28);
+      color: #1E1B18;
+    }
+    [data-theme="journal"] .btn-primary {
+      background: linear-gradient(135deg, #8C531B, #5A3510);
+      box-shadow: 0 4px 20px rgba(140, 83, 27, .25);
+      color: #FAF6EE;
+    }
+    [data-theme="journal"] .btn-secondary {
+      color: #1E1B18;
+      border-color: rgba(140, 83, 27, .35);
+    }
+    [data-theme="journal"] .site-footer {
+      background: #FAF6EE;
+      border-top-color: rgba(140, 83, 27, .2);
+    }
+    [data-theme="journal"] ::-webkit-scrollbar-thumb {
+      background: #8C531B;
+    }
+
+    /* ── ARCTIC COBALT OVERRIDES ── */
     [data-theme="light"] .card {
-      background: #EBE4CE;
-      border-color: rgba(100, 70, 20, .18)
+      background: #FFFFFF;
+      border-color: rgba(37, 99, 235, .16);
     }
-
     [data-theme="light"] .card:hover {
-      background: #E4DCC4
+      background: #F8FAFC;
+      border-color: rgba(37, 99, 235, .45);
     }
-
     [data-theme="light"] .pillar {
-      background: #EBE4CE
+      background: #FFFFFF;
+      border-color: rgba(37, 99, 235, .16);
     }
-
     [data-theme="light"] blockquote.pull {
-      background: #E8E0CA
+      background: #F8FAFC;
     }
-
     [data-theme="light"] .stat-box {
-      background: #EBE4CE
+      background: #FFFFFF;
+      border-color: rgba(37, 99, 235, .16);
     }
-
     [data-theme="light"] .contact-box {
-      background: #EBE4CE
+      background: #FFFFFF;
+      border-color: rgba(37, 99, 235, .2);
     }
-
     [data-theme="light"] .now-card {
-      background: #EBE4CE
+      background: #FFFFFF;
     }
-
     [data-theme="light"] #writings-search {
-      background: #E8E0CA
+      background: #FFFFFF;
+      border-color: rgba(37, 99, 235, .25);
+      color: #0F172A;
     }
-
     [data-theme="light"] .btn-primary {
-      background: linear-gradient(135deg, #8B5E1A, #6A4610);
-      box-shadow: 0 4px 24px rgba(139, 94, 26, .25);
-      color: #F2ECD8;
+      background: linear-gradient(135deg, #2563EB, #1D4ED8);
+      box-shadow: 0 4px 20px rgba(37, 99, 235, .25);
+      color: #FFFFFF;
     }
-
     [data-theme="light"] .btn-secondary {
-      color: #1E1610
+      color: #0F172A;
+      border-color: rgba(37, 99, 235, .3);
     }
-
-    [data-theme="light"] .shimmer {
-      background: linear-gradient(90deg, #8B5E1A, #C08828, #8B5E1A, #6A4610);
-      background-size: 250% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: shimmer 4s linear infinite;
-      font-style: italic;
-    }
-
     [data-theme="light"] .site-footer {
-      background: #DDD5BB
+      background: #F1F5F9;
+      border-top-color: rgba(37, 99, 235, .15);
     }
-
     [data-theme="light"] ::-webkit-scrollbar-thumb {
-      background: #8B5E1A
+      background: #2563EB;
     }
 
     /* ═══════════════════════════════════════════════════════
@@ -8438,17 +8546,17 @@ Perhaps my solitary end was written there too.”
     <button class="app-toast-close" onclick="closeAppToast()" aria-label="Close notification">&times;</button>
     <div class="app-toast-badge">
       <span class="app-toast-dot"></span>
-      <span>Native Android APK · Google Play Internal Test</span>
+      <span>Android APK · JuristHub</span>
     </div>
     <div class="app-toast-content">
       <div class="app-toast-icon">
-        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
         </svg>
       </div>
       <div>
-        <h4 class="app-toast-title">DJ LexFolio on Android (JuristHub)</h4>
-        <p class="app-toast-desc">Try the core native APK version of DJ LexFolio, now available as JuristHub on Google Play. 100% safe, fast &amp; rigorously tested across devices!</p>
+        <h4 class="app-toast-title">DJ LexFolio on Android</h4>
+        <p class="app-toast-desc">JuristHub native APK is live on Google Play Internal Test. High-speed, secure &amp; offline-ready.</p>
         <div class="app-toast-actions">
           <a class="app-toast-btn" href="https://play.google.com/apps/internaltest/4700310928148131542" target="_blank" rel="noopener noreferrer">
             Get On Google Play &#8599;
