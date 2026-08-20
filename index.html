@@ -102,29 +102,29 @@
     }
 
     [data-theme="light"] {
-      /* ── 3. ORIGINAL CLEAN LIGHT — Minimal modern ivory & silver light theme ── */
-      --bg: #F8F9FA;
-      --bg2: #EEF0F4;
-      --bg3: #E2E5EB;
+      /* ── 3. ARCTIC MODERN STUDIO — Ultra-crisp, high-tech diamond silver with electric cobalt sapphire accents ── */
+      --bg: #F1F5F9;
+      --bg2: #E2E8F0;
+      --bg3: #CBD5E1;
       --surface: #FFFFFF;
-      --surface2: #F0F2F6;
-      --border: rgba(0, 0, 0, .09);
-      --border-hi: rgba(139, 107, 26, .38);
-      --text: #18191F;
-      --text-2: #5A5D6B;
-      --text-3: #8C909F;
-      --gold: #8B6B1A;
-      --gold-hi: #B88E28;
-      --gold-dim: #5C4610;
-      --ember: #B84A28;
-      --teal: #287070;
-      --grain-opacity: .025;
-      --glow-color: rgba(139, 107, 26, .08);
-      --hero-overlay: linear-gradient(135deg, rgba(248, 249, 250, .94) 0%, rgba(238, 240, 244, .78) 100%);
-      --scale-color: #8B6B1A;
-      --scroll-track: #F8F9FA;
-      --scroll-thumb: #8B6B1A;
-      --cursor-glow: rgba(139, 107, 26, .25);
+      --surface2: #F8FAFC;
+      --border: rgba(37, 99, 235, .15);
+      --border-hi: rgba(37, 99, 235, .55);
+      --text: #0F172A;
+      --text-2: #334155;
+      --text-3: #64748B;
+      --gold: #2563EB;
+      --gold-hi: #3B82F6;
+      --gold-dim: #93C5FD;
+      --ember: #EF4444;
+      --teal: #06B6D4;
+      --grain-opacity: .020;
+      --glow-color: rgba(37, 99, 235, .14);
+      --hero-overlay: linear-gradient(135deg, rgba(241, 245, 249, .96) 0%, rgba(226, 232, 240, .85) 100%);
+      --scale-color: #2563EB;
+      --scroll-track: #F1F5F9;
+      --scroll-thumb: #2563EB;
+      --cursor-glow: rgba(37, 99, 235, .35);
     }
 
     /* ═══════════════════════════════════════════════════════
@@ -4542,20 +4542,241 @@
       }
     }
 
-    @media(max-width:520px) {
-      .philosophy-quote {
-        font-size: 1.05rem
-      }
+    /* ═══════════════════════════════════════════════════════
+       5-SECOND IDLE PROJECT SHUFFLE ANOMALY & HUD STYLES
+    ═══════════════════════════════════════════════════════ */
+    .card.idle-animating {
+      transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease, filter 0.5s ease;
+      will-change: transform, opacity, filter;
+      z-index: 100 !important;
+      pointer-events: none !important;
+    }
 
-      .footer-bottom {
-        flex-direction: column;
-        align-items: flex-start
-      }
+    .jutsu-smoke-vanish {
+      animation: jutsuVanish 0.55s ease-in forwards !important;
+    }
+
+    .jutsu-smoke-appear {
+      animation: jutsuAppear 0.95s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+    }
+
+    @keyframes jutsuVanish {
+      0% { transform: scale(1) rotate(0deg); filter: blur(0px) brightness(1); opacity: 1; }
+      50% { transform: scale(1.15) rotate(4deg); filter: blur(8px) brightness(2.8); opacity: 0.8; }
+      100% { transform: scale(0.08) rotate(-18deg); filter: blur(25px) brightness(4); opacity: 0; }
+    }
+
+    @keyframes jutsuAppear {
+      0% { transform: scale(0.08) rotate(18deg); filter: blur(25px) brightness(4); opacity: 0; }
+      60% { transform: scale(1.12) rotate(-4deg); filter: blur(4px) brightness(2); opacity: 0.95; }
+      100% { transform: scale(1) rotate(0deg); filter: blur(0px) brightness(1); opacity: 1; }
+    }
+
+    .walk-behind {
+      transition: transform 1.3s cubic-bezier(0.25, 1, 0.5, 1), filter 1.3s ease !important;
+      filter: brightness(0.65) blur(2px) !important;
+      z-index: 10 !important;
+    }
+
+    .walk-front {
+      transition: transform 1.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 1.3s ease !important;
+      z-index: 160 !important;
+      box-shadow: 0 35px 80px rgba(0,0,0,0.65), 0 0 40px var(--gold) !important;
+    }
+
+    .walk-settle {
+      animation: walkSettle 0.65s ease-out forwards !important;
+    }
+
+    @keyframes walkSettle {
+      0% { transform: scale(0.94); }
+      60% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .castling-handshake {
+      animation: handshakeVibrate 0.65s ease-in-out infinite !important;
+    }
+
+    @keyframes handshakeVibrate {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      20% { transform: translate(-5px, 4px) rotate(-2deg); }
+      40% { transform: translate(5px, -4px) rotate(2deg); }
+      60% { transform: translate(-4px, -3px) rotate(-1.5deg); }
+      80% { transform: translate(4px, 3px) rotate(1.5deg); }
+    }
+
+    .castling-king-jump {
+      transition: transform 1.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+      z-index: 170 !important;
+    }
+
+    .castling-rook-slide {
+      transition: transform 1.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      z-index: 90 !important;
+    }
+
+    .vortex-dissolve {
+      animation: vortexSpinDissolve 1.45s cubic-bezier(0.55, 0, 1, 0.45) forwards !important;
+    }
+
+    .vortex-appear {
+      animation: vortexSpinAppear 1.2s cubic-bezier(0, 0.55, 0.45, 1) forwards !important;
+    }
+
+    @keyframes vortexSpinDissolve {
+      0% { transform: perspective(1000px) rotate(0deg) scale(1); opacity: 1; filter: blur(0); }
+      50% { transform: perspective(1000px) rotate(540deg) scale(0.5); opacity: 0.6; filter: blur(10px); }
+      100% { transform: perspective(1000px) rotate(1080deg) scale(0); opacity: 0; filter: blur(30px); }
+    }
+
+    @keyframes vortexSpinAppear {
+      0% { transform: perspective(1000px) rotate(-1080deg) scale(0); opacity: 0; filter: blur(30px); }
+      60% { transform: perspective(1000px) rotate(-180deg) scale(1.1); opacity: 0.85; filter: blur(5px); }
+      100% { transform: perspective(1000px) rotate(0deg) scale(1); opacity: 1; filter: blur(0); }
+    }
+
+    .quantum-warp {
+      animation: quantumSingularityWarp 0.8s ease-in-out forwards !important;
+    }
+
+    @keyframes quantumSingularityWarp {
+      0% { transform: scale(1) skew(0deg); opacity: 1; }
+      35% { transform: scale(1.25, 0.35) skewX(28deg); filter: hue-rotate(180deg) brightness(2.5); }
+      65% { transform: scale(0.28, 1.45) skewY(-28deg); opacity: 0.2; filter: hue-rotate(360deg); }
+      100% { transform: scale(1) skew(0deg); opacity: 1; }
+    }
+
+    /* ─── HUD & FLOATING NOTICES ─── */
+    #idle-countdown-hud {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9998;
+      background: rgba(15, 17, 26, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-hi);
+      border-radius: 12px;
+      padding: 14px 20px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 30px rgba(201, 168, 76, 0.25);
+      transform: translateY(120%) scale(0.9);
+      opacity: 0;
+      visibility: hidden;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease, visibility 0.3s ease;
+      pointer-events: none;
+    }
+
+    [data-theme="journal"] #idle-countdown-hud,
+    [data-theme="light"] #idle-countdown-hud {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15), 0 0 25px rgba(140, 83, 27, 0.18);
+    }
+
+    #idle-countdown-hud.active {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .hud-badge {
+      font-family: var(--f-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .hud-main {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hud-num {
+      font-family: var(--f-display);
+      font-size: 1.75rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      min-width: 26px;
+      text-align: center;
+    }
+
+    .hud-text {
+      font-family: var(--f-sans);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    #idle-shuffle-notice {
+      position: fixed;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-30px);
+      z-index: 9998;
+      background: rgba(15, 17, 26, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-hi);
+      border-radius: 30px;
+      padding: 8px 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.5), 0 0 20px var(--glow-color);
+      opacity: 0;
+      visibility: hidden;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease, visibility 0.3s ease;
+      pointer-events: none;
+    }
+
+    [data-theme="journal"] #idle-shuffle-notice,
+    [data-theme="light"] #idle-shuffle-notice {
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.12), 0 0 20px var(--glow-color);
+    }
+
+    #idle-shuffle-notice.visible {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #idle-shuffle-notice .notice-icon {
+      font-size: 1rem;
+    }
+
+    #idle-shuffle-notice .notice-text {
+      font-family: var(--f-mono);
+      font-size: 0.72rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      font-weight: 600;
     }
   </style>
 </head>
 
 <body>
+
+  <!-- Idle Shuffle Anomaly HUD & Notice Overlay -->
+  <div id="idle-countdown-hud" aria-hidden="true">
+    <div class="hud-inner">
+      <span class="hud-badge">⚡ ANOMALY DETECTED</span>
+      <div class="hud-main">
+        <span id="countdown-hud-val" class="hud-num">3</span>
+        <span id="countdown-hud-action" class="hud-text">3-Pair Synchronized Shuffle in 3s</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="idle-shuffle-notice" aria-hidden="true">
+    <span class="notice-icon">🌀</span>
+    <span class="notice-text">3-Pair Project Swap Initiated</span>
+  </div>
 
   <!-- Custom cursor -->
   <div id="cursor-dot"></div>
@@ -6555,8 +6776,8 @@ Perhaps my solitary end was written there too.”
     var DJ_CURRENT = 'home';
     var DJ_TAG = 'all';
     var THEME_SEQUENCE = ['journal', 'dark', 'light'];
-    var THEME_ICONS = { 'journal': '📖', 'dark': '☽', 'light': '☀' };
-    var THEME_LABELS = { 'journal': 'Journal Edition', 'dark': 'Dark Gold', 'light': 'Clean Light' };
+    var THEME_ICONS = { 'journal': '📖', 'dark': '☽', 'light': '💎' };
+    var THEME_LABELS = { 'journal': 'Journal Edition', 'dark': 'Dark Gold', 'light': 'Arctic Cobalt' };
     var DJ_THEME = 'journal';
     var DJ_VEIL_BUSY = false;
     var DJ_CURSOR_X = window.innerWidth * 0.5;
@@ -7474,7 +7695,7 @@ Perhaps my solitary end was written there too.”
        NEW FUNCTIONS — PHASE 2 & 3 & IDLE SHUFFLE ENGINE
     ═══════════════════════════════════════════════════════════════════ */
 
-    /* ─── 5-SECOND IDLE PROJECT SHUFFLING ENGINE (3X STRENGTH & 3S HUD) ─── */
+    /* ─── 5-SECOND IDLE PROJECT SHUFFLING ENGINE (3X TRIPLE PAIR SWAP & 3S HUD) ─── */
     var _idleSeconds = 0;
     var _idleChoreographyIndex = 0;
     var _isProjectShuffling = false;
@@ -7482,11 +7703,11 @@ Perhaps my solitary end was written there too.”
     var _countdownTimer = null;
 
     var _CHOREOGRAPHY_NAMES = [
-      'Shadow Jutsu · Clone Swap',
-      '3D Depth Corridor Glide',
-      'Chess Castling · Handshake Swap',
-      'Vortex Spiral of Confusion',
-      'Quantum Singularity · Gravity Inversion'
+      'Shadow Jutsu · 3-Pair Clone Burst',
+      '3D Depth Corridor · 3-Pair Synchronized Glide',
+      'Chess Castling · 3-Pair Handshake Swap',
+      'Vortex Matrix · 3-Round Whirlwind',
+      'Quantum Singularity · 3-Pair Gravity Inversion'
     ];
 
     function _showIdleNotice(text) {
@@ -7498,7 +7719,7 @@ Perhaps my solitary end was written there too.”
         n.classList.add('visible');
         setTimeout(function () {
           n.classList.remove('visible');
-        }, 3200);
+        }, 3600);
       } catch (e) { }
     }
 
@@ -7518,11 +7739,11 @@ Perhaps my solitary end was written there too.”
       var hud = document.getElementById('idle-countdown-hud');
       var valEl = document.getElementById('countdown-hud-val');
       var actionEl = document.getElementById('countdown-hud-action');
-      var modeName = _CHOREOGRAPHY_NAMES[mode] || 'Dynamic Project Shuffle';
+      var modeName = _CHOREOGRAPHY_NAMES[mode] || '3-Pair Project Swap Anomaly';
 
       if (hud && valEl && actionEl) {
         valEl.textContent = '3';
-        actionEl.textContent = modeName + ' · Initiating in 3s';
+        actionEl.textContent = modeName + ' · 3s';
         hud.classList.add('active');
       }
 
@@ -7531,12 +7752,12 @@ Perhaps my solitary end was written there too.”
         count--;
         if (count > 0) {
           if (valEl) valEl.textContent = count;
-          if (actionEl) actionEl.textContent = modeName + ' · Initiating in ' + count + 's';
+          if (actionEl) actionEl.textContent = modeName + ' · ' + count + 's';
         } else {
           clearInterval(_countdownTimer);
           _countdownTimer = null;
-          if (valEl) valEl.textContent = '\u26A1';
-          if (actionEl) actionEl.textContent = modeName + ' · UNLEASHING NOW!';
+          if (valEl) valEl.textContent = '⚡';
+          if (actionEl) actionEl.textContent = modeName + ' · 3X PAIRS UNLEASHED!';
           setTimeout(function () {
             if (hud) hud.classList.remove('active');
             _isCountdownActive = false;
@@ -7555,6 +7776,24 @@ Perhaps my solitary end was written there too.”
         parent.insertBefore(nodeA, nodeB);
         parent.insertBefore(nodeB, nextA);
       } catch (e) { }
+    }
+
+    function _pick3CardPairs(cards) {
+      var pool = cards.slice();
+      for (var i = pool.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = pool[i];
+        pool[i] = pool[j];
+        pool[j] = temp;
+      }
+      var pairs = [];
+      while (pool.length >= 2 && pairs.length < 3) {
+        pairs.push([pool.pop(), pool.pop()]);
+      }
+      if (pairs.length === 0 && cards.length >= 2) {
+        pairs.push([cards[0], cards[1]]);
+      }
+      return pairs;
     }
 
     function _getActiveProjectGrid() {
@@ -7596,27 +7835,27 @@ Perhaps my solitary end was written there too.”
       _isProjectShuffling = true;
 
       switch (mode) {
-        /* 1. SHADOW JUTSU (3X STRENGTH) */
+        /* 1. SHADOW JUTSU (3-PAIR CLONE BURST) */
         case 0:
           _choreographyShadowJutsu(grid, visibleCards);
           break;
 
-        /* 2. WALKING BEHIND EACH OTHER (3X STRENGTH) */
+        /* 2. WALKING BEHIND EACH OTHER (3-PAIR 3D GLIDE) */
         case 1:
           _choreographyWalkingDepth(grid, visibleCards);
           break;
 
-        /* 3. CHESS CASTLING & HANDSHAKE VIBRATION (3X STRENGTH) */
+        /* 3. CHESS CASTLING & HANDSHAKE (3-PAIR SYNC SWAP) */
         case 2:
           _choreographyChessCastling(grid, visibleCards);
           break;
 
-        /* 4. VORTEX SPIRAL OF CONFUSION (3X STRENGTH) */
+        /* 4. VORTEX SPIRAL OF CONFUSION (FULL MATRIX 3-ROUND WHIRLWIND) */
         case 3:
           _choreographyVortexConfusion(grid, visibleCards);
           break;
 
-        /* 5. ANTIGRAVITY QUANTUM RIFT (3X STRENGTH) */
+        /* 5. ANTIGRAVITY QUANTUM RIFT (3-PAIR GRAVITY INVERSION) */
         case 4:
         default:
           _choreographyQuantumRift(grid, visibleCards);
@@ -7624,58 +7863,64 @@ Perhaps my solitary end was written there too.”
       }
     }
 
-    /* Choreography 1: Shadow Jutsu (3X Strength) */
+    /* Choreography 1: Shadow Jutsu (3 Simultaneous Pairs) */
     function _choreographyShadowJutsu(grid, cards) {
-      var idx1 = Math.floor(Math.random() * cards.length);
-      var idx2 = (idx1 + 1 + Math.floor(Math.random() * (cards.length - 1))) % cards.length;
-      var cardA = cards[idx1];
-      var cardB = cards[idx2];
+      var pairs = _pick3CardPairs(cards);
+      _showIdleNotice('Shadow Jutsu · 3-Pair Simultaneous Clone Burst');
 
-      _showIdleNotice('Shadow Jutsu · 3X Clone Burst');
-
-      cardA.classList.add('idle-animating', 'jutsu-smoke-vanish');
-      cardB.classList.add('idle-animating', 'jutsu-smoke-vanish');
+      pairs.forEach(function (pair) {
+        pair[0].classList.add('idle-animating', 'jutsu-smoke-vanish');
+        pair[1].classList.add('idle-animating', 'jutsu-smoke-vanish');
+      });
 
       setTimeout(function () {
-        _swapDOMNodes(cardA, cardB);
-        cardA.classList.remove('jutsu-smoke-vanish');
-        cardB.classList.remove('jutsu-smoke-vanish');
-        cardA.classList.add('jutsu-smoke-appear');
-        cardB.classList.add('jutsu-smoke-appear');
+        pairs.forEach(function (pair) {
+          _swapDOMNodes(pair[0], pair[1]);
+          pair[0].classList.remove('jutsu-smoke-vanish');
+          pair[1].classList.remove('jutsu-smoke-vanish');
+          pair[0].classList.add('jutsu-smoke-appear');
+          pair[1].classList.add('jutsu-smoke-appear');
+        });
 
         setTimeout(function () {
-          cardA.classList.remove('jutsu-smoke-appear', 'idle-animating');
-          cardB.classList.remove('jutsu-smoke-appear', 'idle-animating');
+          pairs.forEach(function (pair) {
+            pair[0].classList.remove('jutsu-smoke-appear', 'idle-animating');
+            pair[1].classList.remove('jutsu-smoke-appear', 'idle-animating');
+          });
           _isProjectShuffling = false;
         }, 950);
       }, 550);
     }
 
-    /* Choreography 2: Walking Behind Each Other (3X Strength) */
+    /* Choreography 2: Walking Depth Corridor (3 Simultaneous Pairs) */
     function _choreographyWalkingDepth(grid, cards) {
-      var idx1 = Math.floor(Math.random() * cards.length);
-      var idx2 = (idx1 + 1) % cards.length;
-      var cardA = cards[idx1];
-      var cardB = cards[idx2];
+      var pairs = _pick3CardPairs(cards);
+      _showIdleNotice('3D Depth Corridor · 3-Pair Synchronized Glide');
 
-      _showIdleNotice('3D Depth Shuffle · 3X Corridor Glide');
+      pairs.forEach(function (pair) {
+        var cardA = pair[0];
+        var cardB = pair[1];
+        var rectA = cardA.getBoundingClientRect();
+        var rectB = cardB.getBoundingClientRect();
 
-      var rectA = cardA.getBoundingClientRect();
-      var rectB = cardB.getBoundingClientRect();
+        var dxA = rectB.left - rectA.left;
+        var dyA = rectB.top - rectA.top;
+        var dxB = rectA.left - rectB.left;
+        var dyB = rectA.top - rectB.top;
 
-      var dxA = rectB.left - rectA.left;
-      var dyA = rectB.top - rectA.top;
-      var dxB = rectA.left - rectB.left;
-      var dyB = rectA.top - rectB.top;
+        cardA.classList.add('idle-animating', 'walk-behind');
+        cardB.classList.add('idle-animating', 'walk-front');
 
-      cardA.classList.add('idle-animating', 'walk-behind');
-      cardB.classList.add('idle-animating', 'walk-front');
+        requestAnimationFrame(function () {
+          cardA.style.transform = 'perspective(1200px) translate3d(' + dxA + 'px, ' + dyA + 'px, -340px) rotateY(-24deg) scale(0.7)';
+          cardB.style.transform = 'perspective(1200px) translate3d(' + dxB + 'px, ' + dyB + 'px, 180px) rotateY(20deg) scale(1.2)';
+        });
+      });
 
-      requestAnimationFrame(function () {
-        cardA.style.transform = 'perspective(1200px) translate3d(' + dxA + 'px, ' + dyA + 'px, -320px) rotateY(-22deg) scale(0.72)';
-        cardB.style.transform = 'perspective(1200px) translate3d(' + dxB + 'px, ' + dyB + 'px, 160px) rotateY(18deg) scale(1.18)';
-
-        setTimeout(function () {
+      setTimeout(function () {
+        pairs.forEach(function (pair) {
+          var cardA = pair[0];
+          var cardB = pair[1];
           _swapDOMNodes(cardA, cardB);
           cardA.style.transform = '';
           cardB.style.transform = '';
@@ -7683,65 +7928,71 @@ Perhaps my solitary end was written there too.”
           cardB.classList.remove('walk-front');
           cardA.classList.add('walk-settle');
           cardB.classList.add('walk-settle');
-
-          setTimeout(function () {
-            cardA.classList.remove('walk-settle', 'idle-animating');
-            cardB.classList.remove('walk-settle', 'idle-animating');
-            _isProjectShuffling = false;
-          }, 650);
-        }, 1300);
-      });
-    }
-
-    /* Choreography 3: Chess Castling & Handshake (3X Strength) */
-    function _choreographyChessCastling(grid, cards) {
-      var idx1 = Math.floor(Math.random() * cards.length);
-      var idx2 = (idx1 + 1 + Math.floor(Math.random() * (cards.length - 1))) % cards.length;
-      var cardK = cards[idx1];
-      var cardR = cards[idx2];
-
-      _showIdleNotice('Chess Castling · 3X Handshake Swap');
-
-      cardK.classList.add('idle-animating', 'castling-handshake');
-      cardR.classList.add('idle-animating', 'castling-handshake');
-
-      setTimeout(function () {
-        cardK.classList.remove('castling-handshake');
-        cardR.classList.remove('castling-handshake');
-
-        var rectK = cardK.getBoundingClientRect();
-        var rectR = cardR.getBoundingClientRect();
-
-        var dx = rectR.left - rectK.left;
-        var dy = rectR.top - rectK.top;
-
-        cardK.classList.add('castling-king-jump');
-        cardR.classList.add('castling-rook-slide');
-
-        cardK.style.transform = 'translate3d(' + dx + 'px, ' + (dy - 90) + 'px, 120px) scale(1.18) rotate(6deg)';
-        cardR.style.transform = 'translate3d(' + (-dx) + 'px, ' + (-dy + 24) + 'px, -80px) scale(0.9) rotate(-3deg)';
+        });
 
         setTimeout(function () {
-          _swapDOMNodes(cardK, cardR);
-          cardK.style.transform = '';
-          cardR.style.transform = '';
-          cardK.classList.remove('castling-king-jump', 'idle-animating');
-          cardR.classList.remove('castling-rook-slide', 'idle-animating');
+          pairs.forEach(function (pair) {
+            pair[0].classList.remove('walk-settle', 'idle-animating');
+            pair[1].classList.remove('walk-settle', 'idle-animating');
+          });
+          _isProjectShuffling = false;
+        }, 650);
+      }, 1300);
+    }
+
+    /* Choreography 3: Chess Castling & Handshake (3 Simultaneous Pairs) */
+    function _choreographyChessCastling(grid, cards) {
+      var pairs = _pick3CardPairs(cards);
+      _showIdleNotice('Chess Castling · 3-Pair Synchronized Handshake Swap');
+
+      pairs.forEach(function (pair) {
+        pair[0].classList.add('idle-animating', 'castling-handshake');
+        pair[1].classList.add('idle-animating', 'castling-handshake');
+      });
+
+      setTimeout(function () {
+        pairs.forEach(function (pair) {
+          var cardK = pair[0];
+          var cardR = pair[1];
+          cardK.classList.remove('castling-handshake');
+          cardR.classList.remove('castling-handshake');
+
+          var rectK = cardK.getBoundingClientRect();
+          var rectR = cardR.getBoundingClientRect();
+          var dx = rectR.left - rectK.left;
+          var dy = rectR.top - rectK.top;
+
+          cardK.classList.add('castling-king-jump');
+          cardR.classList.add('castling-rook-slide');
+
+          cardK.style.transform = 'translate3d(' + dx + 'px, ' + (dy - 95) + 'px, 130px) scale(1.2) rotate(7deg)';
+          cardR.style.transform = 'translate3d(' + (-dx) + 'px, ' + (-dy + 26) + 'px, -85px) scale(0.88) rotate(-4deg)';
+        });
+
+        setTimeout(function () {
+          pairs.forEach(function (pair) {
+            var cardK = pair[0];
+            var cardR = pair[1];
+            _swapDOMNodes(cardK, cardR);
+            cardK.style.transform = '';
+            cardR.style.transform = '';
+            cardK.classList.remove('castling-king-jump', 'idle-animating');
+            cardR.classList.remove('castling-rook-slide', 'idle-animating');
+          });
           _isProjectShuffling = false;
         }, 1250);
       }, 650);
     }
 
-    /* Choreography 4: Vortex Spiral of Confusion (3X Strength) */
+    /* Choreography 4: Vortex Spiral of Confusion (3-Round Matrix Whirlwind) */
     function _choreographyVortexConfusion(grid, cards) {
-      _showIdleNotice('Vortex of Confusion · 3X 3-Round Spiral');
+      _showIdleNotice('Vortex of Confusion · 3-Round Matrix Whirlwind');
 
       cards.forEach(function (c) {
         c.classList.add('idle-animating', 'vortex-dissolve');
       });
 
       setTimeout(function () {
-        /* Fisher-Yates shuffle array */
         var shuffled = cards.slice();
         for (var i = shuffled.length - 1; i > 0; i--) {
           var j = Math.floor(Math.random() * (i + 1));
@@ -7768,24 +8019,25 @@ Perhaps my solitary end was written there too.”
       }, 1450);
     }
 
-    /* Choreography 5: Antigravity Quantum Rift (3X Strength) */
+    /* Choreography 5: Antigravity Quantum Rift (3 Simultaneous Pairs) */
     function _choreographyQuantumRift(grid, cards) {
-      _showIdleNotice('Quantum Singularity · 3X Gravity Inversion');
+      var pairs = _pick3CardPairs(cards);
+      _showIdleNotice('Quantum Singularity · 3-Pair Gravity Inversion Rift');
 
-      cards.forEach(function (c) {
-        c.classList.add('idle-animating', 'quantum-warp');
+      pairs.forEach(function (pair) {
+        pair[0].classList.add('idle-animating', 'quantum-warp');
+        pair[1].classList.add('idle-animating', 'quantum-warp');
       });
 
       setTimeout(function () {
-        /* Shift cards forward by 1 slot */
-        if (cards.length > 1) {
-          var last = cards[cards.length - 1];
-          grid.insertBefore(last, cards[0]);
-        }
+        pairs.forEach(function (pair) {
+          _swapDOMNodes(pair[0], pair[1]);
+        });
 
         setTimeout(function () {
-          cards.forEach(function (c) {
-            c.classList.remove('quantum-warp', 'idle-animating');
+          pairs.forEach(function (pair) {
+            pair[0].classList.remove('quantum-warp', 'idle-animating');
+            pair[1].classList.remove('quantum-warp', 'idle-animating');
           });
           _isProjectShuffling = false;
         }, 800);
