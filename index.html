@@ -2654,188 +2654,107 @@
     }
 
     /* ═══════════════════════════════════════════════════════
-       BOTTOM-LEFT JURISTHUB APP LAUNCH TOAST
+       TOP SUBTLE JURISTHUB ANDROID APP NOTIFICATION PILL
     ═══════════════════════════════════════════════════════ */
-    #app-launch-toast {
+    #app-top-notification {
       position: fixed;
-      bottom: 24px;
-      left: 24px;
-      z-index: 1500;
-      max-width: 410px;
-      width: calc(100vw - 48px);
-      background: rgba(14, 14, 22, 0.94);
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-60px);
+      z-index: 9990;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(14, 16, 23, 0.94);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--border-hi);
-      border-radius: 6px;
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 24px rgba(201, 168, 76, 0.18);
-      padding: 20px 22px;
-      transform: translateY(120%) scale(0.95);
+      border-radius: 30px;
+      padding: 6px 14px 6px 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 16px rgba(201, 168, 76, 0.15);
       opacity: 0;
       visibility: hidden;
-      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, visibility 0.4s ease;
-      will-change: transform, opacity;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, visibility 0.35s ease;
+      font-family: var(--f-sans);
+      font-size: 0.72rem;
+      color: #E8E6E0;
+      white-space: nowrap;
     }
 
-    [data-theme="journal"] #app-launch-toast {
+    [data-theme="journal"] #app-top-notification {
       background: rgba(251, 249, 244, 0.96);
-      box-shadow: 0 16px 48px rgba(60, 40, 10, 0.18), 0 0 24px rgba(140, 83, 27, 0.15);
       border-color: rgba(140, 83, 27, 0.35);
+      box-shadow: 0 8px 24px rgba(60, 40, 10, 0.12), 0 0 16px rgba(140, 83, 27, 0.1);
       color: #1E1B18;
     }
 
-    [data-theme="light"] #app-launch-toast {
-      background: rgba(255, 255, 255, 0.96);
-      box-shadow: 0 16px 48px rgba(15, 23, 42, 0.15), 0 0 24px rgba(37, 99, 235, 0.15);
+    [data-theme="light"] #app-top-notification {
+      background: rgba(255, 255, 255, 0.97);
       border-color: rgba(37, 99, 235, 0.25);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1), 0 0 16px rgba(37, 99, 235, 0.1);
       color: #0F172A;
     }
 
-    #app-launch-toast.show {
-      transform: translateY(0) scale(1);
+    #app-top-notification.show {
+      transform: translateX(-50%) translateY(0);
       opacity: 1;
       visibility: visible;
     }
 
-    .app-toast-close {
-      position: absolute;
-      top: 10px;
-      right: 12px;
-      font-size: 1.25rem;
-      line-height: 1;
-      color: var(--text-3);
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 4px;
-      transition: color 0.2s;
-    }
-
-    .app-toast-close:hover {
-      color: var(--gold);
-    }
-
-    .app-toast-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--f-mono);
-      font-size: 0.58rem;
-      color: var(--gold);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    .app-toast-dot {
+    .top-notif-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
       background: #10B981;
-      box-shadow: 0 0 8px #10B981;
+      box-shadow: 0 0 6px #10B981;
       animation: pulse-dot 2s infinite;
-    }
-
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
-    }
-
-    .app-toast-content {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-    }
-
-    .app-toast-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, rgba(201, 168, 76, 0.2), rgba(201, 168, 76, 0.05));
-      border: 1px solid var(--border-hi);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold);
       flex-shrink: 0;
     }
 
-    [data-theme="journal"] .app-toast-icon {
-      background: linear-gradient(135deg, rgba(140, 83, 27, 0.15), rgba(140, 83, 27, 0.05));
-      color: var(--gold);
+    .top-notif-text {
+      font-size: 0.72rem;
     }
 
-    [data-theme="light"] .app-toast-icon {
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(37, 99, 235, 0.04));
-      color: #2563EB;
-    }
-
-    .app-toast-title {
-      font-family: var(--f-display);
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text);
-      line-height: 1.25;
-      margin-bottom: 6px;
-    }
-
-    .app-toast-desc {
-      font-family: var(--f-sans);
-      font-size: 0.78rem;
-      color: var(--text-2);
-      line-height: 1.55;
-      margin-bottom: 12px;
-    }
-
-    .app-toast-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .app-toast-btn {
+    .top-notif-btn {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+      gap: 3px;
+      background: var(--gold);
       color: #060608 !important;
-      font-family: var(--f-sans);
-      font-weight: 600;
-      font-size: 0.75rem;
-      padding: 7px 14px;
-      border-radius: 4px;
-      transition: all 0.25s ease;
-      box-shadow: 0 2px 10px rgba(201, 168, 76, 0.3);
+      font-weight: 700;
+      font-size: 0.65rem;
+      padding: 3px 9px;
+      border-radius: 12px;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    [data-theme="journal"] .app-toast-btn {
-      background: linear-gradient(135deg, #8C531B, #5A3510);
+    [data-theme="journal"] .top-notif-btn {
+      background: #8C531B;
       color: #FAF6EE !important;
-      box-shadow: 0 2px 10px rgba(140, 83, 27, 0.25);
     }
 
-    [data-theme="light"] .app-toast-btn {
-      background: linear-gradient(135deg, #2563EB, #1D4ED8);
+    [data-theme="light"] .top-notif-btn {
+      background: #2563EB;
       color: #FFFFFF !important;
-      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.25);
     }
 
-    .app-toast-btn:hover {
+    .top-notif-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(201, 168, 76, 0.5);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
-    .app-toast-dismiss {
-      font-family: var(--f-mono);
-      font-size: 0.68rem;
-      color: var(--text-3);
+    .top-notif-close {
       background: none;
       border: none;
+      color: var(--text-3);
+      font-size: 1.1rem;
+      line-height: 1;
       cursor: pointer;
+      padding: 0 2px;
       transition: color 0.2s;
     }
 
-    .app-toast-dismiss:hover {
+    .top-notif-close:hover {
       color: var(--gold);
     }
 
@@ -7956,10 +7875,10 @@ Perhaps my solitary end was written there too.”
       }, 550);
     }
 
-    /* Choreography 2: Walking Depth Corridor (3 Simultaneous Pairs) */
+    /* Choreography 2: Synchronized Glide Corridor (3 Simultaneous Pairs) */
     function _choreographyWalkingDepth(grid, cards) {
       var pairs = _pick3CardPairs(cards);
-      _showIdleNotice('3D Depth Corridor · 3-Pair Synchronized Glide');
+      _showIdleNotice('Glide Corridor · 3-Pair Synchronized Swap');
 
       pairs.forEach(function (pair) {
         var cardA = pair[0];
@@ -7976,8 +7895,8 @@ Perhaps my solitary end was written there too.”
         cardB.classList.add('idle-animating', 'walk-front');
 
         requestAnimationFrame(function () {
-          cardA.style.transform = 'perspective(1200px) translate3d(' + dxA + 'px, ' + dyA + 'px, -340px) rotateY(-24deg) scale(0.7)';
-          cardB.style.transform = 'perspective(1200px) translate3d(' + dxB + 'px, ' + dyB + 'px, 180px) rotateY(20deg) scale(1.2)';
+          cardA.style.transform = 'translate3d(' + dxA + 'px, ' + dyA + 'px, 0px) scale(0.96)';
+          cardB.style.transform = 'translate3d(' + dxB + 'px, ' + dyB + 'px, 0px) scale(1.02)';
         });
       });
 
@@ -8000,14 +7919,14 @@ Perhaps my solitary end was written there too.”
             pair[1].classList.remove('walk-settle', 'idle-animating');
           });
           _isProjectShuffling = false;
-        }, 650);
-      }, 1300);
+        }, 500);
+      }, 900);
     }
 
-    /* Choreography 3: Chess Castling & Handshake (3 Simultaneous Pairs) */
+    /* Choreography 3: Chess Castling (3 Simultaneous Pairs) */
     function _choreographyChessCastling(grid, cards) {
       var pairs = _pick3CardPairs(cards);
-      _showIdleNotice('Chess Castling · 3-Pair Synchronized Handshake Swap');
+      _showIdleNotice('Chess Castling · 3-Pair Synchronized Swap');
 
       pairs.forEach(function (pair) {
         pair[0].classList.add('idle-animating', 'castling-handshake');
@@ -8029,8 +7948,8 @@ Perhaps my solitary end was written there too.”
           cardK.classList.add('castling-king-jump');
           cardR.classList.add('castling-rook-slide');
 
-          cardK.style.transform = 'translate3d(' + dx + 'px, ' + (dy - 95) + 'px, 130px) scale(1.2) rotate(7deg)';
-          cardR.style.transform = 'translate3d(' + (-dx) + 'px, ' + (-dy + 26) + 'px, -85px) scale(0.88) rotate(-4deg)';
+          cardK.style.transform = 'translate3d(' + dx + 'px, ' + dy + 'px, 0px) scale(1.02)';
+          cardR.style.transform = 'translate3d(' + (-dx) + 'px, ' + (-dy) + 'px, 0px) scale(0.98)';
         });
 
         setTimeout(function () {
@@ -8044,8 +7963,8 @@ Perhaps my solitary end was written there too.”
             cardR.classList.remove('castling-rook-slide', 'idle-animating');
           });
           _isProjectShuffling = false;
-        }, 1250);
-      }, 650);
+        }, 900);
+      }, 500);
     }
 
     /* Choreography 4: Vortex Spiral of Confusion (3-Round Matrix Whirlwind) */
@@ -8470,6 +8389,30 @@ Perhaps my solitary end was written there too.”
       } catch (e) { }
     }
 
+    /* ─── APP TOP NOTIFICATION CONTROLLER ──────────────────────────── */
+    function _initAppToast() {
+      try {
+        if (sessionStorage.getItem('jurist-top-notif-dismissed') === '1') return;
+        var notif = document.getElementById('app-top-notification');
+        if (!notif) return;
+        setTimeout(function () {
+          notif.classList.add('show');
+        }, 1800);
+      } catch (e) { }
+    }
+
+    function closeTopNotification() {
+      try {
+        var notif = document.getElementById('app-top-notification');
+        if (notif) notif.classList.remove('show');
+        sessionStorage.setItem('jurist-top-notif-dismissed', '1');
+      } catch (e) { }
+    }
+
+    function closeAppToast() {
+      closeTopNotification();
+    }
+
     /* Double-fire: DOMContentLoaded + window.load */
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', _djInit);
@@ -8485,32 +8428,14 @@ Perhaps my solitary end was written there too.”
   </script>
 
   <!-- ═══════════════════════════════════════════════════════════
-       BOTTOM-LEFT POPUP ARTIFACT: JURISTHUB APP ANNOUNCEMENT
+       TOP SUBTLE NOTIFICATION: JURISTHUB ANDROID APP RELEASE
   ═══════════════════════════════════════════════════════════ -->
-  <div id="app-launch-toast" role="dialog" aria-label="JuristHub Android App Release">
-    <button class="app-toast-close" onclick="closeAppToast()" aria-label="Close notification">&times;</button>
-    <div class="app-toast-badge">
-      <span class="app-toast-dot"></span>
-      <span>Native Android APK · Google Play Internal Test</span>
-    </div>
-    <div class="app-toast-content">
-      <div class="app-toast-icon">
-        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-        </svg>
-      </div>
-      <div>
-        <h4 class="app-toast-title">DJ LexFolio on Android (JuristHub)</h4>
-        <p class="app-toast-desc">Try the core native APK version of DJ LexFolio, now available as JuristHub on Google Play. 100% safe, fast &amp; rigorously tested across devices!</p>
-        <div class="app-toast-actions">
-          <a class="app-toast-btn" href="https://play.google.com/apps/internaltest/4700310928148131542" target="_blank" rel="noopener noreferrer">
-            Get On Google Play &#8599;
-          </a>
-          <button class="app-toast-dismiss" onclick="closeAppToast()">Dismiss</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <aside id="app-top-notification" role="status" aria-label="JuristHub Android App Release">
+    <span class="top-notif-dot"></span>
+    <span class="top-notif-text"><strong>JuristHub Android APK</strong> is live on Google Play</span>
+    <a href="https://play.google.com/apps/internaltest/4700310928148131542" target="_blank" rel="noopener noreferrer" class="top-notif-btn">Get On Play &#8599;</a>
+    <button class="top-notif-close" onclick="closeTopNotification()" aria-label="Close notification">&times;</button>
+  </aside>
 
   <noscript>
     <style>
