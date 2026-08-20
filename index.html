@@ -44,60 +44,114 @@
     /* ═══════════════════════════════════════════════════════
    THEME TOKENS
 ═══════════════════════════════════════════════════════ */
-    :root {
-      /* ── DARK (default) — sleek tech noir ── */
-      --bg: #070709;
-      --bg2: #0E0E16;
-      --bg3: #141420;
-      --surface: #1A1A2E;
-      --surface2: #22223A;
-      --border: rgba(201, 168, 76, .14);
-      --border-hi: rgba(201, 168, 76, .42);
-      --text: #EDE8DE;
-      --text-2: #A09CB0;
-      --text-3: #686480;
-      --gold: #C9A84C;
-      --gold-hi: #E8C97A;
-      --gold-dim: #8A6820;
-      --ember: #E05A2B;
-      --teal: #2ABFBF;
+    :root,
+    [data-theme="executive"] {
+      /* ── 1. EXECUTIVE PRO (Default Initial) — Ultra-clean modern midnight slate with maximum text readability ── */
+      --bg: #0A0E17;
+      --bg2: #101623;
+      --bg3: #162032;
+      --surface: #141D2E;
+      --surface2: #1E2B42;
+      --border: rgba(56, 189, 248, .16);
+      --border-hi: rgba(56, 189, 248, .48);
+      --text: #F8FAFC;
+      --text-2: #94A3B8;
+      --text-3: #64748B;
+      --gold: #38BDF8;
+      --gold-hi: #7DD3FC;
+      --gold-dim: #0284C7;
+      --ember: #F97316;
+      --teal: #14B8A6;
       --f-display: 'Playfair Display', 'Georgia', serif;
       --f-serif2: 'Cormorant Garamond', 'Georgia', serif;
       --f-mono: 'IBM Plex Mono', 'Courier New', monospace;
       --f-sans: 'DM Sans', 'Segoe UI', sans-serif;
+      --grain-opacity: .028;
+      --glow-color: rgba(56, 189, 248, .15);
+      --hero-overlay: linear-gradient(135deg, rgba(10, 14, 23, .94) 0%, rgba(16, 22, 35, .75) 100%);
+      --scale-color: #38BDF8;
+      --scroll-track: #0A0E17;
+      --scroll-thumb: #38BDF8;
+      --cursor-glow: rgba(56, 189, 248, .4);
+    }
+
+    [data-theme="obsidian"] {
+      /* ── 2. OBSIDIAN VOID (1st Click) — Pitch black dark academia with purple-gold nebula luminescence ── */
+      --bg: #050507;
+      --bg2: #0B0B10;
+      --bg3: #12121A;
+      --surface: #151522;
+      --surface2: #1E1E30;
+      --border: rgba(168, 85, 247, .18);
+      --border-hi: rgba(168, 85, 247, .5);
+      --text: #F3EEFA;
+      --text-2: #A9A4C2;
+      --text-3: #716A94;
+      --gold: #C084FC;
+      --gold-hi: #E9D5FF;
+      --gold-dim: #7E22CE;
+      --ember: #EC4899;
+      --teal: #818CF8;
+      --grain-opacity: .035;
+      --glow-color: rgba(168, 85, 247, .16);
+      --hero-overlay: linear-gradient(135deg, rgba(5, 5, 7, .95) 0%, rgba(11, 11, 16, .78) 100%);
+      --scale-color: #C084FC;
+      --scroll-track: #050507;
+      --scroll-thumb: #C084FC;
+      --cursor-glow: rgba(192, 132, 252, .45);
+    }
+
+    [data-theme="gold"],
+    [data-theme="dark"] {
+      /* ── 3. IMPERIAL GOLD (2nd Click) — Dark velvet walnut gold with gilded burnished reflections ── */
+      --bg: #0E0B06;
+      --bg2: #171209;
+      --bg3: #221B0D;
+      --surface: #261E0E;
+      --surface2: #342914;
+      --border: rgba(212, 175, 55, .22);
+      --border-hi: rgba(212, 175, 55, .6);
+      --text: #FFF9ED;
+      --text-2: #D4C3A3;
+      --text-3: #998765;
+      --gold: #D4AF37;
+      --gold-hi: #F5E5AB;
+      --gold-dim: #8C6D1F;
+      --ember: #E05A2B;
+      --teal: #E8C86A;
       --grain-opacity: .032;
-      --glow-color: rgba(201, 168, 76, .12);
-      --hero-overlay: linear-gradient(135deg, rgba(7, 7, 9, .92) 0%, rgba(14, 14, 22, .7) 100%);
-      --scale-color: #C9A84C;
-      --scroll-track: #0E0E16;
-      --scroll-thumb: #C9A84C;
-      --cursor-glow: rgba(201, 168, 76, .35);
+      --glow-color: rgba(212, 175, 55, .2);
+      --hero-overlay: linear-gradient(135deg, rgba(14, 11, 6, .94) 0%, rgba(23, 18, 9, .76) 100%);
+      --scale-color: #D4AF37;
+      --scroll-track: #0E0B06;
+      --scroll-thumb: #D4AF37;
+      --cursor-glow: rgba(212, 175, 55, .45);
     }
 
     [data-theme="light"] {
-      /* ── LIGHT — aged parchment / old book ── */
-      --bg: #F2ECD8;
-      --bg2: #EAE2C8;
-      --bg3: #DDD5BB;
-      --surface: #E4DBc5;
-      --surface2: #D8CFBA;
-      --border: rgba(100, 70, 20, .2);
-      --border-hi: rgba(100, 70, 20, .55);
-      --text: #1E1610;
-      --text-2: #5A4830;
-      --text-3: #8A7055;
-      --gold: #8B5E1A;
+      /* ── 4. AGED PARCHMENT (Fallback Light) — Fine manuscript parchment with rich sepia text ── */
+      --bg: #F5EFEB;
+      --bg2: #EBE3DD;
+      --bg3: #DDD3CA;
+      --surface: #E3D9D0;
+      --surface2: #D6CABA;
+      --border: rgba(100, 70, 20, .22);
+      --border-hi: rgba(100, 70, 20, .6);
+      --text: #18110A;
+      --text-2: #54412B;
+      --text-3: #7D6448;
+      --gold: #996515;
       --gold-hi: #C08828;
       --gold-dim: #C0A878;
       --ember: #B83A18;
       --teal: #1A6A6A;
-      --grain-opacity: .06;
-      --glow-color: rgba(139, 94, 26, .1);
-      --hero-overlay: linear-gradient(135deg, rgba(242, 236, 216, .88) 0%, rgba(234, 226, 200, .65) 100%);
-      --scale-color: #8B5E1A;
-      --scroll-track: #EAE2C8;
-      --scroll-thumb: #8B5E1A;
-      --cursor-glow: rgba(139, 94, 26, .25);
+      --grain-opacity: .05;
+      --glow-color: rgba(153, 101, 21, .12);
+      --hero-overlay: linear-gradient(135deg, rgba(245, 239, 235, .9) 0%, rgba(235, 227, 221, .7) 100%);
+      --scale-color: #996515;
+      --scroll-track: #EBE3DD;
+      --scroll-thumb: #996515;
+      --cursor-glow: rgba(153, 101, 21, .3);
     }
 
     /* ═══════════════════════════════════════════════════════
@@ -963,11 +1017,30 @@
     }
 
     /* Nav links */
+    /* ── Mac Dock Navigation Hover Magnification ── */
     .nav-links {
       display: flex;
-      gap: 0;
+      gap: 6px;
       list-style: none;
-      align-items: center
+      align-items: center;
+      perspective: 900px;
+    }
+
+    .nav-links li {
+      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transform-origin: bottom center;
+    }
+
+    .nav-links li:hover {
+      transform: translateY(-6px) scale(1.18);
+      z-index: 10;
+    }
+
+    /* Sibling wave reaction */
+    .nav-links li:has(+ li:hover),
+    .nav-links li:hover + li {
+      transform: translateY(-2.5px) scale(1.08);
+      z-index: 5;
     }
 
     .nav-links a {
@@ -975,13 +1048,15 @@
       font-size: .8rem;
       color: var(--text-3);
       letter-spacing: .06em;
-      padding: 8px 18px;
+      padding: 8px 16px;
       cursor: none;
       position: relative;
       overflow: hidden;
-      transition: color .25s;
+      transition: color .25s, text-shadow .25s, background .25s;
       border: none;
       background: none;
+      border-radius: 6px;
+      display: inline-block;
     }
 
     .nav-links a::after {
@@ -996,17 +1071,20 @@
     }
 
     .nav-links a:hover {
-      color: var(--text)
+      color: var(--gold) !important;
+      text-shadow: 0 0 12px var(--gold);
+      background: rgba(201, 168, 76, 0.06);
     }
 
     .nav-links a.active {
-      color: var(--gold)
+      color: var(--gold);
+      font-weight: 600;
     }
 
     .nav-links a.active::after,
     .nav-links a:hover::after {
-      left: 18px;
-      right: 18px
+      left: 14px;
+      right: 14px
     }
 
     /* ── SCALE NAVIGATION WIDGET ── */
@@ -2049,12 +2127,13 @@
       max-width: 480px
     }
 
-    /* Filter pills */
+    /* Filter pills with Mac Dock Wave Magnification */
     .filter-row {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin: 28px 0 38px
+      margin: 28px 0 38px;
+      perspective: 900px;
     }
 
     .pill {
@@ -2065,10 +2144,26 @@
       border: 1px solid var(--border);
       color: var(--text-3);
       cursor: none;
-      transition: all .25s;
+      transition: all .28s cubic-bezier(0.34, 1.56, 0.64, 1);
       background: none;
       position: relative;
       overflow: hidden;
+      border-radius: 4px;
+      transform-origin: center center;
+    }
+
+    .pill:hover {
+      border-color: var(--gold);
+      color: #060608;
+      transform: translateY(-5px) scale(1.14);
+      box-shadow: 0 8px 24px rgba(201, 168, 76, 0.4);
+      z-index: 10;
+    }
+
+    .pill:has(+ .pill:hover),
+    .pill:hover + .pill {
+      transform: translateY(-2px) scale(1.06);
+      z-index: 5;
     }
 
     .pill::before {
@@ -2086,16 +2181,111 @@
       transform: scaleX(1)
     }
 
-    .pill:hover {
-      border-color: var(--gold);
-      color: #060608
-    }
-
     .pill.active {
       background: var(--gold);
       border-color: var(--gold);
       color: #060608;
-      font-weight: 600
+      font-weight: 600;
+      box-shadow: 0 4px 18px rgba(201, 168, 76, 0.3);
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       REAL MANUSCRIPT / PARCHMENT STORY SHEET STYLES
+    ═══════════════════════════════════════════════════════ */
+    .manuscript-book {
+      margin-top: 40px;
+      position: relative;
+    }
+
+    .manuscript-sheet {
+      background: #F4EAD4;
+      background-image: 
+        radial-gradient(circle at 10% 10%, rgba(180, 130, 60, 0.12) 0%, transparent 50%),
+        linear-gradient(135deg, #FAF4E8 0%, #EFE1C6 50%, #E5D2AF 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='.07'/%3E%3C/svg%3E");
+      border: 1px solid rgba(139, 94, 26, 0.45);
+      border-radius: 8px;
+      padding: 44px 48px;
+      margin-bottom: 36px;
+      color: #1A120B;
+      position: relative;
+      box-shadow: 
+        inset 0 0 50px rgba(100, 65, 15, 0.18),
+        0 14px 40px rgba(0, 0, 0, 0.5),
+        0 2px 8px rgba(0, 0, 0, 0.3);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    @media (max-width: 640px) {
+      .manuscript-sheet {
+        padding: 28px 20px;
+      }
+    }
+
+    .manuscript-sheet:hover {
+      transform: translateY(-4px);
+      box-shadow: 
+        inset 0 0 45px rgba(100, 65, 15, 0.22),
+        0 22px 55px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(201, 168, 76, 0.25);
+    }
+
+    .manuscript-corner-seal {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      font-family: var(--f-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #8B5E1A;
+      border: 1px solid rgba(139, 94, 26, 0.35);
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .manuscript-roman {
+      display: inline-block;
+      font-family: var(--f-display);
+      font-size: 2rem;
+      font-weight: 900;
+      color: #8B5E1A;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .manuscript-title {
+      font-family: var(--f-display);
+      font-size: clamp(1.4rem, 2.8vw, 1.85rem);
+      font-weight: 700;
+      color: #1A120B;
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+
+    .manuscript-body p {
+      font-family: var(--f-serif2);
+      font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+      line-height: 1.85;
+      color: #2D1F13;
+      margin-bottom: 16px;
+    }
+
+    .manuscript-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .manuscript-quote {
+      border-left: 3px solid #8B5E1A;
+      padding: 14px 22px;
+      margin: 24px 0;
+      background: rgba(139, 94, 26, 0.08);
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 1.12rem;
+      color: #1A120B;
+      line-height: 1.7;
     }
 
     #projects-grid {
@@ -4431,8 +4621,7 @@
       <li><a id="nl-projects" data-page="projects" onclick="nav('projects')" tabindex="0">Projects</a></li>
       <li><a id="nl-writings" data-page="writings" onclick="nav('writings')" tabindex="0">Writings</a></li>
       <li><a id="nl-content" data-page="content" onclick="nav('content')" tabindex="0">Content Creation</a></li>
-      <li><a id="nl-story" data-page="story" onclick="nav('story')" tabindex="0">My Story</a></li>
-      <li><a id="nl-about" data-page="about" onclick="nav('about')" tabindex="0">About</a></li>
+      <li><a id="nl-about" data-page="about" onclick="nav('about')" tabindex="0">About &amp; Story</a></li>
     </ul>
 
     <!-- Balancing Scale Nav Widget + Theme Toggle -->
@@ -4461,10 +4650,10 @@
         <path d="M38 20 Q42 22 46 20" class="scale-beam" stroke-width="1.2" />
       </svg>
 
-      <!-- Theme toggle -->
-      <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light/dark mode">
-        <span class="theme-icon" id="theme-icon">☽</span>
-        <span id="theme-label">Dark</span>
+      <!-- Theme toggle (Cycles: Executive Pro ➔ Obsidian Void ➔ Imperial Gold) -->
+      <button id="theme-toggle" onclick="toggleTheme()" aria-label="Cycle theme palette (Executive, Obsidian, Imperial Gold)">
+        <span class="theme-icon" id="theme-icon">⚡</span>
+        <span id="theme-label">Executive Pro</span>
       </button>
     </div>
 
@@ -4480,12 +4669,11 @@
       <li><a data-page="projects" onclick="nav('projects');closeDrawer()" tabindex="0">Projects</a></li>
       <li><a data-page="writings" onclick="nav('writings');closeDrawer()" tabindex="0">Writings</a></li>
       <li><a data-page="content" onclick="nav('content');closeDrawer()" tabindex="0">Content Creation</a></li>
-      <li><a data-page="story" onclick="nav('story');closeDrawer()" tabindex="0">My Story</a></li>
-      <li><a data-page="about" onclick="nav('about');closeDrawer()" tabindex="0">About</a></li>
+      <li><a data-page="about" onclick="nav('about');closeDrawer()" tabindex="0">About &amp; Story</a></li>
       <li style="margin-top:16px; display:flex; align-items:center; gap:16px;">
         <button id="theme-toggle-m" onclick="toggleTheme()"
           style="color:var(--gold);font-family:var(--f-mono);font-size:.72rem;background:none;border:1px solid var(--border);padding:7px 16px;cursor:none;flex-shrink:0;">
-          <span id="theme-icon-m">☽</span> Toggle Theme
+          <span id="theme-icon-m">⚡</span> Cycle Palette
         </button>
         <!-- Mobile Cosmic Quake Trigger -->
         <svg id="quake-trigger-m" class="scale-svg" viewBox="0 0 48 32" fill="none" role="button" tabindex="0"
@@ -4559,7 +4747,7 @@
             <div class="stat-lbl">Essays Written</div>
           </div>
           <div class="stat-item">
-            <div class="stat-val">10</div>
+            <div class="stat-val">15</div>
             <div class="stat-lbl">Projects Shipped</div>
           </div>
           <div class="stat-item">
@@ -4865,20 +5053,113 @@
             </div>
           </div>
 
-          <!-- Ziuux Short: Analog Horror / Commentary -->
+          <!-- Delawded Video 3: Educational Breakdown Tutorial -->
           <div class="video-card">
-            <div class="video-player-wrap shorts-ratio">
-              <iframe src="https://www.youtube.com/embed/Rn2V5FSUoG8" title="Ziuux - Short & Commentary" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+            <div class="video-player-wrap">
+              <iframe src="https://www.youtube.com/embed/9w5h_NkQ214" title="Delawded - Educational Tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="video-meta-body">
               <div>
-                <span class="video-tag" style="color:#c084fc">Ziuux &middot; Analog Horror &amp; Shorts</span>
-                <h4 class="video-title">Ziuux Series &middot; Unfiltered</h4>
-                <p class="video-desc">Atmospheric visual commentary and reflections shifted to the Ziuux creative channel.</p>
+                <span class="video-tag">Delawded &middot; Educational Tutorial</span>
+                <h4 class="video-title">Legal Analysis &amp; Breakdown</h4>
+                <p class="video-desc">Step-by-step conceptual walkthrough deconstructing core legal principles and analytical techniques.</p>
               </div>
               <div class="video-action-row">
-                <span class="video-channel-info" style="color:#c084fc">&#9658; @ziuuzx</span>
-                <a class="video-watch-link" href="https://youtube.com/shorts/Rn2V5FSUoG8?si=Vwi3-0plxNSIMMv-" target="_blank" rel="noopener noreferrer">Watch Short &#8599;</a>
+                <span class="video-channel-info">&#9658; @delawded</span>
+                <a class="video-watch-link" href="https://youtu.be/9w5h_NkQ214" target="_blank" rel="noopener noreferrer">Watch Video &#8599;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WH-3 Atmospheric Series & Short -->
+        <div style="margin-top:40px; margin-bottom:24px;">
+          <div class="sec-head" style="margin-bottom:16px;">
+            <div>
+              <span class="eyebrow" style="color:#c084fc;">Atmospheric Series &middot; WH-3</span>
+              <h3 class="sec-title" style="font-size:1.35rem;">WH-3: The Loneliness &amp; Silence of an Empty Room</h3>
+            </div>
+            <span style="font-family:var(--f-mono);font-size:0.68rem;color:var(--text-3);letter-spacing:0.1em;text-transform:uppercase;">Visual Reflection</span>
+          </div>
+          <div style="display:grid; grid-template-columns: minmax(280px, 340px) 1fr; gap:24px; background:var(--surface); border:1px solid rgba(168,85,247,0.25); border-radius:8px; padding:20px; align-items:center;">
+            <div class="video-player-wrap shorts-ratio" style="border-radius:6px; overflow:hidden;">
+              <iframe src="https://www.youtube.com/embed/Rn2V5FSUoG8" title="WH-3 Series Short" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div>
+              <span class="video-tag" style="color:#c084fc; background:rgba(168,85,247,0.12); border-color:rgba(168,85,247,0.3);">WH-3 &middot; Creative Reflections</span>
+              <h4 style="font-family:var(--f-display); font-size:1.35rem; color:var(--text); margin:8px 0 12px; line-height:1.3;">Exploring Solitude, Silence, and the Empty Room</h4>
+              <p style="font-family:var(--f-sans); font-size:0.88rem; line-height:1.75; color:var(--text-2); margin-bottom:16px;">
+                An atmospheric cinematic piece reflecting on quiet solitude, emptiness, and the psychological weight carried within silent walls. Part of the unfiltered artistic series exploring isolation and resilience.
+              </p>
+              <a class="video-watch-link" href="https://youtube.com/shorts/Rn2V5FSUoG8?si=Vwi3-0plxNSIMMv-" target="_blank" rel="noopener noreferrer" style="border-color:rgba(168,85,247,0.4); color:#c084fc !important;">
+                Watch Short on YouTube &#8599;
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Beyond the Dark Web 3-Episode Direct Mirror Grid -->
+        <div style="margin-top:48px; margin-bottom:48px;">
+          <div class="sec-head" style="margin-bottom:20px;">
+            <div>
+              <span class="eyebrow" style="color:#c084fc;">Ziuux Series &middot; Direct Video Mirror</span>
+              <h3 class="sec-title" style="font-size:1.45rem;">Beyond the Dark Web Series (Episodes 1 &ndash; 3)</h3>
+            </div>
+            <a class="see-all-btn" href="https://youtube.com/@ziuuzx?si=-UT9wSlUVvSgttKw" target="_blank" rel="noopener noreferrer">Channel Series &#8599;</a>
+          </div>
+
+          <div class="video-showcase-grid">
+            <!-- Episode 1 -->
+            <div class="video-card" style="border-color:rgba(168,85,247,0.3);">
+              <div class="video-player-wrap">
+                <iframe src="https://www.youtube.com/embed/EfT0hJGmal0" title="Beyond the Dark Web - Episode 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+              </div>
+              <div class="video-meta-body">
+                <div>
+                  <span class="video-tag" style="color:#c084fc">Ziuux &middot; Episode 01</span>
+                  <h4 class="video-title">Beyond the Dark Web &middot; Part I</h4>
+                  <p class="video-desc">The opening chapter of the investigative series diving into the hidden corridors of digital networks.</p>
+                </div>
+                <div class="video-action-row">
+                  <span class="video-channel-info" style="color:#c084fc">&#9658; @ziuuzx</span>
+                  <a class="video-watch-link" href="https://youtu.be/EfT0hJGmal0" target="_blank" rel="noopener noreferrer">Watch Episode 1 &#8599;</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Episode 2 -->
+            <div class="video-card" style="border-color:rgba(168,85,247,0.3);">
+              <div class="video-player-wrap">
+                <iframe src="https://www.youtube.com/embed/M42XrpjQfn0" title="Beyond the Dark Web - Episode 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+              </div>
+              <div class="video-meta-body">
+                <div>
+                  <span class="video-tag" style="color:#c084fc">Ziuux &middot; Episode 02</span>
+                  <h4 class="video-title">Beyond the Dark Web &middot; Part II</h4>
+                  <p class="video-desc">Diving deeper into digital forensics, subterranean data trails, and unseen digital architectures.</p>
+                </div>
+                <div class="video-action-row">
+                  <span class="video-channel-info" style="color:#c084fc">&#9658; @ziuuzx</span>
+                  <a class="video-watch-link" href="https://youtu.be/M42XrpjQfn0" target="_blank" rel="noopener noreferrer">Watch Episode 2 &#8599;</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Episode 3 -->
+            <div class="video-card" style="border-color:rgba(168,85,247,0.3);">
+              <div class="video-player-wrap">
+                <iframe src="https://www.youtube.com/embed/OGN6aHtTX6c" title="Beyond the Dark Web - Episode 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+              </div>
+              <div class="video-meta-body">
+                <div>
+                  <span class="video-tag" style="color:#c084fc">Ziuux &middot; Episode 03</span>
+                  <h4 class="video-title">Beyond the Dark Web &middot; Part III</h4>
+                  <p class="video-desc">Uncovering complex underground narratives and unraveling encrypted frontiers.</p>
+                </div>
+                <div class="video-action-row">
+                  <span class="video-channel-info" style="color:#c084fc">&#9658; @ziuuzx</span>
+                  <a class="video-watch-link" href="https://youtu.be/OGN6aHtTX6c" target="_blank" rel="noopener noreferrer">Watch Episode 3 &#8599;</a>
+                </div>
               </div>
             </div>
           </div>
@@ -4939,8 +5220,7 @@
             <li><a onclick="nav('projects')" tabindex="0">Projects</a></li>
             <li><a onclick="nav('writings')" tabindex="0">Writings</a></li>
             <li><a onclick="nav('content')" tabindex="0">Content Creation</a></li>
-            <li><a onclick="nav('story')" tabindex="0">My Story</a></li>
-            <li><a onclick="nav('about')" tabindex="0">About</a></li>
+            <li><a onclick="nav('about')" tabindex="0">About &amp; Story</a></li>
           </ul>
         </div>
         <div class="footer-connect-col">
@@ -5289,8 +5569,7 @@
             <li><a onclick="nav('projects')" tabindex="0">Projects</a></li>
             <li><a onclick="nav('writings')" tabindex="0">Writings</a></li>
             <li><a onclick="nav('content')" tabindex="0">Content Creation</a></li>
-            <li><a onclick="nav('story')" tabindex="0">My Story</a></li>
-            <li><a onclick="nav('about')" tabindex="0">About</a></li>
+            <li><a onclick="nav('about')" tabindex="0">About &amp; Story</a></li>
           </ul>
         </div>
         <div class="footer-connect-col">
@@ -5647,8 +5926,7 @@ Perhaps my solitary end was written there too.”
             <li><a onclick="nav('projects')" tabindex="0">Projects</a></li>
             <li><a onclick="nav('writings')" tabindex="0">Writings</a></li>
             <li><a onclick="nav('content')" tabindex="0">Content Creation</a></li>
-            <li><a onclick="nav('story')" tabindex="0">My Story</a></li>
-            <li><a onclick="nav('about')" tabindex="0">About</a></li>
+            <li><a onclick="nav('about')" tabindex="0">About &amp; Story</a></li>
           </ul>
         </div>
         <div class="footer-connect-col">
@@ -5791,32 +6069,127 @@ Perhaps my solitary end was written there too.”
           </div>
         </div>
 
-        <!-- Video 3: Ziuux Shorts / Analog Horror -->
-        <div class="video-card" style="border-color:rgba(168,85,247,0.3);">
-          <div class="video-player-wrap shorts-ratio">
-            <iframe src="https://www.youtube.com/embed/Rn2V5FSUoG8" title="Ziuux - Short & Commentary" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        <!-- Video 3: Delawded Educational Breakdown Tutorial -->
+        <div class="video-card">
+          <div class="video-player-wrap">
+            <iframe src="https://www.youtube.com/embed/9w5h_NkQ214" title="Delawded - Educational Tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
           </div>
           <div class="video-meta-body">
             <div>
-              <span class="video-tag" style="color:#c084fc">Ziuux &middot; Analog Horror &amp; Shorts</span>
-              <h4 class="video-title">Ziuux Series &middot; Unfiltered Commentary</h4>
-              <p class="video-desc">Atmospheric visual storytelling and reflective commentary transitioned into the Ziuux creative channel.</p>
+              <span class="video-tag">Delawded &middot; Educational Tutorial</span>
+              <h4 class="video-title">Legal Analysis &amp; Breakdown</h4>
+              <p class="video-desc">Step-by-step conceptual walkthrough deconstructing core legal principles and analytical techniques.</p>
             </div>
             <div class="video-action-row">
-              <span class="video-channel-info" style="color:#c084fc">&#9658; @ziuuzx</span>
-              <a class="video-watch-link" href="https://youtube.com/shorts/Rn2V5FSUoG8?si=Vwi3-0plxNSIMMv-" target="_blank" rel="noopener noreferrer">Watch Short &#8599;</a>
+              <span class="video-channel-info">&#9658; @delawded</span>
+              <a class="video-watch-link" href="https://youtu.be/9w5h_NkQ214" target="_blank" rel="noopener noreferrer">Watch on YouTube &#8599;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WH-3 Atmospheric Series & Short -->
+      <div style="margin-top:50px; margin-bottom:30px;">
+        <div class="sec-head" style="margin-bottom:16px;">
+          <div>
+            <span class="eyebrow" style="color:#c084fc;">Atmospheric Series &middot; WH-3</span>
+            <h3 class="sec-title" style="font-size:1.45rem;">WH-3: The Loneliness &amp; Silence of an Empty Room</h3>
+          </div>
+          <span style="font-family:var(--f-mono);font-size:0.68rem;color:var(--text-3);letter-spacing:0.1em;text-transform:uppercase;">Visual Reflection</span>
+        </div>
+        <div style="display:grid; grid-template-columns: minmax(280px, 340px) 1fr; gap:24px; background:var(--surface); border:1px solid rgba(168,85,247,0.25); border-radius:8px; padding:20px; align-items:center;">
+          <div class="video-player-wrap shorts-ratio" style="border-radius:6px; overflow:hidden;">
+            <iframe src="https://www.youtube.com/embed/Rn2V5FSUoG8" title="WH-3 Series Short" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div>
+            <span class="video-tag" style="color:#c084fc; background:rgba(168,85,247,0.12); border-color:rgba(168,85,247,0.3);">WH-3 &middot; Creative Reflections</span>
+            <h4 style="font-family:var(--f-display); font-size:1.4rem; color:var(--text); margin:8px 0 12px; line-height:1.3;">Exploring Solitude, Silence, and the Empty Room</h4>
+            <p style="font-family:var(--f-sans); font-size:0.9rem; line-height:1.75; color:var(--text-2); margin-bottom:16px;">
+              An atmospheric visual reflection exploring the quiet sadness, echoes, and stillness carried within silent walls. Part of the unfiltered artistic series deconstructing solitude and emotional presence.
+            </p>
+            <a class="video-watch-link" href="https://youtube.com/shorts/Rn2V5FSUoG8?si=Vwi3-0plxNSIMMv-" target="_blank" rel="noopener noreferrer" style="border-color:rgba(168,85,247,0.4); color:#c084fc !important;">
+              Watch Short on YouTube &#8599;
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION 3: BEYOND THE DARK WEB (3-EPISODE MIRROR GRID)
+      ═══════════════════════════════════════════════════════ -->
+      <div style="margin-top:60px; margin-bottom:32px;">
+        <div class="sec-head" style="margin-bottom:20px;">
+          <div>
+            <span class="eyebrow" style="color:#c084fc;">Ziuux Series &middot; Direct Video Mirror</span>
+            <h2 class="sec-title" style="font-size:1.8rem;">Beyond the Dark Web Series (Episodes 1 &ndash; 3)</h2>
+          </div>
+          <a class="see-all-btn" href="https://youtube.com/@ziuuzx?si=-UT9wSlUVvSgttKw" target="_blank" rel="noopener noreferrer">Channel Series &#8599;</a>
+        </div>
+
+        <div class="video-showcase-grid">
+          <!-- Episode 1 -->
+          <div class="video-card" style="border-color:rgba(168,85,247,0.3);">
+            <div class="video-player-wrap">
+              <iframe src="https://www.youtube.com/embed/EfT0hJGmal0" title="Beyond the Dark Web - Episode 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-meta-body">
+              <div>
+                <span class="video-tag" style="color:#c084fc">Ziuux &middot; Episode 01</span>
+                <h4 class="video-title">Beyond the Dark Web &middot; Part I</h4>
+                <p class="video-desc">The opening chapter of the investigative series diving into the hidden corridors of digital networks.</p>
+              </div>
+              <div class="video-action-row">
+                <span class="video-channel-info" style="color:#c084fc">&#9658; @ziuuzx</span>
+                <a class="video-watch-link" href="https://youtu.be/EfT0hJGmal0" target="_blank" rel="noopener noreferrer">Watch Episode 1 &#8599;</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Episode 2 -->
+          <div class="video-card" style="border-color:rgba(168,85,247,0.3);">
+            <div class="video-player-wrap">
+              <iframe src="https://www.youtube.com/embed/M42XrpjQfn0" title="Beyond the Dark Web - Episode 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-meta-body">
+              <div>
+                <span class="video-tag" style="color:#c084fc">Ziuux &middot; Episode 02</span>
+                <h4 class="video-title">Beyond the Dark Web &middot; Part II</h4>
+                <p class="video-desc">Diving deeper into digital forensics, subterranean data trails, and unseen digital architectures.</p>
+              </div>
+              <div class="video-action-row">
+                <span class="video-channel-info" style="color:#c084fc">&#9658; @ziuuzx</span>
+                <a class="video-watch-link" href="https://youtu.be/M42XrpjQfn0" target="_blank" rel="noopener noreferrer">Watch Episode 2 &#8599;</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Episode 3 -->
+          <div class="video-card" style="border-color:rgba(168,85,247,0.3);">
+            <div class="video-player-wrap">
+              <iframe src="https://www.youtube.com/embed/OGN6aHtTX6c" title="Beyond the Dark Web - Episode 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-meta-body">
+              <div>
+                <span class="video-tag" style="color:#c084fc">Ziuux &middot; Episode 03</span>
+                <h4 class="video-title">Beyond the Dark Web &middot; Part III</h4>
+                <p class="video-desc">Uncovering complex underground narratives and unraveling encrypted frontiers.</p>
+              </div>
+              <div class="video-action-row">
+                <span class="video-channel-info" style="color:#c084fc">&#9658; @ziuuzx</span>
+                <a class="video-watch-link" href="https://youtu.be/OGN6aHtTX6c" target="_blank" rel="noopener noreferrer">Watch Episode 3 &#8599;</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- ═══════════════════════════════════════════════════════
-           SECTION 3: PIPELINE & UPCOMING RELEASES
+           SECTION 4: PIPELINE & UPCOMING RELEASES
       ═══════════════════════════════════════════════════════ -->
       <div class="philosophy-bottom-card" style="margin-top:40px; margin-bottom:60px; text-align:left; background:rgba(20,16,28,0.7); border-color:rgba(168,85,247,0.35);">
         <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; flex-wrap:wrap; gap:10px;">
           <span class="verse-card-badge" style="color:#c084fc; border-color:rgba(168,85,247,0.4);">&#10022; Upcoming Pipeline &middot; In Production</span>
-          <span style="font-family:var(--f-mono);font-size:0.72rem;color:var(--text-3);">3 Original Songs &middot; Beyond the Dark Web</span>
+          <span style="font-family:var(--f-mono);font-size:0.72rem;color:var(--text-3);">3 Original Tracks &middot; Beyond the Dark Web</span>
         </div>
         <h3 style="font-family:var(--f-display);font-size:1.45rem;color:#FFFFFF;margin-bottom:10px;">Beyond the Dark Web &amp; Sonic Experiments</h3>
         <p style="font-family:var(--f-sans);font-size:0.88rem;line-height:1.75;color:var(--text-2);margin-bottom:16px;">
@@ -5887,8 +6260,7 @@ Perhaps my solitary end was written there too.”
             <li><a onclick="nav('projects')" tabindex="0">Projects</a></li>
             <li><a onclick="nav('writings')" tabindex="0">Writings</a></li>
             <li><a onclick="nav('content')" tabindex="0">Content Creation</a></li>
-            <li><a onclick="nav('story')" tabindex="0">My Story</a></li>
-            <li><a onclick="nav('about')" tabindex="0">About</a></li>
+            <li><a onclick="nav('about')" tabindex="0">About &amp; Story</a></li>
           </ul>
         </div>
         <div class="footer-connect-col">
@@ -5921,195 +6293,14 @@ Perhaps my solitary end was written there too.”
   <!-- ═══════════════════════════════════════════════════════════
      PAGE: MY STORY
 ═══════════════════════════════════════════════════════════ -->
-  <div class="page" id="page-story" role="main">
-    <div class="wrap-narrow story-page">
-      <div class="story-header">
-        <span class="eyebrow">My Story</span>
-        <h1 class="page-title">Built from<br><span class="shimmer">Nothing.</span></h1>
-        <p class="story-intro">This is not a polished origin story. It is the unfiltered account of a 19-year-old from
-          Hyderabad who lost everything early &mdash; and built everything back, alone, one difficult day at a time.</p>
-      </div>
-      <hr class="story-rule">
-
-      <div class="story-section">
-        <div class="section-marker"><span class="roman">I</span>
-          <div class="section-divider"></div>
-        </div>
-        <h2 class="section-h2">My Roots</h2>
-        <div class="section-body">
-          <p>I was born in Hyderabad into a modest family &mdash; the kind where love was never lacking but resources
-            often were. My mother passed away early, leaving a void that no amount of time fully fills. My father,
-            unable to provide the emotional or financial scaffolding a child needs, meant I learned the weight of
-            independence before most kids learn long division.</p>
-          <p>Hyderabad raised me: its chaos, its heat, its contradictions, its relentless energy. That city taught me
-            that survival isn&rsquo;t passive &mdash; you must go out and claim it every single morning.</p>
-        </div>
-      </div>
-
-      <div class="story-section">
-        <div class="section-marker"><span class="roman">II</span>
-          <div class="section-divider"></div>
-        </div>
-        <h2 class="section-h2">The Fight Begins</h2>
-        <div class="section-body">
-          <p>In 7th grade, a financial crisis didn&rsquo;t just knock on our door &mdash; it kicked it down. School
-            became a luxury I couldn&rsquo;t afford. I left, found work in a restaurant, and started paying for my own
-            survival. I moved between hostels, switching schools when I could, stitching together an education from
-            whatever fragments were available.</p>
-          <p>Most people at that age worry about homework deadlines. I was worrying about whether I could eat that
-            night. But here is what those years gave me that no curriculum could: the absolute, bone-deep certainty that
-            I would not break.</p>
-          <p>I was a kid holding two impossible things at once &mdash; poverty and ambition. I chose to keep both.</p>
-        </div>
-      </div>
-
-      <blockquote class="pull">
-        <p>&ldquo;I was a kid holding two impossible things at once &mdash; poverty and ambition. I chose to keep
-          both.&rdquo;</p>
-      </blockquote>
-
-      <div class="story-section">
-        <div class="section-marker"><span class="roman">III</span>
-          <div class="section-divider"></div>
-        </div>
-        <h2 class="section-h2">Self-Made Path</h2>
-        <div class="section-body">
-          <p>I found open schooling &mdash; a route most people dismiss, but one I treated like a lifeline. I completed
-            an ITI diploma course with distinction honours through sheer determination, studying whenever I could carve
-            out the time between shifts.</p>
-          <p>Eventually, the path pointed toward law. NLUD &mdash; one of the top national law universities in India. I
-            studied for it, sat for it, and got in. I paid my first-year fees entirely on my own, through part-time
-            jobs. No safety net. Just hustle and the refusal to let logistics be the reason my dream dies.</p>
-        </div>
-      </div>
-
-      <div class="stats-4">
-        <div class="stat-box">
-          <div class="stat-val-lg">7th</div>
-          <div class="stat-lbl-sm">Grade when I started working</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-val-lg">ITI</div>
-          <div class="stat-lbl-sm">Diploma with Distinction</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-val-lg">&#8377;0</div>
-          <div class="stat-lbl-sm">Family support for 1st year</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-val-lg">NLU</div>
-          <div class="stat-lbl-sm">Delhi &mdash; earned, not given</div>
-        </div>
-      </div>
-
-      <div class="story-section">
-        <div class="section-marker"><span class="roman">IV</span>
-          <div class="section-divider"></div>
-        </div>
-        <h2 class="section-h2">Conquering Delhi</h2>
-        <div class="section-body">
-          <p>Delhi hit me like a wall. A new city, a new climate, isolation, and a chronic stomach illness worsened by
-            the pollution. I missed two consecutive weeks of classes. I was failing subjects. The mental weight was real
-            and heavy.</p>
-          <p>And still &mdash; I kept fighting. I caught up. I rebuilt. Because that&rsquo;s the only playbook I know.
-            You fall, you note why, you stand back up, and you move forward. Every. Single. Time.</p>
-        </div>
-      </div>
-
-      <div class="story-section">
-        <div class="section-marker"><span class="roman">V</span>
-          <div class="section-divider"></div>
-        </div>
-        <h2 class="section-h2">My Drive &amp; Ambitions</h2>
-        <div class="section-body">
-          <p>I am a certified distinction holder. A writer of 90+ essays. A builder of AI tools, dashboards, and games.
-            A person who left formal school in 7th grade and is now studying at a national law university. I handle
-            everything &mdash; independently, without complaint.</p>
-          <p>My target is the highest-paying job in corporate law, blended with technology and creativity. The
-            intersection of law, technology, and creativity is where I am staking my career. Three years remain at NLUD.
-            The runway is short. The ambition is not.</p>
-        </div>
-      </div>
-
-      <div class="story-section">
-        <div class="section-marker"><span class="roman">VI</span>
-          <div class="section-divider"></div>
-        </div>
-        <h2 class="section-h2">Looking Ahead</h2>
-        <div class="section-body">
-          <p>Freedom is not something you are given. It is something you earn, day by day, through work that no one sees
-            and costs that no one else pays. I have been earning mine since I was in 7th grade.</p>
-          <p>I&rsquo;m not interested in sympathy. I&rsquo;m interested in results &mdash; until my story becomes
-            something that makes the next kid from a difficult background think: if he did it from there, I can do it
-            from here.</p>
-        </div>
-      </div>
-
-      <div class="closing-box">
-        <p class="closing-quote">&ldquo;No safety net. No shortcut. No backup plan.<br>Just the absolute refusal to stay
-          down.&rdquo;</p>
-        <p class="closing-attr">&mdash; Dhananjay Chouhan, 19 &middot; Hyderabad &#8594; Delhi</p>
-      </div>
-
-      <div class="story-ctas">
-        <button class="btn-primary" onclick="nav('writings')">Read My Essays &#8594;</button>
-        <button class="btn-secondary" onclick="nav('about')">About &amp; Contact</button>
-      </div>
-    </div>
-    <footer class="site-footer">
-      <div class="footer-top">
-        <div class="footer-brand-block">
-          <div class="footer-brand">
-            <div class="mark">DJ</div>
-            <div class="sub">Law &middot; Research &middot; Code</div>
-          </div>
-          <p class="footer-tagline">Where law meets code.<br>Built from nothing, still building.</p>
-        </div>
-        <div class="footer-nav-col">
-          <h4>Navigate</h4>
-          <ul>
-            <li><a onclick="nav('home')" tabindex="0">Home</a></li>
-            <li><a onclick="nav('projects')" tabindex="0">Projects</a></li>
-            <li><a onclick="nav('writings')" tabindex="0">Writings</a></li>
-            <li><a onclick="nav('content')" tabindex="0">Content Creation</a></li>
-            <li><a onclick="nav('story')" tabindex="0">My Story</a></li>
-            <li><a onclick="nav('about')" tabindex="0">About</a></li>
-          </ul>
-        </div>
-        <div class="footer-connect-col">
-          <h4>YouTube Channels</h4>
-          <div class="footer-social-links" style="margin-bottom:14px">
-            <a href="https://youtube.com/@delawded?si=_ZVMAE67Jh4EuVhj" target="_blank" rel="noopener noreferrer">&#9658; @delawded (Education)</a>
-            <a href="https://youtube.com/@ziuuzx?si=-UT9wSlUVvSgttKw" target="_blank" rel="noopener noreferrer">&#9658; @ziuuzx (Creative &amp; Horror)</a>
-            <a href="https://youtube.com/@legalstaanofficial?si=jexCJ6CxAauwz5a_" target="_blank" rel="noopener noreferrer">&#9658; @legalstaanofficial (Coaching)</a>
-          </div>
-          <h4>Instagram &amp; Connect</h4>
-          <div class="footer-social-links">
-            <a href="https://www.instagram.com/subtle_dhanu?igsi=MTFncmNhMnZrbWVkeg==" target="_blank" rel="noopener noreferrer">&#9733; @subtle_dhanu</a>
-            <a href="https://www.instagram.com/ncc_nlud?igsh=MW9raTU2cG5sOW1wMQ==&igsi=MW9raTU2cG5sOW1wMQ==" target="_blank" rel="noopener noreferrer">&#9733; @ncc_nlud</a>
-            <a href="https://www.instagram.com/legalstaan?igsh=cHpsMmc3Z2lxbzR5&igsi=cHpsMmc3Z2lxbzR5" target="_blank" rel="noopener noreferrer">&#9733; @legalstaan</a>
-            <a href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">↗ GitHub</a>
-            <a href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank" rel="noopener noreferrer">↗ LinkedIn</a>
-            <a href="mailto:dhananjay.chouhan24@nludelhi.ac.in">✉ University Email</a>
-            <a href="mailto:mdc18042007@gmail.com">✉ Personal Email</a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p class="footer-philosophy">“Imperfectly perfect — my mistakes made me who I am.”</p>
-        <p class="footer-copy">&copy; 2026 Dhananjay Chouhan &middot; NLU Delhi</p>
-      </div>
-    </footer>
-  </div>
-
-
   <!-- ═══════════════════════════════════════════════════════════
-     PAGE: ABOUT
+     PAGE: ABOUT & MEMOIR (COMBINED STORY & PROFILE)
 ═══════════════════════════════════════════════════════════ -->
   <div class="page" id="page-about" role="main">
     <div class="wrap about-page">
+      <!-- ── SECTION 1: PROFILE & ACADEMIC OVERVIEW ── -->
       <div class="about-header">
-        <span class="eyebrow">About</span>
+        <span class="eyebrow">Profile &middot; Research &middot; Origins</span>
         <h1 class="about-name">Dhananjay<br><span>Chouhan</span></h1>
         <p class="about-sub">BA LLB &middot; National Law University Delhi &middot; 3rd Year</p>
         <hr class="rule">
@@ -6125,7 +6316,7 @@ Perhaps my solitary end was written there too.”
             technically literate.</p>
           <p>This site unifies both worlds. Everything here is self-made &mdash; because that&rsquo;s the only way
             I&rsquo;ve ever done things.</p>
-          <button class="story-trigger" onclick="nav('story')">Read my full story</button>
+          <button class="story-trigger" onclick="document.getElementById('about-memoir-section').scrollIntoView({behavior:'smooth'})">Read My Full Memoir (6 Chapters below) &darr;</button>
         </div>
         <div class="stat-sidebar">
           <div class="sidebar-item">
@@ -6178,14 +6369,12 @@ Perhaps my solitary end was written there too.”
         <div class="now-card">
           <div class="now-icon">&#9878;</div>
           <div class="now-title">Studying Law</div>
-          <div class="now-desc">3rd year BA LLB at NLUD &mdash; moots, seminars, reading every precedent I can find.
-          </div>
+          <div class="now-desc">3rd year BA LLB at NLUD &mdash; moots, seminars, reading every precedent I can find.</div>
         </div>
         <div class="now-card">
           <div class="now-icon">&#128295;</div>
           <div class="now-title">Building Tools</div>
-          <div class="now-desc">Shipping legal AI tools, dashboards, and experiments that merge law with technology.
-          </div>
+          <div class="now-desc">Shipping legal AI tools, dashboards, and experiments that merge law with technology.</div>
         </div>
         <div class="now-card">
           <div class="now-icon">&#9997;</div>
@@ -6194,21 +6383,123 @@ Perhaps my solitary end was written there too.”
         </div>
       </div>
 
-      <div class="contact-box">
+      <!-- ── SECTION 2: THE MEMOIR — BUILT FROM NOTHING (REAL MANUSCRIPT PAGES) ── -->
+      <div id="about-memoir-section" style="margin-top:90px; scroll-margin-top:80px;">
+        <div class="story-header" style="text-align:left; margin-bottom:28px;">
+          <span class="eyebrow">The Memoir &middot; 6 Chapters</span>
+          <h2 class="page-title" style="font-size:clamp(2.4rem,5.5vw,4.2rem);">Built from <span class="shimmer">Nothing.</span></h2>
+          <p class="story-intro" style="max-width:740px;">This is not a polished origin story. It is the unfiltered account of a 19-year-old from Hyderabad who lost everything early &mdash; and built everything back, alone, one difficult day at a time.</p>
+        </div>
+        <hr class="story-rule" style="margin-bottom:44px;">
+
+        <div class="manuscript-book">
+          <!-- CHAPTER 1 -->
+          <div class="manuscript-sheet">
+            <span class="manuscript-corner-seal">Origin &middot; Hyderabad</span>
+            <div class="manuscript-roman">I</div>
+            <h3 class="manuscript-title">My Roots</h3>
+            <div class="manuscript-body">
+              <p>I was born in Hyderabad into a modest family &mdash; the kind where love was never lacking but resources often were. My mother passed away early, leaving a void that no amount of time fully fills. My father, unable to provide the emotional or financial scaffolding a child needs, meant I learned the weight of independence before most kids learn long division.</p>
+              <p>Hyderabad raised me: its chaos, its heat, its contradictions, its relentless energy. That city taught me that survival isn&rsquo;t passive &mdash; you must go out and claim it every single morning.</p>
+            </div>
+          </div>
+
+          <!-- CHAPTER 2 -->
+          <div class="manuscript-sheet">
+            <span class="manuscript-corner-seal">Survival &middot; 7th Grade</span>
+            <div class="manuscript-roman">II</div>
+            <h3 class="manuscript-title">The Fight Begins</h3>
+            <div class="manuscript-body">
+              <p>In 7th grade, a financial crisis didn&rsquo;t just knock on our door &mdash; it kicked it down. School became a luxury I couldn&rsquo;t afford. I left, found work in a restaurant, and started paying for my own survival. I moved between hostels, switching schools when I could, stitching together an education from whatever fragments were available.</p>
+              <p>Most people at that age worry about homework deadlines. I was worrying about whether I could eat that night. But here is what those years gave me that no curriculum could: the absolute, bone-deep certainty that I would not break.</p>
+              <div class="manuscript-quote">
+                &ldquo;I was a kid holding two impossible things at once &mdash; poverty and ambition. I chose to keep both.&rdquo;
+              </div>
+            </div>
+          </div>
+
+          <!-- CHAPTER 3 -->
+          <div class="manuscript-sheet">
+            <span class="manuscript-corner-seal">Academics &middot; ITI &amp; NLUD</span>
+            <div class="manuscript-roman">III</div>
+            <h3 class="manuscript-title">Self-Made Path</h3>
+            <div class="manuscript-body">
+              <p>I found open schooling &mdash; a route most people dismiss, but one I treated like a lifeline. I completed an ITI diploma course with distinction honours through sheer determination, studying whenever I could carve out the time between shifts.</p>
+              <p>Eventually, the path pointed toward law. NLUD &mdash; one of the top national law universities in India. I studied for it, sat for it, and got in. I paid my first-year fees entirely on my own, through part-time jobs. No safety net. Just hustle and the refusal to let logistics be the reason my dream dies.</p>
+              <div class="stats-4" style="margin-top:24px;">
+                <div class="stat-box" style="background:rgba(139,94,26,0.1); border-color:rgba(139,94,26,0.3);">
+                  <div class="stat-val-lg" style="color:#8B5E1A;">7th</div>
+                  <div class="stat-lbl-sm" style="color:#5A4830;">Grade when I started working</div>
+                </div>
+                <div class="stat-box" style="background:rgba(139,94,26,0.1); border-color:rgba(139,94,26,0.3);">
+                  <div class="stat-val-lg" style="color:#8B5E1A;">ITI</div>
+                  <div class="stat-lbl-sm" style="color:#5A4830;">Diploma with Distinction</div>
+                </div>
+                <div class="stat-box" style="background:rgba(139,94,26,0.1); border-color:rgba(139,94,26,0.3);">
+                  <div class="stat-val-lg" style="color:#8B5E1A;">&#8377;0</div>
+                  <div class="stat-lbl-sm" style="color:#5A4830;">Family support for 1st year</div>
+                </div>
+                <div class="stat-box" style="background:rgba(139,94,26,0.1); border-color:rgba(139,94,26,0.3);">
+                  <div class="stat-val-lg" style="color:#8B5E1A;">NLU</div>
+                  <div class="stat-lbl-sm" style="color:#5A4830;">Delhi &mdash; earned, not given</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CHAPTER 4 -->
+          <div class="manuscript-sheet">
+            <span class="manuscript-corner-seal">Resilience &middot; Delhi</span>
+            <div class="manuscript-roman">IV</div>
+            <h3 class="manuscript-title">Conquering Delhi</h3>
+            <div class="manuscript-body">
+              <p>Delhi hit me like a wall. A new city, a new climate, isolation, and a chronic stomach illness worsened by the pollution. I missed two consecutive weeks of classes. I was failing subjects. The mental weight was real and heavy.</p>
+              <p>And still &mdash; I kept fighting. I caught up. I rebuilt. Because that&rsquo;s the only playbook I know. You fall, you note why, you stand back up, and you move forward. Every. Single. Time.</p>
+            </div>
+          </div>
+
+          <!-- CHAPTER 5 -->
+          <div class="manuscript-sheet">
+            <span class="manuscript-corner-seal">Vision &middot; Ambition</span>
+            <div class="manuscript-roman">V</div>
+            <h3 class="manuscript-title">My Drive &amp; Ambitions</h3>
+            <div class="manuscript-body">
+              <p>I am a certified distinction holder. A writer of 90+ essays. A builder of AI tools, dashboards, and games. A person who left formal school in 7th grade and is now studying at a national law university. I handle everything &mdash; independently, without complaint.</p>
+              <p>My target is the highest-paying job in corporate law, blended with technology and creativity. The intersection of law, technology, and creativity is where I am staking my career. Three years remain at NLUD. The runway is short. The ambition is not.</p>
+            </div>
+          </div>
+
+          <!-- CHAPTER 6 -->
+          <div class="manuscript-sheet">
+            <span class="manuscript-corner-seal">Manifesto &middot; Future</span>
+            <div class="manuscript-roman">VI</div>
+            <h3 class="manuscript-title">Looking Ahead</h3>
+            <div class="manuscript-body">
+              <p>Freedom is not something you are given. It is something you earn, day by day, through work that no one sees and costs that no one else pays. I have been earning mine since I was in 7th grade.</p>
+              <p>I&rsquo;m not interested in sympathy. I&rsquo;m interested in results &mdash; until my story becomes something that makes the next kid from a difficult background think: if he did it from there, I can do it from here.</p>
+              <div class="manuscript-quote" style="border-left-color:#8B5E1A; background:rgba(139,94,26,0.1);">
+                &ldquo;No safety net. No shortcut. No backup plan.<br>Just the absolute refusal to stay down.&rdquo;
+                <div style="font-family:var(--f-mono); font-size:0.75rem; font-style:normal; margin-top:8px; color:#5A4830;">&mdash; Dhananjay Chouhan, 19 &middot; Hyderabad &rarr; Delhi</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SECTION 3: GET IN TOUCH ── -->
+      <div class="contact-box" style="margin-top:60px;">
         <h2 class="contact-h2">Get in touch</h2>
-        <p class="contact-p">Open to conversations about law, research collaborations, legal tech, internship referrals,
-          or just an interesting exchange of ideas.</p>
+        <p class="contact-p">Open to conversations about law, research collaborations, legal tech, internship referrals, or just an interesting exchange of ideas.</p>
         <p class="contact-emails">dhananjay.chouhan24@nludelhi.ac.in &middot; mdc18042007@gmail.com</p>
         <div class="contact-btns">
           <a class="btn-primary btn-sm" href="mailto:dhananjay.chouhan24@nludelhi.ac.in">&#9993; University Email</a>
           <a class="btn-secondary btn-sm" href="mailto:mdc18042007@gmail.com">&#9993; Personal Email</a>
-          <a class="btn-secondary btn-sm" href="https://github.com/DHANANAN" target="_blank"
-            rel="noopener noreferrer">GitHub &#8599;</a>
-          <a class="btn-secondary btn-sm" href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank"
-            rel="noopener noreferrer">LinkedIn &#8599;</a>
+          <a class="btn-secondary btn-sm" href="https://github.com/DHANANAN" target="_blank" rel="noopener noreferrer">GitHub &#8599;</a>
+          <a class="btn-secondary btn-sm" href="https://www.linkedin.com/in/dhananjay-chouhan-30a51b334" target="_blank" rel="noopener noreferrer">LinkedIn &#8599;</a>
         </div>
       </div>
     </div>
+
     <footer class="site-footer">
       <div class="footer-top">
         <div class="footer-brand-block">
@@ -6225,8 +6516,7 @@ Perhaps my solitary end was written there too.”
             <li><a onclick="nav('projects')" tabindex="0">Projects</a></li>
             <li><a onclick="nav('writings')" tabindex="0">Writings</a></li>
             <li><a onclick="nav('content')" tabindex="0">Content Creation</a></li>
-            <li><a onclick="nav('story')" tabindex="0">My Story</a></li>
-            <li><a onclick="nav('about')" tabindex="0">About</a></li>
+            <li><a onclick="nav('about')" tabindex="0">About &amp; Story</a></li>
           </ul>
         </div>
         <div class="footer-connect-col">
@@ -6288,10 +6578,13 @@ Perhaps my solitary end was written there too.”
 ═══════════════════════════════════════════════════════════ -->
   <script>
     /* ─── CONSTANTS ─────────────────────────────────────────────────── */
-    var DJ_PAGES = ['home', 'projects', 'writings', 'content', 'story', 'about'];
+    var DJ_PAGES = ['home', 'projects', 'writings', 'content', 'about', 'story'];
     var DJ_CURRENT = 'home';
     var DJ_TAG = 'all';
-    var DJ_THEME = 'dark';
+    var THEME_SEQUENCE = ['executive', 'obsidian', 'gold'];
+    var THEME_ICONS = { 'executive': '⚡', 'obsidian': '✦', 'gold': '👑' };
+    var THEME_LABELS = { 'executive': 'Executive Pro', 'obsidian': 'Obsidian Void', 'gold': 'Imperial Gold' };
+    var DJ_THEME = 'executive';
     var DJ_VEIL_BUSY = false;
     var DJ_CURSOR_X = window.innerWidth * 0.5;
     var DJ_CURSOR_Y = window.innerHeight * 0.5;
@@ -6318,7 +6611,10 @@ Perhaps my solitary end was written there too.”
     ══════════════════════════════════════════════════════════════════ */
     function nav(name) {
       if (!name || DJ_PAGES.indexOf(name) < 0) name = 'home';
-      if (name === DJ_CURRENT) return;
+      var isStoryTarget = (name === 'story');
+      var domTarget = isStoryTarget ? 'about' : name;
+
+      if (domTarget === DJ_CURRENT && !isStoryTarget) return;
 
       /* ── Layer 1 ── */
       try {
@@ -6329,7 +6625,13 @@ Perhaps my solitary end was written there too.”
           if (loading) loading.classList.add('show');
           veil.classList.add('glitch-effect');
           setTimeout(function () {
-            _switchDOM(name);
+            _switchDOM(domTarget);
+            if (isStoryTarget) {
+              setTimeout(function () {
+                var mem = document.getElementById('about-memoir-section');
+                if (mem) mem.scrollIntoView({ behavior: 'smooth' });
+              }, 150);
+            }
             setTimeout(function () {
               veil.classList.remove('glitch-effect');
               if (loading) loading.classList.remove('show');
@@ -6337,7 +6639,13 @@ Perhaps my solitary end was written there too.”
             }, 1600);
           }, 500);
         } else {
-          _switchDOM(name);
+          _switchDOM(domTarget);
+          if (isStoryTarget) {
+            setTimeout(function () {
+              var mem = document.getElementById('about-memoir-section');
+              if (mem) mem.scrollIntoView({ behavior: 'smooth' });
+            }, 150);
+          }
         }
         return;
       } catch (e) { console.warn('[nav] L1:', e); }
@@ -6346,16 +6654,24 @@ Perhaps my solitary end was written there too.”
       try {
         var ps = document.querySelectorAll('.page');
         for (var i = 0; i < ps.length; i++) ps[i].style.display = 'none';
-        var el = document.getElementById('page-' + name);
-        if (el) { el.style.display = 'block'; window.scrollTo(0, 0); }
+        var el = document.getElementById('page-' + domTarget);
+        if (el) {
+          el.style.display = 'block';
+          if (isStoryTarget) {
+            var mem = document.getElementById('about-memoir-section');
+            if (mem) mem.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            window.scrollTo(0, 0);
+          }
+        }
         return;
       } catch (e2) { console.warn('[nav] L2:', e2); }
 
       /* ── Layer 3 ── */
       try {
-        var el3 = document.getElementById('page-' + name);
+        var el3 = document.getElementById('page-' + domTarget);
         if (el3) el3.setAttribute('style', 'display:block!important;visibility:visible!important');
-        try { window.location.hash = name; } catch (e) { }
+        try { window.location.hash = isStoryTarget ? 'story' : (domTarget === 'home' ? '' : domTarget); } catch (e) { }
         window.scrollTo(0, 0);
       } catch (e3) { console.error('[nav] all layers failed:', e3); }
     }
@@ -6388,24 +6704,25 @@ Perhaps my solitary end was written there too.”
       if (name === 'home') _restartAnims();
     }
 
-    /* ─── THEME TOGGLE ──────────────────────────────────────────────── */
-    function toggleTheme() {
-      DJ_THEME = (DJ_THEME === 'dark') ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', DJ_THEME);
-
+    /* ─── 3-STATE PALETTE CYCLING ENGINE ────────────────────────────── */
+    function _updateThemeUI(theme) {
       var icon = document.getElementById('theme-icon');
       var label = document.getElementById('theme-label');
       var iconM = document.getElementById('theme-icon-m');
 
-      if (DJ_THEME === 'light') {
-        if (icon) icon.textContent = '☀';
-        if (label) label.textContent = 'Light';
-        if (iconM) iconM.textContent = '☀';
-      } else {
-        if (icon) icon.textContent = '☽';
-        if (label) label.textContent = 'Dark';
-        if (iconM) iconM.textContent = '☽';
-      }
+      if (icon) icon.textContent = THEME_ICONS[theme] || '⚡';
+      if (label) label.textContent = THEME_LABELS[theme] || 'Executive Pro';
+      if (iconM) iconM.textContent = THEME_ICONS[theme] || '⚡';
+    }
+
+    function toggleTheme() {
+      var curIdx = THEME_SEQUENCE.indexOf(DJ_THEME);
+      if (curIdx < 0) curIdx = 0;
+      var nextIdx = (curIdx + 1) % THEME_SEQUENCE.length;
+      DJ_THEME = THEME_SEQUENCE[nextIdx];
+
+      document.documentElement.setAttribute('data-theme', DJ_THEME);
+      _updateThemeUI(DJ_THEME);
 
       /* Animate scale on theme change */
       try {
@@ -7133,7 +7450,11 @@ Perhaps my solitary end was written there too.”
     function _initHash() {
       try {
         var hash = (window.location.hash || '').replace(/^#/, '').trim();
-        if (hash && DJ_PAGES.indexOf(hash) > -1) _switchDOM(hash);
+        if (hash === 'story') {
+          nav('story');
+        } else if (hash && DJ_PAGES.indexOf(hash) > -1) {
+          _switchDOM(hash);
+        }
       } catch (e) { }
     }
 
@@ -7141,7 +7462,13 @@ Perhaps my solitary end was written there too.”
     function _initTheme() {
       try {
         var saved = localStorage.getItem('dj-theme');
-        if (saved === 'light') toggleTheme();
+        if (saved && THEME_SEQUENCE.indexOf(saved) > -1) {
+          DJ_THEME = saved;
+        } else {
+          DJ_THEME = 'executive';
+        }
+        document.documentElement.setAttribute('data-theme', DJ_THEME);
+        _updateThemeUI(DJ_THEME);
       } catch (e) { }
     }
 
