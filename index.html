@@ -3168,319 +3168,7 @@
       transform: translateX(4px) translateY(-2px);
     }
 
-    /* ═══════════════════════════════════════════════════════
-       5-SECOND IDLE CARD SHUFFLE ENGINE (3X STRENGTH & 3S COUNTDOWN)
-    ═══════════════════════════════════════════════════════ */
-    
-    /* 3D Perspective Container for Smooth Card Translations */
-    .grid-3, #projects-grid {
-      perspective: 1600px;
-      perspective-origin: center center;
-    }
 
-    /* Base Transition applied during dynamic swap transitions */
-    .card.idle-animating {
-      pointer-events: none !important;
-      will-change: transform, opacity, filter, box-shadow;
-    }
-
-    /* ─── 1. SHADOW JUTSU (3X STRENGTH: Massive Smoke & Clone Burst) ─── */
-    .card.jutsu-smoke-vanish {
-      animation: jutsuVanish3X 0.95s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
-    .card.jutsu-smoke-appear {
-      animation: jutsuAppear3X 0.95s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    @keyframes jutsuVanish3X {
-      0% {
-        filter: brightness(1) contrast(1) blur(0);
-        transform: scale(1) rotate(0deg);
-        opacity: 1;
-      }
-      30% {
-        filter: brightness(0.1) contrast(3.5) blur(10px);
-        box-shadow: 0 0 80px rgba(168, 85, 247, 0.95), 0 0 120px rgba(0, 0, 0, 1), 0 0 40px #c084fc;
-        transform: scale(0.88) translateY(-18px) rotate(-3deg);
-        opacity: 0.9;
-      }
-      65% {
-        filter: brightness(0) contrast(4) blur(24px);
-        box-shadow: 0 0 140px rgba(168, 85, 247, 0.8), 0 0 180px rgba(0, 0, 0, 1);
-        transform: scale(0.45) translateY(35px) rotate(6deg);
-        opacity: 0.15;
-      }
-      100% {
-        filter: brightness(0) blur(32px);
-        transform: scale(0.2);
-        opacity: 0;
-      }
-    }
-    @keyframes jutsuAppear3X {
-      0% {
-        filter: brightness(0) blur(32px);
-        transform: scale(0.2) rotate(-6deg);
-        opacity: 0;
-      }
-      40% {
-        filter: brightness(0.2) contrast(3) blur(12px);
-        box-shadow: 0 0 100px rgba(201, 168, 76, 0.9), 0 0 150px rgba(0, 0, 0, 1), 0 0 50px rgba(168, 85, 247, 0.6);
-        transform: scale(0.92) translateY(-22px) rotate(2deg);
-        opacity: 0.9;
-      }
-      80% {
-        filter: brightness(1.6) contrast(1.2) blur(3px);
-        box-shadow: 0 0 50px rgba(201, 168, 76, 0.6);
-        transform: scale(1.08) translateY(-4px) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        filter: brightness(1) contrast(1) blur(0);
-        box-shadow: none;
-        transform: scale(1) translateY(0);
-        opacity: 1;
-      }
-    }
-
-    /* ─── 2. WALKING BEHIND EACH OTHER (3X STRENGTH: Deep 3D Corridor Glide) ─── */
-    .card.walk-behind {
-      z-index: 2 !important;
-      transition: transform 1.25s cubic-bezier(0.22, 1, 0.36, 1), filter 1.25s ease, opacity 1.25s ease;
-      transform: perspective(1200px) translate3d(0, 0, -320px) rotateY(-22deg) scale(0.72);
-      filter: brightness(0.4) contrast(0.85) blur(1px);
-      opacity: 0.6;
-    }
-    .card.walk-front {
-      z-index: 40 !important;
-      transition: transform 1.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 1.25s ease;
-      transform: perspective(1200px) translate3d(0, 0, 160px) rotateY(18deg) scale(1.18);
-      box-shadow: 0 45px 100px rgba(0, 0, 0, 0.85), 0 0 45px rgba(201, 168, 76, 0.45);
-    }
-    .card.walk-settle {
-      z-index: 5 !important;
-      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), filter 0.65s ease, opacity 0.65s ease, box-shadow 0.65s ease;
-      transform: perspective(1200px) translate3d(0, 0, 0) rotateY(0deg) scale(1);
-      filter: brightness(1);
-      opacity: 1;
-      box-shadow: none;
-    }
-
-    /* ─── 3. CHESS CASTLING & HANDSHAKE (3X STRENGTH: Intense Vibration & Arc Leap) ─── */
-    @keyframes handshakeJitter3X {
-      0%, 100% { transform: scale(1.04) translate(0, 0) rotate(0deg); }
-      15% { transform: scale(1.08) translate(-10px, 4px) rotate(-3.5deg); box-shadow: 0 0 40px rgba(201, 168, 76, 0.8); }
-      35% { transform: scale(1.08) translate(10px, -4px) rotate(3.5deg); box-shadow: 0 0 50px rgba(245, 158, 11, 0.9); }
-      55% { transform: scale(1.08) translate(-8px, -3px) rotate(-2.5deg); }
-      75% { transform: scale(1.08) translate(8px, 3px) rotate(2.5deg); }
-      90% { transform: scale(1.05) translate(-3px, 1px) rotate(-1deg); }
-    }
-    .card.castling-handshake {
-      animation: handshakeJitter3X 0.65s ease-in-out forwards;
-      border-color: var(--gold) !important;
-      box-shadow: 0 0 45px rgba(201, 168, 76, 0.75) !important;
-    }
-    .card.castling-king-jump {
-      z-index: 45 !important;
-      transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 1.2s ease;
-      box-shadow: 0 50px 100px rgba(0, 0, 0, 0.9), 0 0 50px rgba(201, 168, 76, 0.5);
-    }
-    .card.castling-rook-slide {
-      z-index: 15 !important;
-      transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), filter 1.2s ease;
-      filter: brightness(0.75);
-    }
-
-    /* ─── 4. VORTEX SPIRAL OF CONFUSION (3X STRENGTH: Centrifugal Whirlwind & Blur) ─── */
-    @keyframes vortexOrbitDissolve3X {
-      0% {
-        transform: rotate(0deg) scale(1);
-        filter: blur(0);
-        opacity: 1;
-      }
-      25% {
-        transform: rotate(360deg) scale(1.15);
-        filter: blur(4px);
-        box-shadow: 0 0 60px rgba(56, 189, 248, 0.7);
-        opacity: 0.9;
-      }
-      60% {
-        transform: rotate(720deg) scale(0.65);
-        filter: blur(14px);
-        box-shadow: 0 0 90px rgba(236, 72, 153, 0.8);
-        opacity: 0.5;
-      }
-      100% {
-        transform: rotate(1080deg) scale(0.05);
-        filter: blur(32px);
-        opacity: 0;
-      }
-    }
-    @keyframes vortexMaterialize3X {
-      0% {
-        transform: rotate(-360deg) scale(0.05);
-        filter: blur(32px);
-        opacity: 0;
-      }
-      65% {
-        transform: rotate(-45deg) scale(1.15);
-        filter: blur(4px);
-        box-shadow: 0 0 60px rgba(201, 168, 76, 0.6);
-        opacity: 0.95;
-      }
-      100% {
-        transform: rotate(0deg) scale(1);
-        filter: blur(0);
-        box-shadow: none;
-        opacity: 1;
-      }
-    }
-    .card.vortex-dissolve {
-      animation: vortexOrbitDissolve3X 1.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
-    .card.vortex-appear {
-      animation: vortexMaterialize3X 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    /* ─── 5. ANTIGRAVITY QUANTUM RIFT (3X STRENGTH: Singularity Inversion) ─── */
-    @keyframes quantumFloatWarp3X {
-      0% {
-        transform: translateY(0) rotateX(0deg) rotateY(0deg) scale(1);
-        filter: brightness(1) drop-shadow(0 0 0 transparent);
-      }
-      35% {
-        transform: translateY(-65px) rotateX(45deg) rotateY(180deg) scale(1.16);
-        filter: brightness(2.5) drop-shadow(0 0 50px #38bdf8) drop-shadow(0 0 70px #ec4899);
-        opacity: 0.85;
-      }
-      65% {
-        transform: translateY(-65px) rotateX(-45deg) rotateY(270deg) scale(1.16);
-        filter: brightness(3) drop-shadow(0 0 70px #a855f7) drop-shadow(0 0 90px #38bdf8);
-        opacity: 0.5;
-      }
-      100% {
-        transform: translateY(0) rotateX(0deg) rotateY(360deg) scale(1);
-        filter: brightness(1) drop-shadow(0 0 0 transparent);
-        opacity: 1;
-      }
-    }
-    .card.quantum-warp {
-      animation: quantumFloatWarp3X 1.5s cubic-bezier(0.34, 1.3, 0.64, 1) forwards;
-    }
-
-    /* ═══════════════════════════════════════════════════════
-       3-SECOND COUNTDOWN HUD OVERLAY & ANOMALY BADGE
-    ═══════════════════════════════════════════════════════ */
-    #idle-countdown-hud {
-      position: fixed;
-      top: 28px;
-      left: 50%;
-      transform: translateX(-50%) translateY(-35px) scale(0.92);
-      z-index: 1550;
-      background: rgba(10, 10, 18, 0.94);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid var(--gold);
-      border-radius: 30px;
-      padding: 10px 24px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      box-shadow: 
-        0 14px 40px rgba(0, 0, 0, 0.7),
-        0 0 30px rgba(201, 168, 76, 0.35);
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      pointer-events: none;
-    }
-    #idle-countdown-hud.active {
-      opacity: 1;
-      visibility: visible;
-      transform: translateX(-50%) translateY(0) scale(1);
-    }
-
-    .countdown-ring-wrap {
-      position: relative;
-      width: 38px;
-      height: 38px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .countdown-number {
-      font-family: var(--f-mono);
-      font-weight: 700;
-      font-size: 1.15rem;
-      color: var(--gold);
-      line-height: 1;
-      text-shadow: 0 0 10px rgba(201, 168, 76, 0.8);
-      animation: pulseCount 1s infinite;
-    }
-    @keyframes pulseCount {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.25); filter: brightness(1.4); }
-    }
-
-    .countdown-info {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .countdown-overline {
-      font-family: var(--f-mono);
-      font-size: 0.58rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #38bdf8;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .countdown-action {
-      font-family: var(--f-display);
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #FFFFFF;
-      letter-spacing: 0.02em;
-    }
-
-    /* Idle Activity Notice Toast */
-    #idle-shuffle-notice {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 1400;
-      background: rgba(14, 14, 22, 0.92);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid var(--border-hi);
-      border-radius: 20px;
-      padding: 6px 16px;
-      font-family: var(--f-mono);
-      font-size: 0.65rem;
-      color: var(--gold);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 15px rgba(201, 168, 76, 0.2);
-      opacity: 0;
-      transform: translateY(15px);
-      transition: opacity 0.35s ease, transform 0.35s ease;
-      pointer-events: none;
-    }
-    #idle-shuffle-notice.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    #idle-shuffle-notice .notice-icon {
-      display: inline-block;
-      animation: spin-slow 4s linear infinite;
-    }
-    @keyframes spin-slow {
-      100% { transform: rotate(360deg); }
-    }
 
     /* ═══════════════════════════════════════════════════════
    DOCUMENT VIEWER MODAL
@@ -4679,108 +4367,56 @@
     }
 
     /* ═══════════════════════════════════════════════════════
-       5-SECOND IDLE PROJECT SHUFFLE ANOMALY & HUD STYLES
+       5-SECOND IDLE PROJECT SHUFFLE ANOMALY STYLES
     ═══════════════════════════════════════════════════════ */
     .card.idle-animating {
-      transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease, filter 0.5s ease;
-      will-change: transform, opacity, filter;
-      z-index: 100 !important;
+      will-change: opacity, transform, filter;
       pointer-events: none !important;
     }
 
     .jutsu-smoke-vanish {
-      animation: jutsuVanish 0.55s ease-in forwards !important;
+      animation: idleFadeOut 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
     }
-
     .jutsu-smoke-appear {
-      animation: jutsuAppear 0.95s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+      animation: idleFadeIn 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
     }
 
-    @keyframes jutsuVanish {
-      0% { transform: scale(1) rotate(0deg); filter: blur(0px) brightness(1); opacity: 1; }
-      50% { transform: scale(1.15) rotate(4deg); filter: blur(8px) brightness(2.8); opacity: 0.8; }
-      100% { transform: scale(0.08) rotate(-18deg); filter: blur(25px) brightness(4); opacity: 0; }
+    .glide-out {
+      animation: idleFadeOut 0.45s ease forwards !important;
+    }
+    .glide-in {
+      animation: idleFadeIn 0.55s ease forwards !important;
     }
 
-    @keyframes jutsuAppear {
-      0% { transform: scale(0.08) rotate(18deg); filter: blur(25px) brightness(4); opacity: 0; }
-      60% { transform: scale(1.12) rotate(-4deg); filter: blur(4px) brightness(2); opacity: 0.95; }
-      100% { transform: scale(1) rotate(0deg); filter: blur(0px) brightness(1); opacity: 1; }
+    .castling-out {
+      animation: idleFadeOut 0.45s ease forwards !important;
     }
-
-    .walk-behind {
-      transition: transform 1.3s cubic-bezier(0.25, 1, 0.5, 1), filter 1.3s ease !important;
-      filter: brightness(0.65) blur(2px) !important;
-      z-index: 10 !important;
-    }
-
-    .walk-front {
-      transition: transform 1.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 1.3s ease !important;
-      z-index: 160 !important;
-      box-shadow: 0 35px 80px rgba(0,0,0,0.65), 0 0 40px var(--gold) !important;
-    }
-
-    .walk-settle {
-      animation: walkSettle 0.65s ease-out forwards !important;
-    }
-
-    @keyframes walkSettle {
-      0% { transform: scale(0.94); }
-      60% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-
-    .castling-handshake {
-      animation: handshakeVibrate 0.65s ease-in-out infinite !important;
-    }
-
-    @keyframes handshakeVibrate {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      20% { transform: translate(-5px, 4px) rotate(-2deg); }
-      40% { transform: translate(5px, -4px) rotate(2deg); }
-      60% { transform: translate(-4px, -3px) rotate(-1.5deg); }
-      80% { transform: translate(4px, 3px) rotate(1.5deg); }
-    }
-
-    .castling-king-jump {
-      transition: transform 1.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
-      z-index: 170 !important;
-    }
-
-    .castling-rook-slide {
-      transition: transform 1.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-      z-index: 90 !important;
+    .castling-in {
+      animation: idleFadeIn 0.55s ease forwards !important;
     }
 
     .vortex-dissolve {
-      animation: vortexSpinDissolve 1.45s cubic-bezier(0.55, 0, 1, 0.45) forwards !important;
+      animation: idleFadeOut 0.45s ease forwards !important;
     }
-
     .vortex-appear {
-      animation: vortexSpinAppear 1.2s cubic-bezier(0, 0.55, 0.45, 1) forwards !important;
-    }
-
-    @keyframes vortexSpinDissolve {
-      0% { transform: perspective(1000px) rotate(0deg) scale(1); opacity: 1; filter: blur(0); }
-      50% { transform: perspective(1000px) rotate(540deg) scale(0.5); opacity: 0.6; filter: blur(10px); }
-      100% { transform: perspective(1000px) rotate(1080deg) scale(0); opacity: 0; filter: blur(30px); }
-    }
-
-    @keyframes vortexSpinAppear {
-      0% { transform: perspective(1000px) rotate(-1080deg) scale(0); opacity: 0; filter: blur(30px); }
-      60% { transform: perspective(1000px) rotate(-180deg) scale(1.1); opacity: 0.85; filter: blur(5px); }
-      100% { transform: perspective(1000px) rotate(0deg) scale(1); opacity: 1; filter: blur(0); }
+      animation: idleFadeIn 0.55s ease forwards !important;
     }
 
     .quantum-warp {
-      animation: quantumSingularityWarp 0.8s ease-in-out forwards !important;
+      animation: idleQuantumPulse 0.8s ease-in-out forwards !important;
     }
 
-    @keyframes quantumSingularityWarp {
-      0% { transform: scale(1) skew(0deg); opacity: 1; }
-      35% { transform: scale(1.25, 0.35) skewX(28deg); filter: hue-rotate(180deg) brightness(2.5); }
-      65% { transform: scale(0.28, 1.45) skewY(-28deg); opacity: 0.2; filter: hue-rotate(360deg); }
-      100% { transform: scale(1) skew(0deg); opacity: 1; }
+    @keyframes idleFadeOut {
+      0% { opacity: 1; transform: scale(1); filter: blur(0); }
+      100% { opacity: 0.15; transform: scale(0.97); filter: blur(4px); }
+    }
+    @keyframes idleFadeIn {
+      0% { opacity: 0.15; transform: scale(0.97); filter: blur(4px); }
+      100% { opacity: 1; transform: scale(1); filter: blur(0); }
+    }
+    @keyframes idleQuantumPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.25; transform: scale(0.97); filter: brightness(1.2) blur(2px); }
     }
 
     /* ═══════════════════════════════════════════════════════
@@ -7975,46 +7611,27 @@ Perhaps my solitary end was written there too.”
       _showIdleNotice('Glide Corridor · 3-Pair Synchronized Swap');
 
       pairs.forEach(function (pair) {
-        var cardA = pair[0];
-        var cardB = pair[1];
-        var rectA = cardA.getBoundingClientRect();
-        var rectB = cardB.getBoundingClientRect();
-
-        var dxA = rectB.left - rectA.left;
-        var dyA = rectB.top - rectA.top;
-        var dxB = rectA.left - rectB.left;
-        var dyB = rectA.top - rectB.top;
-
-        cardA.classList.add('idle-animating', 'walk-behind');
-        cardB.classList.add('idle-animating', 'walk-front');
-
-        requestAnimationFrame(function () {
-          cardA.style.transform = 'translate3d(' + dxA + 'px, ' + dyA + 'px, 0px) scale(0.96)';
-          cardB.style.transform = 'translate3d(' + dxB + 'px, ' + dyB + 'px, 0px) scale(1.02)';
-        });
+        pair[0].classList.add('idle-animating', 'glide-out');
+        pair[1].classList.add('idle-animating', 'glide-out');
       });
 
       setTimeout(function () {
         pairs.forEach(function (pair) {
-          var cardA = pair[0];
-          var cardB = pair[1];
-          _swapDOMNodes(cardA, cardB);
-          cardA.style.transform = '';
-          cardB.style.transform = '';
-          cardA.classList.remove('walk-behind');
-          cardB.classList.remove('walk-front');
-          cardA.classList.add('walk-settle');
-          cardB.classList.add('walk-settle');
+          _swapDOMNodes(pair[0], pair[1]);
+          pair[0].classList.remove('glide-out');
+          pair[1].classList.remove('glide-out');
+          pair[0].classList.add('glide-in');
+          pair[1].classList.add('glide-in');
         });
 
         setTimeout(function () {
           pairs.forEach(function (pair) {
-            pair[0].classList.remove('walk-settle', 'idle-animating');
-            pair[1].classList.remove('walk-settle', 'idle-animating');
+            pair[0].classList.remove('glide-in', 'idle-animating');
+            pair[1].classList.remove('glide-in', 'idle-animating');
           });
           _isProjectShuffling = false;
-        }, 500);
-      }, 900);
+        }, 550);
+      }, 450);
     }
 
     /* Choreography 3: Chess Castling (3 Simultaneous Pairs) */
@@ -8023,47 +7640,32 @@ Perhaps my solitary end was written there too.”
       _showIdleNotice('Chess Castling · 3-Pair Synchronized Swap');
 
       pairs.forEach(function (pair) {
-        pair[0].classList.add('idle-animating', 'castling-handshake');
-        pair[1].classList.add('idle-animating', 'castling-handshake');
+        pair[0].classList.add('idle-animating', 'castling-out');
+        pair[1].classList.add('idle-animating', 'castling-out');
       });
 
       setTimeout(function () {
         pairs.forEach(function (pair) {
-          var cardK = pair[0];
-          var cardR = pair[1];
-          cardK.classList.remove('castling-handshake');
-          cardR.classList.remove('castling-handshake');
-
-          var rectK = cardK.getBoundingClientRect();
-          var rectR = cardR.getBoundingClientRect();
-          var dx = rectR.left - rectK.left;
-          var dy = rectR.top - rectK.top;
-
-          cardK.classList.add('castling-king-jump');
-          cardR.classList.add('castling-rook-slide');
-
-          cardK.style.transform = 'translate3d(' + dx + 'px, ' + dy + 'px, 0px) scale(1.02)';
-          cardR.style.transform = 'translate3d(' + (-dx) + 'px, ' + (-dy) + 'px, 0px) scale(0.98)';
+          _swapDOMNodes(pair[0], pair[1]);
+          pair[0].classList.remove('castling-out');
+          pair[1].classList.remove('castling-out');
+          pair[0].classList.add('castling-in');
+          pair[1].classList.add('castling-in');
         });
 
         setTimeout(function () {
           pairs.forEach(function (pair) {
-            var cardK = pair[0];
-            var cardR = pair[1];
-            _swapDOMNodes(cardK, cardR);
-            cardK.style.transform = '';
-            cardR.style.transform = '';
-            cardK.classList.remove('castling-king-jump', 'idle-animating');
-            cardR.classList.remove('castling-rook-slide', 'idle-animating');
+            pair[0].classList.remove('castling-in', 'idle-animating');
+            pair[1].classList.remove('castling-in', 'idle-animating');
           });
           _isProjectShuffling = false;
-        }, 900);
-      }, 500);
+        }, 550);
+      }, 450);
     }
 
-    /* Choreography 4: Vortex Spiral of Confusion (3-Round Matrix Whirlwind) */
+    /* Choreography 4: Vortex Spiral (Matrix Shuffle) */
     function _choreographyVortexConfusion(grid, cards) {
-      _showIdleNotice('Vortex of Confusion · 3-Round Matrix Whirlwind');
+      _showIdleNotice('Vortex of Confusion · Matrix Whirlwind');
 
       cards.forEach(function (c) {
         c.classList.add('idle-animating', 'vortex-dissolve');
@@ -8092,14 +7694,14 @@ Perhaps my solitary end was written there too.”
             c.classList.remove('vortex-appear', 'idle-animating');
           });
           _isProjectShuffling = false;
-        }, 1200);
-      }, 1450);
+        }, 550);
+      }, 450);
     }
 
-    /* Choreography 5: Antigravity Quantum Rift (3 Simultaneous Pairs) */
+    /* Choreography 5: Antigravity Quantum Rift */
     function _choreographyQuantumRift(grid, cards) {
       var pairs = _pick3CardPairs(cards);
-      _showIdleNotice('Quantum Singularity · 3-Pair Gravity Inversion Rift');
+      _showIdleNotice('Quantum Singularity · Gravity Inversion');
 
       pairs.forEach(function (pair) {
         pair[0].classList.add('idle-animating', 'quantum-warp');
@@ -8117,8 +7719,8 @@ Perhaps my solitary end was written there too.”
             pair[1].classList.remove('quantum-warp', 'idle-animating');
           });
           _isProjectShuffling = false;
-        }, 800);
-      }, 750);
+        }, 400);
+      }, 450);
     }
 
     function _initIdleProjectShuffle() {
