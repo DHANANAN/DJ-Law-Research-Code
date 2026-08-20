@@ -194,8 +194,8 @@
     }
 
     /* ═══════════════════════════════════════════════════════
-   CUSTOM CURSOR
-═══════════════════════════════════════════════════════ */
+       CUSTOM CURSOR (SMOOTH GOLD DUAL-RING TRACKER)
+    ═══════════════════════════════════════════════════════ */
     #cursor-dot,
     #cursor-ring {
       position: fixed;
@@ -203,7 +203,9 @@
       pointer-events: none;
       z-index: 99999;
       transform: translate(-50%, -50%);
-      transition: opacity .3s;
+      opacity: 0;
+      transition: opacity .25s ease, width .25s ease, height .25s ease, border-color .25s ease, background .25s ease;
+      will-change: left, top, transform;
     }
 
     #cursor-dot {
@@ -217,27 +219,42 @@
       width: 28px;
       height: 28px;
       border: 1.5px solid var(--gold);
-      opacity: .5;
-      transition: width .25s, height .25s, opacity .3s, border-color .3s;
-    }
-
-    body:hover #cursor-dot,
-    body:hover #cursor-ring {
-      opacity: 1
     }
 
     .cursor-hover #cursor-ring {
       width: 44px;
       height: 44px;
       border-color: var(--gold-hi);
-      opacity: .8;
+      background: rgba(201, 168, 76, 0.08);
+      opacity: .9 !important;
+    }
+
+    [data-theme="journal"] .cursor-hover #cursor-ring {
+      border-color: var(--gold);
+      background: rgba(140, 83, 27, 0.08);
+    }
+
+    [data-theme="light"] .cursor-hover #cursor-ring {
+      border-color: #2563EB;
+      background: rgba(37, 99, 235, 0.08);
     }
 
     .cursor-text #cursor-ring {
-      width: 56px;
-      height: 56px;
-      border-radius: 4px;
-      opacity: .4;
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      opacity: .4 !important;
+    }
+
+    /* Disable custom cursor on touch devices to ensure native system pointer works */
+    @media (pointer: coarse), (hover: none) {
+      body, button, a, input, select, textarea {
+        cursor: auto !important;
+      }
+      #cursor-dot,
+      #cursor-ring {
+        display: none !important;
+      }
     }
 
     /* ═══════════════════════════════════════════════════════
@@ -7477,40 +7494,78 @@ Perhaps my solitary end was written there too.”
         var ring = document.getElementById('cursor-ring');
         if (!dot || !ring) return;
 
-        var rx = 0, ry = 0, cx = 0, cy = 0;
-        document.addEventListener('mousemove', function (e) {
-          cx = e.clientX; cy = e.clientY;
-          DJ_CURSOR_X = cx; DJ_CURSOR_Y = cy;
-          dot.style.left = cx + 'px'; dot.style.top = cy + 'px';
-        });
+        // Check if touch device
+        if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) {
+          dot.style.display = 'none';
+          ring.style.display = 'none';
+          return;
+        }
 
-        /* Ring follows with spring lag */
-        (function loop() {
-          rx += (cx - rx) * .1; ry += (cy - ry) * .1;
-          ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+        var cx = window.innerWidth * 0.5;
+        var cy = window.innerHeight * 0.5;
+        var rx = cx;
+        var ry = cy;
+        var isVisible = false;
+
+        function updatePosition(x, y) {
+          cx = x;
+          cy = y;
+          DJ_CURSOR_X = x;
+          DJ_CURSOR_Y = y;
+          dot.style.left = x + 'px';
+          dot.style.top = y + 'px';
+          if (!isVisible) {
+            isVisible = true;
+            dot.style.opacity = '1';
+            ring.style.opacity = '0.5';
+          }
+        }
+
+        document.addEventListener('mousemove', function (e) {
+          updatePosition(e.clientX, e.clientY);
+        }, { passive: true });
+
+        document.addEventListener('pointermove', function (e) {
+          if (e.pointerType === 'mouse') {
+            updatePosition(e.clientX, e.clientY);
+          }
+        }, { passive: true });
+
+        /* Smooth trailing ring loop */
+        function loop() {
+          rx += (cx - rx) * 0.18;
+          ry += (cy - ry) * 0.18;
+          ring.style.left = rx + 'px';
+          ring.style.top = ry + 'px';
           requestAnimationFrame(loop);
-        })();
+        }
+        requestAnimationFrame(loop);
 
         /* Hover states */
         document.addEventListener('mouseover', function (e) {
           var t = e.target;
-          var isLink = t.tagName === 'A' || t.tagName === 'BUTTON' ||
-            t.getAttribute('data-page') || t.style.cursor === 'pointer';
-          var isText = t.tagName === 'P' || t.tagName === 'SPAN' || t.tagName === 'H1' ||
-            t.tagName === 'H2' || t.tagName === 'H3';
+          if (!t) return;
+          var isLink = t.closest && t.closest('a, button, [data-page], .card, .writing-row, .tag-pill, .verse-card, input, select, textarea, [role="button"]');
+          var isText = t.tagName === 'P' || t.tagName === 'SPAN' || t.tagName === 'H1' || t.tagName === 'H2' || t.tagName === 'H3' || t.tagName === 'H4' || t.tagName === 'BLOCKQUOTE';
           document.body.classList.remove('cursor-hover', 'cursor-text');
           if (isLink) document.body.classList.add('cursor-hover');
           else if (isText) document.body.classList.add('cursor-text');
-        });
+        }, { passive: true });
 
-        /* Hide on leave */
+        /* Hide on leave window */
         document.addEventListener('mouseleave', function () {
-          dot.style.opacity = '0'; ring.style.opacity = '0';
+          dot.style.opacity = '0';
+          ring.style.opacity = '0';
         });
         document.addEventListener('mouseenter', function () {
-          dot.style.opacity = '1'; ring.style.opacity = '';
+          if (isVisible) {
+            dot.style.opacity = '1';
+            ring.style.opacity = '0.5';
+          }
         });
-      } catch (e) { }
+      } catch (e) {
+        console.warn('[cursor]', e);
+      }
     }
 
     /* ─── SCROLL-BASED NAV SHADE ────────────────────────────────────── */
@@ -7837,9 +7892,6 @@ Perhaps my solitary end was written there too.”
       _idleChoreographyIndex++;
 
       _performIdleShuffle(grid, visibleCards, mode);
-    }
-        _performIdleShuffle(grid, visibleCards, mode);
-      });
     }
 
     function _performIdleShuffle(grid, visibleCards, mode) {
