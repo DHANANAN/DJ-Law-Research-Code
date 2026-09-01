@@ -3171,108 +3171,272 @@
 
 
     /* ═══════════════════════════════════════════════════════
-   DOCUMENT VIEWER MODAL
-═══════════════════════════════════════════════════════ */
+       UNIVERSAL IN-APP WEB & DOCUMENT VIEWER MODAL
+    ═══════════════════════════════════════════════════════ */
     body.viewer-open {
-      overflow: hidden
+      overflow: hidden !important;
     }
 
     #doc-viewer-modal {
       position: fixed;
       inset: 0;
-      z-index: 1600;
-      background: rgba(7, 7, 10, .84);
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transition: opacity .28s ease, visibility .28s ease;
-      padding: 28px;
+      z-index: 100000;
       display: flex;
       align-items: center;
       justify-content: center;
-      backdrop-filter: blur(4px);
+      padding: 16px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
     }
 
     #doc-viewer-modal.open {
       opacity: 1;
       visibility: visible;
-      pointer-events: auto
+      pointer-events: auto;
+    }
+
+    .doc-viewer-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(4, 5, 8, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    [data-theme="journal"] .doc-viewer-backdrop {
+      background: rgba(30, 27, 24, 0.75);
+      backdrop-filter: blur(12px);
+    }
+
+    [data-theme="light"] .doc-viewer-backdrop {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(12px);
     }
 
     .doc-viewer-shell {
-      width: min(1180px, 100%);
-      height: min(92vh, 100%);
+      position: relative;
+      width: min(1340px, 98vw);
+      height: min(94vh, 98%);
       background: var(--bg);
       border: 1px solid var(--border-hi);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+      border-radius: 12px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.65), 0 0 35px rgba(201, 168, 76, 0.15);
       display: flex;
       flex-direction: column;
-      transform: translateY(16px) scale(.985);
-      transition: transform .3s cubic-bezier(.2, .9, .2, 1);
+      overflow: hidden;
+      transform: translateY(20px) scale(0.98);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+      z-index: 2;
     }
 
     #doc-viewer-modal.open .doc-viewer-shell {
-      transform: translateY(0) scale(1)
+      transform: translateY(0) scale(1);
+    }
+
+    .doc-viewer-shell.fullscreen {
+      width: 100vw !important;
+      height: 100vh !important;
+      border-radius: 0 !important;
+      border: none !important;
+    }
+
+    /* Animated top loading progress indicator */
+    .doc-viewer-loader {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-hi), #38bdf8);
+      z-index: 10;
+      transition: width 0.3s ease, opacity 0.4s ease;
+      opacity: 0;
+    }
+
+    .doc-viewer-loader.loading {
+      opacity: 1;
+      animation: viewerLoadProgress 2.5s ease-in-out infinite;
+    }
+
+    @keyframes viewerLoadProgress {
+      0% { width: 0%; left: 0; }
+      50% { width: 75%; left: 15%; }
+      100% { width: 100%; left: 0; }
     }
 
     .doc-viewer-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
+      gap: 12px;
       border-bottom: 1px solid var(--border);
-      padding: 12px 14px;
+      padding: 10px 16px;
       background: var(--surface);
+      flex-shrink: 0;
+      user-select: none;
+    }
+
+    .doc-viewer-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .doc-viewer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      background: rgba(201, 168, 76, 0.12);
+      border: 1px solid var(--border);
+      font-family: var(--f-mono);
+      font-size: 0.6rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+    }
+
+    [data-theme="journal"] .doc-viewer-badge {
+      background: rgba(140, 83, 27, 0.1);
+    }
+
+    [data-theme="light"] .doc-viewer-badge {
+      background: rgba(37, 99, 235, 0.08);
+      color: #2563EB;
+      border-color: rgba(37, 99, 235, 0.2);
+    }
+
+    .doc-viewer-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 6px #10B981;
+      display: inline-block;
     }
 
     #doc-viewer-title {
       margin: 0;
       font-family: var(--f-display);
-      font-size: 1.05rem;
+      font-size: 0.98rem;
+      font-weight: 700;
       color: var(--text);
-      line-height: 1.3;
+      line-height: 1.25;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
+    .doc-viewer-domain {
+      font-family: var(--f-mono);
+      font-size: 0.65rem;
+      color: var(--text-3);
+      padding: 2px 7px;
+      background: var(--bg2);
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 180px;
+    }
+
     .doc-viewer-actions {
       display: flex;
       align-items: center;
-      gap: 10px
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .doc-viewer-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--surface2);
+      color: var(--text-2);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      padding: 0;
+    }
+
+    .doc-viewer-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: var(--surface);
     }
 
     .doc-viewer-source {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
       font-family: var(--f-mono);
-      font-size: .65rem;
+      font-size: 0.65rem;
+      font-weight: 600;
       color: var(--text-2);
       text-decoration: none;
       border: 1px solid var(--border);
-      padding: 7px 10px;
-      transition: border-color .2s, color .2s;
+      border-radius: 6px;
+      padding: 6px 10px;
+      background: var(--surface2);
+      transition: all 0.2s ease;
+      white-space: nowrap;
     }
 
     .doc-viewer-source:hover {
       border-color: var(--gold);
-      color: var(--gold)
+      color: var(--gold);
+      background: var(--surface);
     }
 
     .doc-viewer-close {
       border: 1px solid var(--border-hi);
       background: var(--gold);
       color: #060608;
-      min-width: 36px;
-      height: 36px;
-      padding: 0 10px;
-      font-size: 1.1rem;
-      line-height: 1;
-      cursor: none;
-      transition: transform .2s ease, background .2s ease;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s ease, filter 0.2s ease;
+      padding: 0;
+    }
+
+    [data-theme="journal"] .doc-viewer-close {
+      background: #8C531B;
+      color: #FAF6EE;
+    }
+
+    [data-theme="light"] .doc-viewer-close {
+      background: #2563EB;
+      color: #FFFFFF;
     }
 
     .doc-viewer-close:hover {
-      background: var(--gold-hi);
-      transform: scale(1.03)
+      transform: scale(1.06);
+      filter: brightness(1.15);
+    }
+
+    .doc-viewer-frame-container {
+      position: relative;
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      background: var(--bg2);
+      overflow: hidden;
     }
 
     #doc-viewer-frame {
@@ -3280,6 +3444,58 @@
       height: 100%;
       border: 0;
       background: var(--bg2);
+      display: block;
+    }
+
+    .doc-viewer-fallback {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      padding: 24px;
+      text-align: center;
+      z-index: 5;
+    }
+
+    .doc-viewer-fallback.show {
+      display: flex;
+    }
+
+    .doc-viewer-fallback-card {
+      max-width: 440px;
+      background: var(--surface);
+      border: 1px solid var(--border-hi);
+      border-radius: 12px;
+      padding: 32px 24px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .doc-viewer-fallback-icon {
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .doc-viewer-fallback-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 18px;
+      padding: 9px 18px;
+      border-radius: 6px;
+      background: var(--gold);
+      color: #060608 !important;
+      font-family: var(--f-sans);
+      font-weight: 700;
+      font-size: 0.82rem;
+      transition: transform 0.2s;
+      text-decoration: none;
+    }
+
+    .doc-viewer-fallback-btn:hover {
+      transform: translateY(-2px);
     }
 
     /* ═══════════════════════════════════════════════════════
@@ -4727,7 +4943,7 @@
         <div class="grid-3">
 
           <a class="card" data-cat="web" href="https://jcfl-nlud.vercel.app/" target="_blank"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'JCFL @ NLU Delhi')">
             <div class="card-accent"
               style="background:linear-gradient(90deg,var(--gold),rgba(201,168,76,.2),transparent)"></div>
             <div class="card-body">
@@ -4744,7 +4960,7 @@
           </a>
 
           <a class="card" data-cat="legal" href="https://dhananan.github.io/UNCRPD/" target="_blank"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'UNCRPD 600+ Compliance Tracker')">
             <div class="card-accent"
               style="background:linear-gradient(90deg,rgba(59,130,246,.9),rgba(59,130,246,.2),transparent)"></div>
             <div class="card-body">
@@ -4761,7 +4977,7 @@
           </a>
 
           <a class="card" data-cat="web" href="https://nss-nlud.vercel.app/" target="_blank"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'NSS Cell @ NLU Delhi')">
             <div class="card-accent"
               style="background:linear-gradient(90deg,rgba(16,185,129,.9),rgba(16,185,129,.2),transparent)"></div>
             <div class="card-body">
@@ -4778,7 +4994,7 @@
           </a>
 
           <a class="card" data-cat="web" href="https://dhananan.github.io/MockS/" target="_blank"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Legalstaan Mock Test Engine')">
             <div class="card-accent"
               style="background:linear-gradient(90deg,rgba(245,158,11,.9),rgba(245,158,11,.2),transparent)"></div>
             <div class="card-body">
@@ -4795,7 +5011,7 @@
           </a>
 
           <a class="card" data-cat="game" href="https://dhananan.github.io/gundlinger-gun-GG-AR-Game/" target="_blank"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Gundlinger Gun — WebAR Game')">
             <div class="card-accent"
               style="background:linear-gradient(90deg,rgba(236,72,153,.9),rgba(236,72,153,.2),transparent)"></div>
             <div class="card-body">
@@ -4812,7 +5028,7 @@
           </a>
 
           <a class="card" href="https://ai.studio/apps/drive/19TSF8REOv1UdoX1ZIhAql2RTZvGcuIfH?fullscreenApplet=true"
-            target="_blank" rel="noopener noreferrer">
+            target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Juris Lens AI Case Researcher')">
             <div class="card-accent"></div>
             <div class="card-body">
               <div class="card-meta"><span class="cat-badge cat-legal">Legal AI</span><span
@@ -5193,7 +5409,7 @@
 
         <!-- JCFL NLU DELHI -->
         <a class="card" data-cat="web" href="https://jcfl-nlud.vercel.app/" target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'JCFL @ NLU Delhi')">
           <div class="card-accent"
             style="background:linear-gradient(90deg,var(--gold),rgba(201,168,76,.2),transparent)"></div>
           <div class="card-body">
@@ -5211,7 +5427,7 @@
 
         <!-- UNCRPD 600+ POINTER REPORT -->
         <a class="card" data-cat="legal" href="https://dhananan.github.io/UNCRPD/" target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'UNCRPD 600+ Compliance Tracker')">
           <div class="card-accent"
             style="background:linear-gradient(90deg,rgba(59,130,246,.9),rgba(59,130,246,.2),transparent)"></div>
           <div class="card-body">
@@ -5229,7 +5445,7 @@
 
         <!-- NSS NLU DELHI -->
         <a class="card" data-cat="web" href="https://nss-nlud.vercel.app/" target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'NSS Cell @ NLU Delhi')">
           <div class="card-accent"
             style="background:linear-gradient(90deg,rgba(16,185,129,.9),rgba(16,185,129,.2),transparent)"></div>
           <div class="card-body">
@@ -5247,7 +5463,7 @@
 
         <!-- LEGALSTAAN MOCKS -->
         <a class="card" data-cat="web" href="https://dhananan.github.io/MockS/" target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Legalstaan Mock Test Engine')">
           <div class="card-accent"
             style="background:linear-gradient(90deg,rgba(245,158,11,.9),rgba(245,158,11,.2),transparent)"></div>
           <div class="card-body">
@@ -5265,7 +5481,7 @@
 
         <!-- GUNDLINGER GUN WEBAR GAME -->
         <a class="card" data-cat="game" href="https://dhananan.github.io/gundlinger-gun-GG-AR-Game/" target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Gundlinger Gun — WebAR Game')">
           <div class="card-accent"
             style="background:linear-gradient(90deg,rgba(236,72,153,.9),rgba(236,72,153,.2),transparent)"></div>
           <div class="card-body">
@@ -5283,7 +5499,7 @@
 
         <!-- FAMILY HEALTH PLUS (MEDICO PROTOTYPE) -->
         <a class="card" data-cat="interactive" href="https://familyhealthplus.netlify.app/" target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Family Health Plus')">
           <div class="card-accent"
             style="background:linear-gradient(90deg,rgba(20,184,166,.9),rgba(20,184,166,.2),transparent)"></div>
           <div class="card-body">
@@ -5301,7 +5517,7 @@
 
         <!-- JURISTHUB PRIVACY & POLICY -->
         <a class="card" data-cat="legal" href="https://dhananan.github.io/JuristHub/#top" target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'JuristHub Privacy & Terms Portal')">
           <div class="card-accent"
             style="background:linear-gradient(90deg,rgba(168,85,247,.9),rgba(168,85,247,.2),transparent)"></div>
           <div class="card-body">
@@ -5320,7 +5536,7 @@
         <!-- JURIS LENS AI -->
         <a class="card" data-cat="ai"
           href="https://ai.studio/apps/drive/19TSF8REOv1UdoX1ZIhAql2RTZvGcuIfH?fullscreenApplet=true" target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Juris Lens AI Case Researcher')">
           <div class="card-accent"></div>
           <div class="card-body">
             <div class="card-meta"><span class="cat-badge cat-legal">Legal AI</span><span class="card-year">2026</span>
@@ -5339,7 +5555,7 @@
         <!-- AURAPRAXIS -->
         <a class="card" data-cat="ai"
           href="https://ai.studio/apps/d327dd40-48d1-4a7d-8121-221625fd1385?fullscreenApplet=true" target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'AuraPraxis')">
           <div class="card-accent"
             style="background:linear-gradient(90deg,rgba(224,90,43,.8),rgba(251,191,36,.25),transparent)"></div>
           <div class="card-body">
@@ -5357,7 +5573,7 @@
 
         <!-- BHARAT FUTURE CITY REPORT -->
         <a class="card" data-cat="dashboard" href="https://bharat-project.vercel.app/" target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Bharat Future City Report')">
           <div class="card-accent"
             style="background:linear-gradient(90deg,rgba(96,165,250,.8),rgba(96,165,250,.2),transparent)"></div>
           <div class="card-body">
@@ -5376,7 +5592,7 @@
 
         <!-- MAHABUBNAGAR GEMS -->
         <a class="card" data-cat="interactive" href="https://mahabubnagar.netlify.app/" target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Mahabubnagar Hidden Gems')">
           <div class="card-accent"
             style="background:linear-gradient(90deg,rgba(52,211,153,.8),rgba(52,211,153,.2),transparent)"></div>
           <div class="card-body">
@@ -5395,7 +5611,7 @@
 
         <!-- NEON RETRO SPACE SHOOTER -->
         <a class="card" data-cat="game" href="https://neon-retro-space-shooter.vercel.app/" target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'NEON RETRO Space Shooter')">
           <div class="card-accent"
             style="background:linear-gradient(90deg,rgba(167,139,250,.8),rgba(167,139,250,.2),transparent)"></div>
           <div class="card-body">
@@ -5413,7 +5629,7 @@
 
         <!-- DJ'S GAMES HUB -->
         <a class="card" data-cat="game" href="https://dj-s-2-player-games-main.vercel.app/index.html" target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'DJ’s Games Hub')">
           <div class="card-accent"
             style="background:linear-gradient(90deg,rgba(167,139,250,.9),rgba(251,191,36,.25),transparent)"></div>
           <div class="card-body">
@@ -5432,7 +5648,7 @@
 
         <!-- ZENFLOW -->
         <a class="card" data-cat="interactive" href="https://zenflow-ashen.vercel.app/" target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Zenflow Daily Planner')">
           <div class="card-accent"
             style="background:linear-gradient(90deg,rgba(42,191,191,.8),rgba(42,191,191,.2),transparent)"></div>
           <div class="card-body">
@@ -5451,7 +5667,7 @@
 
         <!-- TURNITIN LITE -->
         <a class="card" data-cat="ai" href="https://free-turnitin-plagiarism-checker-eight.vercel.app" target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Turnitin Lite')">
           <div class="card-accent"
             style="background:linear-gradient(90deg,rgba(239,68,68,.8),rgba(251,191,36,.3),transparent)"></div>
           <div class="card-body">
@@ -6464,20 +6680,50 @@ Perhaps my solitary end was written there too.”
 
 
   <!-- ═══════════════════════════════════════════════════════════
-     DOCUMENT VIEWER MODAL
+     UNIVERSAL IN-APP WEB & DOCUMENT VIEWER MODAL
 ═══════════════════════════════════════════════════════════ -->
   <div id="doc-viewer-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="doc-viewer-title">
-    <div class="doc-viewer-shell">
+    <div class="doc-viewer-backdrop" onclick="closeDocumentViewer()"></div>
+    <div class="doc-viewer-shell" id="doc-viewer-shell">
+      <!-- Animated Top Loading Progress Bar -->
+      <div id="doc-viewer-loader" class="doc-viewer-loader"></div>
+      
+      <!-- Top Browser Head -->
       <div class="doc-viewer-head">
-        <h2 id="doc-viewer-title">Document Viewer</h2>
+        <div class="doc-viewer-title-wrap">
+          <span class="doc-viewer-badge">
+            <span class="doc-viewer-dot"></span>
+            <span id="doc-viewer-type">Live Preview</span>
+          </span>
+          <h2 id="doc-viewer-title">Document Viewer</h2>
+          <span id="doc-viewer-domain" class="doc-viewer-domain"></span>
+        </div>
         <div class="doc-viewer-actions">
-          <a id="doc-viewer-source" class="doc-viewer-source" href="#" target="_blank" rel="noopener noreferrer">Open
-            source ↗</a>
-          <button type="button" class="doc-viewer-close" aria-label="Close document viewer"
-            onclick="closeDocumentViewer()">✕</button>
+          <button type="button" class="doc-viewer-btn" onclick="refreshDocumentViewer()" title="Reload Frame" aria-label="Reload Frame">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          </button>
+          <button type="button" class="doc-viewer-btn" onclick="toggleViewerFullscreen()" title="Toggle Fullscreen" aria-label="Toggle Fullscreen">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+          </button>
+          <a id="doc-viewer-source" class="doc-viewer-source" href="#" target="_blank" rel="noopener noreferrer" title="Open in external browser window">
+            <span>Open in Tab</span> &#8599;
+          </a>
+          <button type="button" class="doc-viewer-close" aria-label="Close document viewer" onclick="closeDocumentViewer()" title="Close (Esc)">✕</button>
         </div>
       </div>
-      <iframe id="doc-viewer-frame" title="Embedded document viewer" loading="lazy"></iframe>
+      
+      <!-- Frame Container with fallback notice -->
+      <div class="doc-viewer-frame-container">
+        <iframe id="doc-viewer-frame" title="Embedded web and document viewer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; camera; microphone; fullscreen; display-capture; geolocation" loading="lazy"></iframe>
+        <div id="doc-viewer-fallback" class="doc-viewer-fallback">
+          <div class="doc-viewer-fallback-card">
+            <div class="doc-viewer-fallback-icon">&#8599;</div>
+            <h3 style="font-family:var(--f-display);font-size:1.25rem;color:var(--text);margin-bottom:8px;">External App Launch</h3>
+            <p style="font-family:var(--f-sans);font-size:0.86rem;color:var(--text-2);line-height:1.6;margin-bottom:14px;">This external service (such as Google AI Studio or specific cloud apps) restricts embedded framing. Click below to launch directly:</p>
+            <a id="doc-viewer-fallback-btn" class="doc-viewer-fallback-btn" href="#" target="_blank" rel="noopener noreferrer">Launch in Full Window &#8599;</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -7053,7 +7299,7 @@ Perhaps my solitary end was written there too.”
       }
     }
 
-    /* ─── DOCUMENT VIEWER ───────────────────────────────────────────── */
+    /* ─── UNIVERSAL IN-APP WEB & DOCUMENT VIEWER ─────────────────────── */
     function _normalizeDocumentURL(url) {
       if (!url) return '';
       var clean = String(url).trim();
@@ -7065,44 +7311,103 @@ Perhaps my solitary end was written there too.”
       if (docsFileMatch && docsFileMatch[1]) {
         return 'https://docs.google.com/document/d/' + docsFileMatch[1] + '/preview';
       }
-      // If it's a Drive folder URL, it cannot be previewed in an iframe
-      if (clean.indexOf('drive.google.com/drive/folders') > -1) {
-        return '';
-      }
       return clean;
     }
 
-    function openDocumentViewer(docUrl, title) {
+    function _extractDomain(url) {
       try {
-        if (!docUrl) return false;
-        var normalized = _normalizeDocumentURL(docUrl);
+        var a = document.createElement('a');
+        a.href = url;
+        return a.hostname.replace(/^www\./, '');
+      } catch (e) {
+        return '';
+      }
+    }
 
-        // If it's a Google Drive folder or cannot be embedded in an iframe, open directly in new tab
-        if (!normalized || docUrl.indexOf('drive.google.com/drive/folders') > -1) {
-          window.open(docUrl, '_blank', 'noopener,noreferrer');
-          return false;
+    function openDocumentViewer(rawUrl, title) {
+      try {
+        if (!rawUrl) return false;
+        var cleanUrl = String(rawUrl).trim();
+
+        // If email or internal hash
+        if (cleanUrl.indexOf('mailto:') === 0 || (cleanUrl.indexOf('#') === 0 && cleanUrl.length > 1 && cleanUrl.indexOf('/') === -1)) {
+          return true;
         }
+
+        var normalized = _normalizeDocumentURL(cleanUrl);
+        var domain = _extractDomain(cleanUrl);
 
         var modal = document.getElementById('doc-viewer-modal');
         var frame = document.getElementById('doc-viewer-frame');
         var heading = document.getElementById('doc-viewer-title');
+        var domainEl = document.getElementById('doc-viewer-domain');
+        var typeEl = document.getElementById('doc-viewer-type');
         var source = document.getElementById('doc-viewer-source');
+        var loader = document.getElementById('doc-viewer-loader');
+        var fallback = document.getElementById('doc-viewer-fallback');
+        var fallbackBtn = document.getElementById('doc-viewer-fallback-btn');
+
         if (!modal || !frame) {
-          window.open(docUrl, '_blank', 'noopener,noreferrer');
+          window.open(cleanUrl, '_blank', 'noopener,noreferrer');
           return false;
         }
 
-        frame.src = normalized;
-        if (heading) heading.textContent = title || 'Document Viewer';
-        if (source) source.href = docUrl;
+        // Reset fallback
+        if (fallback) fallback.classList.remove('show');
+        if (loader) loader.classList.add('loading');
+
+        // Update header details
+        var displayTitle = title;
+        if (!displayTitle) {
+          displayTitle = domain || 'Web Preview';
+        }
+        if (heading) heading.textContent = displayTitle;
+        if (domainEl) domainEl.textContent = domain;
+        if (source) source.href = cleanUrl;
+        if (fallbackBtn) fallbackBtn.href = cleanUrl;
+
+        // Set type badge
+        if (typeEl) {
+          if (domain.indexOf('google.com') > -1 || cleanUrl.indexOf('/preview') > -1) {
+            typeEl.textContent = 'Research Doc';
+          } else if (domain.indexOf('ai.studio') > -1) {
+            typeEl.textContent = 'AI Studio App';
+          } else if (domain.indexOf('vercel.app') > -1 || domain.indexOf('netlify.app') > -1 || domain.indexOf('github.io') > -1) {
+            typeEl.textContent = 'Live Web App';
+          } else {
+            typeEl.textContent = 'Live App';
+          }
+        }
+
+        // Handle Google Drive folder edge case
+        if (cleanUrl.indexOf('drive.google.com/drive/folders') > -1) {
+          if (fallback) fallback.classList.add('show');
+          if (loader) loader.classList.remove('loading');
+        } else {
+          // Setup frame loading event
+          frame.onload = function () {
+            if (loader) loader.classList.remove('loading');
+          };
+          frame.src = normalized;
+        }
 
         modal.classList.add('open');
         modal.setAttribute('aria-hidden', 'false');
         document.body.classList.add('viewer-open');
+
+        // Safety fallback timer for sites that might refuse framing
+        if (domain.indexOf('ai.studio') > -1) {
+          setTimeout(function () {
+            if (modal.classList.contains('open') && loader && loader.classList.contains('loading')) {
+              loader.classList.remove('loading');
+            }
+          }, 3500);
+        }
+
         return false;
       } catch (e) {
         console.warn('[openDocumentViewer]', e);
-        window.open(docUrl, '_blank', 'noopener,noreferrer');
+        window.open(rawUrl, '_blank', 'noopener,noreferrer');
         return false;
       }
     }
@@ -7111,17 +7416,39 @@ Perhaps my solitary end was written there too.”
       try {
         var modal = document.getElementById('doc-viewer-modal');
         var frame = document.getElementById('doc-viewer-frame');
+        var shell = document.getElementById('doc-viewer-shell');
+        var loader = document.getElementById('doc-viewer-loader');
         if (modal) {
           modal.classList.remove('open');
           modal.setAttribute('aria-hidden', 'true');
         }
+        if (shell) shell.classList.remove('fullscreen');
+        if (loader) loader.classList.remove('loading');
         document.body.classList.remove('viewer-open');
         if (frame) {
-          setTimeout(function () { frame.src = 'about:blank'; }, 220);
+          setTimeout(function () { frame.src = 'about:blank'; }, 200);
         }
       } catch (e) {
         console.warn('[closeDocumentViewer]', e);
       }
+    }
+
+    function refreshDocumentViewer() {
+      try {
+        var frame = document.getElementById('doc-viewer-frame');
+        var loader = document.getElementById('doc-viewer-loader');
+        if (frame && frame.src && frame.src !== 'about:blank') {
+          if (loader) loader.classList.add('loading');
+          frame.src = frame.src;
+        }
+      } catch (e) { }
+    }
+
+    function toggleViewerFullscreen() {
+      try {
+        var shell = document.getElementById('doc-viewer-shell');
+        if (shell) shell.classList.toggle('fullscreen');
+      } catch (e) { }
     }
 
     /* ─── ANIMATION RESTART ─────────────────────────────────────────── */
@@ -7332,14 +7659,60 @@ Perhaps my solitary end was written there too.”
       try {
         document.addEventListener('click', function (e) {
           var el = e.target;
-          for (var i = 0; i < 5; i++) {
-            if (!el) break;
-            var dp = el.getAttribute && el.getAttribute('data-page');
-            if (dp) {
-              var isExternal = el.tagName === 'A' && el.getAttribute('target') === '_blank';
-              if (!isExternal) { e.preventDefault(); nav(dp); closeDrawer(); return; }
+          var link = el && el.closest ? el.closest('a') : null;
+          if (!link) {
+            for (var i = 0; i < 5; i++) {
+              if (!el) break;
+              var dp = el.getAttribute && el.getAttribute('data-page');
+              if (dp) {
+                e.preventDefault(); nav(dp); closeDrawer(); return;
+              }
+              el = el.parentElement;
             }
-            el = el.parentElement;
+            return;
+          }
+
+          var dp = link.getAttribute('data-page');
+          if (dp) {
+            var isExternal = link.getAttribute('target') === '_blank';
+            if (!isExternal) { e.preventDefault(); nav(dp); closeDrawer(); return; }
+          }
+
+          // If inside the viewer modal itself, allow default external link behavior
+          if (link.closest('#doc-viewer-modal')) {
+            return;
+          }
+
+          var href = link.getAttribute('href');
+          if (!href) return;
+
+          // Ignore mailto and internal in-page anchors
+          if (href.indexOf('mailto:') === 0 || (href.indexOf('#') === 0 && href.length > 1 && href.indexOf('/') === -1)) {
+            return;
+          }
+
+          // Check if it is a project card, writing row, or external app/doc link
+          var isCard = link.classList.contains('card') || link.closest('.card');
+          var isWriting = link.classList.contains('writing-row') || link.closest('.writing-row');
+          var isHttp = href.indexOf('http://') === 0 || href.indexOf('https://') === 0 || href.indexOf('//') === 0;
+
+          if (isCard || isWriting || isHttp) {
+            // Let raw social profiles that reject framing open in external tab
+            if (href.indexOf('instagram.com') > -1 || href.indexOf('play.google.com') > -1) {
+              return;
+            }
+
+            var title = link.getAttribute('data-title') || link.getAttribute('title');
+            if (!title) {
+              var titleEl = link.querySelector('.card-title') || link.querySelector('.writing-title') || link.querySelector('h3') || link.querySelector('h4');
+              if (titleEl) title = titleEl.textContent.trim();
+            }
+            if (!title) {
+              title = link.textContent.trim().substring(0, 60);
+            }
+
+            e.preventDefault();
+            openDocumentViewer(href, title);
           }
         }, true);
       } catch (e) { console.warn('[delegation]', e); }
