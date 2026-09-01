@@ -3257,23 +3257,24 @@
     }
 
     /* Floating Pill Control Bar visible in Immersive Mode */
+    /* Floating Pill Control Bar visible in Immersive Mode */
     .doc-viewer-immersive-bar {
       position: absolute;
-      top: 14px;
+      top: 16px;
       right: 20px;
       z-index: 1000;
       display: none;
       align-items: center;
       gap: 8px;
       padding: 6px 14px;
-      background: rgba(10, 10, 16, 0.88);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid var(--border-hi);
+      background: rgba(14, 16, 24, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       border-radius: 30px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(201, 168, 76, 0.2);
-      opacity: 0.9;
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7), 0 0 24px rgba(229, 169, 60, 0.25);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
     }
 
     .doc-viewer-shell.immersive-mode .doc-viewer-immersive-bar {
@@ -3281,20 +3282,37 @@
     }
 
     .doc-viewer-immersive-bar:hover {
-      opacity: 1;
-      transform: scale(1.02);
+      box-shadow: 0 16px 42px rgba(0, 0, 0, 0.8), 0 0 30px rgba(229, 169, 60, 0.35);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Universal High-Contrast Color Theme across all site themes */
+    .immersive-dot-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-right: 4px;
+    }
+
+    .immersive-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 8px #10B981;
+      flex-shrink: 0;
     }
 
     .immersive-title {
       font-family: var(--f-display);
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       font-weight: 700;
-      color: var(--text);
-      max-width: 220px;
+      color: #FFFFFF !important;
+      max-width: 200px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      margin-right: 4px;
+      letter-spacing: 0.02em;
     }
 
     .immersive-btn {
@@ -3302,35 +3320,108 @@
       align-items: center;
       gap: 5px;
       font-family: var(--f-mono);
-      font-size: 0.65rem;
+      font-size: 0.68rem;
       font-weight: 600;
-      color: var(--text);
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 14px;
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
       padding: 5px 12px;
       cursor: pointer;
       transition: all 0.2s ease;
+      white-space: nowrap;
     }
 
     .immersive-btn:hover {
-      background: var(--gold);
-      color: #000;
-      border-color: var(--gold);
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .immersive-btn.style-btn {
+      background: rgba(59, 130, 246, 0.18);
+      border-color: rgba(59, 130, 246, 0.4);
+      color: #93C5FD;
+    }
+
+    .immersive-btn.style-btn:hover {
+      background: #3B82F6;
+      color: #FFFFFF;
+      border-color: #3B82F6;
+    }
+
+    .immersive-btn.exit-btn {
+      background: #E5A93C !important;
+      color: #0F1117 !important;
+      border-color: #E5A93C !important;
+      font-weight: 700;
+    }
+
+    .immersive-btn.exit-btn:hover {
+      background: #FFCA58 !important;
+      transform: translateY(-1px) scale(1.03);
     }
 
     .immersive-btn.close-btn {
       padding: 5px 10px;
       font-weight: 700;
-      background: rgba(239, 68, 68, 0.15);
-      border-color: rgba(239, 68, 68, 0.3);
-      color: #f87171;
+      background: rgba(239, 68, 68, 0.2);
+      border-color: rgba(239, 68, 68, 0.4);
+      color: #FCA5A5;
     }
 
     .immersive-btn.close-btn:hover {
-      background: #ef4444;
+      background: #EF4444;
       color: #FFFFFF;
-      border-color: #ef4444;
+      border-color: #EF4444;
+      transform: translateY(-1px) scale(1.05);
+    }
+
+    /* ─── 4 DISTINCT SIZE / VIEW STYLES ─── */
+    /* 1. Full Mode (Default) */
+    .doc-viewer-immersive-bar.pill-style-full {
+      padding: 6px 14px;
+      gap: 8px;
+    }
+
+    /* 2. Medium Mode */
+    .doc-viewer-immersive-bar.pill-style-medium {
+      padding: 5px 10px;
+      gap: 6px;
+    }
+    .doc-viewer-immersive-bar.pill-style-medium .immersive-title {
+      max-width: 110px;
+    }
+
+    /* 3. Small Mode */
+    .doc-viewer-immersive-bar.pill-style-small {
+      padding: 4px 6px;
+      gap: 5px;
+      border-radius: 20px;
+    }
+    .doc-viewer-immersive-bar.pill-style-small .immersive-dot-wrap,
+    .doc-viewer-immersive-bar.pill-style-small .style-label,
+    .doc-viewer-immersive-bar.pill-style-small .exit-label {
+      display: none !important;
+    }
+    .doc-viewer-immersive-bar.pill-style-small .immersive-btn {
+      padding: 4px 8px;
+    }
+
+    /* 4. Invisible / Ghost Mode */
+    .doc-viewer-immersive-bar.pill-style-invisible {
+      opacity: 0.04;
+      transform: translateY(-6px) scale(0.92);
+      box-shadow: none;
+      border-color: transparent;
+      background: rgba(14, 16, 24, 0.2);
+    }
+    .doc-viewer-immersive-bar.pill-style-invisible:hover {
+      opacity: 1 !important;
+      transform: translateY(0) scale(1) !important;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7), 0 0 24px rgba(229, 169, 60, 0.25) !important;
+      border-color: rgba(255, 255, 255, 0.18) !important;
+      background: rgba(14, 16, 24, 0.94) !important;
     }
 
     /* Animated top loading progress indicator */
@@ -6809,12 +6900,19 @@ Perhaps my solitary end was written there too.”
       
       <!-- Frame Container with fallback notice and floating immersive pill -->
       <div class="doc-viewer-frame-container">
-        <!-- Floating Pill visible in Immersive Fullscreen Mode -->
-        <div id="doc-viewer-immersive-bar" class="doc-viewer-immersive-bar">
-          <span class="immersive-title" id="doc-viewer-immersive-title">Web App</span>
-          <button type="button" class="immersive-btn" onclick="toggleViewerNativeFullscreen()" title="Exit Fullscreen Mode">
+        <!-- Floating HUD Pill with 4-Style Switcher (Full, Medium, Small, Invisible) -->
+        <div id="doc-viewer-immersive-bar" class="doc-viewer-immersive-bar pill-style-full" data-pill-style="full">
+          <div class="immersive-dot-wrap">
+            <span class="immersive-dot"></span>
+            <span class="immersive-title" id="doc-viewer-immersive-title">Web App</span>
+          </div>
+          <button type="button" class="immersive-btn style-btn" onclick="cyclePillStyle()" title="Cycle HUD Size/Style: Full ➔ Medium ➔ Small ➔ Invisible" aria-label="Cycle HUD Size Style">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h6"/></svg>
+            <span id="doc-viewer-style-label" class="style-label">Full</span>
+          </button>
+          <button type="button" class="immersive-btn exit-btn" onclick="toggleViewerNativeFullscreen()" title="Exit Fullscreen Mode">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>
-            Exit Fullscreen
+            <span class="exit-label">Exit Fullscreen</span>
           </button>
           <button type="button" class="immersive-btn close-btn" onclick="closeDocumentViewer()" title="Close Viewer (Esc)">✕</button>
         </div>
@@ -7597,6 +7695,37 @@ Perhaps my solitary end was written there too.”
 
     function toggleViewerFullscreen() {
       toggleViewerNativeFullscreen();
+    }
+
+    /* ─── 4-STYLE HUD PILL CONTROLLER (Full -> Medium -> Small -> Invisible) ─── */
+    var PILL_STYLES = ['full', 'medium', 'small', 'invisible'];
+    var currentPillStyleIdx = 0;
+
+    function cyclePillStyle() {
+      try {
+        var bar = document.getElementById('doc-viewer-immersive-bar');
+        var label = document.getElementById('doc-viewer-style-label');
+        if (!bar) return;
+
+        currentPillStyleIdx = (currentPillStyleIdx + 1) % PILL_STYLES.length;
+        var styleName = PILL_STYLES[currentPillStyleIdx];
+
+        // Remove old style classes
+        for (var i = 0; i < PILL_STYLES.length; i++) {
+          bar.classList.remove('pill-style-' + PILL_STYLES[i]);
+        }
+        bar.classList.add('pill-style-' + styleName);
+        bar.setAttribute('data-pill-style', styleName);
+
+        if (label) {
+          if (styleName === 'full') label.textContent = 'Full';
+          else if (styleName === 'medium') label.textContent = 'Med';
+          else if (styleName === 'small') label.textContent = 'Mini';
+          else if (styleName === 'invisible') label.textContent = 'Ghost';
+        }
+      } catch (e) {
+        console.warn('[cyclePillStyle]', e);
+      }
     }
 
     /* ─── ANIMATION RESTART ─────────────────────────────────────────── */
