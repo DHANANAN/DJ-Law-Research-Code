@@ -3240,6 +3240,97 @@
       height: 100vh !important;
       border-radius: 0 !important;
       border: none !important;
+      box-shadow: none !important;
+    }
+
+    /* Immersive Mode (Completely hides the top tab bar & browser head) */
+    .doc-viewer-shell.immersive-mode {
+      width: 100vw !important;
+      height: 100vh !important;
+      border-radius: 0 !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+
+    .doc-viewer-shell.immersive-mode .doc-viewer-head {
+      display: none !important;
+    }
+
+    /* Floating Pill Control Bar visible in Immersive Mode */
+    .doc-viewer-immersive-bar {
+      position: absolute;
+      top: 14px;
+      right: 20px;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(10, 10, 16, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border-hi);
+      border-radius: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(201, 168, 76, 0.2);
+      opacity: 0.9;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .doc-viewer-shell.immersive-mode .doc-viewer-immersive-bar {
+      display: inline-flex;
+    }
+
+    .doc-viewer-immersive-bar:hover {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+
+    .immersive-title {
+      font-family: var(--f-display);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
+      max-width: 220px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-right: 4px;
+    }
+
+    .immersive-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--f-mono);
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--text);
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 5px 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .immersive-btn:hover {
+      background: var(--gold);
+      color: #000;
+      border-color: var(--gold);
+    }
+
+    .immersive-btn.close-btn {
+      padding: 5px 10px;
+      font-weight: 700;
+      background: rgba(239, 68, 68, 0.15);
+      border-color: rgba(239, 68, 68, 0.3);
+      color: #f87171;
+    }
+
+    .immersive-btn.close-btn:hover {
+      background: #ef4444;
+      color: #FFFFFF;
+      border-color: #ef4444;
     }
 
     /* Animated top loading progress indicator */
@@ -3276,6 +3367,7 @@
       background: var(--surface);
       flex-shrink: 0;
       user-select: none;
+      cursor: pointer;
     }
 
     .doc-viewer-title-wrap {
@@ -5028,7 +5120,7 @@
           </a>
 
           <a class="card" href="https://ai.studio/apps/drive/19TSF8REOv1UdoX1ZIhAql2RTZvGcuIfH?fullscreenApplet=true"
-            target="_blank" rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Juris Lens AI Case Researcher')">
+            target="_blank" rel="noopener noreferrer">
             <div class="card-accent"></div>
             <div class="card-body">
               <div class="card-meta"><span class="cat-badge cat-legal">Legal AI</span><span
@@ -5536,7 +5628,7 @@
         <!-- JURIS LENS AI -->
         <a class="card" data-cat="ai"
           href="https://ai.studio/apps/drive/19TSF8REOv1UdoX1ZIhAql2RTZvGcuIfH?fullscreenApplet=true" target="_blank"
-          rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'Juris Lens AI Case Researcher')">
+          rel="noopener noreferrer">
           <div class="card-accent"></div>
           <div class="card-body">
             <div class="card-meta"><span class="cat-badge cat-legal">Legal AI</span><span class="card-year">2026</span>
@@ -5555,7 +5647,7 @@
         <!-- AURAPRAXIS -->
         <a class="card" data-cat="ai"
           href="https://ai.studio/apps/d327dd40-48d1-4a7d-8121-221625fd1385?fullscreenApplet=true" target="_blank"
-          rel="noopener noreferrer" onclick="return openDocumentViewer(this.href,'AuraPraxis')">
+          rel="noopener noreferrer">
           <div class="card-accent"
             style="background:linear-gradient(90deg,rgba(224,90,43,.8),rgba(251,191,36,.25),transparent)"></div>
           <div class="card-body">
@@ -6688,8 +6780,8 @@ Perhaps my solitary end was written there too.”
       <!-- Animated Top Loading Progress Bar -->
       <div id="doc-viewer-loader" class="doc-viewer-loader"></div>
       
-      <!-- Top Browser Head -->
-      <div class="doc-viewer-head">
+      <!-- Top Browser Head (Double click toggles immersive fullscreen) -->
+      <div class="doc-viewer-head" ondblclick="toggleViewerFullscreen(true)" title="Double click to toggle True Fullscreen">
         <div class="doc-viewer-title-wrap">
           <span class="doc-viewer-badge">
             <span class="doc-viewer-dot"></span>
@@ -6702,7 +6794,7 @@ Perhaps my solitary end was written there too.”
           <button type="button" class="doc-viewer-btn" onclick="refreshDocumentViewer()" title="Reload Frame" aria-label="Reload Frame">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
           </button>
-          <button type="button" class="doc-viewer-btn" onclick="toggleViewerFullscreen()" title="Toggle Fullscreen" aria-label="Toggle Fullscreen">
+          <button type="button" class="doc-viewer-btn" onclick="toggleViewerFullscreen()" title="Toggle Fullscreen (Click again for True Native Fullscreen)" aria-label="Toggle Fullscreen">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
           </button>
           <a id="doc-viewer-source" class="doc-viewer-source" href="#" target="_blank" rel="noopener noreferrer" title="Open in external browser window">
@@ -6712,8 +6804,18 @@ Perhaps my solitary end was written there too.”
         </div>
       </div>
       
-      <!-- Frame Container with fallback notice -->
+      <!-- Frame Container with fallback notice and floating immersive pill -->
       <div class="doc-viewer-frame-container">
+        <!-- Floating Pill visible in Immersive Fullscreen Mode -->
+        <div id="doc-viewer-immersive-bar" class="doc-viewer-immersive-bar">
+          <span class="immersive-title" id="doc-viewer-immersive-title">Web App</span>
+          <button type="button" class="immersive-btn" onclick="toggleViewerFullscreen()" title="Exit Fullscreen Mode">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>
+            Exit Fullscreen
+          </button>
+          <button type="button" class="immersive-btn close-btn" onclick="closeDocumentViewer()" title="Close Viewer (Esc)">✕</button>
+        </div>
+
         <iframe id="doc-viewer-frame" title="Embedded web and document viewer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; camera; microphone; fullscreen; display-capture; geolocation" loading="lazy"></iframe>
         <div id="doc-viewer-fallback" class="doc-viewer-fallback">
           <div class="doc-viewer-fallback-card">
@@ -7334,6 +7436,12 @@ Perhaps my solitary end was written there too.”
           return true;
         }
 
+        // Direct external launch for Google AI Studio applets (since they require auth and throw 401 in iframes)
+        if (cleanUrl.indexOf('ai.studio') > -1) {
+          window.open(cleanUrl, '_blank', 'noopener,noreferrer');
+          return false;
+        }
+
         var normalized = _normalizeDocumentURL(cleanUrl);
         var domain = _extractDomain(cleanUrl);
 
@@ -7346,13 +7454,14 @@ Perhaps my solitary end was written there too.”
         var loader = document.getElementById('doc-viewer-loader');
         var fallback = document.getElementById('doc-viewer-fallback');
         var fallbackBtn = document.getElementById('doc-viewer-fallback-btn');
+        var immersiveTitle = document.getElementById('doc-viewer-immersive-title');
 
         if (!modal || !frame) {
           window.open(cleanUrl, '_blank', 'noopener,noreferrer');
           return false;
         }
 
-        // Reset fallback
+        // Reset fallback & fullscreen state
         if (fallback) fallback.classList.remove('show');
         if (loader) loader.classList.add('loading');
 
@@ -7362,6 +7471,7 @@ Perhaps my solitary end was written there too.”
           displayTitle = domain || 'Web Preview';
         }
         if (heading) heading.textContent = displayTitle;
+        if (immersiveTitle) immersiveTitle.textContent = displayTitle;
         if (domainEl) domainEl.textContent = domain;
         if (source) source.href = cleanUrl;
         if (fallbackBtn) fallbackBtn.href = cleanUrl;
@@ -7370,8 +7480,6 @@ Perhaps my solitary end was written there too.”
         if (typeEl) {
           if (domain.indexOf('google.com') > -1 || cleanUrl.indexOf('/preview') > -1) {
             typeEl.textContent = 'Research Doc';
-          } else if (domain.indexOf('ai.studio') > -1) {
-            typeEl.textContent = 'AI Studio App';
           } else if (domain.indexOf('vercel.app') > -1 || domain.indexOf('netlify.app') > -1 || domain.indexOf('github.io') > -1) {
             typeEl.textContent = 'Live Web App';
           } else {
@@ -7395,15 +7503,6 @@ Perhaps my solitary end was written there too.”
         modal.setAttribute('aria-hidden', 'false');
         document.body.classList.add('viewer-open');
 
-        // Safety fallback timer for sites that might refuse framing
-        if (domain.indexOf('ai.studio') > -1) {
-          setTimeout(function () {
-            if (modal.classList.contains('open') && loader && loader.classList.contains('loading')) {
-              loader.classList.remove('loading');
-            }
-          }, 3500);
-        }
-
         return false;
       } catch (e) {
         console.warn('[openDocumentViewer]', e);
@@ -7422,8 +7521,14 @@ Perhaps my solitary end was written there too.”
           modal.classList.remove('open');
           modal.setAttribute('aria-hidden', 'true');
         }
-        if (shell) shell.classList.remove('fullscreen');
+        if (shell) shell.classList.remove('fullscreen', 'immersive-mode');
         if (loader) loader.classList.remove('loading');
+        if (document.fullscreenElement) {
+          try {
+            if (document.exitFullscreen) document.exitFullscreen();
+            else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+          } catch (e) { }
+        }
         document.body.classList.remove('viewer-open');
         if (frame) {
           setTimeout(function () { frame.src = 'about:blank'; }, 200);
@@ -7444,11 +7549,39 @@ Perhaps my solitary end was written there too.”
       } catch (e) { }
     }
 
-    function toggleViewerFullscreen() {
+    function toggleViewerFullscreen(forceImmersive) {
       try {
+        var modal = document.getElementById('doc-viewer-modal');
         var shell = document.getElementById('doc-viewer-shell');
-        if (shell) shell.classList.toggle('fullscreen');
-      } catch (e) { }
+        if (!shell || !modal) return;
+
+        var isImmersive = shell.classList.contains('immersive-mode');
+        var isFullscreen = shell.classList.contains('fullscreen');
+
+        if (forceImmersive || (isFullscreen && !isImmersive)) {
+          // Step 2 / Double Click: True Native Fullscreen & Immersive Mode (completely hides tabs/browser chrome)
+          shell.classList.add('fullscreen', 'immersive-mode');
+          try {
+            if (!document.fullscreenElement) {
+              if (modal.requestFullscreen) modal.requestFullscreen();
+              else if (modal.webkitRequestFullscreen) modal.webkitRequestFullscreen();
+              else if (modal.msRequestFullscreen) modal.msRequestFullscreen();
+            }
+          } catch (e) { }
+        } else if (!isFullscreen && !isImmersive) {
+          // Step 1: Maximize in viewport
+          shell.classList.add('fullscreen');
+        } else {
+          // Step 3 / Exit Fullscreen: Restore normal
+          shell.classList.remove('fullscreen', 'immersive-mode');
+          if (document.fullscreenElement) {
+            try {
+              if (document.exitFullscreen) document.exitFullscreen();
+              else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+            } catch (e) { }
+          }
+        }
+      } catch (e) { console.warn('[fullscreen]', e); }
     }
 
     /* ─── ANIMATION RESTART ─────────────────────────────────────────── */
@@ -7697,8 +7830,8 @@ Perhaps my solitary end was written there too.”
           var isHttp = href.indexOf('http://') === 0 || href.indexOf('https://') === 0 || href.indexOf('//') === 0;
 
           if (isCard || isWriting || isHttp) {
-            // Let raw social profiles that reject framing open in external tab
-            if (href.indexOf('instagram.com') > -1 || href.indexOf('play.google.com') > -1) {
+            // Let raw social profiles and Google AI Studio applets (which throw 401 in iframes) open in external tab directly
+            if (href.indexOf('instagram.com') > -1 || href.indexOf('play.google.com') > -1 || href.indexOf('ai.studio') > -1) {
               return;
             }
 
@@ -7715,6 +7848,16 @@ Perhaps my solitary end was written there too.”
             openDocumentViewer(href, title);
           }
         }, true);
+
+        // Sync native fullscreen state exits
+        document.addEventListener('fullscreenchange', function () {
+          if (!document.fullscreenElement) {
+            var shell = document.getElementById('doc-viewer-shell');
+            if (shell && shell.classList.contains('immersive-mode')) {
+              shell.classList.remove('immersive-mode');
+            }
+          }
+        });
       } catch (e) { console.warn('[delegation]', e); }
     }
 
