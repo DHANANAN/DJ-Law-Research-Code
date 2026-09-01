@@ -6780,8 +6780,8 @@ Perhaps my solitary end was written there too.”
       <!-- Animated Top Loading Progress Bar -->
       <div id="doc-viewer-loader" class="doc-viewer-loader"></div>
       
-      <!-- Top Browser Head (Double click toggles immersive fullscreen) -->
-      <div class="doc-viewer-head" ondblclick="toggleViewerFullscreen(true)" title="Double click to toggle True Fullscreen">
+      <!-- Top Browser Head -->
+      <div class="doc-viewer-head">
         <div class="doc-viewer-title-wrap">
           <span class="doc-viewer-badge">
             <span class="doc-viewer-dot"></span>
@@ -6794,7 +6794,10 @@ Perhaps my solitary end was written there too.”
           <button type="button" class="doc-viewer-btn" onclick="refreshDocumentViewer()" title="Reload Frame" aria-label="Reload Frame">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
           </button>
-          <button type="button" class="doc-viewer-btn" onclick="toggleViewerFullscreen()" title="Toggle Fullscreen (Click again for True Native Fullscreen)" aria-label="Toggle Fullscreen">
+          <button type="button" class="doc-viewer-btn" onclick="toggleViewerMaximize()" title="Maximize Window" aria-label="Maximize Window">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </button>
+          <button type="button" class="doc-viewer-btn" onclick="toggleViewerNativeFullscreen()" title="True Fullscreen (Hides Tabs, Address Bar &amp; Taskbar)" aria-label="True Fullscreen">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
           </button>
           <a id="doc-viewer-source" class="doc-viewer-source" href="#" target="_blank" rel="noopener noreferrer" title="Open in external browser window">
@@ -6809,7 +6812,7 @@ Perhaps my solitary end was written there too.”
         <!-- Floating Pill visible in Immersive Fullscreen Mode -->
         <div id="doc-viewer-immersive-bar" class="doc-viewer-immersive-bar">
           <span class="immersive-title" id="doc-viewer-immersive-title">Web App</span>
-          <button type="button" class="immersive-btn" onclick="toggleViewerFullscreen()" title="Exit Fullscreen Mode">
+          <button type="button" class="immersive-btn" onclick="toggleViewerNativeFullscreen()" title="Exit Fullscreen Mode">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>
             Exit Fullscreen
           </button>
@@ -7549,39 +7552,51 @@ Perhaps my solitary end was written there too.”
       } catch (e) { }
     }
 
-    function toggleViewerFullscreen(forceImmersive) {
+    function toggleViewerMaximize() {
+      try {
+        var shell = document.getElementById('doc-viewer-shell');
+        if (shell) shell.classList.toggle('fullscreen');
+      } catch (e) { console.warn('[maximize]', e); }
+    }
+
+    function toggleViewerNativeFullscreen() {
       try {
         var modal = document.getElementById('doc-viewer-modal');
         var shell = document.getElementById('doc-viewer-shell');
         if (!shell || !modal) return;
 
-        var isImmersive = shell.classList.contains('immersive-mode');
-        var isFullscreen = shell.classList.contains('fullscreen');
+        var isNativeFs = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
 
-        if (forceImmersive || (isFullscreen && !isImmersive)) {
-          // Step 2 / Double Click: True Native Fullscreen & Immersive Mode (completely hides tabs/browser chrome)
+        if (!isNativeFs) {
+          // Instantly enter True Fullscreen and hide tabs/header
           shell.classList.add('fullscreen', 'immersive-mode');
-          try {
-            if (!document.fullscreenElement) {
-              if (modal.requestFullscreen) modal.requestFullscreen();
-              else if (modal.webkitRequestFullscreen) modal.webkitRequestFullscreen();
-              else if (modal.msRequestFullscreen) modal.msRequestFullscreen();
-            }
-          } catch (e) { }
-        } else if (!isFullscreen && !isImmersive) {
-          // Step 1: Maximize in viewport
-          shell.classList.add('fullscreen');
+          if (modal.requestFullscreen) {
+            modal.requestFullscreen();
+          } else if (modal.webkitRequestFullscreen) {
+            modal.webkitRequestFullscreen();
+          } else if (modal.mozRequestFullScreen) {
+            modal.mozRequestFullScreen();
+          } else if (modal.msRequestFullscreen) {
+            modal.msRequestFullscreen();
+          }
         } else {
-          // Step 3 / Exit Fullscreen: Restore normal
-          shell.classList.remove('fullscreen', 'immersive-mode');
-          if (document.fullscreenElement) {
-            try {
-              if (document.exitFullscreen) document.exitFullscreen();
-              else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-            } catch (e) { }
+          // Exit True Fullscreen
+          shell.classList.remove('immersive-mode');
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+          } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
           }
         }
-      } catch (e) { console.warn('[fullscreen]', e); }
+      } catch (e) { console.warn('[nativeFullscreen]', e); }
+    }
+
+    function toggleViewerFullscreen() {
+      toggleViewerNativeFullscreen();
     }
 
     /* ─── ANIMATION RESTART ─────────────────────────────────────────── */
